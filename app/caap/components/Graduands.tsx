@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 export default function Graduands() {
   return (
     <div className="bg-[url('/asset/graduands.jpg')] bg-no-repeat bg-cover bg-center py-19 p-8 text-white  text-center relative">
-      <div className="absolute bg-[rgba(0,0,0,0.4)] inset-0"></div>
+      <div className="absolute bg-[rgba(0,0,0,0.5)] inset-0"></div>
       <div className="relative flex flex-col items-center gap-5 justify-center z-10">
         <p className="font-bold text-[1.2rem]">Start Your Alignment</p>
         <p>
