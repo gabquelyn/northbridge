@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "./components/Hero";
+import Hero from "../components/atoms/Hero";
 import Navigation from "../components/Navigation";
 import Canadaian from "./components/Canadaian";
 import Reason from "./components/Reason";
@@ -11,7 +11,16 @@ export default function CAAP() {
   return (
     <div>
       <Navigation />
-      <Hero />
+      <Hero
+        text={
+          <>
+            Your First Step to Success in Canada: <br />
+          </>
+        }
+        typewrite="Align. Complete. Advance."
+        image="bg-[url('/asset/toronto.jpg')]"
+        
+      />
       <Canadaian />
       <Reason />
       <Graduands />

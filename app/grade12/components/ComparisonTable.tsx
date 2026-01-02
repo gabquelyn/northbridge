@@ -79,10 +79,10 @@ export default function ComparisonTable() {
                 viewport={{ once: true }}
               >
                 <td className="p-4 font-medium ">{row[0]}</td>
-                <td className="p-4 bg-[#293B59] border-r border-[#32425e] text-white">
+                <td className="p-4 bg-[#293B59] border-r border-b border-t border-[#32425e] text-white">
                   {row[1]}
                 </td>
-                <td className="p-4 bg-[#293B59] text-white">{row[2]}</td>
+                <td className="p-4 bg-[#293B59] border-r border-b border-t border-[#32425e] text-white">{row[2]}</td>
               </motion.tr>
             ))}
           </tbody>

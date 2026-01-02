@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Vision() {
   return (
-    <div className="bg-[#479DA5] flex flex-col gap-15 px-[20%] text-white p-20 pt-40">
+    <div className="bg-[#479DA5] flex flex-col gap-15 px-[20%] text-white p-20">
       <div className="grid grid-cols-[30%_70%]">
         <p>Mission</p>
         <p>

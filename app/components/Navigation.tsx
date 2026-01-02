@@ -31,15 +31,7 @@ export default function Navigation() {
     { label: "About us", href: "" },
     {
       label: "Our Model",
-      children: [
-        {
-          label: "Canadian University Prep Model",
-          href: "",
-        },
-        { label: "How We Are Different", href: "" },
-        { label: "Academic Bridge Framework", href: "" },
-        { label: "How the Pathway Works", href: "" },
-      ],
+      href: "",
     },
     {
       label: "Programs",
@@ -53,13 +45,18 @@ export default function Navigation() {
         { label: "Grade 12 OSSD Online (Global)", href: "" },
       ],
     },
+
+    {
+      label: "Log in",
+      href: "",
+    },
   ];
 
   return (
     <div
       className={clsx(
-        scrolled ? "bg-[rgba(71,157,165)]" : "bg-[rgba(71,157,165,0.4)]",
-        "fixed z-30 inset-0 text-white transition-all h-fit p-3 backdrop-blur-xl shadow-md"
+        // scrolled ? "bg-[rgba(71,157,165)]" : "bg-[rgba(71,157,165,0.4)]",
+        "sticky z-30 inset-0 bg-white transition-all h-fit p-3 backdrop-blur-xl"
       )}
     >
       <div className="flex items-center justify-between px-[5%]">
@@ -70,18 +67,16 @@ export default function Navigation() {
           }}
           transition={{ duration: 0.3 }}
         >
-          <Image src="/asset/logo1.png" height={100} width={100} alt="logo" />
+          <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
         </motion.div>
 
-        <div className="flex gap-10">
+        <div className="flex items-center gap-15">
           {menu.map((item) => (
             <MenuItem key={item.label} item={item} />
           ))}
-        </div>
-        <div>
           <motion.div
             className={
-              "bg-linear-0 from-[#479DA5] transition-all cursor-pointer to-[#17757E] p-2 px-6 rounded-3xl"
+              "bg-linear-0 from-[#479DA5] transition-all cursor-pointer to-[#17757E] p-2 px-6 rounded-3xl text-white"
             }
             whileHover={{ scale: "1.05" }}
           >

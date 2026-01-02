@@ -9,7 +9,7 @@ export default function MenuItem({ item }: { item: NavLinks }) {
 
   return (
     <li
-      className="relative list-none text-white"
+      className="relative list-none text-[#010A1D]"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >

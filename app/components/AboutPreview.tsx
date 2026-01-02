@@ -7,12 +7,7 @@ import { FaGreaterThan } from "react-icons/fa";
 export default function AboutPreview() {
   return (
     <div className="p-10 py-20 flex flex-col gap-8 items-center justify-center bg-[#f5fefd]">
-      <p className="text-[2.5rem] font-bold text-center">
-        Preparation, Admission, <br /> and{" "}
-        <span className="text-[#479DA5]">Adaptation.</span>
-      </p>
-
-      <div className="grid grid-cols-2 gap-12 px-[20%] items-center">
+      <div className="grid grid-cols-2 gap-12 px-[18%] items-center">
         {/* Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -20,8 +15,13 @@ export default function AboutPreview() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <div className="relative h-100 w-full overflow-hidden rounded-xl">
-            <Image src={"/asset/teacher.jpg"} fill alt="" className="object-cover" />
+          <div className="relative h-100 w-full overflow-hidden">
+            <Image
+              src={"/asset/flags.png"}
+              fill
+              alt=""
+              className="object-cover"
+            />
           </div>
         </motion.div>
 
@@ -37,39 +37,28 @@ export default function AboutPreview() {
             },
           }}
         >
-          <div className="flex flex-col gap-4">
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              <Image src={"/asset/d.png"} alt="" height={400} width={500} />
-            </motion.div>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className=" flex flex-col gap-4"
+          >
+            <p className="text-[2.5rem] font-bold text-center">
+              Welcome to <span className="text-[#479DA5]">Northbridge</span>
+            </p>
+            <p>
               Northbridge Collegiate is a private Canadian educational
               institution inspected and authorized by the Ontario Ministry of
               Education to deliver Ontario Secondary School Diploma (OSSD)
               programs in accordance with provincial requirements.
-            </motion.p>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
+            </p>
+            <p>
               As a Canadian University Preparation institution, we offer
               secondary-level academic programs through both online and in-class
               delivery.
-            </motion.p>
-          </div>
+            </p>
+          </motion.div>
 
           {/* CTA */}
           <motion.div

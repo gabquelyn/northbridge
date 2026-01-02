@@ -26,16 +26,34 @@ body {
 
 .section {
   min-height: 100vh;
+
+  /* space around the background */
+  padding: 3rem;
+
+  /* required for overlay + radius */
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+
+  /* remove fixed here – breaks radius */
 }
 
+/* dark overlay */
 .section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6) ;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: inherit;
   z-index: 0;
+}
+
+/* content sits above overlay */
+.section > * {
+  position: relative;
+  z-index: 1;
 }
