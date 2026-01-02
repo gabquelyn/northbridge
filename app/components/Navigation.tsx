@@ -31,7 +31,7 @@ export default function Navigation() {
     { label: "About us", href: "/about" },
     {
       label: "Our Model",
-      href: "",
+      href: "/northbridge-model",
     },
     {
       label: "Programs",
@@ -56,7 +56,7 @@ export default function Navigation() {
     <div
       className={clsx(
         // scrolled ? "bg-[rgba(71,157,165)]" : "bg-[rgba(71,157,165,0.4)]",
-        "sticky z-30 inset-0 bg-white transition-all h-fit p-3 backdrop-blur-xl"
+        "sticky z-30 inset-0 bg-white shadow-md transition-all h-fit p-3 backdrop-blur-xl"
       )}
     >
       <div className="flex items-center justify-between px-[5%]">

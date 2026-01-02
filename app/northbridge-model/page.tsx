@@ -4,6 +4,7 @@ import Hero from "../components/atoms/Hero";
 import Philosophy from "./components/Philosophy";
 import Special from "../about/components/Special";
 import Footer from "../components/Footer";
+import AcademicFramework from "./components/AcademicFramework";
 export default function ModelPage() {
   return (
     <div>
@@ -12,10 +13,10 @@ export default function ModelPage() {
         image="bg-[url('/asset/workers.jpg')]"
         text={
           <>
-            The Northbridge Academic Bridge <br />
+            The Northbridge  <br />
           </>
         }
-        typewrite="Model"
+        typewrite="Academic Bridge Model"
         description={
           <>
             Most schools focus on getting you to the university door.
@@ -24,6 +25,7 @@ export default function ModelPage() {
         }
       />
       <Philosophy/>
+      <AcademicFramework/>
       <Special/>
       <Footer/>
     </div>

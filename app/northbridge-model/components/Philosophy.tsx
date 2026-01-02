@@ -30,7 +30,7 @@ export default function Philosophy() {
         <p className="text-[2.5rem] font-bold text-center capitalize">
           A specialized
           <br />
-          <span className="text-[#479da5]">What</span> Approach to success
+          <span className="text-[#479da5]">Approach to success</span> 
         </p>
         <p className="text-center mt-2">
           Northbridge Collegiate is not a traditional high school. We are a
