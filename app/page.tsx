@@ -5,6 +5,7 @@ import Structure from "./components/Structure";
 import Faq from "./components/Faq";
 import Hero from "./components/atoms/Hero";
 import Footer from "./components/Footer";
+import Program from "./components/Program";
 export default function Home() {
   return (
     <div>
@@ -30,6 +31,7 @@ export default function Home() {
       />
       <AboutPreview />
       {/* <ModelPreview /> */}
+      <Program/>
       <Structure />
       <Faq />
       <Footer />

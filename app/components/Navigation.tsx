@@ -27,8 +27,8 @@ export default function Navigation() {
   }, []);
 
   const menu: NavLinks[] = [
-    { label: "Home", href: "" },
-    { label: "About us", href: "" },
+    { label: "Home", href: "/" },
+    { label: "About us", href: "/about" },
     {
       label: "Our Model",
       href: "",
@@ -38,11 +38,11 @@ export default function Navigation() {
       children: [
         {
           label: "Canadian Academic Alignment Program (CAAP)",
-          href: "",
+          href: "/caap",
         },
-        { label: "Grade 12 OSSD (Canada)", href: "" },
-        { label: "Grade 12 Advantage Year (AY12)", href: "" },
-        { label: "Grade 12 OSSD Online (Global)", href: "" },
+        { label: "Grade 12 OSSD (Canada)", href: "/grade12" },
+        { label: "Grade 12 Advantage Year (AY12)", href: "/ay12" },
+        // { label: "Grade 12 OSSD Online (Global)", href: "" },
       ],
     },
 

@@ -165,7 +165,7 @@ export default function Explanation() {
                 i % 2 === 0 ? "bg-[#479DA526]" : "bg-[#293B59] text-white py-8"
               )}
             >
-              <Image src={c.image} alt={c.title} height={60} width={60} />
+              <Image src={c.image} alt={c.title} height={100} width={100} />
               <p className="font-semibold">{c.title}</p>
               <p>{c.details}</p>
             </motion.div>
