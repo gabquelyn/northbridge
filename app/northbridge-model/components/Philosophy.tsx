@@ -23,16 +23,40 @@ export default function Philosophy() {
       image: "/asset/3.png",
     },
   ];
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+      },
+    },
+  };
 
   return (
     <div className="flex flex-col gap-20 py-20">
       <div className="px-[20%]">
-        <p className="text-[2.5rem] font-bold text-center capitalize">
+        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center capitalize">
           A specialized
           <br />
-          <span className="text-[#479da5]">Approach to success</span> 
+          <span className="text-[#479da5]">Approach to success</span>
         </p>
-        <p className="text-center mt-2">
+        <p className="text-center mt-8">
           Northbridge Collegiate is not a traditional high school. We are a
           specialized academic bridge institution. Through a sophisticated blend
           of online and in-class learning, we have moved beyond the
@@ -42,10 +66,10 @@ export default function Philosophy() {
       </div>
 
       <div className="bg-[#479DA526] py-20 px-[15%]">
-        <div className="flex justify-between items-center">
-          <p className="text-[2.5rem] font-bold text-left capitalize">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-[2rem] md:text-[2.5rem] font-bold text-left capitalize">
             The Readiness-First
-            <br />
+            <br className="hidden md:block"/>
             <span className="text-[#479da5]">What</span> Philosophy
           </p>
           <div className="flex flex-col gap-3">
@@ -54,7 +78,7 @@ export default function Philosophy() {
               <br />
               True success requires being "system-ready" before you arrive.
             </p>
-            <div className="flex justify-end">
+            <div className="flex justify-center md:justify-end">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 className={
@@ -67,18 +91,27 @@ export default function Philosophy() {
           </div>
         </div>
 
-        <div className="flex gap-8 mt-15">
+        <motion.div
+          className="flex flex-col md:flex-row gap-8 mt-15"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {content.map((d) => (
-            <div className="bg-white rounded-xl p-7 w-full">
+            <motion.div
+              variants={cardVariants}
+              className="bg-white rounded-xl p-7 w-full"
+            >
               <Image src={d.image} height={30} width={30} alt="" />
 
-              <div className="mt-5  p-3 flex flex-col gap-3">
+              <div className="mt-5  p-3 flex flex-col text-center md:text-left gap-3">
                 <p>{d.title}</p>
                 <p>{d.details}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

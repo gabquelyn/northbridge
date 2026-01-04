@@ -69,7 +69,7 @@ export default function Faq() {
         <span className="text-[#479DA5]">Asked Questions</span>
       </p>
 
-      <div className="grid grid-cols-2 mx-[14%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-1 mx-[5%] md:mx-[14%]">
         <div className="">
           <p className="text-[#F9CA52]">Institutional Status & Legitimacy</p>
         </div>
@@ -80,7 +80,7 @@ export default function Faq() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 mx-[14%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-1 mx-[5%] md:mx-[14%]">
         <div>
           <p className="text-[#F9CA52]">Program Mechanics (Grade 12 & AY12)</p>
         </div>
@@ -91,7 +91,7 @@ export default function Faq() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 mx-[14%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-1 mx-[5%] md:mx-[14%]">
         <div>
           <p className="text-[#F9CA52]">The Academic Bridge (CAAP)</p>
         </div>
@@ -101,7 +101,7 @@ export default function Faq() {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-2 mx-[14%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-1 mx-[5%] md:mx-[14%]">
         <div>
           <p className="text-[#F9CA52]">Information for Parents</p>
         </div>

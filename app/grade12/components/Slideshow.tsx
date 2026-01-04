@@ -51,11 +51,11 @@ export default function Slideshow() {
     <div className="bg-[url('/asset/library.jpg')] bg-no-repeat bg-cover bg-center py-20 p-8 text-white relative">
       <div className="absolute bg-[rgba(0,0,0,0.4)] inset-0"></div>
 
-      <div className="grid relative grid-cols-2 mx-[14%] items-center gap-8">
+      <div className="grid relative grid-cols-1 md:grid-cols-2 mx-[5%] md:mx-[14%] items-center gap-8">
         {/* Title */}
         <div>
-          <p className="text-[2.5rem] font-bold capitalize">
-            <p>Core Academic <br/> Framework</p>
+          <p className="text-[2rem] text-center md:text-left md:text-[2.5rem] font-bold capitalize">
+            <p>Core Academic <br className="hidden md:block"/> Framework</p>
           </p>
         </div>
 

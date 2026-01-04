@@ -7,12 +7,35 @@ import AdmissionRequirements from "./components/AdmissionRequirements";
 import Graduands from "../caap/components/Graduands";
 import ComparisonTable from "./components/ComparisonTable";
 import Footer from "../components/Footer";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Grade 12 OSSD (Canada)",
+
+  description:
+    "Earn the Ontario Secondary School Diploma (OSSD) through Northbridge Collegiate's Canadian-aligned Grade 12 program for international students.",
+
+  alternates: {
+    canonical: "https://northbridgec.ac/grade12",
+  },
+
+  openGraph: {
+    title: "Grade 12 OSSD (Canada)",
+    description:
+      "An Ontario curriculum-based Grade 12 program preparing students for admission into Canadian universities.",
+    url: "https://northbridgec.ac/grade12",
+  },
+};
+
 export default function Grade12() {
   return (
     <div>
       <Navigation />
       <Hero
-        text={"Secure Your Global Credential."}
+        text={
+          <>
+            Secure Your Global Credential. <br />
+          </>
+        }
         typewrite="Fulfill Your Potential."
         image="bg-[url('/asset/girl.jpg')]"
         description={

@@ -39,15 +39,15 @@ export default function ComparisonTable() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-20">
-      <p className="text-[2.5rem] font-bold capitalize text-center">
+      <p className="text-[2rem] md:text-[2.5rem] font-bold capitalize text-center">
         <span className="text-[#479DA5]">AY12 vs Standard Grade 12</span>
         <br />
         Choosing Your Pace
       </p>
 
-      <div className="px-[15%] mt-3 w-full">
+      <div className="px-[5%] flex justify-center items-center md:px-[15%] mt-3 w-full">
         <motion.table
-          className="w-full border-collapse overflow-hidden text-center"
+          className="w-full border-collapse overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -55,7 +55,7 @@ export default function ComparisonTable() {
         >
           <thead>
             <tr>
-              <th className="p-12 font-semibold">Area</th>
+              <th className="p-12 font-semibold text-left">Area</th>
               <th className="p-12 font-semibold bg-[#293B59] text-[#479DA5] border-r border-[#32425e]">
                 AY 12
               </th>
@@ -78,11 +78,11 @@ export default function ComparisonTable() {
                 }}
                 viewport={{ once: true }}
               >
-                <td className="p-4 font-medium ">{row[0]}</td>
-                <td className="p-4 bg-[#293B59] border-r border-b border-t border-[#32425e] text-white">
+                <td className="p-4 font-medium text-left">{row[0]}</td>
+                <td className="p-4 bg-[#293B59] border-r border-b text-center border-t border-[#32425e] text-white">
                   {row[1]}
                 </td>
-                <td className="p-4 bg-[#293B59] border-r border-b border-t border-[#32425e] text-white">{row[2]}</td>
+                <td className="p-4 bg-[#293B59] border-r text-center border-b border-t border-[#32425e] text-white">{row[2]}</td>
               </motion.tr>
             ))}
           </tbody>

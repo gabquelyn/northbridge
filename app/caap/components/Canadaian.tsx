@@ -3,8 +3,8 @@ import React from "react";
 
 export default function Canadaian() {
   return (
-    <div className="p-20 mx-[15%]">
-      <div className="grid grid-cols-2 gap-20 items-center">
+    <div className="p-20 mx-[5%] md:mx-[15%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
         <div className="w-full h-100 relative">
           <Image src="/asset/flag1.jpg" alt="" fill className="object-cover" />
         </div>

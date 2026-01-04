@@ -3,11 +3,11 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaGreaterThan } from "react-icons/fa";
-
+import Link from "next/link";
 export default function AboutPreview() {
   return (
     <div className="p-10 py-20 flex flex-col gap-8 items-center justify-center bg-[#f5fefd]">
-      <div className="grid grid-cols-2 gap-12 px-[18%] items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-[5%] md:px-[18%] items-center">
         {/* Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -42,9 +42,9 @@ export default function AboutPreview() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
-            className=" flex flex-col gap-4"
+            className=" flex flex-col gap-4 text-center md:text-left"
           >
-            <p className="text-[2.5rem] font-bold text-center">
+            <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
               Welcome to <span className="text-[#479DA5]">Northbridge</span>
             </p>
             <p>
@@ -61,21 +61,23 @@ export default function AboutPreview() {
           </motion.div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.4 }}
-            viewport={{ once: true }}
-            className="flex justify-end mt-4"
-          >
+          <Link href = "/about">
             <motion.div
-              className="bg-linear-0 from-[#479DA5] to-[#17757E] p-2 px-6 rounded-3xl w-fit text-white flex gap-2 items-center cursor-pointer"
-              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              viewport={{ once: true }}
+              className="flex md:justify-end justify-center mt-4"
             >
-              <p>Learn More</p>
-              <FaGreaterThan />
+              <motion.div
+                className="bg-linear-0 from-[#479DA5] to-[#17757E] p-2 px-6 rounded-3xl w-fit text-white flex gap-2 items-center cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+              >
+                <p>Learn More</p>
+                <FaGreaterThan />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </Link>
         </motion.div>
       </div>
     </div>

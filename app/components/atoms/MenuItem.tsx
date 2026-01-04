@@ -2,39 +2,63 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { NavLinks, NestedLink } from "../Navigation";
-
-export default function MenuItem({ item }: { item: NavLinks }) {
+import clsx from "clsx";
+export default function MenuItem({
+  item,
+  mobile = false,
+  closeMenu,
+}: {
+  item: NavLinks;
+  mobile?: boolean;
+  closeMenu?: () => void;
+}) {
   const [open, setOpen] = useState(false);
-
   const hasChildren = "children" in item;
+
+  const toggle = () => setOpen(!open);
 
   return (
     <li
-      className="relative list-none text-[#010A1D]"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      className="relative list-none"
+      onMouseEnter={!mobile ? () => setOpen(true) : undefined}
+      onMouseLeave={!mobile ? () => setOpen(false) : undefined}
     >
-      <Link
-        className="cursor-pointer block py-2"
-        href={!hasChildren ? item.href : ""}
-      >
-        {item.label}
-      </Link>
+      {hasChildren ? (
+        <button
+          onClick={mobile ? toggle : undefined}
+          className="w-full text-left py-2"
+        >
+          {item.label}
+        </button>
+      ) : (
+        <Link
+          href={item.href}
+          onClick={closeMenu}
+          className="block py-2"
+        >
+          {item.label}
+        </Link>
+      )}
 
       <AnimatePresence>
         {open && hasChildren && (
           <motion.ul
-            initial={{ opacity: 0, height: 0, y: -8 }}
-            animate={{ opacity: 1, height: "auto", y: 0 }}
-            exit={{ opacity: 0, height: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute top-full left-0 bg-white text-[#010A1D] shadow-lg min-w-70 overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className={clsx(
+              mobile
+                ? "pl-4"
+                : "absolute top-full left-0 bg-white shadow-lg min-w-70"
+            )}
           >
             {(item as NestedLink).children.map((child, i) => (
               <Link
                 key={i}
                 href={child.href}
-                className="px-4 py-2 block hover:bg-[#479DA526] cursor-pointer whitespace-nowrap"
+                onClick={closeMenu}
+                className="block px-4 py-2 hover:bg-[#479DA526]"
               >
                 {child.label}
               </Link>

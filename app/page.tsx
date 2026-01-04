@@ -6,6 +6,26 @@ import Faq from "./components/Faq";
 import Hero from "./components/atoms/Hero";
 import Footer from "./components/Footer";
 import Program from "./components/Program";
+import { Metadata } from "next";
+
+export const metadata = {
+  title: "Canadian Academic Bridge Programs for University Success",
+
+  description:
+    "Northbridge Collegiate prepares international students for Canadian universities through structured academic bridge programs aligned with the Ontario Secondary School Diploma (OSSD).",
+
+  alternates: {
+    canonical: "https://northbridgec.ca/",
+  },
+
+  openGraph: {
+    title: "Canadian Academic Bridge Programs | Northbridge Collegiate",
+    description:
+      "Academic bridge programs designed to prepare students from diverse educational backgrounds for Canadian university success.",
+    url: "https://northbridgec.ca/",
+  },
+};
+
 export default function Home() {
   return (
     <div>
@@ -30,7 +50,7 @@ export default function Home() {
         }
       />
       <AboutPreview />
-      {/* <ModelPreview /> */}
+      <ModelPreview />
       <Program/>
       <Structure />
       <Faq />

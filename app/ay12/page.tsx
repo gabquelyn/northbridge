@@ -5,9 +5,49 @@ import Explanation from "./components/Explanation";
 import ComparisonTable from "../grade12/components/ComparisonTable";
 import Graduands from "../caap/components/Graduands";
 import Footer from "../components/Footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Grade 12 Advantage Year (AY12)",
+
+  description:
+    "The Grade 12 Advantage Year (AY12) helps international students transition smoothly into Canadian university through academic preparation and alignment.",
+
+  alternates: {
+    canonical: "https://northbridgec.ca/ay12",
+  },
+
+  openGraph: {
+    title: "Grade 12 Advantage Year (AY12)",
+    description:
+      "A structured Grade 12 pathway designed to prepare students for Canadian university success.",
+    url: "https://northbridgec.ca/ay12",
+  },
+};
+
 export default function AY12() {
   return (
     <div>
+            <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOccupationalProgram",
+            "name": "Grade 12 Advantage Year (AY12)",
+            "description":
+              "A structured Grade 12 pathway designed to prepare students for Canadian university success.",
+            "provider": {
+              "@type": "EducationalOrganization",
+              "name": "Northbridge Collegiate",
+              "url": "https://northbridgec.ac"
+            },
+            "educationalCredentialAwarded": "University Preparation",
+            "timeToComplete": "P6M",
+            "url": "https://northbridgec.ac/caap"
+          }),
+        }}
+      />
       <Navigation />
       <Hero
         image="bg-[url('/asset/graduate.jpg')]"

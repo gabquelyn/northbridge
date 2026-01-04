@@ -10,7 +10,7 @@ export default function Reason() {
       <div>
         {/* Heading */}
         <motion.p
-          className="text-[2.5rem] font-bold text-center"
+          className="text-[2rem] md:text-[2.5rem] font-bold text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -34,11 +34,11 @@ export default function Reason() {
         </motion.p>
 
         {/* Cards */}
-        <div className="mt-10 flex gap-6 mx-[10%]">
+        <div className="mt-10 flex flex-col md:flex-row gap-10 md:gap-6 md:mx-[10%] mx-[5%]">
           {[
             {
               bg: "bg-[#F9CA52]",
-              rotate: "-rotate-3",
+              rotate: "-rotate-1 md-rotate-3",
               icon: "/asset/stash.png",
               title: "Academic Writing",
               text:
@@ -47,7 +47,7 @@ export default function Reason() {
             },
             {
               bg: "bg-[#293B59]",
-              rotate: "rotate-3",
+              rotate: "md:rotate-3 rotate-2",
               icon: "/asset/coins.png",
               title: "Academic Writing",
               text:
@@ -56,7 +56,7 @@ export default function Reason() {
             },
             {
               bg: "bg-[#010A1D]",
-              rotate: "-rotate-3",
+              rotate: "-rotate-1 md-rotate-3",
               icon: "/asset/dashboard.png",
               title: "Independent Learning",
               text:
@@ -65,7 +65,7 @@ export default function Reason() {
             },
             {
               bg: "bg-[#479DA5]",
-              rotate: "rotate-5",
+              rotate: "md:rotate-5 rotate-2",
               icon: "/asset/dashboard.png",
               title: "Classroom Norms",
               text:

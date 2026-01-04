@@ -17,13 +17,13 @@ export default function Ossd() {
     {
       title: "Uncompromising Standards",
       details:
-        "Whether delivered in-person or through our cross-border model, the integrity of the OSSD remains intact. You receive a premium Canadian education that is recognized by universities across North America, the UK, Australia, and beyond.",
+        "Whether delivered in-person or through our cross-border model, the integrity of the OSSD remains intact.",
     },
   ];
 
   return (
     <div>
-      <div className="py-20 bg-white flex flex-col text-center items-center justify-center gap-4 px-[25%]">
+      <div className="py-20 bg-white flex flex-col text-center items-center justify-center gap-4 px-[5%] md:px-[25%]">
         <div className="w-90 mb-4 h-2 bg-gray-100"></div>
         <p>
           <span className="font-bold">Grade 12 OSSD</span> is the bridge that
@@ -49,18 +49,18 @@ export default function Ossd() {
           <br /> secondary school credentials in the world.
         </p>
 
-        <div className="flex gap-4 px-[15%]">
+        <div className="flex flex-wrap justify-center gap-4 px-[5%] md:px-[15%]">
           {details.map((de) => (
             <div
               key={de.title}
-              className="bg-[#010A1D] w-full rounded-lg p-5 flex flex-col gap-4 items-center text-center"
+              className="bg-[#010A1D] w-75 gap-10 rounded-lg p-9 flex flex-col  items-center text-center"
             >
               <p>{de.title}</p>
               <p>{de.details}</p>
             </div>
           ))}
           <motion.div
-            className="relative w-full rounded-lg overflow-hidden"
+            className="relative w-70 rounded-lg overflow-hidden"
             animate={{
               y: [0, -12, 0, 8, 0],
               x: [0, 6, 0, -6, 0],

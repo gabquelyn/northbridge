@@ -18,10 +18,10 @@ export default function Message() {
     },
   ];
   return (
-    <div className="px-[15%] py-20">
-      <div className="grid grid-cols-2 gap-15">
-        <div className="text-left">
-          <p className="text-[2.5rem] font-bold capitalize">
+    <div className="md:px-[15%] px-[5%] py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-15">
+        <div className="text-center md:text-left ">
+          <p className="text-[2rem] md:text-[2.5rem] font-bold capitalize">
             <span className="text-[#479DA5]">a message to parents:</span> <br />
             Protect your investment
           </p>

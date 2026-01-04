@@ -24,7 +24,7 @@ export default function IconBox({
     >
       {/* Notification box */}
       <motion.div
-        className="bg-[#68b2b9] text-center rounded-2xl p-7"
+        className="bg-[#68b2b9] text-center rounded-2xl p-5 md:p-7"
         whileHover={{ scale: 1.03 }}
       >
         <p>{tag}</p>

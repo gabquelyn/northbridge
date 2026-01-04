@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 import clsx from "clsx";
 export default function Explanation() {
   const bgColors = [
@@ -51,9 +52,9 @@ export default function Explanation() {
   };
 
   return (
-    <div className="flex flex-col gap-20 py-20 px-[15%]">
+    <div className="flex flex-col gap-20 py-20 px-[5%] md:px-[15%]">
       <div className="flex gap-24 text-center">
-        <Image src="/asset/left.png" height={200} width={200} alt="" />
+        <Image src="/asset/left.png" height={200} className= "hidden md:block" width={200} alt="" />
         <p>
           <span className="font-bold">The Grade 12 Advantage Year (AY12)</span>{" "}
           represents the "Advance" phase of the Northbridge pathway. It provides
@@ -61,18 +62,18 @@ export default function Explanation() {
           standard Ontario Secondary School Diploma (OSSD), ensuring you
           graduate not just with a credential, but with mastery.
         </p>
-        <Image src="/asset/right.png" height={200} width={200} alt="" />
+        <Image src="/asset/right.png" height={200} className= "hidden md:block" width={200} alt="" />
       </div>
 
       <div className="flex flex-col gap-8">
-        <p className="text-[2.5rem] font-bold text-center">
+        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
           <span className="text-[#479da5]">What does</span>
           <br />
           Ay represent?
         </p>
 
-        <div className="grid grid-cols-[40%_60%] items-center gap-10 px-[10%]">
-          <div className="w-full h-150 relative overflow-hidden">
+        <div className="grid grid-cols-1 mt-5 md:grid-cols-[40%_60%] items-center gap-10 px-[10%]">
+          <div className="w-full h-150 relative overflow-hidden hidden md:block">
             <Image
               src="/asset/study.jpg"
               alt=""
@@ -81,12 +82,14 @@ export default function Explanation() {
             />
             <div className="absolute flex flex-col justify-end p-5 inset-0 bg-[rgba(0,0,0,0.3)]">
               <div className="flex items-center justify-between">
+                <Link href = "/consultation">
                 <motion.div
                   className="border-2 rounded-3xl text-white border-white p-2 px-6"
                   whileHover={{ scale: 1.05 }}
                 >
                   Book a consultation
                 </motion.div>
+                </Link>
                 <motion.button
                   className="border-2 rounded-[50%] flex items-center justify-center text-3xl h-15 w-15 text-white border-white p-2 px-6 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -116,11 +119,11 @@ export default function Explanation() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center gap-8 text-center">
-        <p className="text-[2.5rem] font-bold text-center">
+        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
           <span className="text-[#479da5]">What</span> You will{" "}
           <span className="text-[#479da5]">Master</span>
         </p>
-        <div className="h-[60vh] w-full relative">
+        <div className="h-[60vh] w-full -mt-20 md:mt-0 relative">
           <Image
             src="/asset/module.png"
             fill
@@ -139,7 +142,7 @@ export default function Explanation() {
         variants={stagger}
       >
         <motion.p
-          className="text-[2.5rem] font-bold capitalize text-center"
+          className="text-[2rem] md:text-[2.5rem] font-bold capitalize text-center"
           variants={fadeUp}
         >
           The weekly{" "}
@@ -153,7 +156,7 @@ export default function Explanation() {
           <br /> and the independence of campus life.
         </motion.p>
 
-        <motion.div className="flex gap-4 px-[10%] mt-3" variants={stagger}>
+        <motion.div className="flex flex-wrap gap-4 justify-center px-[5%] md:px-[10%] mt-3" variants={stagger}>
           {content.map((c, i) => (
             <motion.div
               key={c.title}
@@ -161,7 +164,7 @@ export default function Explanation() {
               whileHover={{ y: -6 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               className={clsx(
-                "flex items-center justify-center w-full text-center flex-col gap-4 p-3 rounded-lg transition-all",
+                "flex items-center justify-center w-70 md:w-80 h-70 text-center flex-col gap-4 p-3 rounded-lg transition-all",
                 i % 2 === 0 ? "bg-[#479DA526]" : "bg-[#293B59] text-white py-8"
               )}
             >

@@ -20,7 +20,7 @@ export default function Footer() {
             <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
           </div>
           <p className="text-sm leading-relaxed">
-            Northbridge Collegiate is a private secondary school authorized by
+            Northbridge Collegiate is a private secondary school<br/> authorized by
             the Ontario Ministry of Education.
           </p>
           <div className="flex gap-6 items-center">
@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3 text-sm">
             <div className="flex gap-3 items-center">
               <TbMail className="text-[#17757E]" />
-              <p>@northbridgec.ca</p>
+              <p>support@northbridgec.ca</p>
             </div>
             <div className="flex gap-3 items-center">
               <LuPhone className="text-[#17757E]" />

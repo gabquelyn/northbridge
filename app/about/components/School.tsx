@@ -2,7 +2,7 @@ import React from "react";
 
 export default function School() {
   return (
-    <div className="py-20 bg-white flex flex-col text-center items-center justify-center gap-4 px-[25%]">
+    <div className="py-20 bg-white flex flex-col text-center items-center justify-center gap-4 px-[5%] md:px-[25%]">
       <div className="w-90 mb-4 h-2 bg-gray-100"></div>
       <p>
         <span className="text-[#479DA5] font-bold">Northbridge Collegiate</span> operates
