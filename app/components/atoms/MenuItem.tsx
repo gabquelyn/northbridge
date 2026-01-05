@@ -58,7 +58,7 @@ export default function MenuItem({
                 key={i}
                 href={child.href}
                 onClick={closeMenu}
-                className="block px-4 py-2 hover:bg-[#479DA526]"
+                className="block px-4 py-2 md:text-nowrap hover:bg-[#479DA526]"
               >
                 {child.label}
               </Link>
