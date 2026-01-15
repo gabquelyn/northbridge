@@ -53,20 +53,36 @@ export default function Explanation() {
 
   return (
     <div className="flex flex-col gap-20 py-20 px-[5%] md:px-[15%]">
-      <div className="flex gap-24 text-center">
-        <Image src="/asset/left.png" height={200} className= "hidden md:block" width={200} alt="" />
-        <p>
-          <span className="font-bold">The Grade 12 Advantage Year (AY12)</span>{" "}
-          represents the "Advance" phase of the Northbridge pathway. It provides
-          a structured academic enrichment layer that sits on top of the
-          standard Ontario Secondary School Diploma (OSSD), ensuring you
-          graduate not just with a credential, but with mastery.
-        </p>
-        <Image src="/asset/right.png" height={200} className= "hidden md:block" width={200} alt="" />
+      <div className="flex gap-24 text-center items-center justify-center">
+        <div className="max-w-200 flex gap-7">
+          <Image
+            src="/asset/left.png"
+            height={100}
+            className="hidden md:block"
+            width={100}
+            alt=""
+          />
+          <p>
+            <span className="font-bold">
+              The Grade 12 Advantage Year (AY12)
+            </span>{" "}
+            represents the "Advance" phase of the Northbridge pathway. It
+            provides a structured academic enrichment layer that sits on top of
+            the standard Ontario Secondary School Diploma (OSSD), ensuring you
+            graduate not just with a credential, but with mastery.
+          </p>
+          <Image
+            src="/asset/right.png"
+            height={100}
+            className="hidden md:block"
+            width={100}
+            alt=""
+          />
+        </div>
       </div>
 
       <div className="flex flex-col gap-8">
-        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
+        <p className="title font-bold text-center">
           <span className="text-[#479da5]">What does</span>
           <br />
           Ay represent?
@@ -82,20 +98,20 @@ export default function Explanation() {
             />
             <div className="absolute flex flex-col justify-end p-5 inset-0 bg-[rgba(0,0,0,0.3)]">
               <div className="flex items-center justify-between">
-                <Link href = "/consultation">
-                <motion.div
-                  className="border-2 rounded-3xl text-white border-white p-2 px-6"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Book a consultation
-                </motion.div>
+                <Link href="/consultation">
+                  <motion.div
+                    className="border-2 rounded-3xl text-white border-white p-2 px-6"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Book a consultation
+                  </motion.div>
                 </Link>
-                <motion.button
+                <motion.div
                   className="border-2 rounded-[50%] flex items-center justify-center text-3xl h-15 w-15 text-white border-white p-2 px-6 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                 >
                   <FaArrowRight />
-                </motion.button>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -119,7 +135,7 @@ export default function Explanation() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center gap-8 text-center">
-        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
+        <p className="title font-bold text-center">
           <span className="text-[#479da5]">What</span> You will{" "}
           <span className="text-[#479da5]">Master</span>
         </p>
@@ -142,7 +158,7 @@ export default function Explanation() {
         variants={stagger}
       >
         <motion.p
-          className="text-[2rem] md:text-[2.5rem] font-bold capitalize text-center"
+          className="title font-bold capitalize text-center"
           variants={fadeUp}
         >
           The weekly{" "}
@@ -156,7 +172,10 @@ export default function Explanation() {
           <br /> and the independence of campus life.
         </motion.p>
 
-        <motion.div className="flex flex-wrap gap-4 justify-center px-[5%] md:px-[10%] mt-3" variants={stagger}>
+        <motion.div
+          className="flex flex-wrap gap-4 justify-center px-[5%] md:px-[10%] mt-3"
+          variants={stagger}
+        >
           {content.map((c, i) => (
             <motion.div
               key={c.title}

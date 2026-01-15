@@ -11,14 +11,14 @@ export default function Question({
 }) {
   return (
     <motion.div
-      className="bg-[#151e2f] p-6 rounded-lg flex flex-col gap-3 cursor-pointer"
+      className="bg-[#479DA526] p-6 rounded-lg flex flex-col gap-3 cursor-pointer"
       initial="closed"
       whileHover="open"
       animate="closed"
     >
       {/* Header */}
       <div className="flex justify-between items-center">
-        <p className="font-medium">{question}</p>
+        <p className="font-medium text-[#010A1D]">{question}</p>
 
         <motion.span
           variants={{
@@ -40,7 +40,7 @@ export default function Question({
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="overflow-hidden"
       >
-        <p className="text-sm text-gray-300">{ans}</p>
+        <p className="text-sm text-[#010A1D]">{ans}</p>
       </motion.div>
     </motion.div>
   );

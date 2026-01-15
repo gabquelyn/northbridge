@@ -1,13 +1,11 @@
 import React from "react";
 import Hero from "../components/atoms/Hero";
 import Navigation from "../components/Navigation";
-import Canadaian from "./components/Canadaian";
-import Reason from "./components/Reason";
 import Footer from "../components/Footer";
-import Graduands from "./components/Graduands";
-import Bridge from "./components/Bridge";
-import Message from "./components/Message";
 import { Metadata } from "next";
+import AcademicExpectations from "./components/Expectiations";
+import CAAPResidencyNotice from "./components/CAAPResidencyNotice";
+import CAAPClosingSummary from "./components/Summary";
 
 export const metadata: Metadata = {
   title: "Canadian Academic Alignment Program (CAAP)",
@@ -54,17 +52,24 @@ export default function CAAP() {
       <Hero
         text={
           <>
-            Your First Step to Success in Canada: <br />
+            Align. Advance.
+            <br />
           </>
         }
-        typewrite="Align. Complete. Advance."
+        typewrite="Complete."
+        description={
+          <p>
+            CAAP is an academic alignment program designed to recognize prior
+            learning and align students to Canadian academic expectations before
+            they enter Grade 12
+          </p>
+        }
         image="bg-[url('/asset/toronto.jpg')]"
       />
-      <Canadaian />
-      <Reason />
-      <Graduands />
-      <Bridge />
-      <Message />
+      
+      <AcademicExpectations />
+      <CAAPClosingSummary />
+      <CAAPResidencyNotice />
       <Footer />
     </div>
   );

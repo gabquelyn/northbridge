@@ -38,8 +38,8 @@ export default function ComparisonTable() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-20">
-      <p className="text-[2rem] md:text-[2.5rem] font-bold capitalize text-center">
+    <div className="flex flex-col items-center justify-center gap-4 py-10 pb-30">
+      <p className="title capitalize text-center">
         <span className="text-[#479DA5]">AY12 vs Standard Grade 12</span>
         <br />
         Choosing Your Pace

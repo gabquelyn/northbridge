@@ -38,26 +38,27 @@ export default function ModelPage() {
     <div>
       <Navigation />
       <Hero
-        image="bg-[url('/asset/workers.jpg')]"
+        image="bg-[url('/asset/consult.jpg')]"
         text={
           <>
-            The Northbridge  <br />
+            Our Model: <br />
           </>
         }
-        typewrite="Academic Bridge Model"
+        typewrite="Redefining Readiness"
+        transparent
         description={
           <>
-            Most schools focus on getting you to the university door.
-            <br className="hidden md:block" />We focus on ensuring you excel once you walk through it.
+            Our model is guided by educational neuroscience, focusing on
+            cognitive readiness and emotional regulation to improve outcomes.
           </>
         }
       />
-      <Philosophy/>
-      <AcademicFramework/>
-      <Special/>
-      <ClearRoute/>
-      <Graduands/>
-      <Footer/>
+      <Philosophy />
+      <Special />
+      <AcademicFramework />
+      <ClearRoute />
+      <Graduands />
+      <Footer />
     </div>
   );
 }

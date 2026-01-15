@@ -2,75 +2,120 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { IoCheckmarkSharp } from "react-icons/io5";
 
 export default function ModelPreview() {
-  const content = [
-    "Cognitive & Emotional Readiness built on principles of educational neuroscience.",
-    "Academic Alignment as we bridge the gap by recognizing prior learning.",
-    "Concurrent Preparation while finishing their Grade 12 credits.",
-    "System Awareness we use to prepare the entire family to understand Canadian regulatory responsibilities.",
-  ];
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      scale: 0.95,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        stiffness: 120,
+        damping: 14,
+      },
+    },
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 overflow-hidden">
-      {/* Heading */}
-      <motion.p
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="md:text-[2.5rem] text-[2rem] font-bold text-center"
-      >
-        Admission is Just the Beginning. <br />
-        <span className="text-[#479DA5]">Readiness is the Goal.</span>
-      </motion.p>
+    <div className="py-20 px-[6%] md:px-[14%]">
+      <div className="flex flex-col md:flex-row gap-10 md:gap-30 items-center">
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col text-center md:text-left max-w-110 gap-4">
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="title"
+          >
+            The Northbridge
+            <br />
+            <span className="text-[#479DA5]">Academic Bridge Model.</span>
+          </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-8 w-full">
-        {/* Image column */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative overflow-hidden w-full"
-        >
-          <Image src="/asset/people.png" fill className="object-cover" alt="" />
-        </motion.div>
-
-        {/* Content column */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="px-20 py-40 bg-[#479DA5]"
-        >
-          <p className="text-white mb-3">
-            What Northbridge Academic Bridge Model Offers:
+          <p className="text-center md:text-justify">
+            A cross-border academic model with Ontario-based
+            instruction—designed for students transitioning into Canadian
+            education.
           </p>
-
-          <div className="flex flex-col gap-2">
-            {content.map((c, i) => (
-              <motion.div
-                key={c}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.35,
-                  ease: "easeOut",
-                  delay: i * 0.08,
-                }}
-                className="p-4 flex items-start gap-2 rounded-md bg-[#F9FBFF66]"
-              >
-                <div>
-                  <IoCheckmarkSharp />
-                </div>
-                <p>{c}</p>
-              </motion.div>
-            ))}
+          <div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <p>Learn More</p>
+            </motion.button>
           </div>
+        </div>
+
+        {/* RIGHT GRID */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700 leading-relaxed"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <motion.div
+            variants={cardVariants}
+            className="rounded-3xl bg-[#479DA5] flex items-center justify-between p-7 h-35"
+            whileHover={{ scale: 1.03 }}
+          >
+            <p className="text-2xl text-white">
+              How We Are
+              <br /> Different
+            </p>
+            <Image src="/asset/cap.png" alt="" height={50} width={50} />
+          </motion.div>
+
+          <motion.div
+            variants={cardVariants}
+            className="rounded-3xl bg-[#479DA533] flex items-center justify-between p-7 h-35"
+            whileHover={{ scale: 1.02 }}
+          >
+            <p>
+              <span className="font-bold">Dual-location learning</span> with
+              academic advising and student support coordinated across both
+              locations
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={cardVariants}
+            className="rounded-3xl bg-[#479DA533] flex items-center justify-between p-7 h-35"
+            whileHover={{ scale: 1.02 }}
+          >
+            <p>
+              <span className="font-bold">Ontario curriculum</span> delivered
+              through approved in-person, online, and blended models
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={cardVariants}
+            className="rounded-3xl bg-[#479DA533] flex items-center justify-between p-7 h-35"
+            whileHover={{ scale: 1.02 }}
+          >
+            <p>
+              Structured instruction toward a{" "}
+              <span className="font-bold">globally recognized diploma.</span>
+            </p>
+          </motion.div>
         </motion.div>
       </div>
     </div>

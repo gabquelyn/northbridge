@@ -1,12 +1,11 @@
 import AboutPreview from "./components/AboutPreview";
 import ModelPreview from "./components/ModelPreview";
 import Navigation from "./components/Navigation";
-import Structure from "./components/Structure";
-import Faq from "./components/Faq";
 import Hero from "./components/atoms/Hero";
 import Footer from "./components/Footer";
 import Program from "./components/Program";
 import { Metadata } from "next";
+import Application from "./components/Application";
 
 export const metadata = {
   title: "Canadian Academic Bridge Programs for University Success",
@@ -31,29 +30,23 @@ export default function Home() {
     <div>
       <Navigation />
       <Hero
-        text={
-          <>
-            Secure Your Place
-            <br /> at a Top-Tier <br />
-          </>
-        }
-        image="bg-[url('/asset/j.jpg')]"
-        typewrite="Canadian University"
+        text={<>Prepare for Canada's</>}
+        image="bg-[url('/asset/girll.jpg')]"
+        typewrite="Leading Universities "
         transparent
         programs
         description={
-          <p className="text-[1.4rem]">
-            A Canadian University Prep Institution designed to align
-            international students with the academic, cultural, and structural
-            standards of Canadian post-secondary education.
+          <p>
+            Northbridge Collegiate is a Canadian high school delivering Ontario
+            curriculum-based secondary education, preparing students for success
+            across borders and beyond.
           </p>
         }
       />
       <AboutPreview />
       <ModelPreview />
-      <Program/>
-      <Structure />
-      <Faq />
+      <Program />
+      <Application />
       <Footer />
     </div>
   );

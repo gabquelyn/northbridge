@@ -9,7 +9,7 @@ export default function ClearRoute() {
   return (
     <div className="py-20 flex flex-col gap-8 items-center justify-center text-center px-[5%] md:px-[20%]">
       <div>
-        <p className="text-[2rem] md:text-[2.5rem] font-bold capitalize">
+        <p className="title capitalize">
           One Clear <span className="text-[#479DA5]">Route.</span>
         </p>
         <p>

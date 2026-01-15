@@ -22,7 +22,7 @@ export default function ConsultationForm() {
   return (
     <div className="flex flex-col gap-8 mx-[5%] md:mx-[27%] py-20">
       <div className="flex flex-col gap-2">
-        <p className="text-[1.3rem] mb-5">Personal information</p>
+        <p className="font-bold">Personal information</p>
         <Input
           name="name"
           value={details.name}
@@ -52,7 +52,7 @@ export default function ConsultationForm() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-[1.3rem]">Academic Background</p>
+        <p className="font-bold">Academic Background</p>
         <Input
           name="education"
           value={details.education}
@@ -70,7 +70,7 @@ export default function ConsultationForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-[1.3rem]">Pathway Interests</p>
+        <p className="font-bold">Pathway Interests</p>
 
         {[
           "Canadian Academic Alignment Program (CAAP)",

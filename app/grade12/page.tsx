@@ -2,10 +2,6 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import Hero from "../components/atoms/Hero";
 import Ossd from "./components/Explanation";
-import Slideshow from "./components/Slideshow";
-import AdmissionRequirements from "./components/AdmissionRequirements";
-import Graduands from "../caap/components/Graduands";
-import ComparisonTable from "./components/ComparisonTable";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -47,10 +43,10 @@ export default function Grade12() {
         transparent
       />
       <Ossd />
-      <Slideshow />
-      <AdmissionRequirements />
-      <ComparisonTable />
-      <Graduands />
+      {/* <Slideshow /> */}
+      {/* <AdmissionRequirements /> */}
+      {/* <ComparisonTable /> */}
+      {/* <Graduands /> */}
       <Footer />
     </div>
   );

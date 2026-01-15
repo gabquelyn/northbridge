@@ -49,14 +49,14 @@ export default function Philosophy() {
   };
 
   return (
-    <div className="flex flex-col gap-20 py-20">
+    <div className="flex flex-col items-center gap-20 py-20">
       <div className="px-[20%]">
-        <p className="text-[2rem] md:text-[2.5rem] font-bold text-center capitalize">
+        <p className="title text-center capitalize">
           A specialized
           <br />
           <span className="text-[#479da5]">Approach to success</span>
         </p>
-        <p className="text-center mt-8">
+        <p className="text-center mt-8 max-w-150">
           Northbridge Collegiate is not a traditional high school. We are a
           specialized academic bridge institution. Through a sophisticated blend
           of online and in-class learning, we have moved beyond the
@@ -65,15 +65,15 @@ export default function Philosophy() {
         </p>
       </div>
 
-      <div className="bg-[#479DA526] py-20 px-[15%]">
+      <div className="bg-[#479DA526] py-20 px-5 md:px-[15%]">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-[2rem] md:text-[2.5rem] font-bold text-left capitalize">
+          <p className="title text-center md:text-left capitalize">
             The Readiness-First
-            <br className="hidden md:block"/>
-            <span className="text-[#479da5]">What</span> Philosophy
+            <br className=""/>
+            <span className="text-[#479da5]">Philosophy</span> 
           </p>
           <div className="flex flex-col gap-3">
-            <p>
+            <p className="text-center md:text-left">
               For the international student, admission is only the beginning.
               <br />
               True success requires being "system-ready" before you arrive.

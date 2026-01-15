@@ -21,7 +21,7 @@ export default function Hero({
   programs?: boolean;
 }) {
   return (
-    <section className="mx-10 rounded-2xl overflow-hidden relative">
+    <section className="md:mx-10 md:rounded-2xl overflow-hidden relative">
       {/* Background image */}
       <div
         className={clsx(
@@ -34,10 +34,12 @@ export default function Hero({
       <div className="absolute inset-0 bg-black/60" />
 
       {/* Content */}
-      <div className="relative z-10 min-h-[calc(100vh-88px)] flex items-center px-[5%] text-white">
+      <div
+        className="relative z-10 h-[calc(100svh-88px)] flex items-center px-5 md:px-[5%] text-white"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
-            <h1 className="text-[4rem] md:text-[4.9rem] leading-[1.05] font-bold">
+            <h1 className="text-[2.3rem] md:text-[4.9rem] leading-[1.05] font-bold">
               {text}
               <span className="text-[#479DA5] relative inline-block">
                 <Typewriter
@@ -49,16 +51,16 @@ export default function Hero({
                 />
               </span>
             </h1>
-            <div className="text-[1.8rem]">{description}</div>
+            <div className="md:text-[1.2rem] max-w-160">{description}</div>
             <div className="flex gap-4">
               {programs && (
                 <Link href="/ay12">
-                  <motion.div
+                  <motion.button
                     whileHover={{ scale: 1.05 }}
                     className="bg-linear-0 from-[#479DA5] to-[#17757E] p-2 px-6 rounded-3xl cursor-pointer"
                   >
-                    Explore programs
-                  </motion.div>
+                    View programs
+                  </motion.button>
                 </Link>
               )}
               <Link href="/consultation">
@@ -71,7 +73,7 @@ export default function Hero({
                     "p-2 px-6 rounded-3xl cursor-pointer"
                   )}
                 >
-                  Book a consultation
+                  Speak to an advisor
                 </motion.div>
               </Link>
             </div>

@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function Graduands() {
   return (
     <div className="bg-[url('/asset/graduands.jpg')] bg-no-repeat bg-cover bg-center py-19 p-8 text-white  text-center relative">
-      <div className="absolute bg-[rgba(0,0,0,0.5)] inset-0"></div>
-      <div className="relative flex flex-col items-center gap-5 justify-center z-10">
-        <p className="font-bold text-[1.2rem]">Start Your Alignment</p>
+      <div className="absolute bg-[rgba(0,0,0,0.6)] inset-0"></div>
+      <div className="relative flex flex-col items-center gap-2 justify-center z-10">
+        <p className="font-bold">Start Your Alignment</p>
         <p>
           Your journey to a Canadian degree begins with the right foundation.{" "}
           <br />

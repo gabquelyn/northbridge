@@ -42,7 +42,7 @@ export default function Special() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-[2rem] md:text-[2.5rem] font-bold text-center capitalize"
+        className="title text-center capitalize"
       >
         How we are <span className="text-[#479DA5]">Different.</span>
       </motion.p>
@@ -65,7 +65,7 @@ export default function Special() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex flex-col md:flex-row gap-10 items-center"
             >
-              <p className="text-9xl text-[#293B59]">{`0${i + 1}`}</p>
+              <p className="text-8xl text-[#293B59]">{`0${i + 1}`}</p>
               <motion.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}

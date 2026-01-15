@@ -2,84 +2,103 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaGreaterThan } from "react-icons/fa";
 import Link from "next/link";
+
 export default function AboutPreview() {
   return (
-    <div className="p-10 py-20 flex flex-col gap-8 items-center justify-center bg-[#f5fefd]">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-[5%] md:px-[18%] items-center">
-        {/* Image */}
+    <section className="py-20 pt-40 flex justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-14 px-5 md:px-[14%] items-center bg-[#479DA526] py-8 overflow-hidden shadow-sm">
+
+        {/* IMAGE */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative h-105 w-full"
         >
-          <div className="relative h-100 w-full overflow-hidden">
+          {/* Soft overlay */}
+          <div className="absolute inset-0 bg-linear-to-tr from-black/10 to-transparent z-10 " />
+
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.4 }}
+            className="relative h-full w-full  overflow-hidden"
+          >
             <Image
-              src={"/asset/flags.png"}
+              src="/asset/flags.png"
               fill
-              alt=""
+              alt="Global education flags"
               className="object-cover"
+              priority
             />
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Text Content */}
+        {/* TEXT CONTENT */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
             visible: {
-              transition: { staggerChildren: 0.15 },
+              transition: {
+                staggerChildren: 0.18,
+              },
             },
           }}
+          className="p-10 flex flex-col md:items-start items-center gap-6"
         >
+          <motion.h2
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="title"
+          >
+            A Canadian diploma <br />
+            <span className="text-[#479DA5]">for global learners.</span>
+          </motion.h2>
+
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 25 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center md:text-justify text-gray-700 leading-relaxed"
+          >
+            Northbridge Collegiate delivers Ontario curriculum-based secondary
+            education under an Ontario private school license issued by the
+            Ministry of Education. Through approved in-class, online, and blended
+            instructional models, we support students from diverse educational
+            backgrounds with structured academic review and rigorous
+            assessment—guiding them confidently toward completion of the Ontario
+            Secondary School Diploma (OSSD).
+          </motion.p>
+
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
-            className=" flex flex-col gap-4 text-center md:text-left"
+            transition={{ duration: 0.5 }}
+            className=""
           >
-            <p className="text-[2rem] md:text-[2.5rem] font-bold text-center">
-              Welcome to <span className="text-[#479DA5]">Northbridge</span>
-            </p>
-            <p>
-              Northbridge Collegiate is a private Canadian educational
-              institution inspected and authorized by the Ontario Ministry of
-              Education to deliver Ontario Secondary School Diploma (OSSD)
-              programs in accordance with provincial requirements.
-            </p>
-            <p>
-              As a Canadian University Preparation institution, we offer
-              secondary-level academic programs through both online and in-class
-              delivery.
-            </p>
-          </motion.div>
-
-          {/* CTA */}
-          <Link href = "/about">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              viewport={{ once: true }}
-              className="flex md:justify-end justify-center mt-4"
-            >
-              <motion.div
-                className="bg-linear-0 from-[#479DA5] to-[#17757E] p-2 px-6 rounded-3xl w-fit text-white flex gap-2 items-center cursor-pointer"
-                whileHover={{ scale: 1.05 }}
+            <Link href="/about">
+              <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.97 }}
+                
               >
-                <p>Learn More</p>
-                <FaGreaterThan />
-              </motion.div>
-            </motion.div>
-          </Link>
+                Learn More
+              </motion.button>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

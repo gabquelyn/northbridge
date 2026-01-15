@@ -74,7 +74,7 @@ const cardVariants = {
   ];
   return (
     <div className="flex flex-col items-center justify-center">
-      <p className="text-[2rem] md:text-[2.5rem] font-bold text-center capitalize">
+      <p className="title text-center capitalize">
         The Academic
         <br />
         <span className="text-[#479da5]">Bridge Framework</span>
@@ -101,7 +101,7 @@ const cardVariants = {
             className="
       w-80 h-120
       bg-linear-to-b from-[#010A1D] to-[#293B59]
-      [clip-path:polygon(20%_0%,80%_0%,100%_100%,0%_100%)]
+      [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]
       flex flex-col justify-between
       text-white items-center p-8 text-center pt-8
     "

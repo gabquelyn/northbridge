@@ -26,7 +26,7 @@ export default function Navigation() {
   }, []);
 
   const menu = [
-    { label: "Home", href: "/" },
+    { label: "Home", href: "/"},
     { label: "About us", href: "/about" },
     { label: "Our Model", href: "/northbridge-model" },
     {
@@ -34,25 +34,30 @@ export default function Navigation() {
       children: [
         { label: "Canadian Academic Alignment Program (CAAP)", href: "/caap" },
         { label: "Grade 12 OSSD (Canada)", href: "/grade12" },
+        { label: "Grade 11 OSSD (Canada)", href: "/grade11" },
         { label: "Grade 12 Advantage Year (AY12)", href: "/ay12" },
       ],
     },
+    { label: "Program Overview", href: "/right-program" },
+    { label: "Mature & Online learners", href: "/online-learners" },
+    { label: "FAQ", href: "/faq" },
   ];
 
   return (
     <>
+    
       {/* Top Nav */}
       <div
         className={clsx(
           scrolled && "shadow-md",
-          "sticky top-0 z-30 bg-white backdrop-blur-xl"
+          "sticky top-0 z-30 bg-white"
         )}
       >
         <div className="flex items-center justify-between px-[5%] py-3">
           <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
 
           {/* Desktop menu */}
-          <ul className="hidden md:flex items-center gap-12">
+          <ul className="hidden md:flex items-center gap-8">
             {menu.map((item) => (
               <MenuItem key={item.label} item={item} />
             ))}
@@ -64,9 +69,9 @@ export default function Navigation() {
           </ul>
 
           {/* Mobile Hamburger */}
-          <button onClick={() => setMobileOpen(true)} className="md:hidden">
+          <div onClick={() => setMobileOpen(true)} className="md:hidden">
             <Menu size={28} />
-          </button>
+          </div>
         </div>
       </div>
 
@@ -93,9 +98,9 @@ export default function Navigation() {
             >
               <div className="flex items-center justify-between mb-6">
                 <Image src="/asset/logo1.png" height={50} width={50} alt="" />
-                <button onClick={() => setMobileOpen(false)}>
+                <div onClick={() => setMobileOpen(false)}>
                   <X size={24} />
-                </button>
+                </div>
               </div>
 
               <nav className="flex flex-col gap-4">

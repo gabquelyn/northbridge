@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { NavLinks, NestedLink } from "../Navigation";
 import clsx from "clsx";
 export default function MenuItem({
@@ -14,7 +15,7 @@ export default function MenuItem({
 }) {
   const [open, setOpen] = useState(false);
   const hasChildren = "children" in item;
-
+  const pathname = usePathname();
   const toggle = () => setOpen(!open);
 
   return (
@@ -24,17 +25,27 @@ export default function MenuItem({
       onMouseLeave={!mobile ? () => setOpen(false) : undefined}
     >
       {hasChildren ? (
-        <button
+        <p
           onClick={mobile ? toggle : undefined}
-          className="w-full text-left py-2"
+          className={clsx(
+            ["/grade12", "/grade11", "/ay12", "/caap"].includes(pathname)
+              ? "border-[#479DA5] border-b-2"
+              : "border-transparent",
+            "w-full text-left py-2 cursor-pointer"
+          )}
         >
           {item.label}
-        </button>
+        </p>
       ) : (
         <Link
           href={item.href}
           onClick={closeMenu}
-          className="block py-2"
+          className={clsx(
+            pathname == item.href
+              ? "border-[#479DA5] border-b-2"
+              : "border-transparent",
+            "w-full text-left block py-2 cursor-pointer border-b-2 hover:border-[#479DA5] transition-colors duration-300"
+          )}
         >
           {item.label}
         </Link>
@@ -50,7 +61,7 @@ export default function MenuItem({
             className={clsx(
               mobile
                 ? "pl-4"
-                : "absolute top-full left-0 bg-white shadow-lg min-w-70"
+                : "absolute top-full left-0 bg-white shadow-lg min-w-85"
             )}
           >
             {(item as NestedLink).children.map((child, i) => (
