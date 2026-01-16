@@ -21,7 +21,7 @@ export default function AdmissionRequirements() {
     },
   ];
   return (
-    <section className="grid relative grid-cols-1 md:grid-cols-2 mx-5 md:mx-[15%] py-20 pb-30 items-center gap-8">
+    <section className="grid relative grid-cols-1 md:grid-cols-2 mx-5 lg:mx-[15%] py-20 pb-30 items-center gap-8">
       <div className="flex items-center md:items-start flex-col gap-2">
         <p className="text-[2rem] md:text-[2.5rem] font-bold capitalize">
           Admissions <span className="text-[#479DA5]"> & Eligibility</span>

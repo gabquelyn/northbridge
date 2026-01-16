@@ -30,7 +30,7 @@ export default function Home() {
     <div>
       <Navigation />
       <Hero
-        text={<>Prepare for Canada's</>}
+        text={<>Prepare for Canada's<br/></>}
         image="bg-[url('/asset/girll.jpg')]"
         typewrite="Leading Universities "
         transparent

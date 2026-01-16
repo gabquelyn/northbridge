@@ -10,15 +10,15 @@ export default function CAAPClosingSummary() {
           src="/asset/library.jpg"
           alt="Canadian academic environment"
           fill
-          className="object-cover"
+       className="object-cover object-center brightness-75"
         />
         {/* Soft overlay */}
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-xs" />
+        {/* <div className="absolute inset-0 bg-black/20 backdrop-blur-xs" /> */}
       </div>
 
       {/* Content */}
       <div className="mx-auto max-w-5xl">
-        <div className="rounded-3xl bg-white p-12 md:p-14 shadow-xl border border-gray-200">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl max-w-5xl mx-auto p-12 shadow-lg">
           {/* Header */}
           <div className="mb-8 max-w-3xl">
             <p className="uppercase tracking-wide text-sm text-[#479DA5]">

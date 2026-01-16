@@ -37,10 +37,11 @@ export default function Footer() {
         <div className="md:w-1/3">
           <p className="font-semibold mb-5">Quick links</p>
           <div className="flex flex-col gap-2 text-sm">
-            <Link href="/">Home</Link>
             <Link href="/caap">CAAP</Link>
             <Link href="/ay12">AY12</Link>
             <Link href="/grade12">GRADE 12</Link>
+            <Link href="/grade11">GRADE 11</Link>
+            <Link href="/right-program">Which program is right for me?</Link>
             <Link href="/about">About Northbridge Collegiate</Link>
           </div>
         </div>

@@ -85,7 +85,7 @@ body {
 }
 
 button {
-  @apply bg-linear-to-r from-[#479DA5] to-[#17757E] px-7 py-2.5 rounded-3xl text-white font-medium shadow-md hover:shadow-lg transition-shadow
+  @apply bg-linear-to-r from-[#479DA5] to-[#17757E] px-7 py-2.5 rounded-3xl text-white font-medium shadow-md hover:shadow-lg transition-shadow cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300
 }
 
 /* Wrapper */

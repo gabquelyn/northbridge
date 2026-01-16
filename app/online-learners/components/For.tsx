@@ -33,7 +33,7 @@ export default function WhoIsThisFor() {
   ];
 
   return (
-    <section className="bg-white pb-20  px-[5%] md:px-[10%]">
+    <section className="bg-white py-20  px-5 md:px-[10%]">
       <div className="mx-auto max-w-5xl flex flex-col items-center gap-12">
         {/* Header */}
         <motion.div

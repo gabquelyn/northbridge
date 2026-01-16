@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
+import ProgramCard from "./ProgramCard";
 export default function Program() {
   const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
   const [activeCard, setActiveCard] = React.useState<number | null>(null);
@@ -17,19 +18,20 @@ export default function Program() {
     },
     {
       title: "Grade 11",
-      desc: "30+ Grade 12 Courses Choose from a wide variety of Ontario-standard curriculum options tailored to your interests.",
+      desc: "Ideal for students prepared to begin Ontario curriculum-based secondary studies following Grade 10-level education",
       image: "/asset/flowergirl.jpg",
       cta: "/grade11",
     },
     {
       title: "Grade 12",
-      desc: "Designed for students seeking maximum preparation for competitive universities, our program runs concurrently with Grade 12.",
+      desc: "30+ Grade 12 Courses Choose from a wide variety of Ontario-standard curriculum options tailored to your interests.",
+
       image: "/asset/afro.jpg",
       cta: "/grade12",
     },
     {
       title: "Grade 12 Advantage Year (AY12)",
-      desc: "Ideal for students prepared to begin Ontario curriculum–based secondary studies following Grade 10–level education",
+      desc: "Designed for students seeking maximum preparation for competitive universities, our program runs concurrently with Grade 12.",
       image: "/asset/boy.jpg",
       cta: "/ay12",
     },
@@ -68,84 +70,31 @@ export default function Program() {
           const isVisible = hoveredCard === i || activeCard === i;
 
           return (
-            <motion.div
-              key={i}
-              className="relative h-110 w-76 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
+            <ProgramCard
               onMouseEnter={() => setHoveredCard(i)}
               onMouseLeave={() => setHoveredCard(null)}
               onClick={() => setActiveCard(activeCard === i ? null : i)}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              {/* Image */}
-              <motion.div
-                className="absolute inset-0"
-                animate={{ scale: isVisible ? 1.08 : 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
-
-              {/* Always-visible title */}
-              <div className="absolute inset-0 z-10 flex items-end p-5 bg-linear-to-t from-black/80 via-black/20 to-transparent">
-                <p className="text-white font-semibold leading-snug">
-                  {card.title}
-                </p>
-              </div>
-
-              {/* Reveal Panel */}
-              <motion.div
-                className="absolute inset-0 z-20 flex flex-col justify-end p-5 text-white bg-black/70"
-                animate={{
-                  opacity: isVisible ? 1 : 0,
-                  y: isVisible ? 0 : 30,
-                }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-              >
-                <p className="text-sm leading-relaxed">{card.desc}</p>
-
-                <Link href={card.cta}>
-                  <motion.span
-                    className="mt-4 inline-block w-fit rounded-full bg-[#479DA5] px-4 py-2 text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Learn More
-                  </motion.span>
-                </Link>
-              </motion.div>
-            </motion.div>
+              isVisible={isVisible}
+              card={card}
+            />
           );
         })}
       </motion.div>
 
       <div className="flex flex-col gap-3 items-center text-center mt-30">
-        {/* <div className="relative overflow-hidden rounded-xl h-100 w-full">
-          <Image
-            src="/asset/diss.jpg"
-            alt="Discussion"
-            fill
-            className="object-cover"
-          />
-        </div> */}
-
         <p className="title">
           One Clear Route to <br />
           <span className="text-[#479DA5]">Canadian University</span> Readiness
         </p>
-        <p className="md:max-w-200 w-[95%]">
+        <p className="max-w-150">
           Delivering Canadian-aligned secondary programming with ongoing
           academic guidance—supporting students with clarity and confidence
           toward Canadian university readiness.
         </p>
         <div className="mb-3">
-          <motion.button>View Program Options</motion.button>
+          <Link href = "/right-program">
+            <motion.button>View Program Options</motion.button>
+          </Link>
         </div>
         <div className="bg-gray-50">
           <Marquee pauseOnHover speed={50} gradient={false} className="mt-5">

@@ -37,8 +37,8 @@ export default function Hero({
       <div
         className="relative z-10 h-[calc(100svh-88px)] flex items-center px-5 md:px-[5%] text-white"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
             <h1 className="text-[2.3rem] md:text-[4.9rem] leading-[1.05] font-bold">
               {text}
               <span className="text-[#479DA5] relative inline-block">
@@ -54,7 +54,7 @@ export default function Hero({
             <div className="md:text-[1.2rem] max-w-160">{description}</div>
             <div className="flex gap-4">
               {programs && (
-                <Link href="/ay12">
+                <Link href="/right-program">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     className="bg-linear-0 from-[#479DA5] to-[#17757E] p-2 px-6 rounded-3xl cursor-pointer"

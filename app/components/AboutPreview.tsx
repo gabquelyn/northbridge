@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function AboutPreview() {
   return (
     <section className="py-20 pt-40 flex justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-14 px-5 md:px-[14%] items-center bg-[#479DA526] py-8 overflow-hidden shadow-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 px-5 md:px-[14%] items-center bg-[#479DA526] py-8 overflow-hidden shadow-sm">
 
         {/* IMAGE */}
         <motion.div

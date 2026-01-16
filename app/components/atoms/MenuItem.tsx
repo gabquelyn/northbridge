@@ -44,7 +44,7 @@ export default function MenuItem({
             pathname == item.href
               ? "border-[#479DA5] border-b-2"
               : "border-transparent",
-            "w-full text-left block py-2 cursor-pointer border-b-2 hover:border-[#479DA5] transition-colors duration-300"
+            "w-fit text-left block py-2 cursor-pointer border-b-2 hover:border-[#479DA5] transition-colors duration-300"
           )}
         >
           {item.label}
@@ -69,7 +69,7 @@ export default function MenuItem({
                 key={i}
                 href={child.href}
                 onClick={closeMenu}
-                className="block px-4 py-2 md:text-nowrap hover:bg-[#479DA526]"
+                className="block px-4 py-2 lg:text-nowrap hover:bg-[#479DA526]"
               >
                 {child.label}
               </Link>

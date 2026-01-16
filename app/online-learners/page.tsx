@@ -3,6 +3,10 @@ import Navigation from "../components/Navigation";
 import Hero from "../components/atoms/Hero";
 import OnlinePrograms from "./components/OnlinePrograms";
 import For from "./components/For";
+import Learners from "./components/Learners";
+import Pathway from "./components/Pathway";
+import Footer from "../components/Footer";
+import MatureLearnersForm from "./components/MatureLearnersForm";
 export default function OnlineLearners() {
   return (
     <div>
@@ -21,6 +25,10 @@ export default function OnlineLearners() {
       />
       <OnlinePrograms/>
       <For/>
+      <Learners/>
+      <Pathway/>
+      <MatureLearnersForm/>
+      <Footer/>
     </div>
   );
 }

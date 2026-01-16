@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function ClearRoute() {
   return (
-    <div className="py-20 flex flex-col gap-8 items-center justify-center text-center px-[5%] md:px-[20%]">
+    <div className="py-20 flex flex-col gap-8 items-center justify-center text-center px-[5%] lg:px-[20%]">
       <div>
         <p className="title capitalize">
           One Clear <span className="text-[#479DA5]">Route.</span>

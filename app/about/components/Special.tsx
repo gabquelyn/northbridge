@@ -15,10 +15,10 @@ export default function Special() {
       label:
         "Entering a Canadian university requires more than just high grades; it requires mastery of specific academic conventions. Our framework is meticulously designed to introduce you to:",
       list: [
-        "Academic Writing & Research: Master the specific citation and literacy standards required by Canadian professors.",
-        "Self-Directed Learning: Develop the independence and time-management skills expected in North American higher education.",
-        "Assessment Familiarity: Get comfortable with the testing and grading formats used in Canadian classrooms.",
-        "Classroom Norms: Build the confidence to participate in discussions, seminars, and collaborative projects.",
+        "Academic Writing & Research standards used by Canadian universities",
+        "Self-directed learning and time management expectations",
+        "Assessment formats and grading conventions",
+        "Classroom participation and collaboration norms",
       ],
     },
     {
@@ -35,19 +35,19 @@ export default function Special() {
   ];
 
   return (
-    <div className="py-20">
+    <section className="py-24 bg-white">
       {/* Title */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="title text-center capitalize"
+        className="title text-center"
       >
-        How we are <span className="text-[#479DA5]">Different.</span>
-      </motion.p>
+        How We Are <span className="text-[#479DA5]">Different</span>
+      </motion.h2>
 
-      <div className="px-[5%] md:px-[15%] mt-10 flex flex-col gap-15">
+      <div className="mt-16 px-8 mx-auto max-w-4xl space-y-24">
         {details.map((d, i) => (
           <motion.div
             key={i}
@@ -55,36 +55,38 @@ export default function Special() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 items-start gap-10"
+            className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-12 items-start"
           >
-            {/* Number + line */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col md:flex-row gap-10 items-center"
-            >
-              <p className="text-8xl text-[#293B59]">{`0${i + 1}`}</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-slate-300 h-px w-80 origin-left"
-              />
-            </motion.div>
+            {/* Left Indicator */}
+            <div className="flex flex-col items-center md:items-start gap-6">
+              <span className="text-[96px] font-light leading-none text-[#293B59]/15">
+                {`0${i + 1}`}
+              </span>
 
-            {/* Content */}
+              <motion.div
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="hidden md:block h-32 w-px bg-gradient-to-b from-[#479DA5]/60 to-transparent origin-top"
+              />
+            </div>
+
+            {/* Content Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="flex flex-col text-center md:text-left md:items-start gap-4"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="rounded-3xl bg-gray-50 p-8 md:p-10 shadow-sm border border-gray-100"
             >
-              <p className="font-bold">{d.title}</p>
-              <p>{d.label}</p>
+              <h3 className="text-xl font-semibold text-gray-900">
+                {d.title}
+              </h3>
+
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                {d.label}
+              </p>
 
               {d.list.length > 0 && (
                 <motion.ul
@@ -94,16 +96,16 @@ export default function Special() {
                   variants={{
                     hidden: {},
                     visible: {
-                      transition: { staggerChildren: 0.1 },
+                      transition: { staggerChildren: 0.08 },
                     },
                   }}
-                  className="list-disc text-left pl-5"
+                  className="mt-6 space-y-2 pl-5 list-disc text-gray-700"
                 >
                   {d.list.map((li) => (
                     <motion.li
                       key={li}
                       variants={{
-                        hidden: { opacity: 0, x: -10 },
+                        hidden: { opacity: 0, x: -8 },
                         visible: { opacity: 1, x: 0 },
                       }}
                     >
@@ -116,6 +118,6 @@ export default function Special() {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

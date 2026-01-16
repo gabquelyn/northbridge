@@ -49,7 +49,7 @@ export default function Navigation() {
       {/* Top Nav */}
       <div
         className={clsx(
-          scrolled && "shadow-md",
+          scrolled && "shadow-lg",
           "sticky top-0 z-30 bg-white"
         )}
       >
@@ -57,7 +57,7 @@ export default function Navigation() {
           <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
 
           {/* Desktop menu */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-8">
             {menu.map((item) => (
               <MenuItem key={item.label} item={item} />
             ))}
@@ -69,7 +69,7 @@ export default function Navigation() {
           </ul>
 
           {/* Mobile Hamburger */}
-          <div onClick={() => setMobileOpen(true)} className="md:hidden">
+          <div onClick={() => setMobileOpen(true)} className="lg:hidden">
             <Menu size={28} />
           </div>
         </div>

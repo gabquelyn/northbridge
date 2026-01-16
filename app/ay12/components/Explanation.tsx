@@ -52,7 +52,7 @@ export default function Explanation() {
   };
 
   return (
-    <div className="flex flex-col gap-20 py-20 px-[5%] md:px-[15%]">
+    <div className="flex flex-col gap-20 py-20 px-[5%] lg:px-[15%]">
       <div className="flex gap-24 text-center items-center justify-center">
         <div className="max-w-200 flex gap-7">
           <Image
@@ -88,7 +88,7 @@ export default function Explanation() {
           Ay represent?
         </p>
 
-        <div className="grid grid-cols-1 mt-5 md:grid-cols-[40%_60%] items-center justify-center gap-10 px-5 md:px-[10%]">
+        <div className="grid grid-cols-1 mt-5 md:grid-cols-[40%_60%] items-center justify-center gap-10 px-5 lg:px-[10%]">
           <div className="w-full h-150 relative overflow-hidden hidden md:block">
             <Image
               src="/asset/study.jpg"
@@ -125,9 +125,9 @@ export default function Explanation() {
               <div
                 key={i}
                 style={{ backgroundColor: bgColors[i] }}
-                className="p-6 px-4 md:px-10 grid grid-cols-[20%_80%] -my-5 md:-my-7 gap-10 relative"
+                className="p-6 px-4 md:px-10 grid grid-cols-[20%_80%] -my-5 lg:-my-7 gap-10 relative"
               >
-                <p className="text-6xl md:text-8xl text-[#c6cad1]">0{i + 1}</p>
+                <p className="text-6xl lg:text-8xl text-[#c6cad1]">0{i + 1}</p>
                 <p>{text}</p>
               </div>
             ))}

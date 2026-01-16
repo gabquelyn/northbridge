@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function ModelPreview() {
   const containerVariants = {
@@ -33,9 +34,9 @@ export default function ModelPreview() {
 
   return (
     <div className="py-20 px-[6%] md:px-[14%]">
-      <div className="flex flex-col md:flex-row gap-10 md:gap-30 items-center">
+      <div className="flex flex-col lg:flex-row gap-10 md:gap-30 items-center">
         {/* LEFT CONTENT */}
-        <div className="flex flex-col text-center md:text-left max-w-110 gap-4">
+        <div className="flex flex-col text-center lg:text-left max-w-110 gap-4">
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,18 +49,20 @@ export default function ModelPreview() {
             <span className="text-[#479DA5]">Academic Bridge Model.</span>
           </motion.p>
 
-          <p className="text-center md:text-justify">
+          <p className="text-center lg:text-justify">
             A cross-border academic model with Ontario-based
             instruction—designed for students transitioning into Canadian
             education.
           </p>
           <div>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <p>Learn More</p>
-            </motion.button>
+            <Link href="/northbridge-model">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <p>Learn More</p>
+              </motion.button>
+            </Link>
           </div>
         </div>
 

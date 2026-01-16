@@ -65,20 +65,20 @@ export default function Philosophy() {
         </p>
       </div>
 
-      <div className="bg-[#479DA526] py-20 px-5 md:px-[15%]">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="title text-center md:text-left capitalize">
+      <div className="bg-[#479DA526] py-20 px-8 lg:px-[15%]">
+        <div className="flex flex-col lg:flex-row justify-between items-center">
+          <p className="title text-center lg:text-left capitalize">
             The Readiness-First
             <br className=""/>
             <span className="text-[#479da5]">Philosophy</span> 
           </p>
           <div className="flex flex-col gap-3">
-            <p className="text-center md:text-left">
+            <p className="text-center lg:text-left">
               For the international student, admission is only the beginning.
               <br />
               True success requires being "system-ready" before you arrive.
             </p>
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center lg:justify-end">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 className={

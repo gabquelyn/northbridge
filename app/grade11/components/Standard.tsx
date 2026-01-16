@@ -59,7 +59,7 @@ export default function Standard() {
         </p>
       </div>
 
-      <div className="bg-[#479DA526] py-20 px-5 md:px-[15%]">
+      <div className="bg-[#479DA526] py-20 px-8 lg:px-[15%]">
         <motion.div
           className="flex flex-col md:flex-row gap-8"
           variants={containerVariants}
