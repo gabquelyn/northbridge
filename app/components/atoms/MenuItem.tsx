@@ -31,7 +31,7 @@ export default function MenuItem({
             ["/grade12", "/grade11", "/ay12", "/caap"].includes(pathname)
               ? "border-[#479DA5] border-b-2"
               : "border-transparent",
-            "w-full text-left py-2 cursor-pointer"
+            "w-fit text-left py-2 cursor-pointer"
           )}
         >
           {item.label}
