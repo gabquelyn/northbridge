@@ -18,7 +18,7 @@ export default function SelectingPrograms() {
         transparent
         description={
           <p>
-            We have four major programs you can from, carefully look at the
+            We have four major programs you can select from. Carefully look at the
             benefits and purpose of each program.
           </p>
         }
