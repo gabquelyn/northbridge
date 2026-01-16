@@ -33,7 +33,7 @@ export default function WhoIsThisFor() {
   ];
 
   return (
-    <section className="bg-white py-20 pt-10 px-[5%] md:px-[10%]">
+    <section className="bg-white pb-20  px-[5%] md:px-[10%]">
       <div className="mx-auto max-w-5xl flex flex-col items-center gap-12">
         {/* Header */}
         <motion.div
@@ -46,7 +46,7 @@ export default function WhoIsThisFor() {
           <p className="title">
             <span className="text-[#479DA5]">Who</span> is this for?
           </p>
-          <p className="w-120 text-center">
+          <p className="w-80 md:w-100 text-center">
             This pathway is designed for learners who may have already completed
             secondary education and are seeking purposeful next steps.
           </p>
@@ -65,13 +65,13 @@ export default function WhoIsThisFor() {
             return (
               <motion.div
                 key={index}
-                className="flex items-start gap-4 p-6 bg-gray-50 rounded-3xl shadow-md hover:shadow-xl transition-shadow cursor-default"
+                className="flex items-start gap-2 p-6 bg-gray-50 rounded-3xl shadow-md hover:shadow-xl transition-shadow cursor-default"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
               >
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <Icon className="h-7 w-7 text-[#479DA5]" />
                 </div>
                 <p className="text-gray-700 text-sm md:text-base leading-relaxed">

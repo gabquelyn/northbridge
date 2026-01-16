@@ -45,7 +45,7 @@ export default function ComparisonTable() {
         Choosing Your Pace
       </p>
 
-      <div className="px-[5%] flex justify-center items-center md:px-[15%] mt-3 w-full">
+      <div className="px-5 flex justify-center items-center md:px-[15%] mt-3 w-full">
         <motion.table
           className="w-full border-collapse overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
@@ -55,11 +55,11 @@ export default function ComparisonTable() {
         >
           <thead>
             <tr>
-              <th className="p-12 font-semibold text-left">Area</th>
-              <th className="p-12 font-semibold bg-[#293B59] text-[#479DA5] border-r border-[#32425e]">
+              <th className="p-6 md:p-12 font-semibold text-left">Area</th>
+              <th className="p-6 md:p-12 font-semibold bg-[#293B59] text-[#479DA5] border-r border-[#32425e]">
                 AY 12
               </th>
-              <th className="p-12 font-semibold bg-[#293B59] text-[#479DA5]">
+              <th className="p-6 md:p-12 font-semibold bg-[#293B59] text-[#479DA5]">
                 Grade 12
               </th>
             </tr>

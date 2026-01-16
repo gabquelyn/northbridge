@@ -88,7 +88,7 @@ export default function Explanation() {
           Ay represent?
         </p>
 
-        <div className="grid grid-cols-1 mt-5 md:grid-cols-[40%_60%] items-center gap-10 px-[10%]">
+        <div className="grid grid-cols-1 mt-5 md:grid-cols-[40%_60%] items-center justify-center gap-10 px-5 md:px-[10%]">
           <div className="w-full h-150 relative overflow-hidden hidden md:block">
             <Image
               src="/asset/study.jpg"
@@ -125,9 +125,9 @@ export default function Explanation() {
               <div
                 key={i}
                 style={{ backgroundColor: bgColors[i] }}
-                className="p-6 px-10 grid grid-cols-[20%_80%] -my-7 gap-10 relative"
+                className="p-6 px-4 md:px-10 grid grid-cols-[20%_80%] -my-5 md:-my-7 gap-10 relative"
               >
-                <p className="text-8xl text-[#c6cad1]">0{i + 1}</p>
+                <p className="text-6xl md:text-8xl text-[#c6cad1]">0{i + 1}</p>
                 <p>{text}</p>
               </div>
             ))}
@@ -139,7 +139,7 @@ export default function Explanation() {
           <span className="text-[#479da5]">What</span> You will{" "}
           <span className="text-[#479da5]">Master</span>
         </p>
-        <div className="h-[60vh] w-full -mt-20 md:mt-0 relative">
+        <div className="h-50 md:h-100 w-full  relative">
           <Image
             src="/asset/module.png"
             fill
@@ -165,31 +165,35 @@ export default function Explanation() {
           <span className="text-[#479da5] capitalize">academic flow</span>
         </motion.p>
 
-        <motion.p variants={fadeUp}>
+        <motion.p variants={fadeUp} className="w-90">
           The AY12 schedule is designed to simulate the balance of a university
-          <br />
-          workload, providing a bridge between structured high school days
-          <br /> and the independence of campus life.
+          workload, providing a bridge between structured high school days and
+          the independence of campus life.
         </motion.p>
 
         <motion.div
-          className="flex flex-wrap gap-4 justify-center px-[5%] md:px-[10%] mt-3"
+          className="flex flex-wrap gap-8 justify-center px-[5%] md:px-[10%] mt-8"
           variants={stagger}
         >
-          {content.map((c, i) => (
+          {content.map((c) => (
             <motion.div
               key={c.title}
               variants={fadeUp}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className={clsx(
-                "flex items-center justify-center w-70 md:w-80 h-70 text-center flex-col gap-4 p-3 rounded-lg transition-all",
-                i % 2 === 0 ? "bg-[#479DA526]" : "bg-[#293B59] text-white py-8"
-              )}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3 }}
+              className="w-full md:w-[320px] rounded-3xl p-8 text-center flex flex-col gap-4
+                 bg-white/70 backdrop-blur-xl border border-white/30
+                 shadow-lg hover:shadow-2xl"
             >
-              <Image src={c.image} alt={c.title} height={100} width={100} />
-              <p className="font-semibold">{c.title}</p>
-              <p>{c.details}</p>
+              <div className="mx-auto h-16 w-16 rounded-full bg-[#479DA5]/15 flex items-center justify-center">
+                <Image src={c.image} alt={c.title} height={42} width={42} />
+              </div>
+
+              <p className="text-lg font-semibold text-gray-900">{c.title}</p>
+
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {c.details}
+              </p>
             </motion.div>
           ))}
         </motion.div>

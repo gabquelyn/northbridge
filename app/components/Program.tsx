@@ -5,6 +5,9 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 export default function Program() {
+  const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
+  const [activeCard, setActiveCard] = React.useState<number | null>(null);
+
   const cards = [
     {
       title: "Canadian Academic Alignment Program (CAAP)",
@@ -61,70 +64,65 @@ export default function Program() {
           },
         }}
       >
-        {cards.map((card, i) => (
-          <motion.div
-            key={i}
-            className="relative h-110 w-76 rounded-3xl overflow-hidden cursor-pointer group shadow-lg"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  stiffness: 120,
-                  damping: 14,
-                },
-              },
-            }}
-            whileHover="hover"
-            initial="rest"
-            animate="rest"
-          >
-            {/* Image */}
-            <motion.div
-              className="absolute inset-0"
-              variants={{
-                rest: { scale: 1 },
-                hover: { scale: 1.08 },
-              }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <Image
-                src={card.image}
-                alt={card.title}
-                fill
-                className="object-cover"
-              />
-            </motion.div>
+        {cards.map((card, i) => {
+          const isVisible = hoveredCard === i || activeCard === i;
 
-            {/* Always-visible title overlay */}
-            <div className="absolute inset-0 z-10 flex items-end p-5 bg-linear-to-t from-black/80 via-black/20 to-transparent">
-              <p className="text-white font-semibold leading-snug">
-                {card.title}
-              </p>
-            </div>
-
-            {/* Hover content */}
+          return (
             <motion.div
-              className="absolute inset-0 z-20 flex flex-col justify-end p-5 text-white bg-black/70"
-              variants={{
-                rest: { opacity: 0, y: 30 },
-                hover: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
+              key={i}
+              className="relative h-110 w-76 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
+              onMouseEnter={() => setHoveredCard(i)}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={() => setActiveCard(activeCard === i ? null : i)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
             >
-              <p className="text-sm leading-relaxed">{card.desc}</p>
-              <Link href={card.cta}>
-                <motion.span
-                  className="mt-4 inline-block w-fit rounded-full bg-[#479DA5] px-4 py-2 text-sm font-medium"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Learn More
-                </motion.span>
-              </Link>
+              {/* Image */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{ scale: isVisible ? 1.08 : 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Always-visible title */}
+              <div className="absolute inset-0 z-10 flex items-end p-5 bg-linear-to-t from-black/80 via-black/20 to-transparent">
+                <p className="text-white font-semibold leading-snug">
+                  {card.title}
+                </p>
+              </div>
+
+              {/* Reveal Panel */}
+              <motion.div
+                className="absolute inset-0 z-20 flex flex-col justify-end p-5 text-white bg-black/70"
+                animate={{
+                  opacity: isVisible ? 1 : 0,
+                  y: isVisible ? 0 : 30,
+                }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+              >
+                <p className="text-sm leading-relaxed">{card.desc}</p>
+
+                <Link href={card.cta}>
+                  <motion.span
+                    className="mt-4 inline-block w-fit rounded-full bg-[#479DA5] px-4 py-2 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Learn More
+                  </motion.span>
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </motion.div>
 
       <div className="flex flex-col gap-3 items-center text-center mt-30">

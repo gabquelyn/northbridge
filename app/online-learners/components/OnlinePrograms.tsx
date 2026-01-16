@@ -5,7 +5,7 @@ import { HiAcademicCap, HiArrowTrendingUp, HiCheckCircle } from "react-icons/hi2
 
 export default function OnlineProgramsSummary() {
   return (
-    <section className="bg-white py-28 px-[5%] md:px-[10%]">
+    <section className="bg-white py-20 px-5 md:px-[10%]">
       <div className="mx-auto max-w-5xl flex flex-col gap-12">
 
         {/* Header */}
