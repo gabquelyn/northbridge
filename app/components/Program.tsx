@@ -86,7 +86,7 @@ export default function Program() {
           One Clear Route to <br />
           <span className="text-[#479DA5]">Canadian University</span> Readiness
         </p>
-        <p className="max-w-150">
+        <p className="max-w-80 md:max-w-150">
           Delivering Canadian-aligned secondary programming with ongoing
           academic guidance—supporting students with clarity and confidence
           toward Canadian university readiness.
