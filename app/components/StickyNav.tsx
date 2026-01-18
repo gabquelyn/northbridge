@@ -78,11 +78,11 @@ export default function NorthbridgeAcademicNav() {
       </div>
 
       {/* ================= For mobile navigation ================= */}
-      <div className="fixed top-0 text-[.9rem] flex pl-3 p-2 right-0 z-50 lg:hidden w-full items-center justify-between bg-white shadow-lg uppercase">
+      <div className="fixed top-0 text-[.9rem] flex p-4 right-0 z-50 lg:hidden w-full items-center justify-between bg-white shadow-lg uppercase">
         <Image src="/asset/logo2.png" height={40} width={40} alt="logo" />
         <div
           onClick={() => setOpen(true)}
-          className="bg-linear-to-r cursor-pointer flex items-center gap-3 from-[#479DA5] to-[#17757E] px-7 py-3 text-white transition"
+          className="text-black"
           aria-label="Open navigation"
         >
           <Menu size={20} />
