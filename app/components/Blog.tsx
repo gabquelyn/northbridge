@@ -78,7 +78,7 @@ export default function Blog() {
         Northbridge <br />
         <span className="text-[#479DA5]">Collegiate News</span>
       </p>
-      <div className="grid grid-cols-2 gap-8 mt-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-7">
         {blogs.map((blog) => (
           <Article
             key={blog.title}

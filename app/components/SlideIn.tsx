@@ -56,7 +56,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
           </Section>
 
           <Section title="Admissions & Resources">
-            <Item label="Home" href="/online-learners" />
+            <Item label="Home" href="/" />
             <Item label="FAQs" href="/faq" />
             <Item label="Reach out to us" href="/consultation" />
           </Section>
