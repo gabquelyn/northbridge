@@ -23,7 +23,7 @@ export default function Article({
       transition={{ layout: { duration: 0.5, ease: "easeInOut" } }}
       className="bg-white rounded-3xl shadow-xl p-8 md:p-10"
     >
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Header */}
         <div className="flex flex-col gap-3">
           <span className="text-sm uppercase tracking-wide text-[#479DA5]">
@@ -36,8 +36,8 @@ export default function Article({
 
           <p className="text-gray-600 text-sm">{highlight}</p>
         </div>
-        <div className="relative">
-          <Image src={thumbnail} alt={title} fill className="object-contain" />
+        <div className="relative w-full min-h-40">
+          <Image src={thumbnail} alt={title} fill className="object-cover md:object-contain" />
         </div>
       </div>
       {/* Excerpt */}
