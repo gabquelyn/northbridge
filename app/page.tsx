@@ -4,8 +4,10 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/atoms/Hero";
 import Footer from "./components/Footer";
 import Program from "./components/Program";
-import { Metadata } from "next";
 import Application from "./components/Application";
+import Blog from "./components/Blog";
+import NorthbridgeAcademicNav from "./components/StickyNav";
+import StickyHero from "./components/atoms/StickyHero";
 
 export const metadata = {
   title: "Canadian Academic Bridge Programs for University Success",
@@ -28,10 +30,11 @@ export const metadata = {
 export default function Home() {
   return (
     <div>
-      <Navigation />
-      <Hero
+
+      <NorthbridgeAcademicNav/>
+      <StickyHero
         text={<>Prepare for Canada's<br/></>}
-        image="bg-[url('/asset/girll.jpg')]"
+        image="bg-[url('/asset/girll.jpg')] scale-x-[-1]"
         typewrite="Leading Universities "
         transparent
         programs
@@ -47,6 +50,7 @@ export default function Home() {
       <ModelPreview />
       <Program />
       <Application />
+      <Blog/>
       <Footer />
     </div>
   );

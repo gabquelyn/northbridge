@@ -3,11 +3,13 @@ import Navigation from "../components/Navigation";
 import Hero from "../components/atoms/Hero";
 import ProgramOverview from "./components/ProgramOverview";
 import Footer from "../components/Footer";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 export default function SelectingPrograms() {
   return (
     <div>
-      <Navigation />
-      <Hero
+      <NorthbridgeAcademicNav />
+      <StickyHero
         text={
           <>
             Which Program
@@ -18,14 +20,14 @@ export default function SelectingPrograms() {
         transparent
         description={
           <p>
-            We have four major programs you can select from. Carefully look at the
-            benefits and purpose of each program.
+            We have four major programs you can select from. Carefully look at
+            the benefits and purpose of each program.
           </p>
         }
         image="bg-[url('/asset/guiding.jpg')] scale-x-[-1]"
       />
-      <ProgramOverview/>
-      <Footer/>
+      <ProgramOverview />
+      <Footer />
     </div>
   );
 }

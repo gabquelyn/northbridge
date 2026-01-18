@@ -6,6 +6,8 @@ import ComparisonTable from "../grade12/components/ComparisonTable";
 import Graduands from "../caap/components/Graduands";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
   title: "Grade 12 Advantage Year (AY12)",
@@ -48,8 +50,8 @@ export default function AY12() {
           }),
         }}
       />
-      <Navigation />
-      <Hero
+      <NorthbridgeAcademicNav />
+           <StickyHero
         image="bg-[url('/asset/graduate.jpg')]"
         text={
           <>

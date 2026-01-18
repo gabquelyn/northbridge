@@ -6,11 +6,13 @@ import Standard from "./components/Standard";
 import Graduands from "../caap/components/Graduands";
 import AdmissionRequirements from "./components/AdmissionRequirements";
 import Footer from "../components/Footer";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 export default function Grade11Page() {
   return (
     <div>
-      <Navigation />
-      <Hero
+      <NorthbridgeAcademicNav />
+      <StickyHero
         text={
           <>
             Grade 11 OSSD:
@@ -27,11 +29,11 @@ export default function Grade11Page() {
         }
         image="bg-[url('/asset/meeting.jpg')] scale-x-[-1]"
       />
-      <Purpose/>
-      <Standard/>
-      <Graduands/>
-      <AdmissionRequirements/>
-      <Footer/>
+      <Purpose />
+      <Standard />
+      <Graduands />
+      <AdmissionRequirements />
+      <Footer />
     </div>
   );
 }

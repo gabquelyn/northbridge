@@ -7,12 +7,18 @@ import Learners from "./components/Learners";
 import Pathway from "./components/Pathway";
 import Footer from "../components/Footer";
 import MatureLearnersForm from "./components/MatureLearnersForm";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 export default function OnlineLearners() {
   return (
     <div>
-      <Navigation />
-      <Hero
-        text={<>Learning rarely <br/></>}
+      <NorthbridgeAcademicNav />
+      <StickyHero
+        text={
+          <>
+            Learning rarely <br />
+          </>
+        }
         typewrite="follows a straight line."
         description={
           <p>
@@ -23,12 +29,12 @@ export default function OnlineLearners() {
         }
         image="bg-[url('/asset/center.jpg')]"
       />
-      <OnlinePrograms/>
-      <For/>
-      <Learners/>
-      <Pathway/>
-      <MatureLearnersForm/>
-      <Footer/>
+      <OnlinePrograms />
+      <For />
+      <Learners />
+      <Pathway />
+      <MatureLearnersForm />
+      <Footer />
     </div>
   );
 }

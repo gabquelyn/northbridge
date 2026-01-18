@@ -18,7 +18,7 @@ export default function OnlineProgramsSummary() {
         >
           <div className="flex items-center justify-center md:justify-start gap-3 text-[#479DA5]">
             <HiAcademicCap className="h-6 w-6" />
-            <p className="uppercase font-semibold tracking-wide text-sm">
+            <p className="uppercase font-semibold tracking-wide text-[.9rem]">
               Online Academic Programs
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function OnlineProgramsSummary() {
           <div className="flex flex-col items-start gap-3 p-6 bg-gray-50 rounded-3xl shadow-md hover:shadow-xl transition-shadow">
             <HiArrowTrendingUp className="h-8 w-8 text-[#479DA5]" />
             <h3 className="text-lg font-semibold text-gray-900">Structured Preparation</h3>
-            <p className="text-gray-700 text-sm leading-relaxed">
+            <p className="text-gray-700 text-[.9rem] leading-relaxed">
               Academic programs are carefully designed to ensure learners meet Ontario curriculum expectations and build foundational skills for success.
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function OnlineProgramsSummary() {
           <div className="flex flex-col items-start gap-3 p-6 bg-gray-50 rounded-3xl shadow-md hover:shadow-xl transition-shadow">
             <HiCheckCircle className="h-8 w-8 text-[#479DA5]" />
             <h3 className="text-lg font-semibold text-gray-900">University Readiness</h3>
-            <p className="text-gray-700 text-sm leading-relaxed">
+            <p className="text-gray-700 text-[.9rem] leading-relaxed">
               Students gain academic upgrading, familiarity with Canadian-style learning systems, and the confidence to transition into post-secondary education seamlessly.
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function OnlineProgramsSummary() {
           <div className="flex flex-col items-start gap-3 p-6 bg-gray-50 rounded-3xl shadow-md hover:shadow-xl transition-shadow">
             <HiAcademicCap className="h-8 w-8 text-[#479DA5]" />
             <h3 className="text-lg font-semibold text-gray-900">Flexible & Online</h3>
-            <p className="text-gray-700 text-sm leading-relaxed">
+            <p className="text-gray-700 text-[.9rem] leading-relaxed">
               Programs are fully online, offering global accessibility and flexibility, so students can prepare without returning to a traditional classroom environment.
             </p>
           </div>

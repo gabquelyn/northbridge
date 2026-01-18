@@ -2,74 +2,76 @@
 import React from "react";
 import { motion } from "motion/react";
 export default function AcademicFramework() {
- const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
     },
-  },
-};
+  };
 
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-    //   ease: "easeOut",
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.96,
     },
-  },
-};
-
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        //   ease: "easeOut",
+      },
+    },
+  };
 
   const content = [
     {
       title: (
         <>
-          Academic <br />
-          <span className="text-[#F9CA52]">Alignment</span>
+          Foundation Before
+          <br />
+          <span className="text-[#F9CA52]">Acceleration</span>
         </>
       ),
       content:
-        "Transitioning from local curricula to Canadian standards and grading literacy.",
+        "We believe lasting success is built on strong academic foundations and systems awareness. Preparation precedes pace, and mastery comes before advancement.",
     },
     {
       title: (
         <>
-          Structural <br />
-          <span className="text-[#F9CA52]">Readiness</span>
+          Clarity and <br />
+          <span className="text-[#F9CA52]">Responsibility</span>
         </>
       ),
 
       content:
-        "Mastery of university-style assessments and research methods ($APA$/$MLA$).",
+        "We prioritize clear expectations and structured guidance, while equipping students to take ownership of their learning, decisions, and conduct as they move toward independence.",
     },
     {
       title: (
         <>
-          Cultural & <br />
-          <span className="text-[#F9CA52]">Regulatory</span>
+          Navigational
+          <br />
+          <span className="text-[#F9CA52]">Intelligence</span>
         </>
       ),
       content:
-        "Navigating immigration rules, work expectations, and social adjustment.",
+        "We treat navigation as a skill. Students are taught how to understand, interpret, and move confidently through academic and institutional systems, especially during critical transitions.",
     },
     {
       title: (
         <>
-          Investment <br />
-          <span className="text-[#F9CA52]">Protection</span>
+          Impact
+          <br />
+          <span className="text-[#F9CA52]">Integrity</span>
         </>
       ),
       content:
-        "Safeguarding the family's financial investment by eliminating the risk of first-year failure.",
+        "We prepare students to engage the world thoughtfully and ethically, ensuring that achievement is paired with character, discernment, and long-term responsibility",
     },
   ];
   return (

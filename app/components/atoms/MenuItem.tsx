@@ -28,7 +28,12 @@ export default function MenuItem({
         <p
           onClick={mobile ? toggle : undefined}
           className={clsx(
-            ["/grade12", "/grade11", "/ay12", "/caap"].includes(pathname)
+            (item.label === "Programs" &&
+              ["/grade12", "/grade11", "/ay12", "/caap"].includes(pathname)) ||
+              (item.label === "About us" &&
+                ["/about", "/right-program", "/northbridge-model"].includes(
+                  pathname
+                ))
               ? "border-[#479DA5] border-b-2"
               : "border-transparent",
             "w-fit text-left py-2 cursor-pointer"

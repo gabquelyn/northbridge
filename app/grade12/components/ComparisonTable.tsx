@@ -35,6 +35,7 @@ export default function ComparisonTable() {
       </p>,
     ],
     ["Transition Support", "Basic", "Comprehensive"],
+    ["Character, Ethics & leadership", "Basic", "High"]
   ];
 
   return (
@@ -57,10 +58,10 @@ export default function ComparisonTable() {
             <tr>
               <th className="p-6 md:p-12 font-semibold text-left">Area</th>
               <th className="p-6 md:p-12 font-semibold bg-[#293B59] text-[#479DA5] border-r border-[#32425e]">
-                AY 12
+                Grade 12
               </th>
               <th className="p-6 md:p-12 font-semibold bg-[#293B59] text-[#479DA5]">
-                Grade 12
+                AY 12
               </th>
             </tr>
           </thead>

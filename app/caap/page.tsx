@@ -6,6 +6,8 @@ import { Metadata } from "next";
 import AcademicExpectations from "./components/Expectiations";
 import CAAPResidencyNotice from "./components/CAAPResidencyNotice";
 import CAAPClosingSummary from "./components/Summary";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
   title: "Canadian Academic Alignment Program (CAAP)",
@@ -48,8 +50,8 @@ export default function CAAP() {
           }),
         }}
       />
-      <Navigation />
-      <Hero
+      <NorthbridgeAcademicNav />
+      <StickyHero
         text={
           <>
             Align. Advance.
@@ -66,7 +68,7 @@ export default function CAAP() {
         }
         image="bg-[url('/asset/toronto.jpg')]"
       />
-      
+
       <AcademicExpectations />
       <CAAPClosingSummary />
       <CAAPResidencyNotice />

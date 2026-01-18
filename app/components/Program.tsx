@@ -98,7 +98,7 @@ export default function Program() {
         </div>
         <div className="bg-gray-50">
           <Marquee pauseOnHover speed={50} gradient={false} className="mt-5">
-            {Array.from({ length: 43 }, (_, i) => i + 1).map((i) => (
+            {Array.from({ length: 21 }, (_, i) => i + 1).map((i) => (
               <div key={i} className="mx-8 flex items-center justify-center">
                 <Image
                   src={`/asset/schools/${i}.png`}

@@ -6,67 +6,16 @@ import { motion } from "motion/react";
 
 export default function School() {
   return (
-    <section className="bg-white py-20 px-[5%]">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 items-center">
-
+    <section className="bg-white py-20 px-5 md:px-[25%] ">
+      <div className="mx-auto grid grid-cols-1 gap-16 md:grid-cols-[30%_70%]">
         {/* Image Stack */}
         <motion.div
-          className="relative w-full h-[400px]"
+          className=""
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Background layer */}
-          <motion.div
-            variants={{
-              hidden: {
-                opacity: 0,
-                x: 40,
-                y: -40,
-              },
-              visible: {
-                opacity: 1,
-                x: 0,
-                y: 0,
-                transition: {
-                  duration: 0.6,
-                  ease: "easeOut",
-                },
-              },
-            }}
-            className="absolute -top-4 -right-4 h-full w-full 
-                       rounded-4xl bg-[#479DA5]/10 z-0"
-          />
-
-          {/* Foreground image */}
-          <motion.div
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 30,
-                scale: 0.96,
-              },
-              visible: {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: {
-                  duration: 0.7,
-                  ease: "easeOut",
-                  delay: 0.15,
-                },
-              },
-            }}
-            className="relative z-10 h-full w-full overflow-hidden rounded-4xl shadow-xl"
-          >
-            <Image
-              fill
-              alt="School environment"
-              src="/asset/spread.jpg"
-              className="object-cover"
-              priority
-            />
-          </motion.div>
+          <p className="title capitalize"> Who we <span className="text-[#479DA5]">are</span></p>
         </motion.div>
 
         {/* Text Section */}
@@ -87,9 +36,9 @@ export default function School() {
             <span className="font-semibold text-[#479DA5]">
               Northbridge Collegiate
             </span>{" "}
-            serves students from a range of prior educational systems and applies
-            structured academic review and placement processes to support
-            appropriate entry into the Ontario secondary programming.
+            serves students from a range of prior educational systems and
+            applies structured academic review and placement processes to
+            support appropriate entry into the Ontario secondary programming.
           </p>
 
           <p className="text-justify">

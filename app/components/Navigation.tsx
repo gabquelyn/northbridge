@@ -26,38 +26,40 @@ export default function Navigation() {
   }, []);
 
   const menu = [
-    { label: "Home", href: "/"},
-    { label: "About us", href: "/about" },
-    { label: "Our Model", href: "/northbridge-model" },
+    { label: "Home", href: "/" },
+    {
+      label: "About us",
+      children: [
+        { label: "About Northbridge", href: "/about" },
+        { label: "Program Overview", href: "/right-program" },
+        { label: "Our Approach to Learning", href: "/northbridge-model" },
+      ],
+    },
     {
       label: "Programs",
       children: [
         { label: "Canadian Academic Alignment Program (CAAP)", href: "/caap" },
-        { label: "Grade 12 OSSD (Canada)", href: "/grade12" },
-        { label: "Grade 11 OSSD (Canada)", href: "/grade11" },
+        { label: "Grade 11 OSSD", href: "/grade11" },
+        { label: "Grade 12 OSSD", href: "/grade12" },
         { label: "Grade 12 Advantage Year (AY12)", href: "/ay12" },
       ],
     },
-    { label: "Program Overview", href: "/right-program" },
-    { label: "Mature & Online learners", href: "/online-learners" },
+
+    { label: "Transitional learners", href: "/online-learners" },
     { label: "FAQ", href: "/faq" },
   ];
 
   return (
     <>
-    
       {/* Top Nav */}
       <div
-        className={clsx(
-          scrolled && "shadow-lg",
-          "sticky top-0 z-30 bg-white"
-        )}
+        className={clsx(scrolled ? "shadow-lg bg-white" : "bg-white/70", "fixed w-full top-0 z-30 backdrop:backdrop-blur-lg transition-all")}
       >
         <div className="flex items-center justify-between px-[5%] py-3">
           <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
 
           {/* Desktop menu */}
-          <ul className="hidden lg:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-12">
             {menu.map((item) => (
               <MenuItem key={item.label} item={item} />
             ))}

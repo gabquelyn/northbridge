@@ -8,6 +8,8 @@ import AcademicFramework from "./components/AcademicFramework";
 import ClearRoute from "./components/ClearRoute";
 import Graduands from "../caap/components/Graduands";
 import type { Metadata } from "next";
+import NorthbridgeAcademicNav from "../components/StickyNav";
+import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
   title: "The Northbridge Academic Bridge Model",
@@ -36,8 +38,8 @@ export const metadata: Metadata = {
 export default function ModelPage() {
   return (
     <div>
-      <Navigation />
-      <Hero
+      <NorthbridgeAcademicNav />
+      <StickyHero
         image="bg-[url('/asset/consult.jpg')]"
         text={
           <>
