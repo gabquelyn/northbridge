@@ -20,7 +20,7 @@ export default function Graduands() {
             }
             whileHover={{ scale: "1.05" }}
           >
-            Book a consultation
+            Reach out
           </motion.div>
         </Link>
       </div>
