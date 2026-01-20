@@ -14,7 +14,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-60 bg-[#F8FAFC] flex flex-col h-full"
+      className="fixed inset-0 z-60 bg-[#F8FAFC] flex flex-col h-full text-[1.2rem]"
     >
       {/* ================= Header ================= */}
       <div className="flex items-center justify-between px-10 py-8 bg-white border-b border-slate-200 flex-shrink-0">
@@ -85,7 +85,7 @@ function Section({
 }) {
   return (
     <div>
-      <h3 className="mb-6 text-sm font-semibold uppercase tracking-widest text-slate-500">
+      <h3 className="mb-6 font-bold uppercase tracking-widest text-slate-500">
         {title}
       </h3>
       <div className="space-y-4">{children}</div>
@@ -96,7 +96,7 @@ function Section({
 function Item({ label, href }: { label: string; href: string }) {
   const pathname = usePathname();
   return (
-    <p className="group relative w-fit cursor-pointer text-lg font-medium text-slate-800 transition">
+    <p className="group relative w-fit cursor-pointer font-medium text-slate-800 transition">
       <Link href={href}>
         {label}
         <span

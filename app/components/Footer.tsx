@@ -17,10 +17,12 @@ export default function Footer() {
         {/* Column 1 */}
         <div className="flex flex-col gap-5 md:w-1/3">
           <div className="bg-white p-3 rounded-sm w-fit">
-            <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
+            <Link href= "/">
+              <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
+            </Link>
           </div>
           <p className=" leading-relaxed">
-            Northbridge Collegiate is a private secondary school<br/> authorized by
+            Northbridge Collegiate is a private secondary school authorized by
             the Ontario Ministry of Education.
           </p>
           <div className="flex gap-6 items-center">
@@ -37,6 +39,7 @@ export default function Footer() {
         <div className="md:w-1/3">
           <p className="font-semibold mb-5">Quick links</p>
           <div className="flex flex-col gap-2 ">
+            <Link href="/">Home Page</Link>
             <Link href="/caap">CAAP</Link>
             <Link href="/grade11">GRADE 11</Link>
             <Link href="/grade12">GRADE 12</Link>
@@ -69,9 +72,9 @@ export default function Footer() {
       <hr className="border-[#151e2f] my-10" />
 
       <p className="text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} Northbridge Collegiate. All rights reserved.
+        © {new Date().getFullYear()} Northbridge Collegiate. All rights
+        reserved.
       </p>
     </footer>
   );
 }
-

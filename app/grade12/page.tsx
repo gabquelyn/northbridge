@@ -38,17 +38,14 @@ export default function Grade12() {
         image="bg-[url('/asset/girl.jpg')]"
         description={
           <p>
-            At Northbridge Collegiate, our Grade 12 OSSD Program represents the
-            "Complete" phase of our signature pathway.
+            At Northbridge, Grade 12 represents the "Complete" phase of the
+            Ontario OSSD program.
           </p>
         }
         transparent
       />
       <Ossd />
-      {/* <Slideshow /> */}
-      {/* <AdmissionRequirements /> */}
-      {/* <ComparisonTable /> */}
-      {/* <Graduands /> */}
+
       <Footer />
     </div>
   );

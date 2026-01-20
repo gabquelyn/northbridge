@@ -19,7 +19,7 @@ export default function VerticalProgramCard() {
       gain: [
         "Recognition of prior learning.",
         "Alignment to Ontario expectations",
-        "Alignment to Ontario expectations",
+        "Prepare and complete the Grade 10 literacy test",
         "Academic writing & study skills",
         "Familiarity with Canadian-style learning systems",
       ],
@@ -48,7 +48,7 @@ export default function VerticalProgramCard() {
       program: "Grade 12 OSSD",
       purpose:
         "For students ready to complete their final year of secondary school and preparing for Canadian post-secondary education.",
-      who: "Ideal for students prepared to begin Ontario curriculum-based secondary studies following Grade 10-level education",
+      who: "Ideal for students prepared to begin Ontario curriculum-based secondary studies following Grade 11-level education",
       gain: [
         "Ontario Grade 12 credits",
         "Academic monitoring and tutoring",

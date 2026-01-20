@@ -46,7 +46,7 @@ export default function ModelPreview() {
           >
             The Northbridge
             <br />
-            <span className="text-[#479DA5]">Academic Bridge Model.</span>
+            <span className="text-[#479DA5]">Academic Prep Model.</span>
           </motion.p>
 
           <p className="text-center lg:text-justify">
@@ -68,7 +68,7 @@ export default function ModelPreview() {
 
         {/* RIGHT GRID */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700 leading-relaxed"
+          className="grid grid-cols-1 xl:grid-cols-2 gap-3 text-gray-700 leading-relaxed"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -92,9 +92,8 @@ export default function ModelPreview() {
             whileHover={{ scale: 1.02 }}
           >
             <p>
-              <span className="font-bold">Dual-location learning</span> with
-              academic advising and student support coordinated across both
-              locations
+              <span className="font-bold">Academic oversight</span> is
+              coordinated through Northbridge's Canada-based headquarters
             </p>
           </motion.div>
 

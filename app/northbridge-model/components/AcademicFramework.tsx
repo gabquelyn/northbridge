@@ -82,11 +82,9 @@ export default function AcademicFramework() {
         <span className="text-[#479da5]">Bridge Framework</span>
       </p>
       <p className="md:w-[40%] w-[90%] my-3 text-center">
-        Northbridge Collegiate is not a traditional high school. We are a
-        specialized academic bridge institution. Through a sophisticated blend
-        of online and in-class learning, we have moved beyond the
-        "graduation-only" mindset to create a model built for high performance
-        in Canadian higher education.
+        Northbridge Collegiate is prep institution. We have moved beyond the
+        "graduation only" mindset to create a pathway that prepares students for
+        high level performance in Canadaian higher education and beyond
       </p>
 
       <motion.div

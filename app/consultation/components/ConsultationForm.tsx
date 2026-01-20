@@ -13,6 +13,7 @@ export default function ConsultationForm() {
     education: "",
     area: "",
     program: "",
+    country: "",
   });
   const [value, setValue] = useState<string | undefined>();
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,7 @@ export default function ConsultationForm() {
           label="Full name"
           placeholder="John Doe Philips"
         />
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
           <Input
             name="email"
             value={details.email}
@@ -50,6 +51,13 @@ export default function ConsultationForm() {
             }}
           />
         </div>
+        <Input
+          name="country"
+          value={details.country}
+          onChange={inputHandler}
+          type="country"
+          placeholder="Country"
+        />
       </div>
       <div className="flex flex-col gap-2">
         <p className="font-bold">Academic Background</p>
@@ -60,13 +68,6 @@ export default function ConsultationForm() {
           type="text"
           placeholder="Current/Highest Education Level ((e.g., Grade 11, Completed WAEC/IGCSE))"
         />
-        <Input
-          name="area"
-          value={details.area}
-          onChange={inputHandler}
-          type="text"
-          placeholder="Primary Area of Study"
-        />
       </div>
 
       <div className="flex flex-col gap-2">
@@ -74,6 +75,7 @@ export default function ConsultationForm() {
 
         {[
           "Canadian Academic Alignment Program (CAAP)",
+          "Grade 11 OSSD",
           "Grade 12 OSSD",
           "Grade 12 Advantage Year (AY12 Enrichment)",
         ].map((program) => (
@@ -89,7 +91,7 @@ export default function ConsultationForm() {
           onClick={() => console.log(details)}
           className="bg-linear-0 from-[#479DA5] w-full md:w-fit transition-all cursor-pointer to-[#17757E] p-3 px-5 rounded-3xl text-white"
         >
-          Submit for consultation
+          Submit
         </motion.button>
       </div>
     </div>

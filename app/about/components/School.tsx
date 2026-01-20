@@ -15,7 +15,10 @@ export default function School() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <p className="title capitalize"> Who we <span className="text-[#479DA5]">are</span></p>
+          <p className="title capitalize">
+            {" "}
+            Who we <span className="text-[#479DA5]">are</span>
+          </p>
         </motion.div>
 
         {/* Text Section */}
@@ -29,27 +32,19 @@ export default function School() {
           <div className="h-1 w-24 bg-[#479DA5]" />
 
           <p className="text-justify">
-            Ontario curriculum-based Senior High School instruction is delivered
-            within a cross-border instructional model aligned with Ontario
-            curriculum and Ministry requirements.
-            <br />
             <span className="font-semibold text-[#479DA5]">
               Northbridge Collegiate
             </span>{" "}
-            serves students from a range of prior educational systems and
-            applies structured academic review and placement processes to
-            support appropriate entry into the Ontario secondary programming.
+            is a private Canadian senior high school authorized by the Ontario
+            Ministry of Education, supporting learners preparing for
+            post-secondary education in Canada and globally.<br/>
+            Northbridge delivers Ontario-aligned secondary programming alongside structured academic transition and readiness programs designed to support learners at critical educational inflection points. The institution emphasizes academic alignment, intellectual maturity, and personal formation to support long-term student success beyond admission.
           </p>
 
           <p className="text-justify">
-            Instruction is provided through approved instructional models,
-            including in-class, online, or blended formats, as permitted under
-            Ontario Ministry of Education requirements. All credit courses are
-            assessed and evaluated in accordance with Ontario curriculum
-            expectations and Ministry policy. Student progress toward the
-            Ontario Secondary School Diploma (OSSD) is documented using
-            Ministry-compliant records, including the Ontario Student Record
-            (OSR).
+           <span className="font-semibold text-[#479DA5]">
+              Northbridge Collegiate
+            </span>{" "} serves students from a range of prior educational systems and applies structured academic review and placement processes to support appropriate entry into the Ontario secondary programming.<br/> All credit courses are assessed and evaluated in accordance with Ontario curriculum expectations and Ministry policy. Student progress toward the Ontario Secondary School Diploma (OSSD) is documented using Ministry-compliant records, including the Ontario Student Record (OSR)
           </p>
         </motion.div>
       </div>

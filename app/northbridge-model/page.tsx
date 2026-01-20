@@ -50,8 +50,8 @@ export default function ModelPage() {
         transparent
         description={
           <>
-            Our model is guided by educational neuroscience, focusing on
-            cognitive readiness and emotional regulation to improve outcomes.
+            Enabling learners to manage critical transitions with clarity,
+            responsibility, and impacts that shapes their future.
           </>
         }
       />

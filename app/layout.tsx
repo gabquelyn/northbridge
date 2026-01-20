@@ -68,7 +68,7 @@ export default function RootLayout({
       />
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-[.9rem] md:text-[1.1rem]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-[.9rem] md:text-[1.2rem]`}
       >
         {/* Global Organization Schema */}
         <script

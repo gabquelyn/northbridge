@@ -9,28 +9,6 @@ export default function Ossd() {
   const content = [
     {
       track: "a",
-      name: "OSSD Online",
-      lists: [
-        "Learners with equivalent grade 11 education.",
-        "Globally accessible via online learning.",
-        "Self-based - Teacher supported - Mentor feedback",
-        "Academic upgrading.",
-        "Academic continuity",
-      ],
-      icon: "/asset/icon1.png",
-    },
-    {
-      track: "b",
-      name: "OSSD Only",
-      lists: [
-        "Completion of the Ontario Secondary School Diploma (OSSD)",
-        "Tutoring and structured academic oversight",
-        "University and college pathway planning",
-      ],
-      icon: "/asset/icon2.png",
-    },
-    {
-      track: "c",
       name: "Advantage Year (AY12)",
       lists: [
         "Grade 12 OSSD plus concurrent Foundation-level preparation",
@@ -48,6 +26,28 @@ export default function Ossd() {
         </p>
       ),
     },
+    {
+      track: "b",
+      name: "OSSD Only",
+      lists: [
+        "Completion of the Ontario Secondary School Diploma (OSSD)",
+        "Tutoring and structured academic oversight",
+        "University and college pathway planning",
+      ],
+      icon: "/asset/icon2.png",
+    },
+    {
+      track: "c",
+      name: "OSSD Online",
+      lists: [
+        "Learners with equivalent grade 11 education.",
+        "Globally accessible via online learning.",
+        "Self-based - Teacher supported - Mentor feedback",
+        "Academic upgrading.",
+        "Academic continuity",
+      ],
+      icon: "/asset/icon1.png",
+    },
   ];
 
   return (
@@ -58,8 +58,8 @@ export default function Ossd() {
         <h2 className="title font-semibold text-gray-900">Grade 12 OSSD</h2>
         <p className="max-w-3xl text-gray-700">
           <span className="font-bold">Grade 12 OSSD</span> is the bridge that
-          transforms your previous international studies into a globally
-          recognized Canadian secondary credential.
+          transforms your previous studies into a globally recognized Canadian
+          secondary credential.
           <br />
           This program is designed for students who have successfully finished
           Grade 11 (or equivalent) and are ready to finalize their high school
@@ -115,7 +115,10 @@ export default function Ossd() {
               {/* List Items */}
               <ul className="mt-3 space-y-2 text-gray-700 list-none list-inside">
                 {item.lists.map((listItem, i) => (
-                  <li key={i} className="flex gap-2 items-start md:items-center">
+                  <li
+                    key={i}
+                    className="flex gap-2 items-start md:items-center"
+                  >
                     <span className="text-[#479DA5]">
                       <IoMdCheckboxOutline />
                     </span>

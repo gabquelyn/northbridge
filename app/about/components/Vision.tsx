@@ -15,7 +15,7 @@ export default function Vision() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-[#F9CA52] font-medium">
+          <p className="text-[#F9CA52] font-medium title">
             What Makes Northbridge Collegiate Different?
           </p>
         </motion.div>

@@ -23,14 +23,15 @@ export default function FounderMessage() {
           <div className="grid grid-cols-1 md:grid-cols-[1fr_180px] gap-10 items-start">
             {/* Message */}
             <div className="text-gray-700 leading-relaxed space-y-5">
+              <p>
+                Through years of operating regulated businesses in Canada and
+                employing a predominantly immigrant workforce—many of whom first
+                arrived as international students—I saw firsthand how
+                challenging it can be to balance school, work, and complex
+                requirements all at once.
+              </p>
+
               <div>
-                <p>
-                  Through years of operating regulated businesses in Canada and
-                  employing a predominantly immigrant workforce—many of whom
-                  first arrived as international students—I saw firsthand how
-                  challenging it can be to balance school, work, and complex
-                  requirements all at once.
-                </p>
                 <p>I listened to their stories.</p>
                 <p>
                   I watched them navigate academics, employment rules,
@@ -41,10 +42,10 @@ export default function FounderMessage() {
 
               <p>
                 That is why I founded Northbridge Collegiate. Designed as a
-                preparatory academic program to support students and families
+                preparatory academic institute to support students and families
                 before entry and during their transition into the Canadian
                 university system. My background in educational neuroscience,
-                psychology and learning strategies helped give structure to what
+                psychology and learning sciences helped give structure to what
                 I observed in practice.
               </p>
 
@@ -63,11 +64,9 @@ export default function FounderMessage() {
               </div>
 
               <div className="text-left md:text-center">
-                <p className="font-semibold text-gray-900">
-                  Dr. [Founder Name]
-                </p>
+              
                 <p className="text-sm text-gray-500">
-                  Founder & Academic Director
+                  Founder & Chancellor
                 </p>
               </div>
             </div>
@@ -76,7 +75,8 @@ export default function FounderMessage() {
           {/* Signature */}
           <div className="mt-10">
             <p className="italic text-gray-500">
-              “Preparing Students for Successful Entry into Canadian Universities”
+              “Preparing Students for Successful Entry into Canadian
+              Universities”
             </p>
           </div>
         </div>

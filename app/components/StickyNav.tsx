@@ -21,23 +21,24 @@ export default function NorthbridgeAcademicNav() {
 
   return (
     <>
-
       <div
         className={clsx(
-          "fixed top-0 right-0 z-50 hidden md:flex w-full py-2 items-center justify-between px-6 text-[0.85rem] uppercase transition-all duration-500",
+          "fixed top-0 right-0 z-50 hidden lg:flex w-full py-2 items-center justify-between px-6 text-[0.85rem] uppercase transition-all duration-500",
           scrolled
             ? "bg-white/95 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)] text-slate-800"
             : "bg-white/10 backdrop-blur-md text-white",
         )}
       >
-        <div className="relative ml-[5%] w-20 h-20 p-1 rounded-full bg-white shadow-lg">
+        <div className="relative ml-[5%] w-12 h-12 p-1 rounded-full bg-white shadow-lg">
           <div className="relative w-full h-full rounded-full overflow-hidden">
-            <Image
-              src="/asset/logo2.png"
-              fill
-              className="object-contain"
-              alt="Northbridge Logo"
-            />
+            <Link href="/">
+              <Image
+                src="/asset/logo2.png"
+                fill
+                className="object-contain"
+                alt="Northbridge Logo"
+              />
+            </Link>
           </div>
         </div>
 

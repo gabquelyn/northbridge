@@ -40,8 +40,8 @@ export default function About() {
         description={
           <p>
             Northbridge Collegiate is a Canadian University Prep Institution
-            designed to prepare international students for successful entry
-            into, and performance within, Canadian universities.
+            designed to prepare students for successful entry
+            into, and performance within, Canadian universities and beyond.
           </p>
         }
         transparent
