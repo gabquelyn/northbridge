@@ -8,7 +8,7 @@ import { GrLineChart } from "react-icons/gr";
 
 export default function ClearRoute() {
   return (
-    <div className="py-20 flex flex-col gap-8 items-center justify-center text-center px-[5%] xl:px-[20%]">
+    <div className="py-20 flex flex-col gap-8 items-center justify-center text-center bg-gray-50 px-[5%] xl:px-[20%]">
       <div>
         <p className="title capitalize">
           One Clear <span className="text-[#479DA5]">Route.</span>

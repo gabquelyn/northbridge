@@ -55,9 +55,9 @@ export default function ModelPage() {
           </>
         }
       />
-      <Philosophy />
-      <Special />
       <AcademicFramework />
+      {/* <Philosophy /> */}
+      <Special />
       <ClearRoute />
       <Graduands />
       <Footer />

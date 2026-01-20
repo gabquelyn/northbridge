@@ -35,7 +35,7 @@ export default function Special() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20">
       {/* Title */}
       <motion.h2
         initial={{ opacity: 0, y: 16 }}

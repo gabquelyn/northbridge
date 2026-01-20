@@ -75,7 +75,7 @@ export default function AcademicFramework() {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col py-20 items-center bg-[#479DA526] justify-center">
       <p className="title text-center capitalize">
         The Academic
         <br />
