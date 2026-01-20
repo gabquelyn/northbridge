@@ -17,7 +17,7 @@ export default function Footer() {
         {/* Column 1 */}
         <div className="flex flex-col gap-5 md:w-1/3">
           <div className="bg-white p-3 rounded-sm w-fit">
-            <Link href= "/">
+            <Link href="/">
               <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
             </Link>
           </div>
@@ -27,8 +27,16 @@ export default function Footer() {
           </p>
           <div className="flex gap-6 items-center">
             <FaXTwitter />
-            <GrInstagram />
-            <LuFacebook />
+            <Link
+              href={
+                "https://www.instagram.com/northbridgecollegiate?igsh=NDhiZTFiMTljeWlk"
+              }
+            >
+              <GrInstagram />
+            </Link>
+            <Link href="https://www.facebook.com/share/1CZy6LLMmz/?mibextid=wwXIfr">
+              <LuFacebook />
+            </Link>
           </div>
         </div>
 

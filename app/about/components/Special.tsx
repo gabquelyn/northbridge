@@ -68,7 +68,7 @@ export default function Special() {
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="hidden md:block h-32 w-px bg-gradient-to-b from-[#479DA5]/60 to-transparent origin-top"
+                className="hidden md:block h-32 w-px bg-linear-to-b from-[#479DA5]/60 to-transparent origin-top"
               />
             </div>
 

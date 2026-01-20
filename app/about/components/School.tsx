@@ -6,10 +6,10 @@ import { Item } from "@/app/components/SlideIn";
 export default function School() {
   return (
     <div>
-      <div className="md:flex justify-around hidden transition-all hover:bg-[#479DA5]/20 bg-slate-50 p-8 border-b border-slate-200">
-        <Item label="Program Overview" href="/right-program" />
-        <Item label="Our Approach to Learning" href="/northbridge-model" />
-        <Item label="Guidance Centre" href="/guidance" />
+      <div className="md:flex justify-around hidden transition-all bg-[#010A1D] p-8 border-b border-slate-200">
+        <Item label="Program Overview" href="/right-program" className="text-white"/>
+        <Item label="Our Approach to Learning" href="/northbridge-model" className="text-white" />
+        <Item label="Guidance Centre" href="/guidance" className="text-white" />
       </div>
       <section className="bg-white py-20 px-5 md:px-[25%] ">
         <div className="mx-auto grid grid-cols-1 gap-16 md:grid-cols-[30%_70%]">

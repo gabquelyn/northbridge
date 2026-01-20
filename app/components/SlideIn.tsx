@@ -48,7 +48,10 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
           </Section>
 
           <Section title="Academic Programs">
-            <Item label="Canadian Academic Alignment Program (CAAP)" href="/caap" />
+            <Item
+              label="Canadian Academic Alignment Program (CAAP)"
+              href="/caap"
+            />
             <Item label="Grade 11 OSSD" href="/grade11" />
             <Item label="Grade 12 OSSD" href="/grade12" />
             <Item label="Grade 12 Advantage Year (AY12)" href="/ay12" />
@@ -93,16 +96,29 @@ function Section({
   );
 }
 
-export function Item({ label, href }: { label: string; href: string }) {
+export function Item({
+  label,
+  href,
+  className,
+}: {
+  label: string;
+  href: string;
+  className?: string;
+}) {
   const pathname = usePathname();
   return (
-    <p className="group relative w-fit cursor-pointer font-medium text-slate-800 transition">
+    <p
+      className={clsx(
+        className,
+        "group relative w-fit cursor-pointer font-medium text-slate-800 transition",
+      )}
+    >
       <Link href={href}>
         {label}
         <span
           className={clsx(
             "absolute left-0 -bottom-1 h-[2px] w-full scale-x-0 bg-[#479DA5] transition-transform duration-300 origin-left group-hover:scale-x-100",
-            href === pathname && "scale-x-100"
+            href === pathname && "scale-x-100",
           )}
         />
       </Link>
