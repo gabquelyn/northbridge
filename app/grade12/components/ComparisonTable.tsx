@@ -24,7 +24,7 @@ export default function ComparisonTable() {
       </p>,
     ],
     ["Academic writing", "Limited", "Intensive"],
-    ["Research & referencing", "Minial", "Structure"],
+    ["Research & referencing", "Minimal", "Structure"],
     [
       "University-style assessment",
       <p className="flex items-center justify-center">
