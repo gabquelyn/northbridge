@@ -6,7 +6,7 @@ import { LuPhone } from "react-icons/lu";
 import { LuFacebook } from "react-icons/lu";
 import Link from "next/link";
 import { TbMail } from "react-icons/tb";
-
+import { MdLocationPin } from "react-icons/md";
 export default function Footer() {
   return (
     <footer className="bg-[#010A1D] text-white px-5 py-20">
@@ -26,7 +26,6 @@ export default function Footer() {
             the Ontario Ministry of Education.
           </p>
           <div className="flex gap-6 items-center">
-            <FaXTwitter />
             <Link
               href={
                 "https://www.instagram.com/northbridgecollegiate?igsh=NDhiZTFiMTljeWlk"
@@ -63,14 +62,24 @@ export default function Footer() {
         {/* Column 3 */}
         <div className="md:w-1/3">
           <p className="font-semibold mb-5">Contact Us</p>
-          <div className="flex flex-col gap-3 ">
-            <div className="flex gap-3 items-center">
-              <TbMail className="text-[#17757E]" />
-              <p>support@northbridgec.ca</p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <LuPhone className="text-[#17757E]" />
-              <p>+234 - 704 - 700 - 2406</p>
+          <div className="flex flex-col items-start gap-3 ">
+            <Link href="mailto:support@northbridgec.ca">
+              <div className="flex gap-3 items-center">
+                <TbMail className="text-[#17757E]" />
+                <p>support@northbridgec.ca</p>
+              </div>
+            </Link>
+            <Link href="tel:+2347047002406">
+              <div className="flex gap-3 items-center">
+                <LuPhone className="text-[#17757E]" />
+                <p>+234 - 704 - 700 - 2406</p>
+              </div>
+            </Link>
+            <div className="flex items-center gap-3 justify-center">
+              <MdLocationPin className="text-[#17757E]"/>
+              <Image src="/asset/nigeria.png" height={20} width={20} alt="" />
+
+              <p>Victoria Island, Lagos, Nigeria</p>
             </div>
           </div>
         </div>
