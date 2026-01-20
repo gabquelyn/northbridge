@@ -103,7 +103,7 @@ export default function ClearRoute() {
       <div className="bg-white p-10 shadow rounded-lg gap-15 flex flex-col md:flex-row items-center">
         <div className="relative mb-20 mr-13">
           <div className="absolute -right-15 top-20">
-            <div className="relative z-20 rounded-3xl h-50 overflow-hidden w-50">
+            <div className="relative z-20 rounded-3xl h-40 md:h-50 overflow-hidden w-40 md:w-50">
               <Image
                 src="/asset/son.jpeg"
                 alt=""
@@ -113,7 +113,7 @@ export default function ClearRoute() {
             </div>
           </div>
 
-          <div className="text-9xl bg-gray-100 p-14 pt-3 rounded-3xl">
+          <div className="text-9xl bg-gray-100 p-10 md:p-14 pt-3 rounded-3xl">
             <GrLineChart />
           </div>
         </div>
