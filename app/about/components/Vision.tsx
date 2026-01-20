@@ -7,7 +7,6 @@ export default function Vision() {
   return (
     <section className="bg-[#479DA5] px-[5%] md:px-[20%] py-20 text-gray-50">
       <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-12 items-start">
-
         {/* Left title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,10 +43,7 @@ export default function Vision() {
               highlight: false,
             },
             {
-              text: `Northbridge Collegiate delivers Ontario curriculum-based secondary
-              education directly under an Ontario private school license, rather
-              than through third-party partnership or affiliate arrangements.
-              Guaranteed university application support.`,
+              text: `Northbridge operates under its own Canadian authorization and licence rather than through third part partnerships of affiliate arrangements. This enables us direct oversight to how we teach and support our students.`,
               highlight: true,
             },
             {

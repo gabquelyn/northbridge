@@ -105,7 +105,7 @@ export default function ClearRoute() {
           <div className="absolute -right-15 top-20">
             <div className="relative z-20 rounded-3xl h-40 md:h-50 overflow-hidden w-40 md:w-50">
               <Image
-                src="/asset/son.jpeg"
+                src="/asset/son.png"
                 alt=""
                 fill
                 className="object-cover"

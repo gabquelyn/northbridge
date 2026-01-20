@@ -93,7 +93,7 @@ function Section({
   );
 }
 
-function Item({ label, href }: { label: string; href: string }) {
+export function Item({ label, href }: { label: string; href: string }) {
   const pathname = usePathname();
   return (
     <p className="group relative w-fit cursor-pointer font-medium text-slate-800 transition">

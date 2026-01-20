@@ -14,6 +14,7 @@ export default function ConsultationForm() {
     area: "",
     program: "",
     country: "",
+    city: ""
   });
   const [value, setValue] = useState<string | undefined>();
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +56,15 @@ export default function ConsultationForm() {
           name="country"
           value={details.country}
           onChange={inputHandler}
-          type="country"
+          type="text"
           placeholder="Country"
+        />
+        <Input
+          name="city"
+          value={details.city}
+          onChange={inputHandler}
+          type="text"
+          placeholder="City"
         />
       </div>
       <div className="flex flex-col gap-2">
