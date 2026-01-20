@@ -6,7 +6,7 @@ import { Item } from "@/app/components/SlideIn";
 export default function School() {
   return (
     <div>
-      <div className="flex justify-around  bg-slate-50 p-8 border-b border-slate-200">
+      <div className="md:flex justify-around hidden  bg-slate-50 p-8 border-b border-slate-200">
         <Item label="Program Overview" href="/right-program" />
         <Item label="Our Approach to Learning" href="/northbridge-model" />
         <Item label="Guidance Centre" href="/guidance" />
