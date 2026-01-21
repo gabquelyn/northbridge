@@ -40,6 +40,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
+    title: "Northbridge Collegiate",
+    description:
+      "Canadian-aligned academic bridge programs preparing international students for success in Canadian universities.",
+    images: ["/og/default.png"],
   },
 
   robots: {
@@ -55,6 +59,8 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,11 +68,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
-      />
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-[.9rem] md:text-[1.2rem]`}
       >
