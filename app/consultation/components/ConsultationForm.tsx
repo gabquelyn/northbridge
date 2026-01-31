@@ -5,22 +5,52 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { motion } from "motion/react";
 import Option from "@/app/components/Option";
+import axios, { Axios, AxiosError } from "axios";
 
+interface FormDetails {
+  name: string;
+  email: string;
+  education: string;
+  area: string;
+  program: string;
+  country: string;
+  city: string;
+}
 export default function ConsultationForm() {
-  const [details, setDetails] = useState({
+  const [details, setDetails] = useState<FormDetails>({
     name: "",
     email: "",
     education: "",
     area: "",
     program: "",
     country: "",
-    city: ""
+    city: "",
   });
+
   const [value, setValue] = useState<string | undefined>();
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setDetails((prev) => ({ ...prev, [name]: value }));
   };
+
+  const sendConsultation = async () => {
+    try {
+      const res = await axios.post("/api/send-email", {
+        name: details.name,
+        email: details.email,
+        message: [
+          ...Object.keys(details).map((p) => ({
+            question: p,
+            ans: details[p as keyof FormDetails],
+          })),
+        ],
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.log((err as AxiosError).response?.data);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-8 mx-[5%] md:mx-[27%] py-20">
       <div className="flex flex-col gap-2">
@@ -96,7 +126,7 @@ export default function ConsultationForm() {
       </div>
       <div className="flex justify-center md:justify-end ">
         <motion.button
-          onClick={() => console.log(details)}
+          onClick={sendConsultation}
           className="bg-linear-0 from-[#479DA5] w-full md:w-fit transition-all cursor-pointer to-[#17757E] p-3 px-5 rounded-3xl text-white"
         >
           Submit

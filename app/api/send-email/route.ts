@@ -6,12 +6,20 @@ export const runtime = "nodejs"; // IMPORTANT: Nodemailer requires Node runtime
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, message } = body;
+    const {
+      name,
+      email,
+      message,
+    }: {
+      name: string;
+      email: string;
+      message: { question: string; ans: string }[];
+    } = body;
 
-    if (!name || !email || !message) {
+    if (!name || !email || message.length < 1) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -28,30 +36,27 @@ export async function POST(req: Request) {
 
     // Send mail
     await transporter.sendMail({
-      from: process.env.EMAIL_FROM,
+      from: email,
       to: process.env.EMAIL_USER, // where you want to receive it
       replyTo: email,
       subject: `New Contact Form Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif;">
-          <h2>New Message</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message}</p>
+          <h2>New Consultation</h2>
+          ${message.map((mes) => `<p><strong>${mes.question}:</strong> ${mes.ans}</p>`).join("")}
         </div>
       `,
     });
 
     return NextResponse.json(
       { success: true, message: "Email sent successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Email error:", error);
     return NextResponse.json(
       { error: "Failed to send email" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

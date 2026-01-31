@@ -3,6 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Option from "@/app/components/Option";
 import StepProgress from "./StepProgress";
+import axios from "axios";
+import Input from "@/app/components/Input";
 
 export default function MatureLearnersForm() {
   const steps = [
@@ -130,6 +132,7 @@ export default function MatureLearnersForm() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const formTopRef = useRef<HTMLDivElement | null>(null);
   const step = steps[currentStep];
+  const [details, setDetails] = useState({ email: "", name: "" });
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -161,8 +164,22 @@ export default function MatureLearnersForm() {
     if (currentStep > 0) setCurrentStep((s) => s - 1);
   };
 
-  const handleSubmit = () => {
-    console.log("SUBMITTED DATA:", answers);
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post("/api/send-email", {
+        name: details.name,
+        email: details.email,
+        message: [
+          ...Object.keys(answers).map((p) => ({
+            question: p,
+            ans: answers.p,
+          })),
+        ],
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -192,7 +209,28 @@ export default function MatureLearnersForm() {
             className="flex flex-col gap-6"
           >
             <p className="font-bold text-lg">{step.title}</p>
-
+            {currentStep == 0 && (
+              <>
+                <Input
+                  name="name"
+                  value={details.name}
+                  onChange={(e) =>
+                    setDetails((prev) => ({ ...prev, name: e.target.value }))
+                  }
+                  type="text"
+                  placeholder="Full name"
+                />
+                <Input
+                  name="email"
+                  value={details.email}
+                  onChange={(e) =>
+                    setDetails((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                  type="email"
+                  placeholder="Email address"
+                />
+              </>
+            )}
             {step.questions.map((question) => (
               <div key={question.label}>
                 <p className="mb-2 font-medium">{question.label}</p>
@@ -225,7 +263,7 @@ export default function MatureLearnersForm() {
           {!isLastStep ? (
             <motion.button
               onClick={handleNext}
-              disabled={!isStepComplete}
+              disabled={!isStepComplete || !details.email || !details.name}
               className="disabled:opacity-40"
             >
               Next
