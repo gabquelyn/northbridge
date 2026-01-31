@@ -63,10 +63,10 @@ export default function Footer() {
         <div className="md:w-1/3">
           <p className="font-semibold mb-5">Contact Us</p>
           <div className="flex flex-col items-start gap-3 ">
-            <Link href="mailto:support@northbridgec.ca">
+            <Link href="mailto:contact@northbridgec.ca">
               <div className="flex gap-3 items-center">
                 <TbMail className="text-[#17757E]" />
-                <p>support@northbridgec.ca</p>
+                <p>contact@northbridgec.ca</p>
               </div>
             </Link>
             <Link href="tel:+2347047002406">

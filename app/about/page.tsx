@@ -1,6 +1,4 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import Hero from "../components/atoms/Hero";
 import School from "./components/School";
 import Vision from "./components/Vision";
 import Footer from "../components/Footer";

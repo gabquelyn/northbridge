@@ -100,7 +100,7 @@ export default function StickyHero({
 
             {/* Trust Signal */}
             <div className="mt-6 text-xs tracking-widest text-white/60 uppercase">
-              Raising Confident learners
+             Preparation for what comes next
             </div>
           </motion.div>
         </div>
