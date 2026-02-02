@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
-      secure: true, // true for 465, false for other ports
+      secure: false, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     // Send mail
     await transporter.sendMail({
       from: email,
-      to: process.env.EMAIL_USER, // where you want to receive it
+      to: process.env.CONTACT, // where you want to receive it
       replyTo: email,
       subject: `New Contact Form Message from ${name}`,
       html: `

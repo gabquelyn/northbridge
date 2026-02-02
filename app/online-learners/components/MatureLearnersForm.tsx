@@ -5,6 +5,7 @@ import Option from "@/app/components/Option";
 import StepProgress from "./StepProgress";
 import axios from "axios";
 import Input from "@/app/components/Input";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function MatureLearnersForm() {
   const steps = [
@@ -134,6 +135,17 @@ export default function MatureLearnersForm() {
   const step = steps[currentStep];
   const [details, setDetails] = useState({ email: "", name: "" });
   const isFirstRender = useRef(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const resetModalTimeout = setTimeout(() => {
+      if (isSuccess) setIsSuccess(false);
+    }, 5000);
+    return () => {
+      clearTimeout(resetModalTimeout);
+    };
+  });
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -165,6 +177,7 @@ export default function MatureLearnersForm() {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const res = await axios.post("/api/send-email", {
         name: details.name,
@@ -176,105 +189,125 @@ export default function MatureLearnersForm() {
           })),
         ],
       });
-      console.log(res);
+      setAnswers({});
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
     }
   };
 
   return (
     <section className="py-20 px-5" ref={formTopRef}>
-      {/* Title */}
-      <p className="title text-center">
-        <span className="text-[#479DA5]">Mature & Online</span>
-        <br /> Learners Inquiry Form
-      </p>
-      <p className="max-w-120 text-center mx-auto text-gray-600">
-        This form helps us understand your academic background and guide you
-        toward the most suitable pathway.
-      </p>
-
-      {/* Progress Bar */}
-      <StepProgress currentStep={currentStep} steps={steps} />
-
-      {/* Form Content */}
-      <div className="max-w-3xl mx-auto mt-14">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-col gap-6"
-          >
-            <p className="font-bold text-lg">{step.title}</p>
-            {currentStep == 0 && (
-              <>
-                <Input
-                  name="name"
-                  value={details.name}
-                  onChange={(e) =>
-                    setDetails((prev) => ({ ...prev, name: e.target.value }))
-                  }
-                  type="text"
-                  placeholder="Full name"
-                />
-                <Input
-                  name="email"
-                  value={details.email}
-                  onChange={(e) =>
-                    setDetails((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  type="email"
-                  placeholder="Email address"
-                />
-              </>
-            )}
-            {step.questions.map((question) => (
-              <div key={question.label}>
-                <p className="mb-2 font-medium">{question.label}</p>
-                <div className="flex flex-col gap-2">
-                  {question.options.map((option) => (
-                    <Option
-                      key={option}
-                      program={option}
-                      name={question.label}
-                      value={answers[question.label]}
-                      onChange={() => handleChange(question.label, option)}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation */}
-        <div className="flex justify-between mt-10">
-          <motion.button
-            onClick={handlePrev}
-            disabled={currentStep === 0}
-            className="disabled:opacity-40"
-          >
-            Prev
-          </motion.button>
-
-          {!isLastStep ? (
-            <motion.button
-              onClick={handleNext}
-              disabled={!isStepComplete || !details.email || !details.name}
-              className="disabled:opacity-40"
-            >
-              Next
-            </motion.button>
-          ) : (
-            <motion.button onClick={handleSubmit} disabled={!isStepComplete}>
-              Submit
-            </motion.button>
-          )}
+      {isSuccess ? (
+        <div className="title flex items-center min-h-[50vh] gap-3 justify-center">
+          <p>We have received your message</p>
+          <FaCheckCircle className="text-[#479DA5]" />
         </div>
-      </div>
+      ) : (
+        <>
+          {/* Title */}
+          <p className="title text-center">
+            <span className="text-[#479DA5]">Mature & Online</span>
+            <br /> Learners Inquiry Form
+          </p>
+          <p className="max-w-120 text-center mx-auto text-gray-600">
+            This form helps us understand your academic background and guide you
+            toward the most suitable pathway.
+          </p>
+
+          {/* Progress Bar */}
+          <StepProgress currentStep={currentStep} steps={steps} />
+
+          {/* Form Content */}
+          <div className="max-w-3xl mx-auto mt-14">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStep}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col gap-6"
+              >
+                <p className="font-bold text-lg">{step.title}</p>
+                {currentStep == 0 && (
+                  <>
+                    <Input
+                      name="name"
+                      value={details.name}
+                      onChange={(e) =>
+                        setDetails((prev) => ({
+                          ...prev,
+                          name: e.target.value,
+                        }))
+                      }
+                      type="text"
+                      placeholder="Full name"
+                    />
+                    <Input
+                      name="email"
+                      value={details.email}
+                      onChange={(e) =>
+                        setDetails((prev) => ({
+                          ...prev,
+                          email: e.target.value,
+                        }))
+                      }
+                      type="email"
+                      placeholder="Email address"
+                    />
+                  </>
+                )}
+                {step.questions.map((question) => (
+                  <div key={question.label}>
+                    <p className="mb-2 font-medium">{question.label}</p>
+                    <div className="flex flex-col gap-2">
+                      {question.options.map((option) => (
+                        <Option
+                          key={option}
+                          program={option}
+                          name={question.label}
+                          value={answers[question.label]}
+                          onChange={() => handleChange(question.label, option)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation */}
+            <div className="flex justify-between mt-10">
+              <motion.button
+                onClick={handlePrev}
+                disabled={currentStep === 0}
+                className="disabled:opacity-40"
+              >
+                Prev
+              </motion.button>
+
+              {!isLastStep ? (
+                <motion.button
+                  onClick={handleNext}
+                  disabled={!isStepComplete || !details.email || !details.name}
+                  className="disabled:opacity-40"
+                >
+                  Next
+                </motion.button>
+              ) : (
+                <motion.button
+                  onClick={handleSubmit}
+                  disabled={!isStepComplete || isLoading}
+                >
+                  {isLoading ? "Submitting..." : "Submit"}
+                </motion.button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 }

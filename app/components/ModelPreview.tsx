@@ -50,8 +50,7 @@ export default function ModelPreview() {
           </motion.p>
 
           <p className="text-center lg:text-justify">
-            A cross-border academic model with Ontario-based
-            instruction—designed for students transitioning into Canadian
+            A cross-border academic model with designed for students transitioning into Canadian
             education.
           </p>
           <div>
