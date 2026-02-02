@@ -36,27 +36,20 @@ export default function Vision() {
         >
           {[
             {
-              text: `Positioned to become a leading Canadian academic bridge institution,
-              Northbridge Collegiate operates within a cross-border academic model
-              and employs multi-modal instructional delivery approaches aligned
-              with contemporary learning needs.`,
+              text: `Northbridge operates in Nigeria under its own Canadian licence, with both the Canadian and Nigerian campuses under the same ownership and academic authority. For parents, this matters because it means decisions about your child's education, support, and progression are made within one accountable system—not passed between partners or third parties.`,
               highlight: false,
             },
             {
-              text: `Northbridge operates under its own Canadian authorization and licence rather than through third part partnerships of affiliate arrangements. This enables us direct oversight to how we teach and support our students.`,
+              text: `At Northbridge, your child's academic records, credits, and diploma come directly from the school they attend. We are authorized to grant Ontario credits and issue the Ontario Secondary School Diploma (OSSD) directly through Northbridge Canada.
+              Because of this structure, we have the flexibility to design strong, age-appropriate support systems, which is especially important for students in Grades 11 and 12, a period when academic pressure, emotional development, and future planning all intersect`,
               highlight: true,
             },
             {
-              text: `Academic and student-support services are coordinated through a
-              cross-border hub, with services delivered in both Canada and Nigeria
-              in accordance with Ontario program requirements. Cohort-based
-              academics and pastoral support.`,
+              text: `We also recognise that children are not all the same. We do not serve only the naturally high-performing student. We support academically able students and those who need structure, guidance, and confidence-building, because real education honours different strengths and learning paths.`,
               highlight: false,
             },
             {
-              text: `Programming delivered in compliance with applicable Ontario
-              Ministry of Education policies. University-prep focused (not just
-              diploma completion).`,
+              text: `Finally, Northbridge is mission driven. We focus only on senior secondary education (Grades 11 and 12) because these years are pivotal. Beyond grades, we intentionally develop students to become globally competent, thoughtful, and grounded young adults. Personal formation -Through purpose-led career exploration, leadership development, ethics, and civic responsibility, we help students understand not just where they are going, but who they are becoming.`,
               highlight: true,
             },
           ].map((item, i) => (
