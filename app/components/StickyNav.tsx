@@ -80,7 +80,9 @@ export default function NorthbridgeAcademicNav() {
 
       {/* ================= For mobile navigation ================= */}
       <div className="fixed top-0 text-[.9rem] flex p-4 right-0 z-50 lg:hidden w-full items-center justify-between bg-white shadow-lg uppercase">
-        <Image src="/asset/logo2.png" height={40} width={40} alt="logo" />
+        <Link href="/">
+          <Image src="/asset/logo2.png" height={40} width={40} alt="logo" />
+        </Link>
         <div
           onClick={() => setOpen(true)}
           className="text-black"
