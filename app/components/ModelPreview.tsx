@@ -49,7 +49,7 @@ export default function ModelPreview() {
             <span className="text-[#479DA5]">Academic Prep Model.</span>
           </motion.p>
 
-          <p className="text-center lg:text-justify">
+          <p className="text-center">
             A cross-border academic model designed for students transitioning into Canadian
             education.
           </p>
