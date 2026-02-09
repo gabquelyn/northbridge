@@ -73,7 +73,7 @@ export default function NorthbridgeAcademicNav() {
             <span>Menu</span>
 
             {/* Accent underline */}
-            <span className="absolute bottom-0 left-0 h-[2px] w-full bg-white/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            <span className="absolute bottom-0 left-0 h-0.5 w-full bg-white/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
           </div>
         </div>
       </div>
