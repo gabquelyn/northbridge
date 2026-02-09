@@ -48,7 +48,7 @@ export default function Home() {
       <Program />
       <Application />
       <Blog />
-      <FlipBook/>
+      {/* <FlipBook/> */}
       <Footer />
     </div>
   );
