@@ -10,48 +10,42 @@ import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
-  title: "Grade 12 Advantage Year (AY12)",
+  title:
+    "AY12 Program | Canadian University Preparation Year in Lagos, Nigeria",
 
   description:
-    "The Grade 12 Advantage Year (AY12) helps international students transition smoothly into Canadian university through academic preparation and alignment.",
+    "The AY12 is an enrichment program designed for Grade 12 students preparing for success in Canadian universities by placing strong emphasis on system awareness, academic strengthening and personal formation.",
 
   alternates: {
     canonical: "https://northbridgec.ca/ay12",
-  },
-
-  openGraph: {
-    title: "Grade 12 Advantage Year (AY12)",
-    description:
-      "A structured Grade 12 pathway designed to prepare students for Canadian university success.",
-    url: "https://northbridgec.ca/ay12",
   },
 };
 
 export default function AY12() {
   return (
     <div>
-            <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "EducationalOccupationalProgram",
-            "name": "Grade 12 Advantage Year (AY12)",
-            "description":
+            name: "Grade 12 Advantage Year (AY12)",
+            description:
               "A structured Grade 12 pathway designed to prepare students for Canadian university success.",
-            "provider": {
+            provider: {
               "@type": "EducationalOrganization",
-              "name": "Northbridge Collegiate",
-              "url": "https://northbridgec.ac"
+              name: "Northbridge Collegiate",
+              url: "https://northbridgec.ac",
             },
-            "educationalCredentialAwarded": "University Preparation",
-            "timeToComplete": "P6M",
-            "url": "https://northbridgec.ac/caap"
+            educationalCredentialAwarded: "University Preparation",
+            timeToComplete: "P6M",
+            url: "https://northbridgec.ac/caap",
           }),
         }}
-      />
+      /> */}
       <NorthbridgeAcademicNav />
-           <StickyHero
+      <StickyHero
         image="bg-[url('/asset/graduate.jpg')]"
         text={
           <>

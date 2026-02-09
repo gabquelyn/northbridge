@@ -7,21 +7,16 @@ import { Metadata } from "next";
 import StickyHero from "../components/atoms/StickyHero";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 export const metadata: Metadata = {
-  title: "Grade 12 OSSD (Canada)",
+  title: "Grade 12 OSSD Program | Canadian High School in Lagos, Nigeria",
 
   description:
-    "Earn the Ontario Secondary School Diploma (OSSD) through Northbridge Collegiate's Canadian-aligned Grade 12 program for international students.",
+    "A Grade 12 Canadian high school program in Lagos delivering Ontario-aligned coursework focused on academic depth, assessment readiness, and skills required for Canadian and international university admission.",
 
   alternates: {
     canonical: "https://northbridgec.ac/grade12",
   },
 
-  openGraph: {
-    title: "Grade 12 OSSD (Canada)",
-    description:
-      "An Ontario curriculum-based Grade 12 program preparing students for admission into Canadian universities.",
-    url: "https://northbridgec.ac/grade12",
-  },
+
 };
 
 export default function Grade12() {

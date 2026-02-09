@@ -1,8 +1,19 @@
 import React from "react";
-import Navigation from "../components/Navigation";
+import { Metadata } from "next";
 import FrequentlyAskedQuestions from "../components/Faq";
 import Footer from "../components/Footer";
 import NorthbridgeAcademicNav from "../components/StickyNav";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions | Northbridge Collegiate, Lagos, Nigeria",
+
+  description:
+    "Answers to common parent questions about Canadian education pathways, Grades 11-12 placement, Ontario Secondary School Diploma (OSSD), and preparing students for university success.",
+
+  alternates: {
+    canonical: "https://northbridgec.ac/faq",
+  },
+};
 export default function Faq() {
   return (
     <div>

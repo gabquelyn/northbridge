@@ -10,20 +10,13 @@ import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
-  title: "Canadian Academic Alignment Program (CAAP)",
-
+  title:
+    "CAAP Program | Canadian Education Foundation Program for Nigerian Students",
   description:
-    "The Canadian Academic Alignment Program (CAAP) prepares international students for Canadian university success through structured academic alignment and skill development.",
+    "The CAAP program provides academic foundational entry pathway for students transitioning from non-Ontario systems.",
 
   alternates: {
     canonical: "https://northbridgec.ca/caap",
-  },
-
-  openGraph: {
-    title: "Canadian Academic Alignment Program (CAAP)",
-    description:
-      "An academic bridge program designed to align international students with Canadian university expectations.",
-    url: "https://northbridgec.ca/caap",
   },
 };
 

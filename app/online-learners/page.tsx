@@ -9,6 +9,19 @@ import Footer from "../components/Footer";
 import MatureLearnersForm from "./components/MatureLearnersForm";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Transitional Learners | Preparing Students for Canadian Education",
+
+  description:
+    "Support for transitional learners entering the Canadian system, focusing on academic alignment, readiness, and confidence before university.",
+
+  alternates: {
+    canonical: "https://northbridgec.ac/online-learners",
+  },
+};
+
 export default function OnlineLearners() {
   return (
     <div>

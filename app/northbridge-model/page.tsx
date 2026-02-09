@@ -12,26 +12,13 @@ import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
-  title: "The Northbridge Academic Bridge Model",
+  title: "The Northbridge Model | Senior Secondary Preparation Explained",
 
   description:
-    "Discover the Northbridge Academic Bridge Model—a structured approach that aligns international students with Canadian academic standards and university expectations.",
+    "Explore the Northbridge Model—an intentional approach to senior secondary education focused on alignment, preparation, and long-term student success.",
 
   alternates: {
     canonical: "https://northbridgec.ac/northbridge-model",
-  },
-
-  openGraph: {
-    title: "The Northbridge Academic Bridge Model",
-    description:
-      "Learn how Northbridge Collegiate's academic bridge model prepares students from diverse educational backgrounds for success in Canadian universities.",
-    url: "https://northbridgec.ac/northbridge-model",
-  },
-
-  twitter: {
-    title: "The Northbridge Academic Bridge Model",
-    description:
-      "A structured academic bridge model designed to prepare students for Canadian university success.",
   },
 };
 

@@ -7,21 +7,16 @@ import { Metadata } from "next";
 import StickyHero from "../components/atoms/StickyHero";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 export const metadata: Metadata = {
-  title: "About Northbridge Collegiate",
+  title: "About Northbridge Collegiate | A Canadian University-Prep Institution in Lagos, Nigeria",
 
   description:
-    "Learn about Northbridge Collegiate, our academic bridge model, and how we prepare international students for success in Canadian secondary schools and universities.",
+    "Learn about Northbridge Collegiate's mission, values, and senior-secondary focus preparing students for Canadian education and long-term university success.",
 
   alternates: {
     canonical: "https://northbridgec.ca/about",
   },
 
-  openGraph: {
-    title: "About Northbridge Collegiate",
-    description:
-      "Discover Northbridge Collegiate's academic bridge model designed to align international students with Canadian education standards.",
-    url: "https://northbridgec.ca/about",
-  },
+
 };
 
 export default function About() {
@@ -38,8 +33,8 @@ export default function About() {
         description={
           <p>
             Northbridge Collegiate is a Canadian University Prep Institution
-            designed to prepare students for successful entry
-            into, and performance within, Canadian universities and beyond.
+            designed to prepare students for successful entry into, and
+            performance within, Canadian universities and beyond.
           </p>
         }
         transparent
