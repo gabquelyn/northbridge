@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 /**
@@ -7,43 +8,35 @@ import React from "react";
 
 const programs = [
   {
-    key: "ay12",
-    label: "AY12",
-    title: "Academic Year 12",
-    desc: "Foundation year focused on academic readiness and core skills.",
-    highlight: false,
-  },
-  {
     key: "caap",
     label: "CAAP",
-    title: "CAAP Program",
-    desc: "Career & academic pathway planning with guided assessments.",
-    highlight: true,
+    desc: "Career & academic pathway planning.",
+    highlight: false,
   },
   {
     key: "g11",
     label: "Grade 11",
-    title: "Senior Secondary I",
     desc: "Advanced subject specialization and continuous assessment.",
-    highlight: false,
+    highlight: true,
   },
   {
     key: "g12",
     label: "Grade 12",
-    title: "Senior Secondary II",
     desc: "Final preparation for exams, university entry, and global exposure.",
     highlight: true,
+  },
+  {
+    key: "ay12",
+    label: "AY12",
+    desc: "Foundation year focused.",
+    highlight: false,
   },
 ];
 
 export default function NorthbridgeRoadmap() {
   return (
-    <section className="w-full py-20 bg-white">
+    <section className="w-full p-5 bg-white hidden md:block">
       <div className="max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-[#00355D] mb-16 text-center">
-          Academic Journey at Northbridge
-        </h2>
-
         <div className="relative">
           {/* Vertical dotted SVG path */}
           <svg
@@ -63,7 +56,7 @@ export default function NorthbridgeRoadmap() {
           </svg>
 
           {/* Timeline items */}
-          <div className="relative flex flex-col gap-24">
+          <div className="relative flex flex-col gap-5">
             {programs.map((item, idx) => (
               <div
                 key={item.key}
@@ -72,21 +65,19 @@ export default function NorthbridgeRoadmap() {
                 }`}
               >
                 {/* Content card */}
-                <div className="w-1/2 px-6">
+                <div className="w-50 px-6">
                   <div
                     className={`p-6 rounded-xl border shadow-sm transition-all duration-300 ${
                       item.highlight
-                        ? "border-[#D96C2C] bg-[#FFF7F2]"
+                        ? "border-[#479DA5] bg-[#479DA5]/10"
                         : "border-slate-200 bg-white"
                     }`}
                   >
-                    <span className="text-xs font-semibold tracking-wide text-slate-500">
+                    <p className="text-xs text-center font-semibold tracking-wide text-slate-500">
                       {item.label}
-                    </span>
-                    <h3 className="mt-1 text-xl font-semibold text-[#00355D]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-slate-600">
+                    </p>
+
+                    <p className="mt-2 text-xs text-slate-600 text-center">
                       {item.desc}
                     </p>
                   </div>
@@ -95,13 +86,23 @@ export default function NorthbridgeRoadmap() {
                 {/* Center marker */}
                 <div className="relative flex flex-col items-center w-0">
                   <span
-                    className={`w-4 h-4 rounded-full z-10 ${
-                      item.highlight
-                        ? "bg-[#D96C2C]"
-                        : "bg-[#00355D]"
-                    }`}
+                    className={clsx(
+                      `w-4 absolute h-4 rounded-full z-10 ${
+                        item.highlight ? "bg-white border-2 border-[#479DA5]" : ""
+                      }`,
+                      idx == 1
+                        ? "right-3 -top-2"
+                        : idx == 2
+                          ? "left-2 -top-2"
+                          : "",
+                    )}
                   />
-                  <span className="w-px h-12 bg-slate-300" />
+                  <span
+                    className={clsx(
+                      " bg-[#479DA5]/40",
+                      idx == 1 || idx == 2 ? "h-px w-12" : "",
+                    )}
+                  />
                 </div>
 
                 {/* Spacer */}

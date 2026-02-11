@@ -105,3 +105,32 @@ button {
 }
 
 
+
+/* Base reset */
+
+
+
+
+/* Thumb (Chrome, Safari, Edge) */
+.page-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border:#479DA5 2px solid;
+  
+}
+
+
+
+/* Thumb (Firefox) */
+.page-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #479DA5;
+  cursor: pointer;
+  border: none;
+}
