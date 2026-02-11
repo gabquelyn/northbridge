@@ -32,7 +32,7 @@ export default function Prospectus() {
         </div>
       </div>
     </CoverPage>,
-    <Wrapper key = {Math.random()}>
+    <Wrapper key={Math.random()}>
       <p className="md:text-2xl text-[#479DA5] font-bold md:mb-6 mb-2">
         Founder's Message
       </p>
@@ -243,7 +243,7 @@ export default function Prospectus() {
       </div>
     </Wrapper>,
     <MediaPage src="/asset/congratulations.jpg" key={14} />,
-    <Wrapper key = {Math.random()}>
+    <Wrapper key={Math.random()}>
       <TagLine tag=" GRADE 12 PROGRAM" />
 
       <div className="text-center max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
@@ -283,9 +283,9 @@ export default function Prospectus() {
       playsInline
       key={"video gif"}
       className="absolute inset-0 w-full h-full object-cover"
-    >
-      <source src="/asset/online.mp4" type="video/mp4" />
-    </video>,
+      src={"/asset/online.mp4"}
+    />,
+
     <Wrapper key={15}>
       <TagLine tag="ONLINE LEARNING" />
       <div className="text-center max-w-3xl mx-auto space-y-4">
