@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 export default function Course({
@@ -13,7 +14,12 @@ export default function Course({
   pathways: string;
   accent: "GRADE 11" | "GRADE 12" | "ELECTIVE";
 }) {
-  const color = accent == "GRADE 11" ? "#479DA5" : accent == "GRADE 12" ?  "#f4bd30" : "#D96C2C"
+  const color =
+    accent == "GRADE 11"
+      ? "#479DA5"
+      : accent == "GRADE 12"
+        ? "#f4bd30"
+        : "#D96C2C";
   return (
     <div className="bg-white h-full md:p-15 p-8">
       <p className="font-bold">{title}</p>
@@ -26,7 +32,16 @@ export default function Course({
 
         <div>
           <p className={`text-[${color}] mb-2`}> Key Skills Developed:</p>
-          <div className={`bg-[${color}]/20 rounded-lg p-3`}>
+          <div
+            className={clsx(
+              `rounded-lg p-3`,
+              accent == "GRADE 11"
+                ? `bg-[#479DA5]/20`
+                : accent == "GRADE 12"
+                  ? `bg-[#f4bd30]/20`
+                  : "bg-[#D96C2C]/20",
+            )}
+          >
             {skills.map((l, i) => (
               <p key={i}>{l}</p>
             ))}

@@ -32,7 +32,7 @@ export default function CourseGuide() {
         </div>
       </div>
     </CoverPage>,
-    <Introduction key={2}/>,
+    <Introduction key={2} />,
     <CoverPage image="bg-[url('/asset/grade-cover.jpg')]" key={3}>
       <div className="relative p-8 md:p-15  z-10">
         <p className="md:text-xl text-[#479DA5] font-bold">GRADE 11 PROGRAM</p>
@@ -46,6 +46,7 @@ export default function CourseGuide() {
             "Computer Science (ICS3U)",
             "Business Studies(BOH4M / BAF3M)",
             "Social Sciences & Humanities (HSP3U, HSB4U)",
+            "Specialized Senior Electives",
           ].map((course) => (
             <li key={course} className="">
               {course}
@@ -55,7 +56,7 @@ export default function CourseGuide() {
       </div>
     </CoverPage>,
     ...grade11courses.map((details) => (
-      <Course {...details} accent="GRADE 11" key={details.title}/>
+      <Course {...details} accent="GRADE 11" key={details.title} />
     )),
     <CoverPage image="bg-[url('/asset/pillar.jpg')]" key={4}>
       <div className="relative p-8 md:p-15  z-10">
@@ -68,6 +69,7 @@ export default function CourseGuide() {
             "Chemistry (SCH4U)",
             "Physics (SPH4U)",
             "Computer Science (ICS4U)",
+            "Specialized Senior Electives",
           ].map((course) => (
             <li key={course}>{course}</li>
           ))}
@@ -75,7 +77,7 @@ export default function CourseGuide() {
       </div>
     </CoverPage>,
     ...grade12courses.map((details) => (
-      <Course {...details} accent="GRADE 12" key = {details.title}/>
+      <Course {...details} accent="GRADE 12" key={details.title} />
     )),
     <CoverPage image="bg-[url('/asset/diss.jpg')]" key={5}>
       <div className="relative p-8 md:p-15  z-10">
@@ -94,16 +96,16 @@ export default function CourseGuide() {
       </div>
     </CoverPage>,
     ...electivecourses.map((details) => (
-      <Course {...details} accent="ELECTIVE" key={details.title}/>
+      <Course {...details} accent="ELECTIVE" key={details.title} />
     )),
 
-    <RecommendationTable key={6}/>,
+    <RecommendationTable key={6} />,
   ];
   return (
     <div>
       <NorthbridgeAcademicNav />
       <LeafletFlip pages={pages} />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
