@@ -28,6 +28,7 @@ export default function Faq() {
         </div>
       </div>
       <FrequentlyAskedQuestions />
+      
       <Footer/>
     </div>
   );

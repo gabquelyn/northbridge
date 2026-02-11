@@ -6,7 +6,7 @@ import Application from "./components/Application";
 import Blog from "./components/Blog";
 import NorthbridgeAcademicNav from "./components/StickyNav";
 import StickyHero from "./components/atoms/StickyHero";
-import FlipBook from "./components/FlipBook";
+
 
 export const metadata = {
   title:
@@ -48,7 +48,6 @@ export default function Home() {
       <Program />
       <Application />
       <Blog />
-      {/* <FlipBook/> */}
       <Footer />
     </div>
   );
