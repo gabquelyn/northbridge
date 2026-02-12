@@ -363,69 +363,6 @@ export default function Prospectus() {
     </Wrapper>,
 
     <NorthbridgeAdmissions key={17} />,
-
-    <CoverPage image="bg-[url('/asset/overview.jpg')]" key={19}>
-      <div className="relative p-8 md:p-15  z-10">
-        <p className="md:text-xl text-[#479DA5] font-bold">
-          SENIOR SECONDARY CURRICULUM OVERVIEW (GRADES 11 & 12)
-        </p>
-        <ul className="text-white flex flex-col gap-2 capitalize list-outside list-disc  mt-5">
-          {[
-            "ENGLISH & ACADEMIC COMMUNICATION",
-            "MATHEMATICS",
-            "SCIENCES",
-            "COMPUTER SCIENCE, ENGINEERING & TECHNOLOGY",
-            "BUSINESS, ECONOMICS & ACCOUNTING",
-            "SOCIAL SCIENCES, LAW & GLOBAL STUDIES",
-            "HEALTH, WELLNESS & HUMAN DEVELOPMENT",
-            "WRITERS' CRAFT & ADVANCED EXPRESSION",
-            "Specialized Senior Electives",
-          ].map((course) => (
-            <li key={course} className="">
-              {course}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </CoverPage>,
-    <Wrapper key={20}>
-      <TagLine tag="Ontario-Aligned Learning for University Readiness" />
-      <p>
-        Northbridge Collegiate delivers Ontario-aligned senior secondary courses
-        designed to prepare students for the academic, analytical, and
-        independent learning expectations of Canadian universities.
-      </p>
-      <p>
-        Courses are offered at University <span className="font-bold">(U)</span>{" "}
-        and University/College <span className="font-bold">(M)</span> levels,
-        allowing academic pathways to be tailored to each student's readiness,
-        strengths, and long-term goals.
-      </p>
-    </Wrapper>,
-    ...coursesOverview.map((course) => (
-      <Wrapper key={course.title}>
-        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-[#f7fbfc] to-white border border-[#e6f1f2] shadow-sm p-8 md:p-12">
-          <div className="absolute top-0 left-0 w-2 h-full bg-[#479DA5]" />
-
-          <div className="ml-4 md:ml-6">
-            <p className="md:text-3xl text-left font-semibold text-[#1f2d3d] mb-4 tracking-tight">
-              {course.title}
-            </p>
-            <div className="w-16 h-0.5 bg-[#479DA5] mb-6" />
-
-            <p className="text-gray-700 leading-relaxed max-w-3xl">
-              {course.description}
-            </p>
-
-            {/* <div className="mt-8">
-              <span className="inline-block px-4 py-1 text-sm tracking-wide uppercase bg-[#479DA5]/10 text-[#479DA5] rounded-full">
-                University Pathway Stream
-              </span>
-            </div> */}
-          </div>
-        </div>
-      </Wrapper>
-    )),
     <CTA key={18} />,
   ];
   return (
