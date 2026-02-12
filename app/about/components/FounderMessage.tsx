@@ -25,30 +25,55 @@ export default function FounderMessage() {
             <div className="text-gray-700 leading-relaxed space-y-5">
               <p>
                 Through years of operating regulated businesses in Canada and
-                employing a predominantly immigrant workforce—many of whom first
-                arrived as international students—I saw firsthand how
-                challenging it can be to balance school, work, and complex
-                requirements all at once.
+                working closely with a predominantly immigrant workforce—many of
+                whom first arrived as international students—I witnessed
+                firsthand how challenging it can be to balance academics,
+                employment obligations, regulatory requirements, and cultural
+                adjustment simultaneously
               </p>
 
               <div>
                 <p>I listened to their stories.</p>
                 <p>
-                  I watched them navigate academics, employment rules,
-                  immigration expectations, and cultural adjustment—often at the
-                  same time.
+                  I observed capable individuals navigating school, work rules,
+                  immigration expectations, and unfamiliar systems—all at once,
+                  often without adequate preparation or support
+                </p>
+                <p>
+                  That experience led to the founding of Northbridge Collegiate
                 </p>
               </div>
 
               <p>
-                That is why I founded Northbridge Collegiate. Designed as a
-                preparatory academic institute to support students and families
-                before entry and during their transition into the Canadian
-                university system. My background in educational neuroscience,
-                psychology and learning sciences helped give structure to what
-                I observed in practice.
+                Northbridge was designed as a preparatory academic institution
+                to support students and families before entry and during
+                transition into the Canadian university system. My background in
+                educational neuroscience, psychology, and learning sciences
+                provided the structure to translate what I observed in practice
+                into an intentional academic model.
               </p>
-
+              <p>
+                Grades 11 and 12 are not simply senior years—they are decision
+                years. At this stage, academic records become permanent,
+                pathways narrow or expand, independence accelerates, and the
+                consequences of misalignment can be long-lasting. Northbridge
+                exists to intervene thoughtfully at this critical point,
+                concentrating our resources and expertise, with care where
+                students face the greatest complexity and pressure.
+              </p>
+              <p>
+                Beyond grades and credentials, we help students develop the
+                thinking skills, judgment, and responsibility required to
+                function well in global academic and professional systems.
+              </p>
+              <p>
+                Our aim is to build strong academic, personal, and ethical
+                foundations that students will carry long after they leave our
+                classrooms. When our graduates succeed quietly and responsibly
+                in environments we do not control, we know our work has been
+                done well.
+              </p>
+              <p>-That is the commitment that defines Northbridge.</p>
               <p>We look forward to supporting your student.</p>
             </div>
 
@@ -56,7 +81,7 @@ export default function FounderMessage() {
             <div className="flex flex-col items-start md:items-center gap-4">
               <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-[#479DA5]/20">
                 <Image
-                  src="/asset/founder.jpg" // replace
+                  src="/asset/founder.jpg" 
                   alt="Founder"
                   fill
                   className="object-cover"
@@ -64,10 +89,8 @@ export default function FounderMessage() {
               </div>
 
               <div className="text-left md:text-center">
-              
-                <p className="text-sm text-gray-500">
-                  Founder & Chancellor
-                </p>
+                <p className="text-sm text-gray-500">Founder</p>
+                <p className="text-sm text-gray-500">Northbridge Collegiate</p>
               </div>
             </div>
           </div>

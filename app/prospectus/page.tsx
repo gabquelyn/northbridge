@@ -13,7 +13,7 @@ import CTA from "../components/flipbook/CTA";
 import { coursesOverview } from "../components/flipbook/overview";
 export default function Prospectus() {
   const pages = [
-    <CoverPage image="bg-[url('/asset/hall.jpg')]" key={1}>
+    <CoverPage image="bg-[url('/asset/pillar.jpg')]" key={1}>
       <div className="relative flex flex-col items-center justify-between  h-full py-[24%]  z-10">
         <div className="w-15 md:w-20 h-15 md:h-20 p-1 rounded-full bg-white shadow-lg">
           <div className="relative w-full h-full rounded-full overflow-hidden">
@@ -26,14 +26,21 @@ export default function Prospectus() {
           </div>
         </div>
 
-        <div className="text-white md:text-2xl flex flex-col items-center">
+        <div className="text-white md:text-2xl flex flex-col items-center text-center">
           <p>Northbridge Collegiate</p>
-          <p className="text-[#479DA5]">Parent Prospectus</p>
+          {/* <p className="">A Canadian University-Prep Institution</p> */}
+          <p className="text-[#479DA5]">
+            Senior Secondary | University Readiness
+          </p>
+          <p className="text-slate-300 text-sm max-w-[70%]">
+            Preparing students for successful transition into Canadian and other
+            global universities.
+          </p>
         </div>
       </div>
     </CoverPage>,
     <Wrapper key={Math.random()}>
-      <p className="md:text-2xl text-[#479DA5] font-bold md:mb-6 mb-2">
+      <p className="md:text-2xl text-[#479DA5] font-bold md:mb-4 mb-2">
         Founder's Message
       </p>
       <p>
@@ -64,9 +71,20 @@ export default function Prospectus() {
         Northbridge Collegiate exists to help students understand not only where
         they are going, but who they are becoming.
       </p>
-      <p className="hidden md:block text-right">
-        — Founder, Northbridge Collegiate
-      </p>
+      <div className="flex-col gap-1 items-end w-full justify-end hidden md:flex text-right">
+        <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-[#479DA5]/20">
+          <Image
+            src="/asset/founder.jpg"
+            alt="Founder"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="text-xs text-slate-400">
+          <p>— Founder</p>
+          <p className="text-black font-bold">Northbridge Collegiate</p>
+        </div>
+      </div>
     </Wrapper>,
 
     <Wrapper key={2}>
@@ -79,7 +97,20 @@ export default function Prospectus() {
         Northbridge Collegiate exists to help students understand not only where
         they are going, but who they are becoming.
       </p>
-      <p className="text-right md:hidden">— Founder, Northbridge Collegiate</p>
+      <div className="flex-col gap-1 items-end w-full justify-end md:hidden flex text-right">
+        <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-[#479DA5]/20">
+          <Image
+            src="/asset/founder.jpg"
+            alt="Founder"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="text-xs text-slate-400">
+          <p>— Founder</p>
+          <p className="text-black font-bold">Northbridge Collegiate</p>
+        </div>
+      </div>
       <NorthbridgeRoadmap />
     </Wrapper>,
     <MediaPage src="/asset/exam.jpg" key={3} />,
@@ -122,18 +153,9 @@ export default function Prospectus() {
     <MediaPage src="/asset/research.jpg" key={5} />,
     <Wrapper key={6}>
       <TagLine tag="Faith, Ethos & Community Expectations" />
-      <div className="relative w-full hidden md:flex h-80 md:h-60 rounded-3xl overflow-hidden shadow-lg mb-6">
-        <Image
-          src="/asset/moral.jpg"
-          alt="Faith and Community"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
-      </div>
 
       {/* Text Content */}
-      <div className="text-center max-w-3xl mx-auto space-y-4 text-slate-700 leading-relaxed">
+      <div className="max-w-3xl mx-auto space-y-4 text-slate-700 leading-relaxed">
         <p>
           Northbridge Collegiate is an educational environment shaped by
           faith-informed principles.
@@ -152,6 +174,7 @@ export default function Prospectus() {
         </p>
       </div>
     </Wrapper>,
+    <MediaPage src="/asset/moral.jpg" key={143} />,
 
     <Wrapper key={7}>
       <TagLine tag=" Who Northbridge Is For" />
@@ -165,19 +188,10 @@ export default function Prospectus() {
         </ul>
       </div>
 
-      {/* Hero Image */}
-      <div className="relative w-full h-80 md:h-100 rounded-3xl overflow-hidden shadow-lg">
-        <Image
-          src="/asset/mixed.jpg"
-          alt="Student Diversity"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
-      </div>
-    </Wrapper>,
 
-    <MediaPage src="/asset/cana.jpg" key={8} />,
+    </Wrapper>,
+    <MediaPage src="/asset/mixed.jpg" key={143} />,
+
     <Wrapper key={9}>
       <p className="md:text-2xl text-[#479DA5] capitalize font-bold md:mb-6 mb-2">
         Understanding The canadian context
@@ -193,7 +207,8 @@ export default function Prospectus() {
       </p>
     </Wrapper>,
 
-    <MediaPage src="/asset/class.jpg" key={10} />,
+    <MediaPage src="/asset/cana.jpg" key={8} />,
+  
 
     <Wrapper key={11}>
       <TagLine tag="" />
@@ -210,22 +225,22 @@ export default function Prospectus() {
       </ul>
 
       <p>
-        Each program leads closed to completion of the Ontario Secondary School
+        Each program leads closer to completion of the Ontario Secondary School
         Diploma (OSSD).
       </p>
     </Wrapper>,
-    <MediaPage src="/asset/caap.jpg" key={12} />,
+
     <Wrapper key={13}>
       <TagLine tag="CAAP" />
 
-      <p className="text-center">
+      <p className="">
         CAAP (Canadian Academic Alignment Program) is designed as a foundation
         program. It's an orientation into Canadian programming. CAPP is the
         standard entry pathway for students transitioning from non-Ontario
         systems.
       </p>
 
-      <div className="mt-8 flex flex-col items-center text-center gap-3">
+      <div className="mt-8 flex flex-col gap-3">
         <TagLine tag="GRADE 11 PROGRAM" />
 
         <p>
@@ -246,7 +261,7 @@ export default function Prospectus() {
     <Wrapper key={Math.random()}>
       <TagLine tag=" GRADE 12 PROGRAM" />
 
-      <div className="text-center max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
+      <div className="max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
         <p>
           The Grade 12 program leads to the Ontario Secondary School Diploma
           (OSSD), recognized by universities in Canada and internationally.
@@ -263,8 +278,8 @@ export default function Prospectus() {
 
       <div className="mt-2 md:mt-8 space-y-6">
         <TagLine tag="AY12: University Preparation Year" />
-        <p className="md:text-2xl text-[#479DA5] uppercase font-bold text-center mb-1 md:mb-4 tracking-wide"></p>
-        <div className="text-center max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
+        <p className="md:text-2xl text-[#479DA5] uppercase font-bold mb-1 md:mb-4 tracking-wide"></p>
+        <div className="max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
           <p>
             AY12 is an enrichment layer to Grade 12. It does not replace Grade
             12; rather, they run concurrently.
@@ -288,23 +303,18 @@ export default function Prospectus() {
 
     <Wrapper key={15}>
       <TagLine tag="ONLINE LEARNING" />
-      <div className="text-center max-w-3xl mx-auto space-y-4">
+      <div className="max-w-3xl mx-auto space-y-4">
         <p className=" text-slate-700 leading-relaxed">
           For families requiring flexibility, Northbridge offers online
           Ontario-aligned learning with structured academic oversight. Online
           learners receive the same pathway guidance and monitoring as on-campus
           students.
         </p>
-        <p className=" text-slate-700 leading-relaxed">
-          Our learning spaces include theatre-style classrooms, seminar rooms,
-          and student lounges. The environment supports independence,
-          responsibility, and focus.
-        </p>
       </div>
 
       <div className="mt-4 md:mt-18">
         <TagLine tag="TEACHING APPROACH & STUDENT SUPPORT" />
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-4">
           <p className=" text-slate-700 leading-relaxed">
             Northbridge classrooms are intentionally small, allowing
             personalized instruction and close academic monitoring. Support
@@ -312,8 +322,23 @@ export default function Prospectus() {
             progress reviews.
           </p>
         </div>
+        <p className=" text-slate-700 leading-relaxed">
+          Our learning spaces include theatre-style classrooms, seminar rooms,
+          and student lounges. The environment supports independence,
+          responsibility, and focus.
+        </p>
       </div>
     </Wrapper>,
+
+    <Wrapper>
+      <TagLine tag="LEARNING ENVIRONMENT & FACILITIES" />
+      <p>
+        Our learning spaces include theatre-style classrooms, seminar rooms, and
+        student lounges.
+      </p>
+      <p>The environment supports independence, responsibility, and focus.</p>
+    </Wrapper>,
+    <MediaPage src="/asset/structures.jpg" key={Math.random()} />,
     <Wrapper key={16}>
       <TagLine tag="UNIVERSITY PREPARATION & OUTCOMES" />
       <div className="relative w-full h-40 md:h-80 rounded-3xl overflow-hidden shadow-lg">
@@ -338,7 +363,7 @@ export default function Prospectus() {
     </Wrapper>,
 
     <NorthbridgeAdmissions key={17} />,
-    <CTA key={18} />,
+
     <CoverPage image="bg-[url('/asset/overview.jpg')]" key={19}>
       <div className="relative p-8 md:p-15  z-10">
         <p className="md:text-xl text-[#479DA5] font-bold">
@@ -401,6 +426,7 @@ export default function Prospectus() {
         </div>
       </Wrapper>
     )),
+    <CTA key={18} />,
   ];
   return (
     <div>

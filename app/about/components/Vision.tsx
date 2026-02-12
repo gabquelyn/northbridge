@@ -36,7 +36,7 @@ export default function Vision() {
         >
           {[
             {
-              text: `Northbridge operates in Nigeria under its own Canadian licence, with both the Canadian and Nigerian campuses under the same ownership and academic authority. For parents, this matters because it means decisions about your child's education, support, and progression are made within one accountable system—not passed between partners or third parties.`,
+              text: `Northbridge Collegiate, Nigeria operates under licence by Northbridge Collegiate, Canada (BSID 886341), with both the Canadian and Nigerian campuses under the same leadership and academic authority. For parents, this matters because it means decisions about your child's education, support, and progression are made within one accountable system—not passed between partners or third parties.`,
               highlight: false,
             },
             {
