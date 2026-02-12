@@ -10,7 +10,6 @@ import MediaPage from "../components/flipbook/MediaPage";
 import TagLine from "../components/flipbook/TagLine";
 import NorthbridgeAdmissions from "../components/flipbook/NorthbridgeAdmissions";
 import CTA from "../components/flipbook/CTA";
-import { coursesOverview } from "../components/flipbook/overview";
 export default function Prospectus() {
   const pages = [
     <CoverPage image="bg-[url('/asset/pillar.jpg')]" key={1}>
@@ -187,8 +186,6 @@ export default function Prospectus() {
           <li>Planning long-term university success</li>
         </ul>
       </div>
-
-
     </Wrapper>,
     <MediaPage src="/asset/mixed.jpg" key={143} />,
 
@@ -208,7 +205,6 @@ export default function Prospectus() {
     </Wrapper>,
 
     <MediaPage src="/asset/cana.jpg" key={8} />,
-  
 
     <Wrapper key={11}>
       <TagLine tag="" />
@@ -364,6 +360,11 @@ export default function Prospectus() {
 
     <NorthbridgeAdmissions key={17} />,
     <CTA key={18} />,
+    <CoverPage image="bg-[url('/asset/study.jpg')]" key={1}>
+      <div>
+        <p></p>
+      </div>
+    </CoverPage>,
   ];
   return (
     <div>
