@@ -27,14 +27,7 @@ export default function Prospectus() {
 
         <div className="text-white md:text-2xl flex flex-col items-center text-center">
           <p>Northbridge Collegiate</p>
-          {/* <p className="">A Canadian University-Prep Institution</p> */}
-          <p className="text-[#479DA5]">
-            Senior Secondary | University Readiness
-          </p>
-          <p className="text-slate-300 text-sm max-w-[70%]">
-            Preparing students for successful transition into Canadian and other
-            global universities.
-          </p>
+          <p className="">A University Prep Model</p>
         </div>
       </div>
     </CoverPage>,
@@ -149,7 +142,7 @@ export default function Prospectus() {
         strong academic and personal foundations at the moment they matter most.
       </p>
     </Wrapper>,
-    <MediaPage src="/asset/research.jpg" key={5} />,
+    <MediaPage src="/asset/teach.jpeg" key={5} />,
     <Wrapper key={6}>
       <TagLine tag="Faith, Ethos & Community Expectations" />
 
@@ -173,7 +166,7 @@ export default function Prospectus() {
         </p>
       </div>
     </Wrapper>,
-    <MediaPage src="/asset/moral.jpg" key={143} />,
+    <MediaPage src="/asset/hand.jpeg" key={143} />,
 
     <Wrapper key={7}>
       <TagLine tag=" Who Northbridge Is For" />
@@ -187,7 +180,7 @@ export default function Prospectus() {
         </ul>
       </div>
     </Wrapper>,
-    <MediaPage src="/asset/mixed.jpg" key={143} />,
+    <MediaPage src="/asset/studying.jpeg" key={143} />,
 
     <Wrapper key={9}>
       <p className="md:text-2xl text-[#479DA5] capitalize font-bold md:mb-6 mb-2">
@@ -253,7 +246,7 @@ export default function Prospectus() {
         </p>
       </div>
     </Wrapper>,
-    <MediaPage src="/asset/congratulations.jpg" key={14} />,
+    <MediaPage src="/asset/smile.jpeg" key={14} />,
     <Wrapper key={Math.random()}>
       <TagLine tag=" GRADE 12 PROGRAM" />
 
@@ -334,35 +327,30 @@ export default function Prospectus() {
       </p>
       <p>The environment supports independence, responsibility, and focus.</p>
     </Wrapper>,
-    <MediaPage src="/asset/structures.jpg" key={Math.random()} />,
-    <Wrapper key={16}>
-      <TagLine tag="UNIVERSITY PREPARATION & OUTCOMES" />
-      <div className="relative w-full h-40 md:h-80 rounded-3xl overflow-hidden shadow-lg">
-        <Image
-          src="/asset/cont.jpg"
-          alt="University Preparation"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
+    <MediaPage src="/asset/structure.jpeg" key={Math.random()} />,
+    <div className="relative z-10 h-full w-full">
+      <Image src="/asset/guy.jpeg" fill alt="image" className="object-cover" />
+      <div className="absolute text-sm md:text-[1rem] top-1/2 right-0 max-w-[60%]  py-8  rounded-tl-lg rounded-bl-lg shadow-xl md:p-4 p-2  bg-white">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <p className=" text-slate-700 leading-relaxed">
+            Admission is only the first step. Long-term success requires
+            preparation for academic rigour and independent learning.
+          </p>
+          <p className=" text-slate-700 leading-relaxed">
+            Northbridge focuses on readiness that supports sustained university
+            performance.
+          </p>
+        </div>
       </div>
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <p className=" text-slate-700 leading-relaxed">
-          Admission is only the first step. Long-term success requires
-          preparation for academic rigour and independent learning.
-        </p>
-        <p className=" text-slate-700 leading-relaxed">
-          Northbridge focuses on readiness that supports sustained university
-          performance.
-        </p>
-      </div>
-    </Wrapper>,
+    </div>,
 
     <NorthbridgeAdmissions key={17} />,
     <CTA key={18} />,
-    <CoverPage image="bg-[url('/asset/study.jpg')]" key={1}>
-      <div>
-        <p></p>
+    <CoverPage image="bg-[url('/asset/study.jpg')]" key={Math.random()}>
+      <div className="relative flex flex-col items-center justify-center from-white  to-slate-50  h-full py-[24%]  z-10">
+        <p className="text-slate-300 max-w-[70%]">
+          Preparation for what comes next.
+        </p>
       </div>
     </CoverPage>,
   ];

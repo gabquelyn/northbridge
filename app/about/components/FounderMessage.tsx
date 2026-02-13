@@ -15,7 +15,7 @@ export default function FounderMessage() {
               Message from the Founder
             </p>
             <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-gray-900">
-              Guided by Experience. Designed for Student Transition.
+              Preparation for what comes next.
             </h2>
           </div>
 
@@ -29,7 +29,7 @@ export default function FounderMessage() {
                 whom first arrived as international students—I witnessed
                 firsthand how challenging it can be to balance academics,
                 employment obligations, regulatory requirements, and cultural
-                adjustment simultaneously
+                adjustment simultaneously.
               </p>
 
               <div>
@@ -37,10 +37,10 @@ export default function FounderMessage() {
                 <p>
                   I observed capable individuals navigating school, work rules,
                   immigration expectations, and unfamiliar systems—all at once,
-                  often without adequate preparation or support
+                  often without adequate preparation or support.
                 </p>
                 <p>
-                  That experience led to the founding of Northbridge Collegiate
+                  That experience led to the founding of Northbridge Collegiate.
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default function FounderMessage() {
             <div className="flex flex-col items-start md:items-center gap-4">
               <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-[#479DA5]/20">
                 <Image
-                  src="/asset/founder.jpg" 
+                  src="/asset/founder.jpg"
                   alt="Founder"
                   fill
                   className="object-cover"
