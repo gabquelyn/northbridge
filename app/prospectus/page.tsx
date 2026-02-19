@@ -105,7 +105,7 @@ export default function Prospectus() {
       </div>
       <NorthbridgeRoadmap />
     </Wrapper>,
-    <MediaPage src="/asset/exam.jpg" key={3} />,
+    <MediaPage src="/asset/company.jpeg" key={3} />,
 
     <Wrapper key={4}>
       <p className="md:text-2xl text-[#479DA5] font-bold md:mb-6 mb-2">
@@ -246,11 +246,11 @@ export default function Prospectus() {
         </p>
       </div>
     </Wrapper>,
-    <MediaPage src="/asset/smile.jpeg" key={14} />,
+    <MediaPage src="/asset/smile.jpeg" key={14} className="grayscale-100" />,
     <Wrapper key={Math.random()}>
       <TagLine tag=" GRADE 12 PROGRAM" />
 
-      <div className="max-w-3xl mx-auto space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
+      <div className="max-w-3xl mx-auto  space-y-1 md:space-y-4  text-slate-700 leading-relaxed">
         <p>
           The Grade 12 program leads to the Ontario Secondary School Diploma
           (OSSD), recognized by universities in Canada and internationally.
@@ -330,7 +330,7 @@ export default function Prospectus() {
     <MediaPage src="/asset/structure.jpeg" key={Math.random()} />,
     <div className="relative z-10 h-full w-full">
       <Image src="/asset/guy.jpeg" fill alt="image" className="object-cover" />
-      <div className="absolute text-sm md:text-[1rem] top-1/2 right-0 max-w-[60%]  py-8  rounded-tl-lg rounded-bl-lg shadow-xl md:p-4 p-2  bg-white">
+      <div className="absolute text-sm md:text-[1rem] top-1/2 right-0  py-8  shadow-xl md:p-4 p-2  bg-white">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <p className=" text-slate-700 leading-relaxed">
             Admission is only the first step. Long-term success requires
