@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,8 +60,6 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,25 +70,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-[.9rem] md:text-[1.2rem]`}
       >
-        {/* Global Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              name: "Northbridge Collegiate",
-              url: "https://northbridgec.ca",
-              logo: "https://northbridgec.ca/logo.png",
-              description:
-                "Northbridge Collegiate delivers Canadian-aligned academic bridge programs preparing international students for university success.",
-              sameAs: [
-                // "https://www.linkedin.com/company/northbridge-collegiate",
-                // "https://www.instagram.com/northbridgecollegiate",
-              ],
-            }),
-          }}
-        />
+        {/* Google script tag */}
+        <>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-34FWL0DNMR"
+            strategy="afterInteractive"
+          />
+
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-34FWL0DNMR');
+        `}
+          </Script>
+        </>
         <Providers>{children}</Providers>
       </body>
     </html>
