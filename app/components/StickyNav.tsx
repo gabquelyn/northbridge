@@ -7,6 +7,7 @@ import { FaQuestion } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import { MdOutlinePerson } from "react-icons/md";
 import SlideIn from "./SlideIn";
 
 export default function NorthbridgeAcademicNav() {
@@ -44,6 +45,13 @@ export default function NorthbridgeAcademicNav() {
 
         {/* Right: Actions */}
         <div className="flex items-center divide-x divide-white/20">
+          <Link href="https://study.northbridgec.ca/login/">
+            <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
+              <MdOutlinePerson className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
+              <span className="font-semibold tracking-wide">Study</span>
+            </div>
+          </Link>
+
           <Link href="/consultation">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
               <FaPenClip className="text-[#479DA5] group-hover:scale-110 transition" />
