@@ -59,6 +59,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
           </Section>
 
           <Section title="Admissions & Resources">
+            <Item label="Study" href="https://study.northbridgec.ca/login/" />
             <Item label="Home" href="/" />
             <Item label="FAQs" href="/faq" />
             <Item label="Course Guidance" href="/course-guide" />
