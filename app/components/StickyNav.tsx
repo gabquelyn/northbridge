@@ -71,7 +71,7 @@ export default function NorthbridgeAcademicNav() {
           {/* Menu CTA */}
           <div
             onClick={() => setOpen(true)}
-            className="group relative flex items-center gap-3 px-8 py-4 cursor-pointer bg-gradient-to-r from-[#479DA5] to-[#17757E] text-white font-semibold tracking-wider shadow-lg hover:shadow-xl transition-all"
+            className="group relative flex items-center gap-3 px-8 py-4 cursor-pointer bg-linear-to-r from-[#479DA5] to-[#17757E] text-white font-semibold tracking-wider shadow-lg hover:shadow-xl transition-all"
             aria-label="Open navigation"
           >
             <Menu
