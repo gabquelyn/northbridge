@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "@/app/components/Input";
 import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
 import { motion } from "motion/react";
 import Option from "@/app/components/Option";
 import axios, { AxiosError } from "axios";
