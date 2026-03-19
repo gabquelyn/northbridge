@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaXTwitter } from "react-icons/fa6";
-import { GrInstagram } from "react-icons/gr";
+import { GrInstagram, GrLinkedin } from "react-icons/gr";
 import { LuPhone } from "react-icons/lu";
 import { LuFacebook } from "react-icons/lu";
 import Link from "next/link";
@@ -35,6 +35,9 @@ export default function Footer() {
             </Link>
             <Link href="https://www.facebook.com/share/1CZy6LLMmz/?mibextid=wwXIfr">
               <LuFacebook />
+            </Link>
+            <Link href="https://www.linkedin.com/company/northbridge-collegiate/">
+              <GrLinkedin />
             </Link>
           </div>
         </div>
@@ -77,7 +80,7 @@ export default function Footer() {
               </div>
             </Link>
             <div className="flex items-center gap-3 justify-center">
-              <MdLocationPin className="text-[#17757E]"/>
+              <MdLocationPin className="text-[#17757E]" />
               <Image src="/asset/nigeria.png" height={20} width={20} alt="" />
 
               <p>Victoria Island, Lagos, Nigeria</p>

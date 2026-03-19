@@ -6,19 +6,19 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 } */
+
+@theme inline {
+  --color-primary: #479da5;
+  --color-secondary: #616161;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
 body {
   font-family: CabinetGrotesk-Regular;
@@ -59,14 +59,12 @@ body {
   z-index: 1;
 }
 
-
 .nb-phone-input {
-  @apply bg-[#479DA526] p-4 rounded-xl transition-all
-         focus-within:ring-2 focus-within:ring-[#479DA5] w-full;
+  @apply bg-primary/2 p-3 rounded-xl border border-gray-200 outline-none focus:ring-[#479DA5] focus:ring-2 transition-all;
 }
 
 .title {
-  @apply md:text-[2rem] text-[1.5rem] font-bold
+  @apply md:text-[2rem] text-[1.5rem] font-bold;
 }
 .nb-phone-input input {
   @apply bg-transparent outline-none border-none w-full;
@@ -84,9 +82,9 @@ body {
   @apply w-6 h-6 rounded-sm;
 }
 
-button {
-  @apply bg-linear-to-r from-[#479DA5] to-[#17757E] px-7 py-2.5 rounded-3xl text-white font-medium shadow-md hover:shadow-lg transition-shadow cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300
-}
+/* button {
+  @apply bg-linear-to-r from-[#479DA5] to-[#17757E] px-7 py-2.5 rounded-3xl text-white font-medium shadow-md hover:shadow-lg transition-shadow cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300;
+} */
 
 /* Wrapper */
 .nb-country-select .PhoneInputCountryIcon {
@@ -104,12 +102,7 @@ button {
   display: block;
 }
 
-
-
 /* Base reset */
-
-
-
 
 /* Thumb (Chrome, Safari, Edge) */
 .page-slider::-webkit-slider-thumb {
@@ -119,18 +112,39 @@ button {
   height: 14px;
   border-radius: 50%;
   background: white;
-  border:#479DA5 2px solid;
-  
+  border: #479da5 2px solid;
 }
-
-
 
 /* Thumb (Firefox) */
 .page-slider::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #479DA5;
+  background: #479da5;
   cursor: pointer;
   border: none;
+}
+
+
+
+/* for date picker */
+
+.react-datepicker {
+  padding: 10px;
+  color: #616161
+}
+
+.react-datepicker__day {
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+  background: rgba(71, 157, 165, 0.1);
+  color: #479da5;
+}
+
+.react-datepicker__day--selected {
+  background: #479da5 !important;
+  color: white !important;
 }
