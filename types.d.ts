@@ -23,7 +23,6 @@ interface IApplicationForm {
   language: string;
   intendToApply: string;
   canadianVisa: string;
-
 }
 
 interface SelectOption {
@@ -31,6 +30,26 @@ interface SelectOption {
   value: string;
 }
 
+interface ApiErrorMessage {
+  message: string;
+}
+
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
 type FileHandlerFn = (e: File[], name: string) => void;
 type OnDropCallback = (acceptedFiles: File[]) => void;
-type Programs = "CAAP" | "GRADE11" | "GRADE12" | "AY12"
+type Programs = "CAAP" | "GRADE11" | "GRADE12" | "AY12";
+type Fn = () => void;
+
+interface RegistrationDetails {
+  email: string;
+  password: string;
+  name: string;
+}
+interface VerifyCredentials {
+  id: string;
+  token: string;
+}

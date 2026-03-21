@@ -17,8 +17,8 @@ export default function Button({
     <motion.button
       className={clsx(
         className,
-        disabled ? "bg-white" : "bg-white bg-linear-to-br cursor-pointer from-[#479DA5] to-[#17757E]",
-        "px-7 text-white font-medium py-2.5 rounded-3xl disabled:cursor-not-allowed disabled:border-gray-300 disabled:border-2 disabled:text-gray-300",
+        "bg-white bg-linear-to-br cursor-pointer from-[#479DA5] to-[#17757E]",
+        "px-7 text-white flex items-center justify-center font-medium py-2.5 rounded-3xl disabled:cursor-not-allowed",
       )}
       whileHover={{ scale: "1.05" }}
       //   transition={{ duration: 0.5 }}
