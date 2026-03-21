@@ -4,6 +4,8 @@ import "./globals.css";
 import Providers from "./providers";
 import Script from "next/script";
 import "react-phone-number-input/style.css";
+import ReactQueryProvider from "./providers/ReactqueryProvider";
+import { Toaster } from "sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -86,7 +88,15 @@ export default function RootLayout({
         `}
           </Script>
         </>
-        <Providers>{children}</Providers>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            className: "bg-primary/5 text-secondary",
+          }}
+        />
+        <ReactQueryProvider>
+          <Providers>{children}</Providers>
+        </ReactQueryProvider>
       </body>
     </html>
   );

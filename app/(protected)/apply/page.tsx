@@ -1,5 +1,5 @@
 import React from "react";
-import ApplicationForm from "../components/form/ApplicationForm";
+import ApplicationForm from "../../components/form/ApplicationForm";
 
 export default function page() {
   return (
