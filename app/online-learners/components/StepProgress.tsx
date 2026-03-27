@@ -1,7 +1,8 @@
+import React from "react";
 import { motion } from "motion/react";
 import { HiCheck } from "react-icons/hi";
 
-export default function StepProgress({ currentStep, steps }: {currentStep: number, steps: any[]}) {
+ function StepProgress({ currentStep, steps }: {currentStep: number, steps: any[]}) {
   return (
     <div className="max-w-4xl mx-auto mt-12 px-4">
       <div className="relative flex items-center justify-between">
@@ -64,3 +65,5 @@ export default function StepProgress({ currentStep, steps }: {currentStep: numbe
     </div>
   );
 }
+
+export default React.memo(StepProgress)

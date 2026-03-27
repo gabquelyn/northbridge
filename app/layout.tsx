@@ -5,6 +5,7 @@ import Providers from "./providers";
 import Script from "next/script";
 import "react-phone-number-input/style.css";
 import ReactQueryProvider from "./providers/ReactqueryProvider";
+import CartContextProvider from "./providers/cartContextProvider";
 import { Toaster } from "sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,9 +95,11 @@ export default function RootLayout({
             className: "bg-primary/5 text-secondary",
           }}
         />
-        <ReactQueryProvider>
-          <Providers>{children}</Providers>
-        </ReactQueryProvider>
+        <CartContextProvider>
+          <ReactQueryProvider>
+            <Providers>{children}</Providers>
+          </ReactQueryProvider>
+        </CartContextProvider>
       </body>
     </html>
   );

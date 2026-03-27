@@ -48,7 +48,7 @@ export default function ClientComponent() {
       toast.success("Logged in successfully");
       router.push("/dashboard");
     }
-  }, [isGoogleError, isError, isSuccess]);
+  }, [isGoogleError, isError, isSuccess, gs]);
 
   return (
     <LoginForm

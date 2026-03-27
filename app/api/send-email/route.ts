@@ -35,9 +35,10 @@ export async function POST(req: Request) {
     });
 
     // Send mail
+    console.log("gabquelyn@gmail.com")
     await transporter.sendMail({
       from: email,
-      to: process.env.CONTACT, // where you want to receive it
+      to: "gabquelyn@gmail.com", // where you want to receive it
       replyTo: email,
       subject: `New Contact Form Message from ${name}`,
       html: `

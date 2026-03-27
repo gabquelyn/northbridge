@@ -1,21 +1,27 @@
+"use client";
 import React from "react";
 import clsx from "clsx";
 import Image from "next/image";
-export default function Programs({
+import { ClipLoader } from "react-spinners";
+
+function Programs({
   data,
   programChange,
   canadian,
+  disableEdit,
+  applied,
+  enrol,
+  enrolling,
 }: {
-  data: string[];
-  programChange: (e: Programs, checked: boolean) => void;
+  data: Programs[];
+  programChange: (program: Programs, checked: boolean) => void;
   canadian: boolean;
+  disableEdit?: boolean;
+  applied?: Programs[];
+  enrol?: Fn;
+  enrolling?: boolean;
 }) {
-  const programs: {
-    image: string;
-    name: string;
-    description: string;
-    value: Programs;
-  }[] = [
+  const programs = [
     {
       image: "/asset/caap.png",
       name: "Canadian Academic Alignment Program",
@@ -50,46 +56,128 @@ export default function Programs({
     <div>
       {!canadian && (
         <p className="text-secondary italic mb-3">
-          CAAP is compulsory for non-canadian student (The starting point)
+          CAAP is compulsory for non-Canadian students (starting point)
         </p>
       )}
 
-      <div className="grid grid-cols-2 gap-5">
-        {programs.map((program) => (
-          <label className="w-full cursor-pointer" key={program.name}>
-            <div
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {programs.map((program) => {
+          const isSelected = data.includes(program.value as Programs);
+          const isLocked =
+            (!canadian && program.value === "CAAP") ||
+            (disableEdit && applied?.includes(program.value as Programs));
+          const isDisabled = false;
+
+          return (
+            <label
+              key={program.name}
               className={clsx(
-                "relative border rounded-2xl p-6 h-44 flex flex-col items-center justify-center text-center transition-all duration-300",
-                "shadow-sm hover:shadow-md",
-                data.includes(program.value)
-                  ? "border-primary bg-primary/10 scale-[1.02]"
-                  : "border-slate-200 hover:border-primary/40 bg-[#F9FAFB]",
+                "w-full",
+                isDisabled || isLocked
+                  ? "cursor-not-allowed"
+                  : "cursor-pointer",
               )}
             >
-              <input
-                type="checkbox"
-                name="canadian"
-                value={program.value}
-                disabled = {!canadian && (program.value == "CAAP")}
-                checked={data.includes(program.value)}
-                className="hidden"
-                onChange={(e) => {
-                  programChange(e.target.value as Programs, e.target.checked);
-                }}
-              />
-              <div className="flex items-center flex-col gap-2 justify-center text-center">
-                <Image src={program.image} alt="flag" height={20} width={30} />
-                <div>
-                  <p className="">{program.name}</p>
-                  <p className="text-secondary text-xs">
-                    {program.description}
-                  </p>
+              <div
+                className={clsx(
+                  "relative border rounded-2xl p-6 h-44 flex flex-col items-center justify-center text-center transition-all duration-300",
+
+                  // 🔒 Disabled (global)
+                  isDisabled &&
+                    "bg-gray-100 border-gray-200 opacity-60 shadow-none",
+
+                  // 🔒 Locked CAAP (looks active, not faded)
+                  isLocked && "border-primary bg-primary/10",
+
+                  // ✅ Active hover
+                  !isDisabled && !isLocked && "shadow-sm hover:shadow-md",
+
+                  // ✅ Selected
+                  !isDisabled &&
+                    isSelected &&
+                    "border-primary bg-primary/10 scale-[1.02]",
+
+                  // ✅ Default
+                  !isDisabled &&
+                    !isSelected &&
+                    !isLocked &&
+                    "border-slate-200 hover:border-primary/40 bg-[#F9FAFB]",
+                )}
+              >
+                <input
+                  type="checkbox"
+                  value={program.value}
+                  checked={isSelected}
+                  disabled={isDisabled}
+                  className="hidden"
+                  onChange={(e) => {
+                    if (isDisabled) return;
+
+                    // ❌ prevent CAAP removal
+                    if (isLocked && !e.target.checked) return;
+
+                    programChange(program.value as Programs, e.target.checked);
+                  }}
+                />
+
+                {/* Disabled lock */}
+                {isLocked && (
+                  <div className="absolute top-2 right-2 text-xs text-gray-400">
+                    🔒
+                  </div>
+                )}
+
+                {/* Required badge */}
+                {/* {isLocked && (
+                  <div className="absolute top-2 right-2 text-[10px] text-primary bg-white px-2 py-0.5 rounded-full border">
+                    Required
+                  </div>
+                )} */}
+
+                <div className="flex flex-col gap-2 items-center text-center">
+                  <Image
+                    src={program.image}
+                    alt="program"
+                    height={20}
+                    width={30}
+                    className={clsx(isDisabled && "grayscale")}
+                  />
+
+                  <div>
+                    <p
+                      className={clsx(
+                        "font-medium",
+                        isDisabled && "text-gray-400",
+                      )}
+                    >
+                      {program.name}
+                    </p>
+
+                    <p
+                      className={clsx(
+                        "text-xs",
+                        isDisabled ? "text-gray-400" : "text-secondary",
+                      )}
+                    >
+                      {program.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </label>
-        ))}
+            </label>
+          );
+        })}
       </div>
+
+      {disableEdit && (
+        <div className="flex justify-center mt-5">
+          <button className="action w-full md:w-sm" onClick={enrol}>
+            {enrolling ? <ClipLoader size = {15} color = "#479da5"/> : <p>Enrol</p>}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
+export default React.memo(Programs);

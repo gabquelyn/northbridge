@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import Input from "../Input";
 import CustomSelect from "../CustomSelect";
 import { Country } from "country-state-city";
-export default function Citizenship({
+function Citizenship({
   data,
   onChange,
-  onCountryChange,
+  setBirthCountry,
+  birthCountry,
+  disableEdit
 }: {
   data: IApplicationForm;
   onChange: inputHandler;
-  onCountryChange: (val: string) => void;
+  setBirthCountry: React.Dispatch<React.SetStateAction<SelectOption | null>>;
+  birthCountry: SelectOption | null;
+  disableEdit?: boolean
 }) {
   const inputs = [
     {
@@ -23,22 +27,26 @@ export default function Citizenship({
     {
       name: "intendToApply",
       label: "Does student intend to apply to Canadian Universities?",
-      options: ["yes", "no"],
+      options: ["true", "false"],
     },
     {
       name: "canadianVisa",
       label: "Does student have a valid Canadian visa?",
-        options: ["yes", "no"],
+      options: ["true", "false"],
     },
   ];
-  const countries = Country.getAllCountries().map((country) => ({
-    label: country.name,
-    value: country.isoCode,
-  }));
-  const [country, setCountry] = useState<SelectOption | null>(null);
+
+  const countries = useMemo(
+    () =>
+      Country.getAllCountries().map((country) => ({
+        label: country.name,
+        value: country.isoCode,
+      })),
+    [],
+  );
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {inputs.map((input) => (
         <Input
           key={input.name}
@@ -50,16 +58,16 @@ export default function Citizenship({
           onChange={onChange}
           placeholder={input.placeholder}
           label={input.label}
+          readOnly = {disableEdit}
         />
       ))}
+
       <CustomSelect
         label="Birth Country"
-        option={country}
+        option={birthCountry}
         options={countries}
-        setOption={(e) => {
-          setCountry(e);
-          onCountryChange(e?.label || "");
-        }}
+        setOption={setBirthCountry}
+        isDisabled= {disableEdit}
       />
 
       {radioInput.map((ques) => (
@@ -72,7 +80,9 @@ export default function Citizenship({
                   name={ques.name}
                   type="radio"
                   value={item}
+                  checked={item == data[ques.name as keyof IApplicationForm]}
                   onChange={onChange}
+                  disabled={disableEdit}
                 />
                 <span className="text-secondary">{item}</span>
               </label>
@@ -83,3 +93,5 @@ export default function Citizenship({
     </div>
   );
 }
+
+export default React.memo(Citizenship);

@@ -15,20 +15,18 @@ export default function CustomSelect({
   isDisabled?: boolean;
   setOption:
     | ((
-        newValue: SingleValue<{
-          label: string;
-          value: string;
-        }>,
-        actionMeta: ActionMeta<{
-          label: string;
-          value: string;
-        }>
+        newValue: SingleValue<{ label: string; value: string }>,
+        actionMeta: ActionMeta<{ label: string; value: string }>
       ) => void)
     | undefined;
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-gray-900">
+      <label
+        className={`text-sm font-medium ${
+          isDisabled ? "text-gray-400" : "text-gray-900"
+        }`}
+      >
         {label}
       </label>
 
@@ -37,24 +35,32 @@ export default function CustomSelect({
         value={option}
         isDisabled={isDisabled}
         placeholder={`Select ${label.toLowerCase()}`}
+        onChange={(val, meta) => {
+          if (isDisabled) return; // extra safety
+          setOption?.(val, meta);
+        }}
         styles={{
           control: (provided, state) => ({
             ...provided,
-            backgroundColor: isDisabled ? "#f9fafb" : "#ffffff",
-            border: state.isFocused
+            backgroundColor: isDisabled ? "#f3f4f6" : "#ffffff",
+            border: isDisabled
+              ? "1px solid #e5e7eb"
+              : state.isFocused
               ? "1px solid #479da5"
               : "1px solid #e5e7eb",
-            boxShadow: state.isFocused
-              ? "none"
-              : "none",
+            boxShadow: "none",
             padding: "0.3rem 0.4rem",
             borderRadius: "16px",
             minHeight: "48px",
             cursor: isDisabled ? "not-allowed" : "pointer",
+            opacity: isDisabled ? 0.6 : 1,
+            pointerEvents: isDisabled ? "none" : "auto", // 🔥 key
             transition: "all 0.2s ease",
-            opacity: isDisabled ? 0.7 : 1,
+
             "&:hover": {
-              border: "1px solid #479da5",
+              border: isDisabled
+                ? "1px solid #e5e7eb"
+                : "1px solid #479da5",
             },
           }),
 
@@ -70,11 +76,6 @@ export default function CustomSelect({
             padding: "6px",
           }),
 
-          menuList: (provided) => ({
-            ...provided,
-            padding: 0,
-          }),
-
           option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected
@@ -87,17 +88,11 @@ export default function CustomSelect({
             borderRadius: "10px",
             marginBottom: "2px",
             cursor: "pointer",
-            transition: "all 0.15s ease",
-          }),
-
-          input: (provided) => ({
-            ...provided,
-            color: "#111827",
           }),
 
           singleValue: (provided) => ({
             ...provided,
-            color: "#111827",
+            color: isDisabled ? "#9ca3af" : "#111827",
             fontWeight: 500,
           }),
 
@@ -107,28 +102,23 @@ export default function CustomSelect({
             fontSize: "0.9rem",
           }),
 
-          indicatorSeparator: () => ({
-            display: "none",
-          }),
-
           dropdownIndicator: (provided, state) => ({
             ...provided,
-            color: state.isFocused ? "#479da5" : "#9ca3af",
-            transition: "all 0.2s ease",
+            color: isDisabled
+              ? "#d1d5db"
+              : state.isFocused
+              ? "#479da5"
+              : "#9ca3af",
             transform: state.selectProps.menuIsOpen
               ? "rotate(180deg)"
               : "rotate(0deg)",
-            "&:hover": {
-              color: "#479da5",
-            },
+            cursor: isDisabled ? "not-allowed" : "pointer",
           }),
 
-          valueContainer: (provided) => ({
-            ...provided,
-            padding: "0 6px",
+          indicatorSeparator: () => ({
+            display: "none",
           }),
         }}
-        onChange={setOption}
       />
     </div>
   );

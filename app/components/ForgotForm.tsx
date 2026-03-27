@@ -5,7 +5,6 @@ import Input from "./Input";
 import genericInputHandler from "../utils/genericInputHandler";
 import Button from "./atoms/Button";
 import { motion } from "framer-motion";
-import AnimatedMail from "./AnimatedMail";
 import AnimatedChecked from "./AnimatedChecked";
 import AnimatedCancel from "./AnimatedCancel";
 

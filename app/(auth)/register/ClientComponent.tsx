@@ -5,12 +5,14 @@ import { useRegister, useRegisterWithGoogle } from "@/app/hooks/useAuth";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import isEmail from "@/app/utils/isEmail";
+import { useRouter } from "next/navigation";
 export default function ClientComponent() {
   const [details, setDetails] = useState<RegistrationDetails>({
     email: "",
     password: "",
     name: "",
   });
+  const router = useRouter()
   const { mutate, isPending, isError, error, isSuccess } = useRegister();
   const { mutate: googleMutate, isSuccess: gs } = useRegisterWithGoogle();
   const registrationHandler = () => {
@@ -31,7 +33,8 @@ export default function ClientComponent() {
     if (isSuccess) {
       toast.success("Registered successfully");
     }
-  }, [isSuccess, isError]);
+    if (gs) router.replace("/login");
+  }, [isSuccess, isError, gs]);
 
   return (
     <div>
@@ -41,7 +44,7 @@ export default function ClientComponent() {
         googleRegisterHandler={(credential) => googleMutate(credential)}
         details={details}
         setDetails={setDetails}
-        isSuccess={isSuccess || gs}
+        isSuccess={isSuccess}
       />
     </div>
   );

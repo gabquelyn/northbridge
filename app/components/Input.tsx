@@ -12,6 +12,7 @@ export default function Input({
   placeholder,
   className,
   onChange,
+  readOnly,
 }: {
   value: string;
   label?: string;
@@ -19,6 +20,7 @@ export default function Input({
   placeholder?: string;
   className?: string;
   type: string;
+  readOnly?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -30,10 +32,11 @@ export default function Input({
           onChange={onChange}
           name={name}
           value={value}
+          readOnly={readOnly}
           type={open ? "text" : type}
           className={clsx(
             className,
-            "bg-primary/2 w-full p-3 rounded-2xl border border-gray-200 outline-none focus:ring-[#479DA5] focus:ring-2 transition-all",
+            "bg-primary/2 w-full p-3 rounded-2xl border border-gray-200 outline-none  transition-all", !readOnly && "focus:ring-[#479DA5] focus:ring-2"
           )}
           placeholder={placeholder}
         />
