@@ -52,7 +52,7 @@ export default function RegistrationForm({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/80 backdrop-blur-xl shadow-xl rounded-2xl px-10 py-12 max-w-md w-full text-center"
+            className="backdrop-blur-xl px-10 py-12 text-center"
           >
             {/* Animated Mail Icon */}
             <AnimatedMail/>

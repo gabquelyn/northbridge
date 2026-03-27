@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Input from "../Input";
 const inputs = [
   {
@@ -32,7 +32,7 @@ const inputs = [
 const radioInput = [
   {
     name: "pathway",
-    label: "Intended Pose-Secondadry School Pathway",
+    label: "Intended Post-Secondadry School Pathway",
     options: [
       "Art",
       "STEM",
@@ -53,32 +53,45 @@ const radioInput = [
     options: ["true", "false"],
   },
 ];
-export default function AcademicInformation({
+type AcademicFormData = Pick<
+  IApplicationForm,
+  | "dob"
+  | "currentSchool"
+  | "homeSchool"
+  | "secondaryEntry"
+  | "qualification"
+  | "pathway"
+  | "gender"
+  | "completedSecondaryDiploma"
+>;
+function AcademicInformation({
   data,
   onChange,
+   disableEdit
 }: {
-  data: IApplicationForm;
+  data: AcademicFormData;
   onChange: inputHandler;
+  disableEdit?: boolean
 }) {
-  const [date, setDate] = useState<Date | null>(null);
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {inputs.map((input) => (
         <Input
           key={input.name}
           name={input.name}
-          value={data[input.name as keyof IApplicationForm]}
+          value={data[input.name as keyof AcademicFormData]}
           type={
             ["dob", "secondaryEntry"].includes(input.name) ? "date" : "string"
           }
           onChange={onChange}
           placeholder={input.placeholder}
           label={input.label}
+          readOnly={disableEdit}
         />
       ))}
 
       {radioInput.map((ques) => (
-        <div key = {ques.name}>
+        <div key={ques.name}>
           <p>{ques.label}</p>
           <div className="flex flex-wrap gap-3 mt-1">
             {ques.options.map((item) => (
@@ -87,7 +100,9 @@ export default function AcademicInformation({
                   name={ques.name}
                   type="radio"
                   value={item}
+                  checked={item == data[ques.name as keyof AcademicFormData]}
                   onChange={onChange}
+                  disabled={disableEdit}
                 />
                 <span className="text-secondary">{item}</span>
               </label>
@@ -98,3 +113,5 @@ export default function AcademicInformation({
     </div>
   );
 }
+
+export default React.memo(AcademicInformation)

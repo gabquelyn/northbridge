@@ -9,8 +9,6 @@ interface IApplicationForm {
   lastName: string;
   email: string;
   phoneNumber: string;
-  country: string;
-  state: string;
   street: string;
   unit: string;
   dob: string;
@@ -23,6 +21,7 @@ interface IApplicationForm {
   language: string;
   intendToApply: string;
   canadianVisa: string;
+  pathway: string;
 }
 
 interface SelectOption {
@@ -32,6 +31,7 @@ interface SelectOption {
 
 interface ApiErrorMessage {
   message: string;
+  error: { path: string }[] | string;
 }
 
 interface LoginCredentials {
@@ -52,4 +52,81 @@ interface RegistrationDetails {
 interface VerifyCredentials {
   id: string;
   token: string;
+}
+
+interface Course {
+  id: number;
+  shortname: string;
+  fullname: string;
+  summary: string;
+  image?: string;
+  category?: number;
+}
+
+type LocationData = {
+  country: SelectOption | null;
+  state: SelectOption | null;
+  city: SelectOption | null;
+};
+
+type DocumentFile = {
+  url: string;
+  public_id: string;
+  filename: string;
+  _id: string;
+};
+
+type Application = {
+  _id: string;
+  mode: "on-site" | "off-site";
+  courses: number[];
+  programs: Programs[];
+  profile: {
+    bio: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phoneNumber: string;
+      middleName: string;
+      gender: string,
+      dob: string
+    };
+    academics: {
+      currentSchool: string;
+      pathway: string;
+      homeSchool: string;
+      secondaryEntry: string
+      completedSecondaryDiploma: boolean
+      qualification: string
+    };
+    address: {
+      city: string;
+      state: string;
+      unit: string;
+      street: unit;
+      country?:string
+    };
+    citizenship: {
+      canadian: boolean;
+      language: string;
+      intendToApply: boolean;
+      canadianVisa: boolean;
+      birthCountry: string
+    };
+    documents: {
+      transcripts: DocumentFile[];
+      govId: DocumentFile[];
+      passport: DocumentFile[];
+    };
+  };
+  granted: boolean;
+  paid: boolean;
+  completed: boolean;
+  createdAt: string
+};
+
+interface User {
+  name: string;
+  email: string;
+  role: "user" | "admin";
 }

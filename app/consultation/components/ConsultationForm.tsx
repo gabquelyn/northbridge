@@ -53,7 +53,7 @@ export default function ConsultationForm() {
           })),
         ],
       });
-
+console.log(res)
       setDetails({
         name: "",
         email: "",

@@ -2,14 +2,20 @@ import React from "react";
 import Input from "../Input";
 import PhoneInput from "react-phone-number-input";
 
-export default function ContactInformation({
+type ContactInfo = Pick<
+  IApplicationForm,
+  "firstName" | "middleName" | "lastName" | "email" | "canadian" | "phoneNumber"
+>;
+function ContactInformation({
   data,
   onChange,
   phoneNumChange,
+  disableEdit
 }: {
-  data: IApplicationForm;
+  data: ContactInfo;
   onChange: inputHandler;
   phoneNumChange: (val: string) => void;
+  disableEdit?:boolean
 }) {
   const inputs = [
     {
@@ -34,22 +40,24 @@ export default function ContactInformation({
     },
   ];
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {inputs.map((input) => (
         <Input
           key={input.name}
           name={input.name}
-          value={data[input.name as keyof IApplicationForm]}
+          value={data[input.name as keyof ContactInfo]}
           type={input.name == "email" ? "email" : "string"}
           onChange={onChange}
           placeholder={input.placeholder}
           label={input.label}
+          readOnly = {disableEdit}
         />
       ))}
-      <div className="flex flex-col gap-1 col-span-2">
+      <div className="flex flex-col gap-1 col-span-1 md:col-span-2">
         <p>Phone number</p>
         <PhoneInput
           international
+          disabled = {disableEdit}
           defaultCountry={data.canadian == "true" ? "CA" : "NG"}
           value={data.phoneNumber}
           onChange={(value) => {
@@ -64,3 +72,5 @@ export default function ContactInformation({
     </div>
   );
 }
+
+export default React.memo(ContactInformation);

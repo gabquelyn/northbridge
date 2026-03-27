@@ -125,13 +125,11 @@ body {
   border: none;
 }
 
-
-
 /* for date picker */
 
 .react-datepicker {
   padding: 10px;
-  color: #616161
+  color: #616161;
 }
 
 .react-datepicker__day {
@@ -147,4 +145,8 @@ body {
 .react-datepicker__day--selected {
   background: #479da5 !important;
   color: white !important;
+}
+
+.action {
+  @apply rounded-xl disabled:border-gray-300 disabled:text-gray-300 transition-all text-primary cursor-pointer outline-0 border-2 border-primary px-4 py-2;
 }

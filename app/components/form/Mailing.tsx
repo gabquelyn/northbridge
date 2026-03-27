@@ -1,37 +1,51 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { Country, State, City } from "country-state-city";
 import CustomSelect from "../CustomSelect";
 import { RiInformation2Line } from "react-icons/ri";
 import Input from "../Input";
 
-export default function Mailing({
+function Mailing({
   setLocation,
-  data,
+  unit,
+  street,
   onChange,
+  location,
+  disableEdit,
 }: {
-  setLocation: (name: string, val: string) => void;
-  data: IApplicationForm;
+  unit: string;
+  street: string;
   onChange: inputHandler;
+  location: LocationData;
+  setLocation: React.Dispatch<React.SetStateAction<LocationData>>;
+  disableEdit?: boolean;
 }) {
-  const [country, setCountry] = useState<SelectOption | null>(null);
-  const [state, setState] = useState<SelectOption | null>(null);
-  const [city, setCity] = useState<SelectOption | null>(null);
+  const countries = useMemo(
+    () =>
+      Country.getAllCountries().map((country) => ({
+        label: country.name,
+        value: country.isoCode,
+      })),
+    [],
+  );
 
-  const countries = Country.getAllCountries().map((country) => ({
-    label: country.name,
-    value: country.isoCode,
-  }));
+  const states = useMemo(
+    () =>
+      State.getStatesOfCountry(location.country?.value).map((state) => ({
+        label: state.name,
+        value: state.isoCode,
+      })),
+    [location.country?.value],
+  );
 
-  const states = State.getStatesOfCountry(country?.value).map((state) => ({
-    label: state.name,
-    value: state.isoCode,
-  }));
-
-  const cities = City.getCitiesOfState(
-    country?.value || "",
-    state?.value || "",
-  ).map((city) => ({ label: city.name, value: city.name }));
+  const cities = useMemo(
+    () =>
+      City.getCitiesOfState(
+        location?.country?.value || "",
+        location?.state?.value || "",
+      ).map((city) => ({ label: city.name, value: city.name })),
+    [location?.country, location?.state],
+  );
 
   return (
     <div>
@@ -44,61 +58,63 @@ export default function Mailing({
           </span>
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <CustomSelect
+          isDisabled={disableEdit}
           label="Country"
-          option={country}
+          option={location?.country}
           options={countries}
           setOption={(e) => {
-            setCountry(e);
-            setState(null);
-            setCity(null);
-            setLocation("country", e?.label || "");
-            setLocation("state", "");
-            setLocation("city", "");
+            setLocation({
+              country: e,
+              state: null,
+              city: null,
+            });
           }}
         />
 
         <CustomSelect
+          isDisabled={disableEdit}
           label="State"
-          option={state}
+          option={location?.state}
           options={states}
           setOption={(e) => {
-            setState(e);
-            setCity(null);
-            setLocation("state", e?.label || "");
-            setLocation("city", "");
+            setLocation((prev) => ({ ...prev, state: e, city: null }));
           }}
         />
 
         <CustomSelect
+          isDisabled={disableEdit}
           label="City"
-          option={city}
+          option={location?.city}
           options={cities}
           setOption={(e) => {
-            setCity(e);
-            setLocation("city", e?.label || "");
+            setLocation((prev) => ({ ...prev, city: e }));
           }}
         />
         <Input
           key={"unit"}
           name={"unit"}
-          value={data.unit}
+          value={unit}
           type="text"
           onChange={onChange}
           label={"Unit"}
+          readOnly={disableEdit}
         />
         <div className="md:col-span-2">
           <Input
             key={"address"}
-            name={"address"}
-            value={data.unit}
+            name={"street"}
+            value={street}
             type="text"
             onChange={onChange}
             label={"Full Street Address"}
+            readOnly={disableEdit}
           />
         </div>
       </div>
     </div>
   );
 }
+
+export default React.memo(Mailing);
