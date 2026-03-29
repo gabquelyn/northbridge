@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 };
 export default function page() {
   return (
-    <div>
+    <React.Suspense>
       <ClientComponent />
-    </div>
+    </React.Suspense>
   );
 }

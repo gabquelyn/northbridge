@@ -80,7 +80,7 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
               <tr
                 key={index}
                 className="hover:bg-gray-50 cursor-pointer transition border-b border-gray-100"
-                onClick={() => router.push(`/dashboard/application/${datum._id}`)}
+                onClick={() => router.push(`/application/${datum._id}`)}
               >
                 <td className="py-4 px-4 border-b border-b-gray-100">
                   <div className="flex items-center gap-3">

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, Suspense } from "react";
 import { Menu } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import { FaPenClip } from "react-icons/fa6";
@@ -9,22 +9,30 @@ import Link from "next/link";
 import clsx from "clsx";
 import { MdOutlinePerson } from "react-icons/md";
 import SlideIn from "./SlideIn";
+import { cartContext } from "../providers/cartContextProvider";
+import { MdShoppingCart } from "react-icons/md";
+import CartDrawer from "./CartDrawer";
 
 export default function NorthbridgeAcademicNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 500);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  const ctx = useContext(cartContext);
+  console.log(ctx?.cart.length);
   return (
     <>
+      <Suspense>
+        <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      </Suspense>
       <div
         className={clsx(
-          "fixed top-0 right-0 z-50 hidden lg:flex w-full py-2 items-center justify-between px-6 text-[0.85rem] uppercase transition-all duration-500",
+          "fixed top-0 right-0 z-40 hidden lg:flex w-full py-2 items-center justify-between px-6 text-[0.85rem] uppercase transition-all duration-500",
           scrolled
             ? "bg-white/95 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)] text-slate-800"
             : "bg-white/10 backdrop-blur-md text-white",
@@ -67,6 +75,22 @@ export default function NorthbridgeAcademicNav() {
               <span className="font-semibold tracking-wide">Who We Are</span>
             </div>
           </Link>
+
+          {/* <Link href="#">
+            <div
+              className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10"
+              onClick={() => setCartOpen(true)}
+            >
+              <div className="relative">
+                <MdShoppingCart className="text-[#479DA5] group-hover:scale-110 transition text-2xl" />
+                {ctx?.cart && ctx?.cart.length > 0 && (
+                  <div className="absolute -top-[10%] -right-1 p-1 text-[.5rem] w-3 h-3 flex items-center justify-center bg-red-500 rounded-full">
+                    {ctx?.cart.length}
+                  </div>
+                )}
+              </div>
+            </div>
+          </Link> */}
 
           {/* Menu CTA */}
           <div

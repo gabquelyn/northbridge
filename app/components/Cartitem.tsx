@@ -26,7 +26,7 @@ function Cartitem({
   const { data, isSuccess, isLoading } = useCourses();
   const { data: enrolled } = useEnrolled();
   const filterSelected = data?.data?.filter((course) =>
-    ctx?.cart.includes(course.id),
+    ctx?.cart.includes(course.id) || selected?.includes(course.id)
   );
 
   if (isLoading)

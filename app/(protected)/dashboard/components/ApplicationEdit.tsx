@@ -166,16 +166,28 @@ export default function ApplicationEdit({
     }
 
     if (enrolCheckedOut) {
-      router.push(payment.paymentUrl);
+      if (isAdmin) {
+        router.push("/application");
+      } else {
+        router.push(payment.paymentUrl);
+      }
     }
 
     const successTimer = setTimeout(() => {
       if (isSuccess) {
         if (mode == "off-site") {
-          ctx?.clearCartHandler();
-          return router.replace(data.paymentUrl);
+          if (isAdmin) {
+            router.push("/application");
+          } else {
+            ctx?.clearCartHandler();
+            return router.replace(data.paymentUrl);
+          }
+        } else {
+          if (isAdmin) {
+           return router.push('/application')
+          }
+          router.push("/dashboard");
         }
-        router.push("/dashboard");
       }
     }, 3000);
 
@@ -191,10 +203,11 @@ export default function ApplicationEdit({
         details[ikeys as keyof IApplicationForm],
       );
     }
-
+    const combined = ctx?.cart ? [...ctx.cart, ...courses] : [...courses];
+    const courseSet = new Set(combined);
     applicationFormData.append("mode", mode);
     if (mode == "off-site") {
-      applicationFormData.append("courses", JSON.stringify(ctx?.cart));
+      applicationFormData.append("courses", JSON.stringify([...courseSet]));
     } else {
       applicationFormData.append("programs", JSON.stringify(programs));
     }
@@ -235,7 +248,7 @@ export default function ApplicationEdit({
     <div>
       {review && (
         <Modal onClose={() => setReview(false)}>
-          <ReviewMessage />
+          <ReviewMessage id={application._id} />
         </Modal>
       )}
 
@@ -245,7 +258,7 @@ export default function ApplicationEdit({
             mode={application.mode}
             name={application.profile.bio.firstName}
             onCancel={() => setAccept(false)}
-            id = {application._id}
+            id={application._id}
           />
         </Modal>
       )}
@@ -269,9 +282,8 @@ export default function ApplicationEdit({
         selectedCourses={courses}
         removeSelected={removeSelected}
         disableEdit={
-          (application.paid && mode == "off-site") ||
-          (application.granted && mode == "on-site") ||
-          !isAdmin
+          (application.paid && mode == "off-site" && !isAdmin) ||
+          (application.granted && mode == "on-site" && !isAdmin)
         }
         appliedPrograms={application.programs}
         enrol={enrolToProgramHandler}

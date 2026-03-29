@@ -19,7 +19,7 @@ export const logout = async () => {
   return res.data;
 };
 
-export const register = async (details: RegistrationDetails) => {
+export const register = async (details: RegisterWithMode) => {
   const res = await api.post("/auth/register", details);
   return res.data;
 };

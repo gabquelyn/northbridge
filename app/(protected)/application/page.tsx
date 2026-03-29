@@ -2,7 +2,7 @@
 import React from "react";
 import { useApplications } from "@/app/hooks/useAdmission";
 import { ClipLoader } from "react-spinners";
-import ApplicationTable from "../components/ApplicationTable";
+import ApplicationTable from "../dashboard/components/ApplicationTable";
 export default function page() {
   const { data, isPending, isSuccess } = useApplications();
 

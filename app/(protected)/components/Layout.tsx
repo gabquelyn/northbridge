@@ -15,16 +15,23 @@ import CartDrawer from "@/app/components/CartDrawer";
 import Modal from "@/app/components/Modal";
 import { Suspense } from "react";
 import AnimatedCancel from "@/app/components/AnimatedCancel";
+import { useProfile } from "@/app/hooks/useProfile";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const ctx = useContext(cartContext);
   const { data, isSuccess, isError } = useRefresh();
+  const { data: profile, isSuccess: loadedProfile } = useProfile();
   const { mutate, isSuccess: loggedOut } = useLogout();
   const pathname = usePathname();
   const router = useRouter();
 
+  const [links, setLinks] = useState<
+    { tag: string | React.ReactNode; href: string; onClick?: Fn }[]
+  >([]);
+
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+
   useEffect(() => {
     if (loggedOut) router.replace("/login");
     if (isSuccess) setAccessToken(data.accessToken);
@@ -33,28 +40,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       if (isError) router.replace(`/login?from=${pathname}`);
     }, 2000);
 
-    return () => clearTimeout(redirectTimeout);
-  }, [loggedOut, isSuccess, isError]);
+    if (profile?.data?.role == "admin") {
+      setLinks([
+        {
+          tag: "Applications",
+          href: "/application",
+        },
+      ]);
+    } else {
+      setLinks([
+        { tag: "Dashboard", href: "/dashboard" },
+        // { tag: "Application", href: "/apply" },
+        { tag: "Courses", href: "/courses" },
+        {
+          tag: (
+            <div className="relative cursor-pointer">
+              <p className="flex gap-2 items-center">
+                <span>Cart</span> <MdOutlineShoppingCart />
+              </p>
+              {ctx?.cart && ctx?.cart.length > 0 && (
+                <div className="absolute -top-[10%] -right-1 h-2 w-2 p-1 bg-red-500 rounded-full" />
+              )}
+            </div>
+          ),
+          href: "#",
+          onClick: () => setCartOpen(true),
+        },
+      ]);
+    }
 
-  const links = [
-    { tag: "Dashboard", href: "/dashboard" },
-    // { tag: "Application", href: "/apply" },
-    { tag: "Courses", href: "/courses" },
-    {
-      tag: (
-        <div className="relative cursor-pointer">
-          <p className="flex gap-2 items-center">
-            <span>Cart</span> <MdOutlineShoppingCart />
-          </p>
-          {ctx?.cart && ctx?.cart.length > 0 && (
-            <div className="absolute -top-[10%] -right-1 h-2 w-2 p-1 bg-red-500 rounded-full" />
-          )}
-        </div>
-      ),
-      href: "#",
-      onClick: () => setCartOpen(true),
-    },
-  ];
+    return () => clearTimeout(redirectTimeout);
+  }, [loggedOut, isSuccess, isError, loadedProfile]);
 
   if (isError)
     return (
@@ -107,7 +123,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ),
             )}
           </div>
-
 
           <button
             onClick={() => mutate()}

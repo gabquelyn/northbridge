@@ -1,10 +1,13 @@
 import AnimatedCancel from "@/app/components/AnimatedCancel";
 import Button from "@/app/components/atoms/Button";
-import { useReceipt } from "@/app/hooks/useAdmission";
+import { useAdminApprove, useReceipt } from "@/app/hooks/useAdmission";
+import { AxiosError } from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import AnimatedChecked from "@/app/components/AnimatedChecked";
 export default function AcceptApplication({
   mode,
   name,
@@ -16,8 +19,36 @@ export default function AcceptApplication({
   onCancel: Fn;
   id: string;
 }) {
+  const router = useRouter();
   const { data, isPending } = useReceipt(id);
-  console.log(data);
+  const {
+    mutate,
+    isPending: approving,
+    isError,
+    error,
+    isSuccess,
+  } = useAdminApprove();
+  useEffect(() => {
+    if (isError) {
+      const message = (error as AxiosError<ApiErrorMessage>)?.response?.data
+        ?.message;
+      toast.error(message);
+    }
+    const redirectTimer = setTimeout(() => {
+      if (isSuccess) router.push("/application");
+    }, 2000);
+
+    return () => clearTimeout(redirectTimer);
+  }, [isError, isSuccess]);
+
+  const approveHandler = async () => {
+    mutate(id);
+  };
+
+  if (isSuccess) {
+    return <AnimatedChecked message="Application Approved" />;
+  }
+
   return (
     <div className="flex flex-col p-4 text-sm items-center justify-center w-full gap-4">
       {mode == "on-site" && (
@@ -31,7 +62,13 @@ export default function AcceptApplication({
             will move {name} to proceed with payment.
           </p>
           <div className="flex gap-3 flex-col md:flex-row w-full">
-            <Button className="w-full">Yes, I approve</Button>
+            <Button className="w-full" onClick={approveHandler}>
+              {approving ? (
+                <ClipLoader size={10} color="#fff" />
+              ) : (
+                <p>Yes, I approve</p>
+              )}
+            </Button>
             <button
               className="p-2 px-5 border border-gray-200 rounded-2xl cursor-pointer w-full"
               onClick={onCancel}
@@ -74,12 +111,18 @@ export default function AcceptApplication({
                     <p>Status</p>
                     <p>{datum.status}</p>
                   </div>
+                  <div className="flex justify-between">
+                    <p>Date</p>
+                    <p>{datum.createdAt.toDateString()}</p>
+                  </div>
                 </div>
               </div>
             ))}
 
             <div className="mt-3 flex flex-col md:flex-row gap-3 justify-between">
-              <button className="action w-full">Confirm</button>
+              <button className="action w-full" onClick={approveHandler}>
+                {approving ? <ClipLoader size={10} /> : <p>Confirm</p>}
+              </button>
               <button
                 className="p-2 px-5 border-2 border-gray-200 rounded-2xl cursor-pointer w-full"
                 onClick={onCancel}
