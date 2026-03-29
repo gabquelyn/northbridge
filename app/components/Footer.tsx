@@ -76,14 +76,42 @@ export default function Footer() {
             <Link href="tel:+2347047002406">
               <div className="flex gap-3 items-center">
                 <LuPhone className="text-[#17757E]" />
-                <p>+234 - 704 - 700 - 2406</p>
+                <div>
+                  <p>+234-704-700-2406</p>
+                  <p>+1416-6441114</p>
+                </div>
               </div>
             </Link>
             <div className="flex items-center gap-3 justify-center">
-              <MdLocationPin className="text-[#17757E]" />
-              <Image src="/asset/nigeria.png" height={20} width={20} alt="" />
+              <div>
+                <MdLocationPin className="text-[#17757E]" />
+              </div>
+              <div>
+                <div className="flex gap-2 items-center">
+                  <div>
+                    <Image
+                      src="/asset/nigeria.png"
+                      height={20}
+                      width={20}
+                      alt=""
+                    />
+                  </div>
 
-              <p>Victoria Island, Lagos, Nigeria</p>
+                  <p>Victoria Island, Lagos, Nigeria.</p>
+                </div>
+                <div className="flex gap-2 items-center">
+                  <div>
+                    <Image
+                      src="/asset/flag.png"
+                      height={25}
+                      width={25}
+                      alt=""
+                    />
+                  </div>
+
+                  <p>2349 Fairview Street, Burlington, Ontario, L7R 2E3.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
