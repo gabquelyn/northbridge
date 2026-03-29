@@ -19,7 +19,7 @@ import { useProfile } from "@/app/hooks/useProfile";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const ctx = useContext(cartContext);
-  const { data, isSuccess, isError } = useRefresh();
+  const { data, isSuccess, isError, error } = useRefresh();
   const { data: profile, isSuccess: loadedProfile } = useProfile();
   const { mutate, isSuccess: loggedOut } = useLogout();
   const pathname = usePathname();
@@ -33,8 +33,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
-    if (loggedOut) router.replace("/login");
-    if (isSuccess) setAccessToken(data.accessToken);
+    if (loggedOut) {
+      console.log(error)
+      router.replace("/login");
+    }
+    if (isSuccess) {
+      setAccessToken(data.accessToken);
+    }
 
     const redirectTimeout = setTimeout(() => {
       if (isError) router.replace(`/login?from=${pathname}`);
