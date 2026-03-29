@@ -34,12 +34,16 @@ export default function CartDetails({
   const router = useRouter();
   useEffect(() => {
     if (isError) {
+      console.log(error)
       if ((error as AxiosError).response?.status == 302) {
         return router.replace("/dashboard/apply?mode=off-site");
       }
+
+      if ((error as AxiosError).response?.status == 403) {
+        return router.replace("/register?mode=off-site");
+      }
       const err = (error as AxiosError<ApiErrorMessage>).response?.data;
       toast.error(err?.message);
-      console.log(err);
     }
 
     if (isSuccess) {
@@ -100,7 +104,7 @@ export default function CartDetails({
             className={clsx("action w-full text-sm")}
             onClick={enrolHandler}
             disabled={
-              !uncompletedApplication || (ctx?.cart && ctx.cart.length > 0)
+              !uncompletedApplication && ctx?.cart && ctx.cart.length == 0
             }
           >
             {isPending ? (

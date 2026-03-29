@@ -1,31 +1,47 @@
 import { api } from "./api";
 
 export const courses = async () => {
-  const res = await api.get("/application/apply/courses");
+  const res = await api.get("/courses/apply");
   return res.data;
 };
 
 export const enrolCourses = async ({ courses }: { courses: number[] }) => {
-  const res = await api.post("/application/courses/enrol", { courses });
+  const res = await api.post("/courses/enrol", { courses });
   return res.data;
 };
 
 export const enroled = async () => {
-  const res = await api.get("/application/courses/my");
+  const res = await api.get("/courses/my");
   return res.data;
 };
 
-export const enrolProgram = async (details: {id: string, programs: string[]}) => {
+export const enrolProgram = async (details: {
+  id: string;
+  programs: string[];
+}) => {
   const res = await api.post(`/application/enrol/${details.id}`);
   return res.data;
 };
+
+export const approve = async (id: string) => {
+  const res = await api.post(`/application/approve/${id}`);
+  return res.data;
+};
+
+export const review = async (details: { id: string; reason: string }) => {
+  const res = await api.post(`/application/review/${details.id}`, {
+    reason: details.reason,
+  });
+  return res.data;
+};
+
 export const receipt = async (id: string) => {
   const res = await api.get(`/application/receipt/${id}`);
   return res.data;
 };
 
 export const categories = async () => {
-  const res = await api.get("/application/courses/categories");
+  const res = await api.get("/courses/categories");
   return res.data;
 };
 

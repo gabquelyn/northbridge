@@ -63,6 +63,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
             <Item label="Home" href="/" />
             <Item label="FAQs" href="/faq" />
             <Item label="Course Guidance" href="/course-guide" />
+            <Item label="Online Courses" href="/online-courses" />
             <Item label="Parent Prospectus" href="/prospectus" />
             <Item label="Reach out to us" href="/consultation" />
           </Section>

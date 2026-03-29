@@ -49,6 +49,10 @@ interface RegistrationDetails {
   password: string;
   name: string;
 }
+
+interface RegisterWithMode extends RegistrationDetails {
+   mode?: string | null
+}
 interface VerifyCredentials {
   id: string;
   token: string;

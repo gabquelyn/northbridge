@@ -5,36 +5,43 @@ import { useRegister, useRegisterWithGoogle } from "@/app/hooks/useAuth";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import isEmail from "@/app/utils/isEmail";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 export default function ClientComponent() {
+  const params = useSearchParams();
   const [details, setDetails] = useState<RegistrationDetails>({
     email: "",
     password: "",
     name: "",
   });
-  const router = useRouter()
+  const router = useRouter();
   const { mutate, isPending, isError, error, isSuccess } = useRegister();
-  const { mutate: googleMutate, isSuccess: gs } = useRegisterWithGoogle();
+  const {
+    mutate: googleMutate,
+    isSuccess: gs,
+    error: gsError,
+    isError: gisError,
+  } = useRegisterWithGoogle();
   const registrationHandler = () => {
     if (!isEmail(details.email)) return toast.error("Invalid Email address");
     if (!details.name) return toast.error("Enter your fullname");
     if (details.password.length < 8)
       return toast.error("Password must be a minimum of 8 character");
-    mutate(details);
+    mutate({ ...details, mode: params.get("mode") });
   };
 
   useEffect(() => {
-    if (isError) {
-      const message = (error as AxiosError<ApiErrorMessage>).response?.data
-        ?.message;
+    if (isError || gsError) {
+      const message = ((error || gsError) as AxiosError<ApiErrorMessage>)
+        .response?.data?.message;
       toast.error(message);
     }
 
-    if (isSuccess) {
+    if (isSuccess || gs) {
       toast.success("Registered successfully");
     }
-    if (gs) router.replace("/login");
-  }, [isSuccess, isError, gs]);
+
+    if (gs) router.replace(`/login?mode=${params.get("mode")}`);
+  }, [isSuccess, isError, gs, gsError, gisError]);
 
   return (
     <div>

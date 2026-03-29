@@ -7,5 +7,9 @@ export const metadata: Metadata = {
     "Sign in to manage your child's application to Northbridge Collegiate.",
 };
 export default function page() {
-  return <ClientComponent />;
+  return (
+    <React.Suspense>
+      <ClientComponent />
+    </React.Suspense>
+  );
 }

@@ -3,6 +3,7 @@ import {
   application,
   applications,
   apply,
+  approve,
   categories,
   courses,
   edit,
@@ -10,6 +11,7 @@ import {
   enroled,
   enrolProgram,
   receipt,
+  review
 } from "../lib/course";
 
 export const useCourses = () =>
@@ -85,9 +87,33 @@ export const useEnrolProgram = () => {
   });
 };
 
+export const useAdminApprove = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: approve,
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["application"],
+      });
+    },
+  });
+};
+
+export const useAdminReview = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: review,
+    // onSuccess: (_, variables) => {
+    //   queryClient.invalidateQueries({
+    //     queryKey: ["application"],
+    //   });
+    // },
+  });
+};
+
 export const useApplication = (id: string) =>
   useQuery<{ data: Application; user: { role: "user" | "admin" } }>({
-    queryKey: ["application"],
+    queryKey: ["application", id],
     queryFn: () => application(id),
     enabled: !!id,
   });
@@ -99,9 +125,11 @@ export const useReceipt = (id: string) =>
       status: string;
       amount: string;
       currency: string;
+      createdAt: Date
     }[];
   }>({
     queryKey: ["receipt"],
     queryFn: () => receipt(id),
     enabled: !!id,
   });
+

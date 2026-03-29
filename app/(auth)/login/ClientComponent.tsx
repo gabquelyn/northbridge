@@ -4,19 +4,20 @@ import LoginForm from "../components/LoginForm";
 import { useLogin, useLoginWithGoogle } from "@/app/hooks/useAuth";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function ClientComponent() {
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
+  const params = useSearchParams();
+  const mode = params.get("mode");
   const router = useRouter();
 
-  const { mutate, isPending, isError, error, isSuccess } = useLogin();
+  const { data, mutate, isPending, isError, error, isSuccess } = useLogin();
   const {
     mutate: mutateGoogle,
-    data,
     isSuccess: gs,
     isError: isGoogleError,
     error: er,
@@ -38,7 +39,7 @@ export default function ClientComponent() {
     }
 
     if (isError) {
-      console.log(error)
+      console.log(error);
       const message = (error as AxiosError<ApiErrorMessage>)?.response?.data
         ?.message;
       toast.error(message);
@@ -46,7 +47,13 @@ export default function ClientComponent() {
 
     if (isSuccess || gs) {
       toast.success("Logged in successfully");
-      router.push("/dashboard");
+      if (data?.role == "admin") {
+        return router.push("/application");
+      } else if (mode == "off-site") {
+        router.push("/dashboard/apply?mode=off-site");
+      } else {
+        router.push("/dashboard");
+      }
     }
   }, [isGoogleError, isError, isSuccess, gs]);
 

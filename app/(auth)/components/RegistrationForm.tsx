@@ -4,12 +4,9 @@ import Input from "@/app/components/Input";
 import genericInputHandler from "@/app/utils/genericInputHandler";
 import Button from "@/app/components/atoms/Button";
 import Divider from "../components/Divider";
-import { FaInfo } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 import Modal from "@/app/components/Modal";
-import Image from "next/image";
 import { GoogleLogin } from "@react-oauth/google";
-import { GiCheckMark } from "react-icons/gi";
 import Link from "next/link";
 import { motion } from "motion/react";
 import AnimatedMail from "@/app/components/AnimatedMail";
@@ -17,7 +14,7 @@ import AnimatedMail from "@/app/components/AnimatedMail";
 const inputs = [
   { name: "name", label: "Fullname" },
   { name: "email", label: "Email" },
-  { name: "password", label: "password" },
+  { name: "password", label: "Password" },
 ];
 
 export default function RegistrationForm({

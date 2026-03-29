@@ -4,7 +4,7 @@ import { useApplication } from "@/app/hooks/useAdmission";
 import { useParams } from "next/navigation";
 import React from "react";
 import { ClipLoader } from "react-spinners";
-import ApplicationDetails from "../../components/ApplicationEdit";
+import ApplicationDetails from "../../dashboard/components/ApplicationEdit";
 
 export default function page() {
   const { id } = useParams();

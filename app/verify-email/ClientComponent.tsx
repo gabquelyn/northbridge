@@ -11,7 +11,7 @@ export default function ClientComponent() {
   const router = useRouter();
 
   const { mutate, isPending, isSuccess, isError, error } = useVerify();
-
+  const mode = params.get("mode");
   useEffect(() => {
     const data = {
       id: params.get("id") || "",
@@ -24,7 +24,7 @@ export default function ClientComponent() {
   useEffect(() => {
     if (!isSuccess) return;
     const redirectTimeout = setTimeout(() => {
-      router.push("/login?verified=true");
+      router.push(`/login?verified=true&mode=${mode}`);
     }, 2500);
     return () => clearTimeout(redirectTimeout);
   }, [isSuccess]);
