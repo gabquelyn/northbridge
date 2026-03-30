@@ -5,7 +5,7 @@ import PhoneInput from "react-phone-number-input";
 import { motion } from "motion/react";
 import Option from "@/app/components/Option";
 import axios, { AxiosError } from "axios";
-import {toast} from "sonner"
+import { toast } from "sonner";
 import { useConsultation } from "@/app/hooks/useProfile";
 import { ClipLoader } from "react-spinners";
 import AnimatedChecked from "@/app/components/AnimatedChecked";
@@ -43,29 +43,12 @@ export default function ConsultationForm() {
     !value;
 
   const sendConsultation = async () => {
+    if (disableButton) return;
     mutate({
-      fullName: details.name,
-      email: details.email,
-      academicBackground: details.education,
-      pathway: details.program,
-      city: details.city,
-      country: details.country,
-      phoneNumber: value || "",
+      ...details,
+      phoneNumber: value,
     });
   };
-
-  useEffect(() => {
-    if (isError) {
-      const err = (error as AxiosError<ApiErrorMessage>).response?.data;
-      toast.error(
-        err?.error && Array.isArray(err.error)
-          ? `Incorrect fields: \n
-            ${err?.error?.map((e) => e.path).join(", ")}`
-          : err?.message,
-      );
-      console.log(err);
-    }
-  }, [isError]);
 
   return (
     <div className="flex flex-col gap-8 mx-[5%] md:mx-[27%] py-20">
@@ -148,7 +131,7 @@ export default function ConsultationForm() {
             <motion.button
               onClick={sendConsultation}
               disabled={disableButton || isPending}
-              className="bg-linear-0 from-[#479DA5] w-full md:w-fit transition-all cursor-pointer to-[#17757E] p-3 px-5 rounded-3xl text-white"
+              className="bg-linear-0 from-[#479DA5] disabled:cursor-not-allowed w-full md:w-fit transition-all cursor-pointer to-[#17757E] p-3 px-5 rounded-3xl text-white"
             >
               {isPending ? (
                 <ClipLoader color="#fff" size={15} />

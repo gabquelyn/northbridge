@@ -6,6 +6,9 @@ import StepProgress from "./StepProgress";
 import axios from "axios";
 import Input from "@/app/components/Input";
 import { FaCheckCircle } from "react-icons/fa";
+import { useConsultation } from "@/app/hooks/useProfile";
+import { ClipLoader } from "react-spinners";
+import AnimatedChecked from "@/app/components/AnimatedChecked";
 
 export default function MatureLearnersForm() {
   const steps = [
@@ -135,17 +138,6 @@ export default function MatureLearnersForm() {
   const step = steps[currentStep];
   const [details, setDetails] = useState({ email: "", name: "" });
   const isFirstRender = useRef(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  useEffect(() => {
-    const resetModalTimeout = setTimeout(() => {
-      if (isSuccess) setIsSuccess(false);
-    }, 5000);
-    return () => {
-      clearTimeout(resetModalTimeout);
-    };
-  });
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -160,6 +152,7 @@ export default function MatureLearnersForm() {
   }, [currentStep]);
 
   const handleChange = (question: string, ans: string) => {
+    console.log(question, ans);
     setAnswers((prev) => ({ ...prev, [question]: ans }));
   };
 
@@ -176,34 +169,22 @@ export default function MatureLearnersForm() {
     if (currentStep > 0) setCurrentStep((s) => s - 1);
   };
 
+  const { mutate, isPending, isSuccess, isError, error } = useConsultation();
   const handleSubmit = async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.post("/api/send-email", {
-        name: details.name,
-        email: details.email,
-        message: [
-          ...Object.keys(answers).map((p) => ({
-            question: p,
-            ans: answers.p,
-          })),
-        ],
-      });
-      setAnswers({});
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-      setIsLoading(false);
-    }
+    const data = {
+      name: details.name,
+      email: details.email,
+      ...answers,
+    };
+    mutate({ ...data });
   };
+
+  if (isError) console.log(error);
 
   return (
     <section className="py-20 px-5" ref={formTopRef}>
       {isSuccess ? (
-        <div className="title flex items-center min-h-[50vh] gap-3 justify-center">
-          <p>We have received your message</p>
-          <FaCheckCircle className="text-[#479DA5]" />
-        </div>
+        <AnimatedChecked message="We have received your message" />
       ) : (
         <>
           {/* Title */}
@@ -299,9 +280,9 @@ export default function MatureLearnersForm() {
               ) : (
                 <motion.button
                   onClick={handleSubmit}
-                  disabled={!isStepComplete || isLoading}
+                  disabled={!isStepComplete || isPending}
                 >
-                  {isLoading ? "Submitting..." : "Submit"}
+                  {isPending ? <ClipLoader size={15} /> : <p>Submit</p>}
                 </motion.button>
               )}
             </div>
