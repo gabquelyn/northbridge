@@ -4,15 +4,7 @@ export const getprofile = async () => {
   return res.data;
 };
 
-export const consultation = async (details: {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  country: string;
-  city: string;
-  academicBackground: string;
-  pathway: string;
-}) => {
+export const consultation = async (details: Record<string, string>) => {
   const res = await api.post("/consultation", {
     ...details,
   });
