@@ -120,7 +120,7 @@ export default function Application({ data }: { data: Application }) {
             Progress
           </p>
           <p className="text-sm font-medium text-slate-700">{message}</p>
-          <Link href={`/dashboard/application/${data._id}`}>
+          <Link href={`/application/${data._id}`}>
             <p className="text-primary  text-sm flex items-center cursor-pointer gap-2">
               <span>View Application</span> <IoIosArrowRoundForward />
             </p>

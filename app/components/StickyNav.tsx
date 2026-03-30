@@ -24,7 +24,6 @@ export default function NorthbridgeAcademicNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const ctx = useContext(cartContext);
-  console.log(ctx?.cart.length);
   return (
     <>
       <Suspense>
@@ -76,7 +75,7 @@ export default function NorthbridgeAcademicNav() {
             </div>
           </Link>
 
-          {/* <Link href="#">
+          <Link href="#">
             <div
               className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10"
               onClick={() => setCartOpen(true)}
@@ -84,13 +83,13 @@ export default function NorthbridgeAcademicNav() {
               <div className="relative">
                 <MdShoppingCart className="text-[#479DA5] group-hover:scale-110 transition text-2xl" />
                 {ctx?.cart && ctx?.cart.length > 0 && (
-                  <div className="absolute -top-[10%] -right-1 p-1 text-[.5rem] w-3 h-3 flex items-center justify-center bg-red-500 rounded-full">
+                  <div className="absolute text-white -top-[10%] -right-1 p-1 text-[.5rem] w-3 h-3 flex items-center justify-center bg-red-500 rounded-full">
                     {ctx?.cart.length}
                   </div>
                 )}
               </div>
             </div>
-          </Link> */}
+          </Link>
 
           {/* Menu CTA */}
           <div

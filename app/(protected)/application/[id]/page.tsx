@@ -25,7 +25,6 @@ export default function page() {
   }
 
   if (isSuccess) {
-    console.log(data)
     return (
       <ApplicationDetails
         application={data.data}

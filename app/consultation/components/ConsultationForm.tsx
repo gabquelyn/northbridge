@@ -5,7 +5,10 @@ import PhoneInput from "react-phone-number-input";
 import { motion } from "motion/react";
 import Option from "@/app/components/Option";
 import axios, { AxiosError } from "axios";
-import { FaCheckCircle } from "react-icons/fa";
+import {toast} from "sonner"
+import { useConsultation } from "@/app/hooks/useProfile";
+import { ClipLoader } from "react-spinners";
+import AnimatedChecked from "@/app/components/AnimatedChecked";
 interface FormDetails {
   name: string;
   email: string;
@@ -15,6 +18,7 @@ interface FormDetails {
   city: string;
 }
 export default function ConsultationForm() {
+  const { mutate, isSuccess, isPending, isError, error } = useConsultation();
   const [details, setDetails] = useState<FormDetails>({
     name: "",
     email: "",
@@ -23,10 +27,7 @@ export default function ConsultationForm() {
     country: "",
     city: "",
   });
-
-  const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState<string | undefined>();
-  const [isSuccess, setIsSuccess] = useState(false);
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setDetails((prev) => ({ ...prev, [name]: value }));
@@ -38,55 +39,38 @@ export default function ConsultationForm() {
     !details.education ||
     !details.program ||
     !details.country ||
-    !details.city;
+    !details.city ||
+    !value;
 
   const sendConsultation = async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.post("/api/send-email", {
-        name: details.name,
-        email: details.email,
-        message: [
-          ...Object.keys(details).map((p) => ({
-            question: p,
-            ans: details[p as keyof FormDetails],
-          })),
-        ],
-      });
-console.log(res)
-      setDetails({
-        name: "",
-        email: "",
-        education: "",
-        program: "",
-        country: "",
-        city: "",
-      });
-      setValue(undefined);
-      setIsSuccess(true);
-      setIsLoading(false);
-    } catch (err) {
-      console.log((err as AxiosError).response?.data);
-      setIsLoading(false);
-    }
+    mutate({
+      fullName: details.name,
+      email: details.email,
+      academicBackground: details.education,
+      pathway: details.program,
+      city: details.city,
+      country: details.country,
+      phoneNumber: value || "",
+    });
   };
 
   useEffect(() => {
-    const resetModalTimeout = setTimeout(() => {
-      if (isSuccess) setIsSuccess(false);
-    }, 5000);
-    return () => {
-      clearTimeout(resetModalTimeout);
-    };
-  });
+    if (isError) {
+      const err = (error as AxiosError<ApiErrorMessage>).response?.data;
+      toast.error(
+        err?.error && Array.isArray(err.error)
+          ? `Incorrect fields: \n
+            ${err?.error?.map((e) => e.path).join(", ")}`
+          : err?.message,
+      );
+      console.log(err);
+    }
+  }, [isError]);
 
   return (
     <div className="flex flex-col gap-8 mx-[5%] md:mx-[27%] py-20">
       {isSuccess ? (
-        <div className="title flex items-center min-h-[50vh] gap-3 justify-center">
-          <p>We have received your message</p>
-          <FaCheckCircle className="text-[#479DA5]" />
-        </div>
+        <AnimatedChecked message="We have received your message" />
       ) : (
         <>
           <div className="flex flex-col gap-2">
@@ -163,10 +147,14 @@ console.log(res)
           <div className="flex justify-center md:justify-end ">
             <motion.button
               onClick={sendConsultation}
-              disabled={disableButton || isLoading}
+              disabled={disableButton || isPending}
               className="bg-linear-0 from-[#479DA5] w-full md:w-fit transition-all cursor-pointer to-[#17757E] p-3 px-5 rounded-3xl text-white"
             >
-              {isLoading ? "Submitting..." : "Submit"}
+              {isPending ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                <p>Submit</p>
+              )}
             </motion.button>
           </div>
         </>

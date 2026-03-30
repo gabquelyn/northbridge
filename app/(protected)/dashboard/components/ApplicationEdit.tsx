@@ -157,12 +157,18 @@ export default function ApplicationEdit({
               (/File too large/i.test(err?.error as string) &&
                 "Selected files must be below or 5mb"),
       );
-      console.log(err);
+      console.log(error);
     }
 
     if (failedToEnrol) {
       const err = (reason as AxiosError<ApiErrorMessage>).response?.data;
-      toast.error(err?.message);
+      console.log(reason);
+      toast.error(
+        err?.error && Array.isArray(err.error)
+          ? `Incorrect fields: \n
+      ${err?.error?.map((e) => e.path).join(", ")}`
+          : err?.message,
+      );
     }
 
     if (enrolCheckedOut) {
@@ -184,7 +190,7 @@ export default function ApplicationEdit({
           }
         } else {
           if (isAdmin) {
-           return router.push('/application')
+            return router.push("/application");
           }
           router.push("/dashboard");
         }
