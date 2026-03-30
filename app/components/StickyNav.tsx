@@ -12,6 +12,7 @@ import SlideIn from "./SlideIn";
 import { cartContext } from "../providers/cartContextProvider";
 import { MdShoppingCart } from "react-icons/md";
 import CartDrawer from "./CartDrawer";
+import { FaBook } from "react-icons/fa";
 
 export default function NorthbridgeAcademicNav() {
   const [open, setOpen] = useState(false);
@@ -52,9 +53,16 @@ export default function NorthbridgeAcademicNav() {
 
         {/* Right: Actions */}
         <div className="flex items-center divide-x divide-white/20">
-          <Link href="https://study.northbridgec.ca/login/">
+          <Link href="/login">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
               <MdOutlinePerson className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
+              <span className="font-semibold tracking-wide">My Account</span>
+            </div>
+          </Link>
+
+          <Link href="https://study.northbridgec.ca/login/">
+            <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
+              <FaBook className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
               <span className="font-semibold tracking-wide">Study</span>
             </div>
           </Link>
