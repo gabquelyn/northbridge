@@ -12,8 +12,7 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
   const [category, setCategory] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const router = useRouter()
-
+  const router = useRouter();
 
   const filteredData = useMemo(() => {
     return data.filter(
@@ -72,6 +71,9 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
               <th className="text-left py-3 px-4 font-medium">
                 Payment status
               </th>
+              <th className="text-left py-3 px-4 font-medium">
+                Admission status
+              </th>
             </tr>
           </thead>
 
@@ -86,7 +88,7 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
                   <div className="flex items-center gap-3">
                     <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200">
                       <Image
-                        src={datum.profile.documents.passport[0].url}
+                        src={datum.profile.documents?.passport[0]?.url}
                         fill
                         className="object-cover"
                         alt="student"
@@ -126,6 +128,17 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
                     }`}
                   >
                     {datum.paid ? "Paid" : "Unpaid"}
+                  </span>
+                </td>
+                <td className="py-4 px-4 border-b border-b-gray-100">
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      datum.granted
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-600"
+                    }`}
+                  >
+                    {datum.granted ? "Admission granted" : "Pending approval"}
                   </span>
                 </td>
               </tr>

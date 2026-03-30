@@ -75,7 +75,7 @@ function Citizenship({
           <p>{ques.label}</p>
           <div className="flex flex-wrap gap-3 mt-1">
             {ques.options.map((item) => (
-              <label className="flex items-center gap-1 cursor-pointer">
+              <label className="flex items-center gap-1 cursor-pointer" key ={item}>
                 <input
                   name={ques.name}
                   type="radio"

@@ -8,6 +8,7 @@ import { ClipLoader } from "react-spinners";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import AnimatedChecked from "@/app/components/AnimatedChecked";
+import Receipt from "./Receipt";
 export default function AcceptApplication({
   mode,
   name,
@@ -85,39 +86,19 @@ export default function AcceptApplication({
         ) : data?.data.length == 0 ? (
           <AnimatedCancel message="Payment invoice not found" />
         ) : (
-          <div>
-            {data?.data.map((datum) => (
-              <div
-                className="overflow-hidden shadow rounded-2xl w-full"
-                key={datum.reference}
-              >
-                <div className="p-4 w-full text-center text-gray-100 font-semibold text-xl bg-primary">
-                  {datum.amount}
-                </div>
-                <div className="text-secondary p-4">
-                  <div className="flex justify-between">
-                    <p>Ref.</p>
-                    <p>{datum.reference}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Amount</p>
-                    <p>{+datum.amount / 100}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Currency</p>
-                    <p>{datum.currency}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Status</p>
-                    <p>{datum.status}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Date</p>
-                    <p>{datum.createdAt.toDateString()}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="w-full space-y-4">
+            <div className="max-h-70 overflow-y-auto space-y-3">
+              {data?.data.map((datum) => (
+                <Receipt
+                  key={datum.reference}
+                  reference={datum.reference}
+                  status={datum.status}
+                  currency={datum.currency}
+                  amount={+datum.amount}
+                  createdAt={datum.createdAt}
+                />
+              ))}
+            </div>
 
             <div className="mt-3 flex flex-col md:flex-row gap-3 justify-between">
               <button className="action w-full" onClick={approveHandler}>

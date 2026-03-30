@@ -19,7 +19,7 @@ export const enrolProgram = async (details: {
   id: string;
   programs: string[];
 }) => {
-  const res = await api.post(`/application/enrol/${details.id}`);
+  const res = await api.post(`/application/enrol/${details.id}`, {programs: details.programs});
   return res.data;
 };
 

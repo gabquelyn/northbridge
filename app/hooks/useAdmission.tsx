@@ -44,7 +44,7 @@ export const useApply = () => {
     mutationFn: apply,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application"],
+        queryKey: ["applications"],
       });
     },
   });
@@ -56,7 +56,7 @@ export const useEnrolCourses = () => {
     mutationFn: enrolCourses,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application"],
+        queryKey: ["applications"],
       });
     },
   });
@@ -69,7 +69,7 @@ export const useApplicationEdit = () => {
     mutationFn: edit,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application", "mycourses"],
+        queryKey: ["applications", "mycourses"],
       });
     },
   });
@@ -81,7 +81,7 @@ export const useEnrolProgram = () => {
     mutationFn: enrolProgram,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application"],
+        queryKey: ["applications"],
       });
     },
   });
@@ -93,7 +93,7 @@ export const useAdminApprove = () => {
     mutationFn: approve,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application"],
+        queryKey: ["applications"],
       });
     },
   });
@@ -125,7 +125,7 @@ export const useReceipt = (id: string) =>
       status: string;
       amount: string;
       currency: string;
-      createdAt: Date
+      createdAt: string
     }[];
   }>({
     queryKey: ["receipt"],
