@@ -98,7 +98,7 @@ function Mailing({
           value={unit}
           type="text"
           onChange={onChange}
-          label={"Unit"}
+          label={"Unit (Optional)"}
           readOnly={disableEdit}
         />
         <div className="md:col-span-2">
