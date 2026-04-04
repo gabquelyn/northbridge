@@ -138,12 +138,11 @@ export default function ApplicationForm({
     }
 
     if (step == 2) {
-      const { unit, street } = details;
+      const { street } = details;
       if (
         !location?.country ||
         !location?.state ||
         !location?.city ||
-        !unit ||
         !street
       ) {
         setNextDisabled(true);
