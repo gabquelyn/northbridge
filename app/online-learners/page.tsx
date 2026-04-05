@@ -1,8 +1,6 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import Hero from "../components/atoms/Hero";
 import OnlinePrograms from "./components/OnlinePrograms";
-import For from "./components/For";
+// import For from "./components/For";
 import Learners from "./components/Learners";
 import Pathway from "./components/Pathway";
 import Footer from "../components/Footer";
@@ -12,7 +10,7 @@ import StickyHero from "../components/atoms/StickyHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Transitional Learners | Preparing Students for Canadian Education",
+  title: "Direct Entry Pathway | Preparing Students for Canadian Education",
 
   description:
     "Support for transitional learners entering the Canadian system, focusing on academic alignment, readiness, and confidence before university.",
