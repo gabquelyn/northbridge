@@ -2,10 +2,11 @@
 import React, { useState, useCallback } from "react";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
-import Link from "next/link";
 import clsx from "clsx";
 import { TbDownload } from "react-icons/tb";
 import FilePreview from "../FilePreview";
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 export default function Upload({
   fileChangeHandler,
   name,
@@ -118,17 +119,43 @@ export default function Upload({
         )}
 
         {/* File List */}
-        {files && (
-          <div className="flex items-center gap-2 bg-white border border-gray-100 rounded-xl px-3 py-2 shadow-sm">
-            {/* Check icon */}
-            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-primary/10">
-              <span className="text-primary text-sm">✓</span>
-            </div>
+        {/* File List */}
+        {files && files.length > 0 && (
+          <div className="mt-3 w-full space-y-2">
+            {files.map((file, idx) => (
+              <div
+                key={`${file.name}-${idx}`}
+                className="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-3 py-2 shadow-sm"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  {/* Details */}
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-gray-800 truncate">
+                      {file.name}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {(file.size / 1024 / 1024).toFixed(2)} MB •{" "}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Text */}
-            <p className="text-sm text-gray-700 font-medium">
-              {files.length} file{files.length > 1 ? "s" : ""} selected
-            </p>
+                {/* Actions */}
+                <div className="flex items-center gap-2">
+                  {/* Remove button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const next = files.filter((_, i) => i !== idx)
+                      fileChangeHandler(next, name);
+                    }}
+                    className="text-xs px-2 py-1 rounded-lg border hover:bg-gray-50"
+                  >
+                    <RiDeleteBin5Line/>
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

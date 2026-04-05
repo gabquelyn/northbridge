@@ -7,7 +7,6 @@ import Blog from "./components/Blog";
 import NorthbridgeAcademicNav from "./components/StickyNav";
 import StickyHero from "./components/atoms/StickyHero";
 
-
 export const metadata = {
   title:
     "Northbridge Collegiate | Canadian University-Prep High School in Lagos, Nigeria",
@@ -37,9 +36,9 @@ export default function Home() {
         programs
         description={
           <p>
-            Northbridge Collegiate is a Canadian high school delivering Ontario
-            curriculum-based secondary education, preparing students for success
-            across borders and beyond.
+            Northbridge Collegiate is a Canadian university preparatory
+            institute delivering Ontario curriculum-based secondary education,
+            preparing students for success across borders and beyond
           </p>
         }
       />

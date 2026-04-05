@@ -43,7 +43,7 @@ export default function OnlineLearners() {
         image="bg-[url('/asset/center.jpg')]"
       />
       <OnlinePrograms />
-      <For />
+      {/* <For /> */}
       <Learners />
       <Pathway />
       <MatureLearnersForm />

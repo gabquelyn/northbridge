@@ -38,7 +38,7 @@ export default function DistinctPathwayBg() {
 
         {/* Description */}
         <p className="text-gray-700">
-          Programs for mature learners are delivered online to provide flexibility
+          Programs for transitional learners are delivered online to provide flexibility
           while maintaining academic discipline. Learners benefit from structured
           coursework, clear expectations, and ongoing academic support—without the
           constraints of an on-site school schedule.

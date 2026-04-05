@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
 import Input from "../Input";
+import DateManager from "./DateManager"
 const inputs = [
-  {
-    name: "dob",
-    label: "Date of birth",
-    placeholder: "",
-  },
   {
     name: "currentSchool",
     label: "Current School",
@@ -16,11 +12,6 @@ const inputs = [
     name: "homeSchool",
     label: "Home School",
     placeholder: "Kate",
-  },
-  {
-    name: "secondaryEntry",
-    label: "Date of Entry in Secondary",
-    placeholder: "",
   },
   {
     name: "qualification",
@@ -67,14 +58,19 @@ type AcademicFormData = Pick<
 function AcademicInformation({
   data,
   onChange,
-   disableEdit
+  disableEdit,
+  onDateChange
 }: {
   data: AcademicFormData;
   onChange: inputHandler;
-  disableEdit?: boolean
+  disableEdit?: boolean;
+  onDateChange: (name: string, value: string) => void
 }) {
+  
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+      <DateManager label="Date of birth" name = "dob" value ={data.dob} onDateChange={onDateChange}/>
+      <DateManager label="Date of Entry in Secondary" name = "secondaryEntry" value ={data.secondaryEntry} onDateChange={onDateChange}/>
       {inputs.map((input) => (
         <Input
           key={input.name}
@@ -95,7 +91,10 @@ function AcademicInformation({
           <p>{ques.label}</p>
           <div className="flex flex-wrap gap-3 mt-1">
             {ques.options.map((item) => (
-              <label className="flex items-center gap-1 cursor-pointer" key ={item}>
+              <label
+                className="flex items-center gap-1 cursor-pointer"
+                key={item}
+              >
                 <input
                   name={ques.name}
                   type="radio"
@@ -114,4 +113,4 @@ function AcademicInformation({
   );
 }
 
-export default React.memo(AcademicInformation)
+export default React.memo(AcademicInformation);
