@@ -55,7 +55,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
             <Item label="Grade 11 OSSD" href="/grade11" />
             <Item label="Grade 12 OSSD" href="/grade12" />
             <Item label="Grade 12 Advantage Year (AY12)" href="/ay12" />
-            <Item label="Transitional Learners" href="/online-learners" />
+            <Item label="Direct Entry Pathway" href="/online-learners" />
           </Section>
 
           <Section title="Admissions & Resources">
@@ -65,7 +65,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
             <Item label="Register" href="/register" />
             <Item label="My account" href="/login" />
             <Item label="Course Guidance" href="/course-guide" />
-            <Item label="Direct Entry Pathway" href="/online-courses" />
+            <Item label="Online Courses" href="/online-courses" />
             <Item label="Parent Prospectus" href="/prospectus" />
             <Item label="Reach out to us" href="/consultation" />
           </Section>
