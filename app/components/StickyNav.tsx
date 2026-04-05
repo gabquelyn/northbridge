@@ -7,18 +7,18 @@ import { FaQuestion } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import { MdOutlinePerson } from "react-icons/md";
 import SlideIn from "./SlideIn";
 import { cartContext } from "../providers/cartContextProvider";
 import { MdShoppingCart } from "react-icons/md";
 import CartDrawer from "./CartDrawer";
 import { FaBook } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 export default function NorthbridgeAcademicNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-
+  const pathname = usePathname();
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 500);
     window.addEventListener("scroll", handleScroll);
@@ -53,13 +53,6 @@ export default function NorthbridgeAcademicNav() {
 
         {/* Right: Actions */}
         <div className="flex items-center divide-x divide-white/20">
-          <Link href="/login">
-            <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
-              <MdOutlinePerson className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
-              <span className="font-semibold tracking-wide">My Account</span>
-            </div>
-          </Link>
-
           <Link href="https://study.northbridgec.ca/login/">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
               <FaBook className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
@@ -83,7 +76,7 @@ export default function NorthbridgeAcademicNav() {
             </div>
           </Link>
 
-          <Link href="#">
+        { pathname == "/online-courses" && <Link href="#">
             <div
               className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10"
               onClick={() => setCartOpen(true)}
@@ -97,7 +90,7 @@ export default function NorthbridgeAcademicNav() {
                 )}
               </div>
             </div>
-          </Link>
+          </Link>}
 
           {/* Menu CTA */}
           <div

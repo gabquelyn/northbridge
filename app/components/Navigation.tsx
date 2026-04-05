@@ -45,7 +45,7 @@ export default function Navigation() {
       ],
     },
 
-    { label: "Transitional learners", href: "/online-learners" },
+    { label: "Direct Entry Pathway", href: "/online-learners" },
     { label: "FAQ", href: "/faq" },
   ];
 

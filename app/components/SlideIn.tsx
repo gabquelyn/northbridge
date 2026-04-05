@@ -59,13 +59,13 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
           </Section>
 
           <Section title="Admissions & Resources">
-            <Item label="Study" href="https://study.northbridgec.ca/login/" />
-            <Item label="My account" href="/login" />
-            <Item label="Register" href="/register" />
-            <Item label="Home" href="/" />
             <Item label="FAQs" href="/faq" />
+            <Item label="Home" href="/" />
+            <Item label="Study" href="https://study.northbridgec.ca/login/" />
+            <Item label="Register" href="/register" />
+            <Item label="My account" href="/login" />
             <Item label="Course Guidance" href="/course-guide" />
-            <Item label="Online Courses" href="/online-courses" />
+            <Item label="Direct Entry Pathway" href="/online-courses" />
             <Item label="Parent Prospectus" href="/prospectus" />
             <Item label="Reach out to us" href="/consultation" />
           </Section>
@@ -73,7 +73,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* ================= Footer ================= */}
-      <div className="flex-shrink-0 border-t border-slate-200 bg-white px-10 py-6">
+      <div className="shrink-0 border-t border-slate-200 bg-white px-10 py-6">
         <div className="mx-auto flex max-w-7xl justify-between text-xs uppercase tracking-widest text-slate-500">
           <span>© {new Date().getFullYear()} Northbridge Collegiate</span>
           <span>Raising Global Leaders</span>

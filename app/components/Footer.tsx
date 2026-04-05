@@ -22,8 +22,7 @@ export default function Footer() {
             </Link>
           </div>
           <p className=" leading-relaxed">
-            Northbridge Collegiate is a private secondary school authorized by
-            the Ontario Ministry of Education.
+            Northbridge Collegiate is a Canadian university preparatory institute providing senior secondary and pre-university education, operating under authorization from the Ontario Ministry of Education.
           </p>
           <div className="flex gap-6 items-center">
             <Link
@@ -57,6 +56,7 @@ export default function Footer() {
             <Link href="/right-program">Which program is right for me?</Link>
             <Link href="https://study.northbridgec.ca/login/">Study</Link>
             <Link href="/about">About Northbridge Collegiate</Link>
+            <Link href="/online-learners">Direct Entry Pathway</Link>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ export default function Footer() {
                 <LuPhone className="text-[#17757E]" />
                 <div>
                   <p>+234-704-700-2406</p>
-                  <p>+1416-6441114</p>
+                  <p>+1 416-644-1114</p>
                 </div>
               </div>
             </Link>

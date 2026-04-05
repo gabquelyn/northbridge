@@ -91,7 +91,7 @@ export default function AboutPreview() {
               <motion.button
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.97 }}
-                
+                className="text-primary"
               >
                 Learn More
               </motion.button>

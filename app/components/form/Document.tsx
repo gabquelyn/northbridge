@@ -53,6 +53,7 @@ function Document({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
       {uploads.map((upload) => (
         <Upload
+        key={upload.name}
           multiple={upload.multiple}
           name={upload.name}
           description={upload.description}

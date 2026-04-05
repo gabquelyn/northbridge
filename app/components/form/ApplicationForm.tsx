@@ -191,7 +191,11 @@ export default function ApplicationForm({
     }
 
     if (step == 5) {
-      if (!documents?.passport || !documents?.transcripts || !documents.govId) {
+      if (
+        documents?.passport?.length == 0 ||
+        documents?.transcripts?.length == 0 ||
+        documents?.govId?.length ==0
+      ) {
         setNextDisabled(true);
       } else {
         setNextDisabled(false);
@@ -297,6 +301,9 @@ export default function ApplicationForm({
               data={academicInformationData}
               onChange={onChange}
               disableEdit={disableEdit}
+              onDateChange={(name, value) =>
+                setDetails((prev) => ({ ...prev, [name]: value }))
+              }
             />
             <Citizenship
               data={details}
@@ -387,6 +394,9 @@ export default function ApplicationForm({
               <AcademicInformation
                 data={academicInformationData}
                 onChange={onChange}
+                onDateChange={(name, value) =>
+                  setDetails((prev) => ({ ...prev, [name]: value }))
+                }
               />
             ) : step == 4 ? (
               <Citizenship

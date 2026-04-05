@@ -1,108 +1,123 @@
 "use client";
-import { HiArrowTrendingUp, HiAcademicCap } from "react-icons/hi2";
 import { motion } from "motion/react";
 import React from "react";
-import ProgramCard from "@/app/components/ProgramCard";
+import { HiAcademicCap, HiArrowTrendingUp } from "react-icons/hi2";
+
 export default function Learners() {
-  const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
-  const [activeCard, setActiveCard] = React.useState<number | null>(null);
-
-  const cards = [
-    {
-      title: "Canadian Academic Alignment Program (CAAP)",
-      desc: "Don't repeat a year—align it. CAAP recognizes your prior learning to fast-track your success in Canadian education.",
-      image: "/asset/grop.jpg",
-      cta: "/caap",
-    },
-    {
-      title: "Grade 12",
-      desc: "30+ Grade 12 Courses Choose from a wide variety of Ontario-standard curriculum options tailored to your interests.",
-
-      image: "/asset/afro.jpg",
-      cta: "/grade12",
-    },
-  ];
-
   return (
-    <section className="py-10 flex flex-col gap-3 items-center justify-center">
-      <p className="title text-center">
-        <span className="text-[#479DA5]">What Adult</span>
-        <br />
-        Learners can Access
-      </p>
-      <p className="w-80 md:w-150 text-center">
-        Mature learners at Northbridge engage in online programs that provide
-        structure, academic oversight, and preparation aligned with future study
-        goals.
-      </p>
-      <div className="w-full mt-4">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-12 items-center px-10 justify-center">
-          {/* Left Program */}
-          <div className="flex justify-center lg:justify-end">
-            <ProgramCard
-              onMouseEnter={() => setHoveredCard(0)}
-              onMouseLeave={() => setHoveredCard(null)}
-              onClick={() => setActiveCard(activeCard === 0 ? null : 0)}
-              isVisible={hoveredCard === 0 || activeCard === 0}
-              card={cards[0]}
-            />
-          </div>
+    <section className="py-24 px-6 md:px-16 bg-white flex justify-center">
+      <div className="max-w-4xl w-full flex flex-col gap-16">
 
-          {/* Divider */}
-          <motion.div
-            initial={{ opacity: 0, scaleY: 0 }}
-            whileInView={{ opacity: 1, scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="hidden lg:flex flex-col items-center justify-center gap-6"
-          >
-            {/* Top line */}
-            <div className="h-20 w-px bg-linear-to-b from-transparent via-gray-300 to-gray-300" />
+        {/* HEADER */}
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-0.5 w-16 bg-primary" />
 
-            {/* Core content */}
-            <div className="flex flex-col items-center gap-4 rounded-2xl bg-white px-6 py-5 shadow-sm border border-gray-100 text-center max-w-[220px]">
-              <div className="flex items-center justify-center h-10 w-10 rounded-full bg-[#479DA5]/10">
-                <HiArrowTrendingUp className="h-5 w-5 text-[#479DA5]" />
-              </div>
+          <p className="text-xs tracking-[0.25em] uppercase text-gray-500">
+            Direct Entry Pathway (DEP)
+          </p>
 
-              <p className="text-sm font-semibold text-gray-900">
-                Academic Upgrading
-              </p>
+          <h2 className="text-4xl md:text-5xl font-semibold mt-4 leading-tight">
+            A Seamless Transition into
+            <br />
+            <span className="text-primary">
+              Leading Canadian Institutions
+            </span>
+          </h2>
 
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Subject reinforcement and structured academic preparation
-              </p>
-
-              <div className="h-px w-full bg-gray-100" />
-
-              <div className="flex items-center justify-center h-10 w-10 rounded-full bg-[#479DA5]/10">
-                <HiAcademicCap className="h-5 w-5 text-[#479DA5]" />
-              </div>
-
-              <p className="text-sm font-semibold text-gray-900">
-                Ontario Curriculum
-              </p>
-
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Online, credit-based courses where appropriate
-              </p>
-            </div>
-
-            {/* Bottom line */}
-            <div className="h-20 w-px bg-linear-to-t from-transparent via-gray-300 to-gray-300" />
-          </motion.div>
-
-          {/* Right Program */}
-          <div className="flex justify-center lg:justify-start">
-            <ProgramCard
-              onMouseEnter={() => setHoveredCard(1)}
-              onMouseLeave={() => setHoveredCard(null)}
-              onClick={() => setActiveCard(activeCard === 1 ? null : 1)}
-              isVisible={hoveredCard === 1 || activeCard === 1}
-              card={cards[1]}
-            />
-          </div>
+          <p className="mt-6 text-gray-600 max-w-xl mx-auto text-base leading-relaxed">
+            Northbridge is not simply a high school—it is a pathway institution
+            designed to align secondary education with university expectations.
+          </p>
         </div>
+
+        {/* TIMELINE FLOW */}
+        <div className="relative flex flex-col gap-14">
+
+          {/* vertical line */}
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-gray-100 hidden md:block" />
+
+          {/* SECTION */}
+          {[
+            {
+              title: "University Transition",
+              icon: <HiAcademicCap />,
+              desc: "Our Foundation Program aligns with Canadian university expectations.",
+              points: [
+                "Defined pathways with partner universities",
+                "University preparation courses",
+                "Alignment with entry standards",
+              ],
+            },
+            {
+              title: "Who This Is For",
+              icon: null,
+              desc: "",
+              points: [
+                "Students completing SSCE / NECO / GCSE",
+                "Students planning university education in Canada",
+              ],
+            },
+            {
+              title: "The Northbridge Advantage",
+              icon: <HiArrowTrendingUp />,
+              desc: "",
+              points: [
+                "Ontario curriculum recognized across Canada",
+                "Personalized academic advising",
+                "Structured and guided admission pathway",
+              ],
+            },
+            {
+              title: "A Clear Pathway Forward",
+              icon: null,
+              desc: "",
+              points: [
+                "Study permit & immigration guidance",
+                "Academic & application planning",
+                "Scholarship advisory support",
+                "Pastoral care throughout the journey",
+              ],
+            },
+          ].map((section, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="relative flex gap-6"
+            >
+              {/* Timeline dot */}
+              <div className="hidden md:flex items-start">
+                <div className="mt-2 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  {section.icon || <div className="w-2 h-2 bg-primary rounded-full" />}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {section.title}
+                </h3>
+
+                {section.desc && (
+                  <p className=" text-gray-600 mt-2">
+                    {section.desc}
+                  </p>
+                )}
+
+                <ul className="mt-4 space-y-2  text-gray-700">
+                  {section.points.map((point, idx) => (
+                    <li key={idx} className="flex gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
