@@ -27,7 +27,7 @@ export default function Modal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.3)]">
       <div
-        className="flex bg-white p-7 rounded-2xl flex-col gap-5 max-w-xl min-w-lg"
+        className="flex bg-white p-7 rounded-2xl flex-col gap-5 w-sm md:w-lg "
         ref={modalRef}
       >
         {children}
