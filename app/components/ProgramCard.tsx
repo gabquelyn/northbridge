@@ -43,11 +43,11 @@ export default function ProgramCard({
 
       {/* Always-visible title */}
       <div className="absolute inset-0 z-10 flex items-end p-5 bg-linear-to-t from-black/80 via-black/20 to-transparent">
-        <div className="text-white font-semibold leading-snug flex items-center w-full justify-between">
-          <p>{card.title}</p>
-          <p className="flex items-center justify-center h-10 w-10 rounded-full bg-[#479DA5]/20">
+        <div className="text-white font-semibold leading-snug flex items-center w-full gap-2 justify-between">
+          <div className="text-[.9rem]">{card.title}</div>
+          <div className="flex  shrink-0 items-center justify-center h-10 w-10 rounded-full bg-[#479DA5]/20">
             <GoArrowDownRight />
-          </p>
+          </div>
         </div>
       </div>
 
