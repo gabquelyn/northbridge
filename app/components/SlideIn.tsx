@@ -41,10 +41,13 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
       <div className="flex-1 overflow-y-auto px-10 py-14">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 md:grid-cols-3">
           <Section title="About Northbridge">
+            <Item label="Home" href="/" />
             <Item label="Who we are" href="/about" />
             <Item label="Program Overview" href="/right-program" />
             <Item label="Our Approach to Learning" href="/northbridge-model" />
             <Item label="Guidance Centre" href="/guidance" />
+            <Item label="Reach out to us" href="/consultation" />
+            <Item label="FAQs" href="/faq" />
           </Section>
 
           <Section title="Academic Programs">
@@ -59,15 +62,12 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
           </Section>
 
           <Section title="Admissions & Resources">
-            <Item label="FAQs" href="/faq" />
-            <Item label="Home" href="/" />
             <Item label="Study" href="https://study.northbridgec.ca/login/" />
             <Item label="Register" href="/register" />
             <Item label="My account" href="/login" />
             <Item label="Course Guidance" href="/course-guide" />
             <Item label="Online Courses" href="/online-courses" />
             <Item label="Parent Prospectus" href="/prospectus" />
-            <Item label="Reach out to us" href="/consultation" />
           </Section>
         </div>
       </div>
