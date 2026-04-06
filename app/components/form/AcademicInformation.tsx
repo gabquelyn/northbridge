@@ -29,7 +29,7 @@ const radioInput = [
       "STEM",
       "Business",
       "Life Science",
-      "Socail science",
+      "Social science",
       "Humanities/Law",
     ],
   },
