@@ -19,7 +19,7 @@ export default function ProgramCard({
 }) {
   return (
     <motion.div
-      className="relative h-110 w-76 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
+      className="relative h-90 w-60 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}

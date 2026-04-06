@@ -189,8 +189,8 @@ export default function MatureLearnersForm() {
         <>
           {/* Title */}
           <p className="title text-center">
-            <span className="text-[#479DA5]">Mature & Online</span>
-            <br /> Learners Inquiry Form
+            <span className="text-[#479DA5]">Transitional Learners</span>
+            <br /> Inquiry Form
           </p>
           <p className="max-w-120 text-center mx-auto text-gray-600">
             This form helps us understand your academic background and guide you
