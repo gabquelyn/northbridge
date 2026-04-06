@@ -35,6 +35,12 @@ export default function Program() {
       image: "/asset/boy.jpg",
       cta: "/ay12",
     },
+    {
+      title: "Direct Entry Pathway",
+      desc: "Designed for those who have completed secondary school and are preparing for university, repositioning academically, or planning their next step more deliberately.",
+      image: "/asset/company.jpeg",
+      cta: "/online-learners",
+    },
   ];
 
   return (
