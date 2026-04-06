@@ -41,7 +41,7 @@ interface LoginCredentials {
 
 type FileHandlerFn = (e: File[], name: string) => void;
 type OnDropCallback = (acceptedFiles: File[]) => void;
-type Programs = "CAAP" | "GRADE11" | "GRADE12" | "AY12";
+type Programs = "CAAP" | "GRADE11" | "GRADE12" | "AY12" | "DIRECT";
 type Fn = () => void;
 
 interface RegistrationDetails {

@@ -3,6 +3,7 @@ import React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { ClipLoader } from "react-spinners";
+import moment from "moment";
 
 function Programs({
   data,
@@ -29,6 +30,7 @@ function Programs({
         "Don't repeat a year—align it. CAAP recognizes your prior learning to fast-track your success in Canadian education.",
       value: "CAAP",
     },
+
     {
       image: "/asset/grade11.png",
       name: "Grade 11 OSSD",
@@ -44,6 +46,13 @@ function Programs({
       value: "GRADE12",
     },
     {
+      image: "/asset/cup.png",
+      name: "Direct Entry",
+      description:
+        "Designed for transitional learners who have completed WAEC or GSCE and are ready to continue their education in Canada",
+      value: "DIRECT",
+    },
+    {
       image: "/asset/ay12.png",
       name: "Advantage Year 12 (AY12) + Grade 12",
       description:
@@ -51,7 +60,9 @@ function Programs({
       value: "AY12",
     },
   ];
-
+  const now = moment();
+  const current = now.format("MM-DD");
+  const isWithinRange = current >= "11-01" && current <= "12-15";
   return (
     <div>
       {!canadian && (
@@ -66,7 +77,7 @@ function Programs({
           const isLocked =
             (!canadian && program.value === "CAAP") ||
             (disableEdit && applied?.includes(program.value as Programs));
-          const isDisabled = false;
+          const isDisabled = program.value === "AY12" && !isWithinRange;
 
           return (
             <label
@@ -112,7 +123,6 @@ function Programs({
                   className="hidden"
                   onChange={(e) => {
                     if (isDisabled) return;
-
                     // ❌ prevent CAAP removal
                     if (isLocked && !e.target.checked) return;
 
@@ -128,11 +138,11 @@ function Programs({
                 )}
 
                 {/* Required badge */}
-                {/* {isLocked && (
+                {isDisabled && (
                   <div className="absolute top-2 right-2 text-[10px] text-primary bg-white px-2 py-0.5 rounded-full border">
-                    Required
+                    Next Application Cycle Nov. 1 - Dec. 15
                   </div>
-                )} */}
+                )}
 
                 <div className="flex flex-col gap-2 items-center text-center">
                   <Image
@@ -172,7 +182,11 @@ function Programs({
       {disableEdit && (
         <div className="flex justify-center mt-5">
           <button className="action w-full md:w-sm" onClick={enrol}>
-            {enrolling ? <ClipLoader size = {15} color = "#479da5"/> : <p>Enrol</p>}
+            {enrolling ? (
+              <ClipLoader size={15} color="#479da5" />
+            ) : (
+              <p>Enrol</p>
+            )}
           </button>
         </div>
       )}
