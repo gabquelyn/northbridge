@@ -24,19 +24,19 @@ function CanadianSelection({
           <p className="font-semibold md:text-2xl text-center text-gray-900">
             A Canadian or Non-Canadian student?
           </p>
-          <p className="w-md text-center text-secondary leading-relaxed">
+          <p className="md:w-md text-center text-secondary leading-relaxed">
             This determines the curriculum track, CAAP requirements, and
             available course options for your child.
           </p>
         </div>
       )}
 
-      <div className="my-5 flex flex-col md:flex-row gap-5 w-full">
+     <div className="my-5 flex flex-col md:flex-row gap-5 w-full">
         {[
           {
             name: "Canadian",
             image: "/asset/flag.png",
-            tag: "Citizen or permanent resident",
+            tag: "Student with prior Canadian education",
             value: "true",
           },
           {
@@ -132,7 +132,9 @@ function CanadianSelection({
             </label>
           );
         })}
-      </div>
+      </div> 
+      
+  
 
       {/* Info box */}
       <div

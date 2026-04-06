@@ -192,9 +192,12 @@ export default function ApplicationForm({
 
     if (step == 5) {
       if (
+        !documents?.passport ||
         documents?.passport?.length == 0 ||
+        !documents?.transcripts ||
         documents?.transcripts?.length == 0 ||
-        documents?.govId?.length ==0
+        !documents?.govId ||
+        documents?.govId?.length == 0
       ) {
         setNextDisabled(true);
       } else {
@@ -260,10 +263,10 @@ export default function ApplicationForm({
   }
 
   return (
-    <section className="flex bg-[#f2f2f2] items-center justify-center">
-      <div>
+    <section className="bg-[#f2f2f2] ">
+      <div className="flex flex-col gap-2 items-center justify-center">
         {!page && step > 0 && (
-          <div className="mb-5">
+          <div className="mb-5 w-full">
             <StepProgress
               steps={Array.from({ length: mode == "off-site" ? 8 : 9 })}
               currentStep={mode === "off-site" ? step - 1 : step}
@@ -349,7 +352,7 @@ export default function ApplicationForm({
             </div>
           </div>
         ) : (
-          <div className="w-3xl p-15 bg-white rounded-2xl shadow text-sm">
+          <div className="w-full md:w-3xl p-5 md:p-15 py-15 bg-white rounded-2xl shadow text-sm">
             {step > 0 && (
               <div className="mb-5 font-semibold text-secondary text-xl">
                 <p>
