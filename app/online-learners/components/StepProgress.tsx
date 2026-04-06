@@ -26,7 +26,7 @@ import { HiCheck } from "react-icons/hi";
           const isActive = index === currentStep;
 
           return (
-            <div key={index} className="relative z-10 flex flex-col items-center">
+            <div key={index} className="relative hidden md:flex  z-10  flex-col items-center">
               
               {/* Step circle */}
               <motion.div
