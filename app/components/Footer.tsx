@@ -55,7 +55,7 @@ export default function Footer() {
             <Link href="/right-program">Which program is right for me?</Link>
             {/* <Link href="https://study.northbridgec.ca/login/">Study</Link> */}
             <Link href="/about">About Northbridge Collegiate</Link>
-            <Link href="/online-learners">Direct Entry Pathway</Link>
+            {/* <Link href="/online-learners">Direct Entry Pathway</Link> */}
           </div>
         </div>
 
