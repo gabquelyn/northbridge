@@ -17,7 +17,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
       className="fixed inset-0 z-60 bg-[#F8FAFC] flex flex-col h-full text-[1.2rem]"
     >
       {/* ================= Header ================= */}
-      <div className="flex items-center justify-between px-10 py-8 bg-white border-b border-slate-200 flex-shrink-0">
+      <div className="flex items-center justify-between px-10 py-8 bg-white border-b border-slate-200 shrink-0">
         <div className="flex items-center gap-4">
           <Image
             src="/asset/logo.png"
@@ -123,7 +123,7 @@ export function Item({
         {label}
         <span
           className={clsx(
-            "absolute left-0 -bottom-1 h-[2px] w-full scale-x-0 bg-[#479DA5] transition-transform duration-300 origin-left group-hover:scale-x-100",
+            "absolute left-0 -bottom-1 h-0.5 w-full scale-x-0 bg-[#479DA5] transition-transform duration-300 origin-left group-hover:scale-x-100",
             href === pathname && "scale-x-100",
           )}
         />
