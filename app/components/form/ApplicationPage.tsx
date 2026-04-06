@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ClipLoader } from "react-spinners";
 import Modal from "../Modal";
 import AnimatedChecked from "../AnimatedChecked";
 
