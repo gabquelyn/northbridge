@@ -263,7 +263,7 @@ export default function ApplicationForm({
   }
 
   return (
-    <section className="bg-[#f2f2f2] ">
+    <section className="bg-[#f2f2f2]">
       <div className="flex flex-col gap-2 items-center justify-center">
         {!page && step > 0 && (
           <div className="mb-5 w-full">
