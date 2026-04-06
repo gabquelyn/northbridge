@@ -218,6 +218,13 @@ export default function ApplicationForm({
         if (index === 0 && !isCanadian) {
           return prev;
         }
+        if (program === "DIRECT") {
+          if (checked) {
+            return [...prev, program];
+          } else {
+            return prev.filter((p) => p !== "DIRECT");
+          }
+        }
 
         // ✅ Canadian → CAAP acts independently
         if (index === 0 && isCanadian) {
