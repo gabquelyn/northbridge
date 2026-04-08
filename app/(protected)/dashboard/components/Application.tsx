@@ -140,7 +140,7 @@ export default function Application({ data }: { data: Application }) {
             {message}
             <br />{" "}
             {isOutstanding &&
-              "However, complete outstanding payment within 6 weeks to retain access"}
+              "However, complete outstanding payment to retain access"}
           </p>
           {isOutstanding && (
             <button
