@@ -19,12 +19,19 @@ export const enrolProgram = async (details: {
   id: string;
   programs: string[];
 }) => {
-  const res = await api.post(`/application/enrol/${details.id}`, {programs: details.programs});
+  const res = await api.post(`/application/enrol/${details.id}`, {
+    programs: details.programs,
+  });
   return res.data;
 };
 
-export const approve = async (id: string) => {
-  const res = await api.post(`/application/approve/${id}`);
+export const approve = async (details: {
+  id: string;
+  installment: boolean;
+}) => {
+  const res = await api.post(`/application/approve/${details.id}`, {
+    ...details,
+  });
   return res.data;
 };
 
@@ -62,5 +69,10 @@ export const applications = async () => {
 
 export const application = async (id: string) => {
   const res = await api.get(`/application/${id}`);
+  return res.data;
+};
+
+export const payup = async (id: string) => {
+  const res = await api.post(`/application/pay/${id}`);
   return res.data;
 };

@@ -21,6 +21,7 @@ import AnimatedChecked from "@/app/components/AnimatedChecked";
 import { City, Country, State } from "country-state-city";
 import ReviewMessage from "./ReviewMessage";
 import AcceptApplication from "./AcceptApplication";
+import AdminControls from "./AdminControls";
 
 export default function ApplicationEdit({
   application,
@@ -254,7 +255,10 @@ export default function ApplicationEdit({
     <div>
       {review && (
         <Modal onClose={() => setReview(false)}>
-          <ReviewMessage id={application._id} />
+          <ReviewMessage
+            id={application._id}
+            onClose={() => setReview(false)}
+          />
         </Modal>
       )}
 
@@ -296,16 +300,15 @@ export default function ApplicationEdit({
         enrolling={enrolling}
         isAdmin={isAdmin}
       />
-      <div className="mt-8 text-sm">
+      <div className="mt-10 md:px-[15%]">
         {isAdmin && (
-          <div className="flex justify-around">
-            <button className="action" onClick={() => setReview(true)}>
-              Send Review Message
-            </button>
-            <button className="action" onClick={() => setAccept(true)}>
-              Accept Application
-            </button>
-          </div>
+          <AdminControls
+            accept={() => setAccept(true)}
+            review={() => setReview(true)}
+            paid={application.paid}
+            granted={application.granted}
+            outstanding={application?.outstanding}
+          />
         )}
       </div>
     </div>

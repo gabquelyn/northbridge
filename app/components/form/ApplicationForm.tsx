@@ -218,32 +218,11 @@ export default function ApplicationForm({
         if (index === 0 && !isCanadian) {
           return prev;
         }
-        if (program === "DIRECT") {
-          if (checked) {
-            return [...prev, program];
-          } else {
-            return prev.filter((p) => p !== "DIRECT");
-          }
-        }
-
-        // ✅ Canadian → CAAP acts independently
-        if (index === 0 && isCanadian) {
-          if (checked) {
-            return [...new Set(["CAAP" as Programs, ...prev])];
-          } else {
-            return prev.filter((p) => p !== "CAAP");
-          }
-        }
 
         if (checked) {
-          return PROGRAM_ORDER.slice(0, index + 1);
+          return [...prev, program];
         }
-
-        // ✅ Remove selected and below, BUT don't touch CAAP
-        return prev.filter((p) => {
-          if (p === "CAAP") return true;
-          return PROGRAM_ORDER.indexOf(p) < index;
-        });
+        return prev.filter((p) => p !== program);
       });
     },
     [details.canadian],

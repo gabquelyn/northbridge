@@ -10,8 +10,9 @@ import {
   enrolCourses,
   enroled,
   enrolProgram,
+  payup,
   receipt,
-  review
+  review,
 } from "../lib/course";
 
 export const useCourses = () =>
@@ -118,6 +119,18 @@ export const useApplication = (id: string) =>
     enabled: !!id,
   });
 
+export const usePayup = (id: string) => {
+  const queryClient = useQueryClient();
+  return useMutation<{ paymentUrl: string }>({
+    mutationFn: () => payup(id),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["applications"],
+      });
+    },
+  });
+};
+
 export const useReceipt = (id: string) =>
   useQuery<{
     data: {
@@ -125,11 +138,10 @@ export const useReceipt = (id: string) =>
       status: string;
       amount: string;
       currency: string;
-      createdAt: string
+      createdAt: string;
     }[];
   }>({
     queryKey: ["receipt"],
     queryFn: () => receipt(id),
     enabled: !!id,
   });
-

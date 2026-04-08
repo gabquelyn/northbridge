@@ -1,15 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import clsx from "clsx";
 import CircularProgress from "./CircularProgress";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Link from "next/link";
+import { usePayup } from "@/app/hooks/useAdmission";
+import { ClipLoader } from "react-spinners";
+import { useRouter } from "next/navigation";
 
 export default function Application({ data }: { data: Application }) {
   const image = data.profile.documents?.passport[0]?.url;
+  const {
+    data: response,
+    mutate,
+    isPending: isLoading,
+    isSuccess,
+  } = usePayup(data._id);
+  const router = useRouter();
+  const payupHandler = () => {
+    mutate();
+  };
+
+  useEffect(() => {
+    if (isSuccess) router.push(response.paymentUrl);
+  }, [isSuccess]);
 
   const isPending =
     (!data.granted && data.mode == "on-site") ||
@@ -51,17 +68,17 @@ export default function Application({ data }: { data: Application }) {
           ? "#E00C00"
           : undefined;
 
-  const message =
-    isAwaitingPaymentProgram
-      ? "Complete enrollment payment to secure this student's place."
-      : isPending
-        ? "No action required right now. Our admissions team is reviewing the application."
-        : isComplete
-          ? "Congratulations, you have been admitted!"
-          : isAwaitingPaymentCourse
-            ? "Payment required to continue, go to cart to checkout"
-            : "";
+  const message = isAwaitingPaymentProgram
+    ? "Complete enrollment payment to secure this student's place."
+    : isPending
+      ? "No action required right now. Our admissions team is reviewing the application."
+      : isComplete
+        ? "Congratulations, you have been admitted!"
+        : isAwaitingPaymentCourse
+          ? "Payment required to continue, go to cart to checkout"
+          : "";
 
+  const isOutstanding = Boolean(data?.outstanding && data.outstanding > 0);
   return (
     <div className="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-sm hover:shadow-md transition-all duration-300">
       {/* TOP SECTION */}
@@ -119,7 +136,24 @@ export default function Application({ data }: { data: Application }) {
           <p className="text-xs text-slate-400 uppercase tracking-wide">
             Progress
           </p>
-          <p className="text-sm font-medium text-slate-700">{message}</p>
+          <p className="text-sm font-medium text-slate-700">
+            {message}
+            <br />{" "}
+            {isOutstanding &&
+              "However, complete outstanding payment within 6 weeks to retain access"}
+          </p>
+          {isOutstanding && (
+            <button
+              className="text-sm bg-amber-500 cursor-pointer text-white px-3 mb-3 p-1 rounded-lg flex items-center justify-center"
+              onClick={payupHandler}
+            >
+              {isLoading ? (
+                <ClipLoader size={10} color="#ffffff" />
+              ) : (
+                <p> Pay outstanding</p>
+              )}
+            </button>
+          )}
           <Link href={`/application/${data._id}`}>
             <p className="text-primary  text-sm flex items-center cursor-pointer gap-2">
               <span>View Application</span> <IoIosArrowRoundForward />
@@ -131,7 +165,7 @@ export default function Application({ data }: { data: Application }) {
         <div className="relative">
           <CircularProgress
             percent={
-               isAwaitingPaymentProgram
+              isAwaitingPaymentProgram
                 ? 70
                 : isPending
                   ? 50
