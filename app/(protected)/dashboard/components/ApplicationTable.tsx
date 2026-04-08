@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useMemo, useState } from "react";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { useRouter } from "next/navigation";
+import { formatCurrency } from "@/app/utils/formatCurrency";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -74,6 +75,9 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
               <th className="text-left py-3 px-4 font-medium">
                 Admission status
               </th>
+              <th className="text-left py-3 px-4 font-medium">
+                Outstanding payment
+              </th>
             </tr>
           </thead>
 
@@ -140,6 +144,9 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
                   >
                     {datum.granted ? "Admission granted" : "Pending approval"}
                   </span>
+                </td>
+                <td>
+                {datum?.outstanding ? formatCurrency(datum.outstanding) : "-"}
                 </td>
               </tr>
             ))}

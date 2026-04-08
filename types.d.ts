@@ -127,6 +127,7 @@ type Application = {
   paid: boolean;
   completed: boolean;
   createdAt: string
+  outstanding?: number
 };
 
 interface User {
