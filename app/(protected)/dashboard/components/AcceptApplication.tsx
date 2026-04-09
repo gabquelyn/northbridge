@@ -94,7 +94,7 @@ export default function AcceptApplication({
                 </p>
                 <p className="text-xs text-gray-500">
                   Enable flexible fee payment for this applicant <br />
-                  (50%) paid twice
+                  (60%) paid twice
                 </p>
               </div>
 
