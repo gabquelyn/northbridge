@@ -13,6 +13,8 @@ import { MdShoppingCart } from "react-icons/md";
 import CartDrawer from "./CartDrawer";
 import { FaBook } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { FaUserAlt } from "react-icons/fa";
+
 
 export default function NorthbridgeAcademicNav() {
   const [open, setOpen] = useState(false);
@@ -53,9 +55,15 @@ export default function NorthbridgeAcademicNav() {
 
         {/* Right: Actions */}
         <div className="flex items-center divide-x divide-white/20">
+          <Link href="/register">
+            <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
+              <FaUserAlt className="text-[#479DA5] group-hover:scale-110 transition" />
+              <span className="font-semibold tracking-wide">My Account</span>
+            </div>
+          </Link>
           <Link href="https://study.northbridgec.ca/login/">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
-              <FaBook className="text-[#479DA5] text-2xl group-hover:scale-110 transition" />
+              <FaBook className="text-[#479DA5]  group-hover:scale-110 transition" />
               <span className="font-semibold tracking-wide">Study</span>
             </div>
           </Link>
@@ -63,9 +71,7 @@ export default function NorthbridgeAcademicNav() {
           <Link href="/consultation">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
               <FaPenClip className="text-[#479DA5] group-hover:scale-110 transition" />
-              <span className="font-semibold tracking-wide">
-                Inquire & Apply
-              </span>
+              <span className="font-semibold tracking-wide">Inquire</span>
             </div>
           </Link>
 
@@ -76,21 +82,23 @@ export default function NorthbridgeAcademicNav() {
             </div>
           </Link>
 
-        { pathname == "/online-courses" && <Link href="#">
-            <div
-              className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10"
-              onClick={() => setCartOpen(true)}
-            >
-              <div className="relative">
-                <MdShoppingCart className="text-[#479DA5] group-hover:scale-110 transition text-2xl" />
-                {ctx?.cart && ctx?.cart.length > 0 && (
-                  <div className="absolute text-white -top-[10%] -right-1 p-1 text-[.5rem] w-3 h-3 flex items-center justify-center bg-red-500 rounded-full">
-                    {ctx?.cart.length}
-                  </div>
-                )}
+          {pathname == "/online-courses" && (
+            <Link href="#">
+              <div
+                className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10"
+                onClick={() => setCartOpen(true)}
+              >
+                <div className="relative">
+                  <MdShoppingCart className="text-[#479DA5] group-hover:scale-110 transition text-2xl" />
+                  {ctx?.cart && ctx?.cart.length > 0 && (
+                    <div className="absolute text-white -top-[10%] -right-1 p-1 text-[.5rem] w-3 h-3 flex items-center justify-center bg-red-500 rounded-full">
+                      {ctx?.cart.length}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </Link>}
+            </Link>
+          )}
 
           {/* Menu CTA */}
           <div

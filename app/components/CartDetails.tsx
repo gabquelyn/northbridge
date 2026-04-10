@@ -28,6 +28,7 @@ export default function CartDetails({
     useEnrolCourses();
 
   const enrolHandler = () => {
+    return alert("Will soon be enabled, be patient with us while we set things up")
     const ids = courses.map((c) => c.id);
     mutate({ courses: ids });
   };
