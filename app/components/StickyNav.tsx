@@ -58,7 +58,7 @@ export default function NorthbridgeAcademicNav() {
           <Link href="/register">
             <div className="group flex items-center gap-3 px-6 py-4 cursor-pointer transition hover:bg-[#479DA5]/10">
               <FaUserAlt className="text-[#479DA5] group-hover:scale-110 transition" />
-              <span className="font-semibold tracking-wide">My Account</span>
+              <span className="font-semibold tracking-wide">Register</span>
             </div>
           </Link>
           <Link href="https://study.northbridgec.ca/login/">
