@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { FaGreaterThan } from "react-icons/fa";
 import Link from "next/link";
-import { GrLineChart } from "react-icons/gr";
+import { GrConnect, GrLineChart } from "react-icons/gr";
 
 export default function ClearRoute() {
   return (
@@ -129,6 +129,47 @@ export default function ClearRoute() {
             <Link href="/ay12">
               <motion.div
                 className="border-2 text-[#293B59] border-[#293B59] rounded-3xl flex items-center gap-3 w-fit p-2 px-6"
+                whileHover={{ scale: 1.05 }}
+              >
+                <p>Learn more</p>
+                <div className="flex">
+                  <FaGreaterThan />
+                  <FaGreaterThan />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="bg-amber-50 p-10 shadow rounded-lg gap-15 flex flex-col md:flex-row items-center">
+        <div className="relative mb-20 mr-13">
+          <div className="absolute -right-15 top-20">
+            <div className="relative z-20 rounded-3xl h-40 md:h-50 overflow-hidden w-40 md:w-50">
+              <Image
+                src="/asset/diss.jpg"
+                alt=""
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="text-9xl bg-amber-100 p-10 md:p-14 pt-3 rounded-3xl">
+            <GrConnect />
+          </div>
+        </div>
+        <div className="text-left flex flex-col items-center md:items-start gap-5">
+          <p className="text-amber-500 font-bold">Direct Entry Pathway (DEP)</p>
+          <p className="text-center md:text-left">
+            The Direct Entry Pathway provides a structured entry into the
+            Canadian academic framework for learners who have completed
+            secondary school and are preparing to enter a Canadian academic
+            framework.
+          </p>
+          <div>
+            <Link href="/online-learners">
+              <motion.div
+                className="border-2 text-amber-500 border-amber-500 rounded-3xl flex items-center gap-3 w-fit p-2 px-6"
                 whileHover={{ scale: 1.05 }}
               >
                 <p>Learn more</p>

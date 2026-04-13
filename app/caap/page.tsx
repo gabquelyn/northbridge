@@ -23,26 +23,6 @@ export const metadata: Metadata = {
 export default function CAAP() {
   return (
     <div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "EducationalOccupationalProgram",
-            name: "Canadian Academic Alignment Program (CAAP)",
-            description:
-              "A structured academic bridge program designed to align international students with Canadian university expectations.",
-            provider: {
-              "@type": "EducationalOrganization",
-              name: "Northbridge Collegiate",
-              url: "https://northbridgec.ac",
-            },
-            educationalCredentialAwarded: "University Preparation",
-            timeToComplete: "P6M",
-            url: "https://northbridgec.ac/caap",
-          }),
-        }}
-      />
       <NorthbridgeAcademicNav />
       <StickyHero
         text={
@@ -54,9 +34,11 @@ export default function CAAP() {
         typewrite="Complete."
         description={
           <p>
-            CAAP is an academic alignment program designed to recognize prior
-            learning and align students to Canadian academic expectations before
-            they enter Grade 12
+            CAAP is a 10-12 week foundational program designed to align students
+            with the Canadian academic system. It ensures a smooth, confident
+            transition without loss of critical learning time and serves as the
+            standard entry pathway for students joining Northbridge from
+            non-Canadian systems
           </p>
         }
         image="bg-[url('/asset/toronto.jpg')]"

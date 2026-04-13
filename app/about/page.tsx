@@ -57,7 +57,7 @@ export default function About() {
             </p>
             <p>
               As a Canadian University Preparation institution, we offer
-              secondary-level academic programs through both online and in-class
+              academic programs through both online and in-class
               delivery. Our Canadian University Prep model is designed to
               prepare students for successful entry into Canadian universities.
             </p>
