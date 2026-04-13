@@ -75,8 +75,7 @@ export default function AboutPreview() {
             Ministry of Education. Through approved in-class, online, and blended
             instructional models, we support students from diverse educational
             backgrounds with structured academic review and rigorous
-            assessment—guiding them confidently toward completion of the Ontario
-            Secondary School Diploma (OSSD).
+            assessment—guiding them confidently.
           </motion.p>
 
           <motion.div
