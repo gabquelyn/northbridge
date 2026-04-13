@@ -8,7 +8,6 @@ export default function AboutPreview() {
   return (
     <section className="py-20 pt-40 flex justify-center">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 px-5 md:px-[14%] items-center bg-[#479DA526] py-8 overflow-hidden shadow-sm">
-
         {/* IMAGE */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -72,10 +71,11 @@ export default function AboutPreview() {
           >
             Northbridge Collegiate delivers Ontario curriculum-based secondary
             education under an Ontario private school license issued by the
-            Ministry of Education. Through approved in-class, online, and blended
-            instructional models, we support students from diverse educational
-            backgrounds with structured academic review and rigorous
-            assessment—guiding them confidently.
+            Ministry of Education. Through approved in-class, online, and
+            blended instructional models, we support students from diverse
+            educational backgrounds with structured academic review and rigorous
+            assessment—guiding them confidently toward successful entry into
+            Canadian universities.
           </motion.p>
 
           <motion.div
