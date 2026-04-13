@@ -3,10 +3,46 @@
 import React from "react";
 import { motion } from "motion/react";
 
+const content = [
+  {
+    title: "An Authorized Canadian School",
+    text: `
+We operate under our own licence within the Ontario framework. No third-party delivery.`,
+    highlight: false,
+  },
+  {
+    title: "Built From Canada",
+    text: `
+With a Canadian headquarters, our programs reflect what Canadian universities actually expect — academically, structurally, and in practice.`,
+    highlight: true,
+  },
+  {
+    title: "Academic Integrity You Can Trust",
+    text: `
+All credit courses are assessed in accordance with Ontario curriculum expectations and Ministry policy and are formally documented through Ministry-compliant records, including the Ontario Student Record (OSR).`,
+    highlight: false,
+  },
+  {
+    title: "Canadian Academic Residency Opportunity",
+    text: `Students may have the opportunity to participate in a supervised academic residency at our Canadian headquarters, designed to deepen academic engagement and provide direct exposure to the Canadian learning environment.`,
+    highlight: true,
+  },
+  {
+    title: "Guided, Informed Transition",
+    text: `Families have access to licensed Canadian immigration guidance to support informed, compliant planning, for study permit application.`,
+    highlight: true,
+  },
+  {
+    title: "A Clear Path Forward",
+    text: `If the goal is Canada, the preparation should be Canadian`,
+    highlight: true,
+  },
+];
+
 export default function Vision() {
   return (
     <section className="bg-[#479DA5] px-[5%] md:px-[20%] py-20 text-gray-50">
-      <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-12 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-15 items-start">
         {/* Left title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,25 +70,7 @@ export default function Vision() {
             },
           }}
         >
-          {[
-            {
-              text: `Northbridge Collegiate, Nigeria operates under licence by Northbridge Collegiate, Canada (BSID 886341), with both the Canadian and Nigerian campuses under the same leadership and academic authority. For parents, this matters because it means decisions about your child's education, support, and progression are made within one accountable system—not passed between partners or third parties.`,
-              highlight: false,
-            },
-            {
-              text: `At Northbridge, your child's academic records, credits, and diploma come directly from the school they attend. We are authorized to grant Ontario credits and issue the Ontario Secondary School Diploma (OSSD) directly through Northbridge Canada.
-              Because of this structure, we have the flexibility to design strong, age-appropriate support systems, which is especially important for students in Grades 11 and 12, a period when academic pressure, emotional development, and future planning all intersect`,
-              highlight: true,
-            },
-            {
-              text: `We also recognise that children are not all the same. We do not serve only the naturally high-performing student. We support academically able students and those who need structure, guidance, and confidence-building, because real education honours different strengths and learning paths.`,
-              highlight: false,
-            },
-            {
-              text: `Finally, Northbridge is mission driven. We focus only on senior secondary education (Grades 11 and 12) because these years are pivotal. Beyond grades, we intentionally develop students to become globally competent, thoughtful, and grounded young adults. Personal formation -Through purpose-led career exploration, leadership development, ethics, and civic responsibility, we help students understand not just where they are going, but who they are becoming.`,
-              highlight: true,
-            },
-          ].map((item, i) => (
+          {content.map((item, i) => (
             <motion.div
               key={i}
               variants={{
@@ -69,12 +87,15 @@ export default function Vision() {
                   },
                 },
               }}
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-2"
             >
+              <p className={`${item.highlight ? "text-[#F9CA52]" : ""} font-semibold`}>
+                {item.title}:
+              </p>
               <p className={item.highlight ? "text-[#F9CA52]" : ""}>
                 {item.text}
               </p>
-              <hr className="border-[#68b2b9]" />
+              <hr className="border-[#68b2b9] mt-5" />
             </motion.div>
           ))}
         </motion.div>

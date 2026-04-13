@@ -12,23 +12,6 @@ import {
 export default function VerticalProgramCard() {
   const content = [
     {
-      program: "Canadian Academic Alignment Program (CAAP)",
-      purpose:
-        "For students who may have completed senior secondary school elsewhere and want a smooth, confident transition into Canadian Grade 12.",
-      who: "Designed for students who need academic alignment and orientation before starting Ontario secondary studies.",
-      gain: [
-        "Recognition of prior learning.",
-        "Alignment to Ontario expectations",
-        "Prepare and complete the Grade 10 literacy test",
-        "Academic writing & study skills",
-        "Familiarity with Canadian-style learning systems",
-      ],
-      outcome:
-        "Aligns prior learning to Canadian academic standards so students are appropriately placed and ready to progress into Canadian Grade 12.",
-      image: "/asset/grop.jpg",
-    },
-
-    {
       program: "Grade 11 OSSD",
       purpose:
         "Progressive academic programming for learners assessed as having prior education comparable to Ontario Grade 10, in accordance with the school's academic review and placement processes.",
@@ -57,6 +40,22 @@ export default function VerticalProgramCard() {
       outcome:
         "Graduation with a globally recognized Canadian diploma (OSSD), a Canadian secondary school credential recognized by post-secondary institutions in Canada and globally.",
       image: "/asset/hall.jpg",
+    },
+
+    {
+      program: "Direct Entry Program (DEP)",
+      purpose:
+        "The Direct Entry Pathway provides a structured entry into the Canadian academic framework for learners who have completed secondary school and are preparing fo enter a Canadian academic framework",
+      who: "Designed for transitional learners who have completed programs such as WAEC or GCSE and are ready to continue their education in Canada.",
+      gain: [
+        "Exposure to partner universities",
+        "Guided academic preparation",
+        "University application support",
+        "Greater confidence in navigating coursework, expectations, and Canadian academic standards",
+      ],
+      outcome:
+        "Students are positioned to progress with a clear, supported pathway toward admissions into partner universities",
+      image: "/asset/grop.jpg",
     },
 
     {
