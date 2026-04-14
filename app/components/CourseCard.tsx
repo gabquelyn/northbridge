@@ -27,6 +27,7 @@ export default function CourseCard({
 }) {
   const ctx = useContext(cartContext);
   const active = paid && granted;
+  console.log(category)
   return (
     <motion.div
       whileHover={{ y: -6 }}
@@ -66,10 +67,10 @@ export default function CourseCard({
                     ? "text-yellow-500 bg-yellow-100"
                     : category.id == 3
                       ? "bg-rose-100 text-rose-500"
-                      : category.id == 4
+                      : category.id == 6
                         ? "bg-primary/10 text-primary"
                         : "",
-                "text-xs p-2 px-4 rounded-2xl",
+                "text-xs p-2 px-4 rounded-2xl shrink-0",
               )}
             >
               {category.name}
