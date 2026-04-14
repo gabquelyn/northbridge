@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       : [
           { tag: "Dashboard", href: "/dashboard" },
           // { tag: "Application", href: "/apply" },
-          { tag: "Courses", href: "/courses" },
+          // { tag: "Courses", href: "/courses" },
           {
             tag: (
               <div className="relative cursor-pointer">
