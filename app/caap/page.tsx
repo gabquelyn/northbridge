@@ -34,11 +34,9 @@ export default function CAAP() {
         typewrite="Complete."
         description={
           <p>
-            CAAP is a 10-12 week foundational program designed to align students
-            with the Canadian academic system. It ensures a smooth, confident
-            transition without loss of critical learning time and serves as the
-            standard entry pathway for students joining Northbridge from
-            non-Canadian systems
+            CAAP is a structured academic transition program designed for
+            students who have completed secondary education and are preparing
+            for the academic expectations of Canadian universities.
           </p>
         }
         image="bg-[url('/asset/toronto.jpg')]"
