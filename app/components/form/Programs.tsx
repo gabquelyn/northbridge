@@ -65,18 +65,20 @@ function Programs({
   const isWithinRange = current >= "11-01" && current <= "12-15";
   return (
     <div>
-      {!canadian && (
+      {/* {!canadian && (
         <p className="text-secondary italic mb-3">
           CAAP is compulsory for non-Canadian students (starting point)
         </p>
-      )}
+      )} */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {programs.map((program) => {
           const isSelected = data.includes(program.value as Programs);
           const isLocked =
-            (!canadian && program.value === "CAAP") ||
-            (disableEdit && applied?.includes(program.value as Programs));
+            disableEdit && applied?.includes(program.value as Programs);
+          // const isLocked =
+          //   (!canadian && program.value === "CAAP") ||
+          //   (disableEdit && applied?.includes(program.value as Programs));
           const isDisabled = program.value === "AY12" && !isWithinRange;
 
           return (

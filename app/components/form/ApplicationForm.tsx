@@ -206,19 +206,14 @@ export default function ApplicationForm({
     }
   }, [details, step, documents]);
 
-  const PROGRAM_ORDER: Programs[] = ["CAAP", "GRADE11", "GRADE12", "AY12"];
+  // const PROGRAM_ORDER: Programs[] = ["CAAP", "GRADE11", "GRADE12", "AY12"];
 
   const programChnageHandler = useCallback(
     (program: Programs, checked: boolean) => {
-      const index = PROGRAM_ORDER.indexOf(program);
-      const isCanadian = details.canadian === "true";
+      // const index = PROGRAM_ORDER.indexOf(program);
+      // const isCanadian = details.canadian === "true";
 
       setPrograms((prev) => {
-        // 🔒 Non-Canadian → CAAP locked
-        if (index === 0 && !isCanadian) {
-          return prev;
-        }
-
         if (checked) {
           return [...prev, program];
         }
@@ -268,6 +263,7 @@ export default function ApplicationForm({
               phoneNumChange={phoneNumChange}
               disableEdit={disableEdit}
             />
+
             {mode == "on-site" && (
               <CanadianSelection
                 canadian={details.canadian}
