@@ -77,7 +77,7 @@ export default function Footer() {
                 <LuPhone className="text-[#17757E]" />
                 <div>
                   <p>+234-704-700-2406</p>
-                  <p>+1 416-644-1114</p>
+                  <p>+1-416-800-0451</p>
                 </div>
               </div>
             </Link>
