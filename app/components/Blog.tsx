@@ -4,6 +4,116 @@ import Article from "./Article";
 export default function Blog() {
   const blogs = [
     {
+      title: "How to Get into Canadian Universities from Nigeria",
+      highlight: "Northbridge Collegiate",
+      preview: "Learn the best pathway to study in Canada from Nigeria",
+      details: (
+        <>
+          <p>Learn the best pathway to study in Canada from Nigeria.</p>
+          <p>
+            For many families in Nigeria, studying in Canada is a long-term
+            goal. However, one of the most important—and often
+            overlooked—questions is not just how to gain admission, but how to
+            choose the right pathway leading up to it. <br />
+            At Northbridge Collegiate, we focus on this exact stage: preparing
+            students at the point where transition into university matters most.
+          </p>
+          <div>
+            <p>
+              Northbridge is designed specifically for students at the final
+              stage of secondary education. Rather than replicating a
+              traditional school environment, the focus is on:
+            </p>
+            <ul className="list-inside list-disc">
+              <li>Academic alignment with Canadian standards</li>
+              <li>Structured support</li>
+              <li>University readiness</li>
+            </ul>
+
+            <p>
+              This allows students to concentrate on what matters most—a
+              successful transition into university.
+            </p>
+          </div>
+          <p>
+            For students who have completed or are nearing the end of secondary
+            school, enrolling in another traditional school may not address the
+            most important need: preparation for what comes next.
+          </p>
+          <p>
+            Choosing the right pathway is just as important as choosing the
+            right university.
+          </p>
+          <p>
+            By completing the Canadian secondary school diploma (Ontario
+            Secondary School Diploma - OSSD) locally in Lagos, combined with
+            structured academic transition support, Northbridge Collegiate
+            prepares students not only for admission, but for success in
+            university Speak with our Admissions team to explore available
+            pathways.
+          </p>
+          <p>Speak with our Admissions team to explore available pathways.</p>
+        </>
+      ),
+      thumbnail: "/asset/blog1.jpeg",
+    },
+    {
+      title: "Study in Canada from Nigeria",
+      highlight: "Start Early | Earn University Credit Before You Arrive",
+      preview:
+        "For students planning to study in Canada, preparation does not have to begin after arrival.",
+      details: (
+        <>
+          <p>
+            For students planning to study in Canada, preparation does not have
+            to begin after arrival. It can start earlier—while still in Nigeria.
+          </p>
+          <div>
+            <p>
+              At Northbridge Collegiate, students can begin their transition by
+              engaging with university-level learning before stepping onto
+              campus.
+            </p>
+            <p>This allows students to:</p>
+            <ul className="list-inside list-disc">
+              <li>Earn Canadian university credit from Nigeria</li>
+              <li>Gain early exposure to university expectations</li>
+              <li>Build confidence before arriving on campus</li>
+            </ul>
+          </div>
+          <p>
+            This is one of the most effective ways to strengthen a student's
+            transition.
+          </p>
+          <p>
+            At Northbridge, the pathway is simple: <br /> Secondary School →
+            Northbridge Collegiate → Canadian University
+          </p>
+          <div>
+            <p>Students may:</p>
+            <ul className="list-inside list-disc">
+              <li>
+                Complete a Canadian secondary school diploma (the OSSD) in Lagos
+              </li>
+              <li>Participate in structured academic transition</li>
+              <li>Begin earning university credit early</li>
+            </ul>
+
+            <p>
+              While there is no single path to Canadian university— there is a
+              clear advantage to choosing one that aligns with the system
+              students are entering.
+            </p>
+          </div>
+          <p>
+            Because if the goal is Canada, the preparation should be Canadian.
+          </p>
+          <p>Speak with our Admissions team to explore available pathways.</p>
+        </>
+      ),
+      thumbnail: "/asset/blog2.jpeg",
+    },
+    {
       title: "Northbridge Collegiate to Be Introduced to Nigerian Families",
       highlight: "Lagos, Nigeria — January 31, 2026",
       preview:
@@ -70,117 +180,6 @@ export default function Blog() {
         </>
       ),
       thumbnail: "/asset/registration.jpeg",
-    },
-    {
-      title: "How to Get into Canadian Universities from Nigeria",
-      highlight: "Northbridge Collegiate",
-      preview: "Learn the best pathway to study in Canada from Nigeria",
-      details: (
-        <>
-          <p>Learn the best pathway to study in Canada from Nigeria.</p>
-          <p>
-            For many families in Nigeria, studying in Canada is a long-term
-            goal. However, one of the most important—and often
-            overlooked—questions is not just how to gain admission, but how to
-            choose the right pathway leading up to it. <br />
-            At Northbridge Collegiate, we focus on this exact stage: preparing
-            students at the point where transition into university matters most.
-          </p>
-          <div>
-            <p>
-              Northbridge is designed specifically for students at the final
-              stage of secondary education. Rather than replicating a
-              traditional school environment, the focus is on:
-            </p>
-            <ul className="list-inside list-disc">
-              <li>Academic alignment with Canadian standards</li>
-              <li>Structured support</li>
-              <li>University readiness</li>
-            </ul>
-
-            <p>
-              This allows students to concentrate on what matters most—a
-              successful transition into university.
-            </p>
-          </div>
-          <p>
-            For students who have completed or are nearing the end of secondary
-            school, enrolling in another traditional school may not address the
-            most important need: preparation for what comes next.
-          </p>
-          <p>
-            Choosing the right pathway is just as important as choosing the
-            right university.
-          </p>
-          <p>
-            By completing the Canadian secondary school diploma (Ontario
-            Secondary School Diploma - OSSD) locally in Lagos, combined with
-            structured academic transition support, Northbridge Collegiate
-            prepares students not only for admission, but for success in
-            university Speak with our Admissions team to explore available
-            pathways.
-          </p>
-          <p>Speak with our Admissions team to explore available pathways.</p>
-
-        </>
-      ),
-      thumbnail: "/asset/blog1.jpeg",
-    },
-    {
-      title: "Study in Canada from Nigeria",
-      highlight: "Start Early | Earn University Credit Before You Arrive",
-      preview:
-        "For students planning to study in Canada, preparation does not have to begin after arrival.",
-      details: (
-        <>
-          <p>
-            For students planning to study in Canada, preparation does not have
-            to begin after arrival. It can start earlier—while still in Nigeria.
-          </p>
-          <div>
-            <p>
-              At Northbridge Collegiate, students can begin their transition by
-              engaging with university-level learning before stepping onto
-              campus.
-            </p>
-            <p>This allows students to:</p>
-            <ul className="list-inside list-disc">
-              <li>Earn Canadian university credit from Nigeria</li>
-              <li>Gain early exposure to university expectations</li>
-              <li>Build confidence before arriving on campus</li>
-            </ul>
-          </div>
-          <p>
-            This is one of the most effective ways to strengthen a student's
-            transition.
-          </p>
-          <p>
-            At Northbridge, the pathway is simple: <br /> Secondary School →
-            Northbridge Collegiate → Canadian University
-          </p>
-          <div>
-            <p>Students may:</p>
-            <ul className="list-inside list-disc">
-              <li>
-                Complete a Canadian secondary school diploma (the OSSD) in Lagos
-              </li>
-              <li>Participate in structured academic transition</li>
-              <li>Begin earning university credit early</li>
-            </ul>
-
-            <p>
-              While there is no single path to Canadian university— there is a
-              clear advantage to choosing one that aligns with the system
-              students are entering.
-            </p>
-          </div>
-          <p>
-            Because if the goal is Canada, the preparation should be Canadian.
-          </p>
-          <p>Speak with our Admissions team to explore available pathways.</p>
-        </>
-      ),
-      thumbnail: "/asset/blog2.jpeg",
     },
   ];
   return (
