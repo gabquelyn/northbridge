@@ -37,8 +37,8 @@ export default function StickyHero({
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
 
       {/* ================= Content ================= */}
-      <div className="relative z-10 flex min-h-screen justify-center xl:justify-start items-center px-5 md:px-[6%] text-white">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+      <div className="relative z-10 flex py-12 min-h-screen justify-center xl:justify-start items-center px-5 md:px-[6%] text-white">
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
