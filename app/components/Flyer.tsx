@@ -17,7 +17,7 @@ export default function Flyer() {
   if (ads)
     return (
       <Modal className="bg-transparent" onClose={() => setAds(false)}>
-        <div className="h-[90vh] w-sm md:w-2xl relative z-50 overflow-hidden">
+        <div className="h-[70vh] md:h-[90vh] w-xs md:w-2xl relative z-50 overflow-hidden">
           <button
             className="absolute z-50 bottom-2 right-0 bg-white p-1 cursor-pointer"
             onClick={() => setAds(false)}
