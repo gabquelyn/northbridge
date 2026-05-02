@@ -10,6 +10,7 @@ import {
   enrolCourses,
   enroled,
   enrolProgram,
+  joinTeam,
   payup,
   receipt,
   review,
@@ -48,6 +49,12 @@ export const useApply = () => {
         queryKey: ["applications"],
       });
     },
+  });
+};
+
+export const useJoinTeam = () => {
+  return useMutation({
+    mutationFn: joinTeam,
   });
 };
 
