@@ -26,7 +26,7 @@ export default function Input({
   const [open, setOpen] = useState(false);
   return (
     <div className="flex flex-col gap-1 w-full">
-      <label>{label}</label>
+      <label className="leading-relaxed">{label}</label>
       <div className="relative">
         <input
           onChange={onChange}

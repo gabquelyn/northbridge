@@ -1,8 +1,66 @@
 "use client";
 import React from "react";
 import Article from "./Article";
+import Link from "next/link";
 export default function Blog() {
   const blogs = [
+    {
+      title: "The Annual Educators Conference 2026",
+      highlight: "Northbridge Collegiate",
+      preview: "Learn the best pathway to study in Canada from Nigeria",
+      details: (
+        <>
+          <p>
+            What does it take to bring Canadian academic standards to Lagos?
+            Vision, rigour, and a Ministry of Education licence.
+          </p>
+          <p>
+            We are proud to welcome Northbridge Collegiate as a partner of the
+            Annual Educators Conference 2026.
+          </p>
+          <p>
+            Established in 2025, Northbridge Collegiate is a groundbreaking
+            institution, a Canadian university preparatory school operating in
+            Lagos, Nigeria, formally registered and licensed by the Ontario
+            Ministry of Education under BSID-886341.
+          </p>
+          <p>
+            Northbridge delivers the Ontario Secondary School Diploma (OSSD), a
+            credential recognised by universities across Canada, the UK, the
+            USA, and dozens of other countries to students in Grades 11 and 12,
+            Post-WAEC learners, and young adults aged 15 to 23 who are
+            repositioning academically for global university entry.
+          </p>
+          <p>
+            Their programme model is dual: fully online for students who need
+            flexibility, and onsite for those who thrive in a structured
+            classroom environment. Both pathways lead to the same
+            internationally recognised outcome.
+          </p>
+          <p>
+            For educators and school leaders, Northbridge Collegiate represents
+            something important: a credible, licensed bridge between Nigerian
+            secondary education and Canadian and by extension, global university
+            expectations. For students who have completed WAEC and are wondering
+            what comes next, Northbridge may be the clearest and most structured
+            answer available in Nigeria today.
+          </p>
+          <p>
+            Prepare to meet and engage with them at the Annual Educators
+            Conference on: Saturday, May 2nd 2026 | 9:00 AM | Muson Centre,
+            Lagos
+          </p>
+          <p>Conference Fee: ₦10,000 | $10 (International)</p>
+          <p>
+            Register{" "}
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScTIyUBe0SoxRP9d0xP73jNI6PN7W90mkyPIvsnw-F1HyRqLg/closedform">
+              Here
+            </Link>
+          </p>
+        </>
+      ),
+      thumbnail: "/asset/afri.jpg",
+    },
     {
       title: "How to Get into Canadian Universities from Nigeria",
       highlight: "Northbridge Collegiate",

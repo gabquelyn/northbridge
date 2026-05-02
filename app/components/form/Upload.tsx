@@ -33,11 +33,20 @@ export default function Upload({
     fileChangeHandler(acceptedFiles, name);
   }, []);
 
-  const { getInputProps, isDragActive, getRootProps } = useDropzone({
-    onDrop,
-    accept: imagesOnly ? { "image/*": [] } : undefined,
-    disabled,
-  });
+const { getInputProps, isDragActive, getRootProps } = useDropzone({
+  onDrop,
+  accept: imagesOnly
+    ? { "image/*": [] }
+    : {
+        "application/pdf": [],
+        "application/msword": [], // .doc
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [], // .docx
+        "application/vnd.ms-excel": [], // optional (.xls)
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [], // optional (.xlsx)
+        "text/plain": [], // optional (.txt)
+      },
+  disabled,
+});
 
   return (
     <div className="w-full flex flex-col gap-2">

@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { FaXTwitter } from "react-icons/fa6";
 import { GrInstagram, GrLinkedin } from "react-icons/gr";
 import { LuPhone } from "react-icons/lu";
 import { LuFacebook } from "react-icons/lu";
@@ -49,13 +48,14 @@ export default function Footer() {
           <p className="font-semibold mb-5">Quick links</p>
           <div className="flex flex-col gap-2 ">
             <Link href="/caap">CAAP</Link>
-            <Link href="/grade11">GRADE 11</Link>
-            <Link href="/grade12">GRADE 12</Link>
+            <Link href="/grade11">Grade 11</Link>
+            <Link href="/grade12">Grade 12</Link>
             <Link href="/ay12">AY12</Link>
             <Link href="/online-learners">Direct Entry Pathway</Link>
             <Link href="/right-program">Which program is right for me?</Link>
             {/* <Link href="https://study.northbridgec.ca/login/">Study</Link> */}
             <Link href="/about">About Northbridge Collegiate</Link>
+            <Link href="/join">Join NBC's team</Link>
           </div>
         </div>
 

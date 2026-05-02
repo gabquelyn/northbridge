@@ -57,6 +57,11 @@ export const apply = async (form: FormData) => {
   return res.data;
 };
 
+export const joinTeam = async (form: FormData) => {
+  const res = await api.post("/consultation/join", form);
+  return res.data;
+};
+
 export const edit = async ({ form, id }: { form: FormData; id: string }) => {
   const res = await api.patch(`/application/${id}`, form);
   return res.data;
