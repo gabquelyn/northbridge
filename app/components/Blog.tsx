@@ -53,7 +53,7 @@ export default function Blog() {
           <p>Conference Fee: ₦10,000 | $10 (International)</p>
           <p>
             Register{" "}
-            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScTIyUBe0SoxRP9d0xP73jNI6PN7W90mkyPIvsnw-F1HyRqLg/closedform">
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScTIyUBe0SoxRP9d0xP73jNI6PN7W90mkyPIvsnw-F1HyRqLg/closedform" className="text-blue-500">
               Here
             </Link>
           </p>
