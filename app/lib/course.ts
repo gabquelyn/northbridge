@@ -52,6 +52,16 @@ export const categories = async () => {
   return res.data;
 };
 
+export const downloadFile = async (metadata: {
+  public_id: string;
+  resource_type: string;
+}) => {
+  const res = await api.get(
+    `/application/document?public_id=${metadata.public_id}&resource_type=${metadata.resource_type}`,
+  );
+  return res.data;
+};
+
 export const apply = async (form: FormData) => {
   const res = await api.post("/application", form);
   return res.data;

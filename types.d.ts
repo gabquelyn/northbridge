@@ -76,6 +76,7 @@ type LocationData = {
 type DocumentFile = {
   url: string;
   public_id: string;
+  resource_type: string
   filename: string;
   _id: string;
 };
