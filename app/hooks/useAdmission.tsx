@@ -6,6 +6,7 @@ import {
   approve,
   categories,
   courses,
+  downloadFile,
   edit,
   enrolCourses,
   enroled,
@@ -20,6 +21,11 @@ export const useCourses = () =>
   useQuery<{ data: Course[] }>({
     queryFn: courses,
     queryKey: ["courses"],
+  });
+
+export const useDownload = () =>
+  useMutation({
+    mutationFn: downloadFile,
   });
 
 export const useApplications = () =>

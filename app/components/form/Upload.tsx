@@ -1,11 +1,13 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import clsx from "clsx";
-import { TbDownload } from "react-icons/tb";
 import FilePreview from "../FilePreview";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { MdArrowOutward } from "react-icons/md";
+import { useDownload } from "@/app/hooks/useAdmission";
+import { useRouter } from "next/navigation";
 
 export default function Upload({
   fileChangeHandler,
@@ -25,49 +27,64 @@ export default function Upload({
   description?: string;
   multiple?: boolean;
   files: File[];
-  uploads?: { url: string }[];
+  uploads?: DocumentFile[];
   disabled?: boolean;
 }) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (disabled) return;
     fileChangeHandler(acceptedFiles, name);
   }, []);
+  const router = useRouter();
+  const { mutate, isPending, data, isSuccess } = useDownload();
+  const { getInputProps, isDragActive, getRootProps } = useDropzone({
+    onDrop,
+    accept: imagesOnly
+      ? { "image/*": [] }
+      : {
+          "application/pdf": [],
+          "application/msword": [], // .doc
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            [], // .docx
+          "application/vnd.ms-excel": [], // optional (.xls)
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+            [], // optional (.xlsx)
+          "text/plain": [], // optional (.txt)
+        },
+    disabled,
+  });
 
-const { getInputProps, isDragActive, getRootProps } = useDropzone({
-  onDrop,
-  accept: imagesOnly
-    ? { "image/*": [] }
-    : {
-        "application/pdf": [],
-        "application/msword": [], // .doc
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [], // .docx
-        "application/vnd.ms-excel": [], // optional (.xls)
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [], // optional (.xlsx)
-        "text/plain": [], // optional (.txt)
-      },
-  disabled,
-});
+  useEffect(() => {
+    if (isSuccess) {
+      router.push(data.url);
+    }
+  }, [isSuccess]);
+
+  const downloadHandler = (public_id: string, resource_type: string) => {
+    mutate({
+      public_id,
+      resource_type,
+    });
+  };
 
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2 bg-gray-50 p-5 rounded-lg">
       {uploads && (
-        <div>
+        <div className="space-y-2">
           {uploads.map((upload) => (
-            <div>
-              <FilePreview key={upload.url} url={upload.url} />
-              <div className="mt-2 flex justify-end">
-                <a
-                  href={upload.url.replace(
-                    "/upload/",
-                    "/upload/fl_attachment/",
-                  )}
-                  download
+            <div key={upload.public_id}>
+              {name == "passport" ? (
+                <FilePreview key={upload.url} url={upload.url} />
+              ) : (
+                <button
+                  className="w-full flex gap-3 items-center justify-between action"
+                  onClick={() =>
+                    downloadHandler(upload.public_id, upload.resource_type)
+                  }
                 >
-                  <button className="action">
-                    <TbDownload />
-                  </button>
-                </a>
-              </div>
+                  <p className="truncate"> {upload.filename} </p>
+                  <MdArrowOutward />
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -155,12 +172,12 @@ const { getInputProps, isDragActive, getRootProps } = useDropzone({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      const next = files.filter((_, i) => i !== idx)
+                      const next = files.filter((_, i) => i !== idx);
                       fileChangeHandler(next, name);
                     }}
                     className="text-xs px-2 py-1 rounded-lg border hover:bg-gray-50"
                   >
-                    <RiDeleteBin5Line/>
+                    <RiDeleteBin5Line />
                   </button>
                 </div>
               </div>
