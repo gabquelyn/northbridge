@@ -6,6 +6,7 @@ import {
   approve,
   categories,
   courses,
+  delete_,
   downloadFile,
   edit,
   enrolCourses,
@@ -50,6 +51,18 @@ export const useApply = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: apply,
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["applications"],
+      });
+    },
+  });
+};
+
+export const useDelete = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: delete_,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: ["applications"],
