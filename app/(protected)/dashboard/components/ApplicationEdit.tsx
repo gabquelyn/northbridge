@@ -22,6 +22,7 @@ import { City, Country, State } from "country-state-city";
 import ReviewMessage from "./ReviewMessage";
 import AcceptApplication from "./AcceptApplication";
 import AdminControls from "./AdminControls";
+import DeleteApplication from "./DeleteApplication";
 
 export default function ApplicationEdit({
   application,
@@ -36,6 +37,7 @@ export default function ApplicationEdit({
     useApplicationEdit();
   const [review, setReview] = useState(false);
   const [accept, setAccept] = useState(false);
+  const [delete_, setDelete_] = useState(false);
   const {
     mutate: enrolToProgram,
     data: payment,
@@ -262,6 +264,15 @@ export default function ApplicationEdit({
         </Modal>
       )}
 
+      {delete_ && (
+        <Modal onClose={() => setDelete_(false)}>
+          <DeleteApplication
+            id={application._id}
+            onClose={() => setDelete_(false)}
+          />
+        </Modal>
+      )}
+
       {accept && (
         <Modal onClose={() => setAccept(false)}>
           <AcceptApplication
@@ -305,6 +316,7 @@ export default function ApplicationEdit({
           <AdminControls
             accept={() => setAccept(true)}
             review={() => setReview(true)}
+            onDelete={() => setDelete_(true)}
             paid={application.paid}
             granted={application.granted}
             outstanding={application?.outstanding}

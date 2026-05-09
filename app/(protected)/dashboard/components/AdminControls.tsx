@@ -3,12 +3,14 @@ import React from "react";
 export default function AdminControls({
   review,
   accept,
+  onDelete,
   paid,
   granted,
   outstanding,
 }: {
   review: () => void;
   accept: () => void;
+  onDelete: () => void;
   paid: boolean;
   granted: boolean;
   outstanding?: number;
@@ -17,7 +19,6 @@ export default function AdminControls({
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-[#0b1c1e] via-[#0f2a2d] to-[#161616] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
-      
       {/* ambient glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-linear(circle_at_top,rgba(71,157,165,0.18),transparent_65%)]" />
 
@@ -46,7 +47,6 @@ export default function AdminControls({
 
       {/* actions */}
       <div className="flex flex-col sm:flex-row gap-3">
-        
         {/* Review Button */}
         <button
           onClick={review}
@@ -94,7 +94,14 @@ export default function AdminControls({
         </button>
       </div>
 
-      
+      <div className="flex flex-col sm:flex-row gap-3 mt-5 justify-end">
+        <button
+          className="bg-red-500 rounded-xl border-2 text-white p-2 px-4 border-red-500 cursor-pointer text-sm font-semibold transition-all duration-300"
+          onClick={onDelete}
+        >
+          Delete Application
+        </button>
+      </div>
     </div>
   );
 }
