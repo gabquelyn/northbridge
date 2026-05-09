@@ -16,6 +16,7 @@ import { ClipLoader } from "react-spinners";
 import Modal from "../Modal";
 import FormNavigation from "./FormNavigation";
 import Button from "../atoms/Button";
+import StudyMode from "./StudyMode";
 
 export default function ApplicationForm({
   applicationHandler,
@@ -28,6 +29,7 @@ export default function ApplicationForm({
   programs,
   setPrograms,
   setBirthCountry,
+  setMode,
   birthCountry,
   isPending,
   mode,
@@ -44,6 +46,7 @@ export default function ApplicationForm({
 }: {
   applicationHandler?: Fn;
   details: IApplicationForm;
+  setMode: React.Dispatch<React.SetStateAction<string>>;
   setDetails: React.Dispatch<React.SetStateAction<IApplicationForm>>;
   setLocation: React.Dispatch<React.SetStateAction<LocationData>>;
   location: LocationData;
@@ -70,7 +73,7 @@ export default function ApplicationForm({
   enrolling?: boolean;
   isAdmin?: boolean;
 }) {
-  const [step, setCurrentStep] = useState(mode === "off-site" ? 1 : 0);
+  const [step, setCurrentStep] = useState(0);
   const [nextDisabled, setNextDisabled] = useState(false);
   const onChange = useCallback(genericInputHandler(setDetails), [setDetails]);
   const contactData = useMemo(
@@ -128,7 +131,7 @@ export default function ApplicationForm({
 
   // Next button controller
   useEffect(() => {
-    if (step == 1) {
+    if (step == 2) {
       const { firstName, lastName, email, phoneNumber } = details;
       if (!firstName || !lastName || !email || !phoneNumber) {
         setNextDisabled(true);
@@ -137,7 +140,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 2) {
+    if (step == 3) {
       const { street } = details;
       if (
         !location?.country ||
@@ -151,7 +154,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 3) {
+    if (step == 4) {
       const {
         dob,
         currentSchool,
@@ -176,7 +179,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 4) {
+    if (step == 5) {
       const { language, intendToApply, canadianVisa } = details;
       if (
         !language ||
@@ -190,7 +193,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 5) {
+    if (step == 6) {
       if (
         !documents?.passport ||
         documents?.passport?.length == 0 ||
@@ -230,7 +233,7 @@ export default function ApplicationForm({
   }, [setCurrentStep, step]);
 
   const goNext = useCallback(() => {
-    if (step < 8) setCurrentStep((prev) => prev + 1);
+    if (step < 9) setCurrentStep((prev) => prev + 1);
   }, [setCurrentStep, step]);
 
   if (isPending) {
@@ -249,8 +252,8 @@ export default function ApplicationForm({
         {!page && step > 0 && (
           <div className="mb-5 w-full">
             <StepProgress
-              steps={Array.from({ length: mode == "off-site" ? 8 : 9 })}
-              currentStep={mode === "off-site" ? step - 1 : step}
+              steps={Array.from({ length: 10 })}
+              currentStep={ step}
             />
           </div>
         )}
@@ -341,6 +344,7 @@ export default function ApplicationForm({
                   {
                     [
                       "",
+                      "",
                       "Student Contact Information",
                       "Mailing Address",
                       "Academic Information",
@@ -362,12 +366,14 @@ export default function ApplicationForm({
                 onNext={beginRegistration}
               />
             ) : step == 1 ? (
+              <StudyMode data={mode} onChange={setMode} />
+            ) : step == 2 ? (
               <ContactInformation
                 data={contactData}
                 onChange={onChange}
                 phoneNumChange={phoneNumChange}
               />
-            ) : step == 2 ? (
+            ) : step == 3 ? (
               <Mailing
                 setLocation={setLocation}
                 unit={details.unit}
@@ -375,7 +381,7 @@ export default function ApplicationForm({
                 onChange={onChange}
                 location={location}
               />
-            ) : step == 3 ? (
+            ) : step == 4 ? (
               <AcademicInformation
                 data={academicInformationData}
                 onChange={onChange}
@@ -383,16 +389,16 @@ export default function ApplicationForm({
                   setDetails((prev) => ({ ...prev, [name]: value }))
                 }
               />
-            ) : step == 4 ? (
+            ) : step == 5 ? (
               <Citizenship
                 data={details}
                 onChange={onChange}
                 setBirthCountry={setBirthCountry}
                 birthCountry={birthCountry}
               />
-            ) : step == 5 ? (
-              <Document setFiles={setDocuments} filesGroups={documents} />
             ) : step == 6 ? (
+              <Document setFiles={setDocuments} filesGroups={documents} />
+            ) : step == 7 ? (
               <>
                 {mode === "off-site" ? (
                   <Cartitem />
@@ -404,7 +410,7 @@ export default function ApplicationForm({
                   />
                 )}
               </>
-            ) : step == 7 ? (
+            ) : step == 8 ? (
               <ApplicationPreview
                 details={details}
                 documents={documents}
@@ -412,7 +418,7 @@ export default function ApplicationForm({
                 birthCountry={birthCountry}
                 location={location}
               />
-            ) : step == 8 ? (
+            ) : step == 9 ? (
               <TermsAndConditions
                 onBack={() => setCurrentStep((prev) => prev - 1)}
                 submitHandler={applicationHandler}

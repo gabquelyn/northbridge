@@ -31,7 +31,7 @@ function CanadianSelection({
         </div>
       )}
 
-     <div className="my-5 flex flex-col md:flex-row gap-5 w-full">
+      <div className="my-5 flex flex-col md:flex-row gap-5 w-full">
         {[
           {
             name: "Canadian",
@@ -54,7 +54,7 @@ function CanadianSelection({
               key={select.name}
               className={clsx(
                 "w-full",
-                isDisabled ? "cursor-not-allowed" : "cursor-pointer"
+                isDisabled ? "cursor-not-allowed" : "cursor-pointer",
               )}
             >
               <div
@@ -69,12 +69,14 @@ function CanadianSelection({
                   !isDisabled && "shadow-sm hover:shadow-md",
 
                   // ✅ Selected
-                  !isDisabled && isSelected &&
+                  !isDisabled &&
+                    isSelected &&
                     "border-primary bg-primary/10 scale-[1.02]",
 
                   // ✅ Default
-                  !isDisabled && !isSelected &&
-                    "border-slate-200 hover:border-primary/40"
+                  !isDisabled &&
+                    !isSelected &&
+                    "border-slate-200 hover:border-primary/40",
                 )}
               >
                 <input
@@ -110,7 +112,7 @@ function CanadianSelection({
                     <p
                       className={clsx(
                         "font-medium",
-                        isDisabled && "text-gray-400"
+                        isDisabled && "text-gray-400",
                       )}
                     >
                       {select.name}
@@ -119,9 +121,7 @@ function CanadianSelection({
                     <p
                       className={clsx(
                         "text-xs",
-                        isDisabled
-                          ? "text-gray-400"
-                          : "text-secondary"
+                        isDisabled ? "text-gray-400" : "text-secondary",
                       )}
                     >
                       {select.tag}
@@ -132,9 +132,7 @@ function CanadianSelection({
             </label>
           );
         })}
-      </div> 
-      
-  
+      </div>
 
       {/* Info box */}
       <div
@@ -142,13 +140,13 @@ function CanadianSelection({
           "w-full flex gap-3 items-start border p-4 rounded-xl",
           disableEdit
             ? "bg-gray-100 border-gray-200 text-gray-400"
-            : "text-gray-600 bg-primary/5 border-primary/10"
+            : "text-gray-600 bg-primary/5 border-primary/10",
         )}
       >
         <RiInformation2Line
           className={clsx(
             "text-lg mt-0.5",
-            disableEdit ? "text-gray-400" : "text-primary"
+            disableEdit ? "text-gray-400" : "text-primary",
           )}
         />
         <p>
@@ -157,6 +155,8 @@ function CanadianSelection({
           course selection to ensure recognition by Canadian universities.
         </p>
       </div>
+
+      {/* Mode of study */}
 
       {!edit && (
         <div className="flex w-full items-center justify-between">
