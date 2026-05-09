@@ -310,6 +310,7 @@ export default function ApplicationEdit({
         enrol={enrolToProgramHandler}
         enrolling={enrolling}
         isAdmin={isAdmin}
+        setMode={() => {}}
       />
       <div className="mt-10 md:px-[15%]">
         {isAdmin && (

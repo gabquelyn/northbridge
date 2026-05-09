@@ -34,7 +34,7 @@ export default function ApplicationPage() {
     intendToApply: "",
     canadianVisa: "",
   });
-  const mode = params.get("mode") || "on-site";
+  const [mode, setMode] = useState(params.get("mode") || "on-site");
   const [documents, setDocuments] = useState<Record<string, File[]>>();
   const [programs, setPrograms] = useState<Programs[]>(["CAAP"]);
   const [birthCountry, setBirthCountry] = useState<SelectOption | null>(null);
@@ -131,6 +131,7 @@ export default function ApplicationPage() {
         birthCountry={birthCountry}
         setBirthCountry={setBirthCountry}
         mode={mode}
+        setMode={setMode}
       />
     </div>
   );

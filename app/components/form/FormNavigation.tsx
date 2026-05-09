@@ -16,13 +16,13 @@ function FormNavigation({
 }) {
   return (
     <>
-      {step >= 1 && step < 8 && (
+      {step >= 1 && step < 9 && (
         <div>
           <div className="mt-8 flex justify-between">
             <button
               className="action"
               onClick={back}
-              disabled={mode == "off-site" && step == 1}
+              disabled={step == 0}
             >
               <p className="flex gap-2 items-center px-5">
                 <span>Prev</span>
