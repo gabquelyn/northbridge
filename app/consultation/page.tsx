@@ -4,10 +4,10 @@ import Footer from "../components/Footer";
 import { Metadata } from "next";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 export const metadata: Metadata = {
-  title: "Book an Education Consultation | Northbridge Collegiate, Lagos, Nigeria",
-
+  title:
+    "Book an Education Consultation | Schools That Prepare Students for Canada - Northbridge Collegiate",
   description:
-    "Book a consultation with Northbridge Collegiate to discuss your child's pathway options, and preparation for Canadian high school and university.",
+    "Book a consultation with Northbridge Collegiate — one of Lagos's top secondary schools preparing students for Canada — to discuss your child's SS2 pathway to Canada, program options, and Canadian university preparation.",
 
   alternates: {
     canonical: "https://northbridgec.ca/consultation",

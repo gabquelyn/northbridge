@@ -12,6 +12,14 @@ import LeafletFlip from "../components/FlipBook";
 import Footer from "../components/Footer";
 import Wrapper from "../components/flipbook/Wrapper";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Academic Guidance & Pathway Planning | Alternative to British Curriculum- Northbridge Collegiate",
+  description:
+    "Northbridge provides academic guidance and pathway planning at Lagos's leading pre-university institute, ensuring Canada bound students are fully prepared for long-term university success as an alternative to the British Curriculum.",
+};
 export default function CourseGuide() {
   const pages = [
     // <div className="bg-white h-full w-full" />,

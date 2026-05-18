@@ -1,22 +1,19 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import Hero from "../components/atoms/Hero";
 import Ossd from "./components/Explanation";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
 import StickyHero from "../components/atoms/StickyHero";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 export const metadata: Metadata = {
-  title: "Grade 12 OSSD Program | Canadian High School in Lagos, Nigeria",
+  title:
+    "Grade 12 OSSD | Best High School in Nigeria for Canadian University Placement",
 
   description:
-    "A Grade 12 Canadian high school program in Lagos delivering Ontario-aligned coursework focused on academic depth, assessment readiness, and skills required for Canadian and international university admission.",
+    "A Grade 12 Canadian high school program at one of Nigeria's best secondary schools for university placement, a leading Secondary School in Lagos delivering the Ontario Curriculum and OSSD pathway. Focused on academic depth and readiness for Canadian and international university admission.",
 
   alternates: {
     canonical: "https://northbridgec.ac/grade12",
   },
-
-
 };
 
 export default function Grade12() {

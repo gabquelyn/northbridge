@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 import Footer from "../components/Footer";
 import ApplicationForm from "./ApplicationForm";
+import Image from "next/image";
+import NextSteps from "./NextSteps";
 
 export default function JoinTeamPage() {
   return (
@@ -70,8 +72,11 @@ export default function JoinTeamPage() {
             Application Form
           </h2>
           <ApplicationForm />
+
+          <NextSteps />
         </div>
       </section>
+
       <Footer />
     </main>
   );

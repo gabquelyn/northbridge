@@ -1,7 +1,4 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import Hero from "../components/atoms/Hero";
-import Philosophy from "./components/Philosophy";
 import Special from "../about/components/Special";
 import Footer from "../components/Footer";
 import AcademicFramework from "./components/AcademicFramework";
@@ -12,10 +9,11 @@ import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
-  title: "The Northbridge Model | Senior Secondary Preparation Explained",
+  title:
+    "The Northbridge Model | Best Secondary Schools with Canadian Curriculum Transition Program in Lagos",
 
   description:
-    "Explore the Northbridge Model—an intentional approach to senior secondary education focused on alignment, preparation, and long-term student success.",
+    "Explore the Northbridge Model — the approach behind one of Lagos's most future-focused Pre-University School in Lagos with Canadian curriculum transition program focused on preparation and long-term student success.",
 
   alternates: {
     canonical: "https://northbridgec.ac/northbridge-model",
