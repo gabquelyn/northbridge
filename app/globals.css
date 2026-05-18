@@ -16,6 +16,7 @@
 @theme inline {
   --color-primary: #479da5;
   --color-secondary: #616161;
+  --color-darkBlue: #010A1D;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

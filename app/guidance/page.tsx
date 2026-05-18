@@ -8,7 +8,6 @@ import CareerEducationSection from "./components/CareerEducation";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Academic Guidance & Pathway Planning | Northbridge Collegiate, Lagos, Nigeria",
-
   description:
     "Northbridge provides academic guidance and pathway planning to ensure students are prepared for Canadian senior secondary education.",
 

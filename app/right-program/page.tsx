@@ -5,10 +5,11 @@ import Footer from "../components/Footer";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 import StickyHero from "../components/atoms/StickyHero";
 export const metadata: Metadata = {
-  title: "Which Program Is Right for My Child? | Northbridge Pathways",
+  title:
+    " Which Program Is Right for My Child? | How to Get Into a Canadian University from Nigeria",
 
   description:
-    "Compare CAAP, Grade 11, Grade 12, and AY12 to determine the most appropriate Canadian education pathway for your child's educational goals.",
+    "Compare CAAP, Grade 11, Grade 12, and CAAP to find the right Canadian education pathway for your child — from sixth form alternatives and premium secondary options in Lagos to a clear, structured route into Canadian university.",
 
   alternates: {
     canonical: "https://northbridgec.ac/right-program",

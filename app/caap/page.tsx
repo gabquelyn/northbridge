@@ -1,6 +1,4 @@
 import React from "react";
-import Hero from "../components/atoms/Hero";
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
 import AcademicExpectations from "./components/Expectiations";
@@ -11,9 +9,9 @@ import StickyHero from "../components/atoms/StickyHero";
 
 export const metadata: Metadata = {
   title:
-    "CAAP Program | Canadian Education Foundation Program for Nigerian Students",
+    "CAAP Program | Canadian Education Foundation Pathway & Alternative to WAEC for Nigerian Students",
   description:
-    "The CAAP program provides academic foundational entry pathway for students transitioning from non-Ontario systems.",
+    "The CAAP program provides an academic foundational entry pathway for students transitioning from non-Ontario systems — a leading alternative to WAEC for students pursuing Canadian university routes from Lagos.",
 
   alternates: {
     canonical: "https://northbridgec.ca/caap",

@@ -1,6 +1,4 @@
 import React from "react";
-import Hero from "../components/atoms/Hero";
-import Navigation from "../components/Navigation";
 import Purpose from "./components/Purpose";
 import Standard from "./components/Standard";
 import Graduands from "../caap/components/Graduands";
@@ -11,10 +9,11 @@ import StickyHero from "../components/atoms/StickyHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Grade 11 Ontario Curriculum | Canadian High School in Lagos, Nigeria",
+  title:
+    "Grade 11 Ontario Curriculum | Canadian High School in Lagos for High-Performing Students",
 
   description:
-    "A Grade 11 Canadian high school program in Lagos, Nigeria that builds academic foundations, critical thinking, and readiness for Grade 12 and university study.",
+    "A Grade 11 Canadian high school program in Lagos is an alternative to IGCSE for ambitious and high-performing students, building the academic foundations, critical thinking, and readiness needed for Grade 12 and university study in Canada.",
 
   alternates: {
     canonical: "https://northbridgec.ac/grade11",

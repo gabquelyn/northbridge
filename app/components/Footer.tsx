@@ -20,9 +20,16 @@ export default function Footer() {
               <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
             </Link>
           </div>
-          <p className=" leading-relaxed">
-            Northbridge Collegiate is a Canadian university preparatory institute providing senior secondary and pre-university education, operating under authorization from the Ontario Ministry of Education.
-          </p>
+          <div className=" leading-relaxed space-y-2">
+            <p>
+              Northbridge Collegiate Canadian University Preparation Ontario
+              Secondary School Diploma (OSSD).
+            </p>
+            <p>
+              Northbridge Collegiate is authorized by the Ontario Ministry of
+              Education.
+            </p>
+          </div>
           <div className="flex gap-6 items-center">
             <Link
               href={
@@ -55,7 +62,7 @@ export default function Footer() {
             <Link href="/right-program">Which program is right for me?</Link>
             {/* <Link href="https://study.northbridgec.ca/login/">Study</Link> */}
             <Link href="/about">About Northbridge Collegiate</Link>
-            <Link href="/join">Join NBC's team</Link>
+            <Link href="/join">Join our team</Link>
           </div>
         </div>
 

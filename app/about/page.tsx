@@ -7,16 +7,13 @@ import { Metadata } from "next";
 import StickyHero from "../components/atoms/StickyHero";
 import NorthbridgeAcademicNav from "../components/StickyNav";
 export const metadata: Metadata = {
-  title: "About Northbridge Collegiate | A Canadian University-Prep Institution in Lagos, Nigeria",
-
+  title:
+    "About Northbridge Collegiate |Best Secondary Schools in Lekki, Lagos, Nigeria",
   description:
-    "Learn about Northbridge Collegiate's mission, values, and senior-secondary focus preparing students for Canadian education and long-term university success.",
-
+    "Learn how Northbridge Collegiate became one of Lagos's leading international schools — a premium Canadian secondary institution preparing students for university success in Canada and beyond.",
   alternates: {
     canonical: "https://northbridgec.ca/about",
   },
-
-
 };
 
 export default function About() {
@@ -57,9 +54,9 @@ export default function About() {
             </p>
             <p>
               As a Canadian University Preparation institution, we offer
-              academic programs through both online and in-class
-              delivery. Our Canadian University Prep model is designed to
-              prepare students for successful entry into Canadian universities.
+              academic programs through both online and in-class delivery. Our
+              Canadian University Prep model is designed to prepare students for
+              successful entry into Canadian universities.
             </p>
           </div>
         </div>

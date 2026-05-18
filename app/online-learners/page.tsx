@@ -10,10 +10,11 @@ import StickyHero from "../components/atoms/StickyHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Direct Entry Pathway | Preparing Students for Canadian Education",
+  title:
+    "Direct Entry Pathway | Post WAEC pathway to Canada & Canadian University Preparation",
 
   description:
-    "Support for transitional learners entering the Canadian system, focusing on academic alignment, readiness, and confidence before university.",
+    "A structured pre university academic pathway to Canada for post WAEC students transitioning to the Canadian system, focused on academic alignment, readiness, and confidence — one of Lagos's most direct alternatives to A Levels, WAEC and JAMB.",
 
   alternates: {
     canonical: "https://northbridgec.ac/online-learners",
