@@ -46,7 +46,6 @@ export default function Home() {
       <ModelPreview />
       <Program />
       <Application />
-      <Blog />
       <Footer />
     </div>
   );

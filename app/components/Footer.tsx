@@ -8,7 +8,7 @@ import { TbMail } from "react-icons/tb";
 import { MdLocationPin } from "react-icons/md";
 export default function Footer() {
   return (
-    <footer className="bg-[#010A1D] text-white px-5 py-20">
+    <footer className="bg-darkBlue text-white px-5 py-20">
       {/* Top horizontal divider */}
       <hr className="border-[#151e2f] mb-10" />
 
@@ -63,6 +63,7 @@ export default function Footer() {
             {/* <Link href="https://study.northbridgec.ca/login/">Study</Link> */}
             <Link href="/about">About Northbridge Collegiate</Link>
             <Link href="/join">Join our team</Link>
+            <Link href="/insights">Blog and insights</Link>
           </div>
         </div>
 
