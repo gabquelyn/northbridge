@@ -3,12 +3,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Option from "@/app/components/Option";
 import StepProgress from "./StepProgress";
-import axios from "axios";
 import Input from "@/app/components/Input";
-import { FaCheckCircle } from "react-icons/fa";
 import { useConsultation } from "@/app/hooks/useProfile";
 import { ClipLoader } from "react-spinners";
 import AnimatedChecked from "@/app/components/AnimatedChecked";
+import PhoneInputWithCountrySelect from "react-phone-number-input";
 
 export default function MatureLearnersForm() {
   const steps = [
@@ -136,7 +135,11 @@ export default function MatureLearnersForm() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const formTopRef = useRef<HTMLDivElement | null>(null);
   const step = steps[currentStep];
-  const [details, setDetails] = useState({ email: "", name: "" });
+  const [details, setDetails] = useState({
+    email: "",
+    name: "",
+    phoneNumber: "",
+  });
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -174,6 +177,7 @@ export default function MatureLearnersForm() {
     const data = {
       name: details.name,
       email: details.email,
+      phone: details.phoneNumber,
       ...answers,
     };
     mutate({ ...data });
@@ -238,6 +242,22 @@ export default function MatureLearnersForm() {
                       type="email"
                       placeholder="Email address"
                     />
+                    <PhoneInputWithCountrySelect
+                      international
+                      defaultCountry="NG"
+                      value={details.phoneNumber}
+                      onChange={(value) => {
+                        if (value)
+                          setDetails((prev) => ({
+                            ...prev,
+                            phoneNumber: value.toString(),
+                          }));
+                      }}
+                      className="nb-phone-input"
+                      countrySelectProps={{
+                        className: "nb-country-select",
+                      }}
+                    />
                   </>
                 )}
                 {step.questions.map((question) => (
@@ -272,7 +292,12 @@ export default function MatureLearnersForm() {
               {!isLastStep ? (
                 <motion.button
                   onClick={handleNext}
-                  disabled={!isStepComplete || !details.email || !details.name}
+                  disabled={
+                    !isStepComplete ||
+                    !details.email ||
+                    !details.name ||
+                    !details.phoneNumber
+                  }
                   className="disabled:opacity-40"
                 >
                   Next
