@@ -20,7 +20,7 @@ export default function Footer() {
               <Image src="/asset/logo1.png" height={70} width={70} alt="logo" />
             </Link>
           </div>
-          <div className=" leading-relaxed space-y-1">
+          <div className=" leading-relaxed space-y-2">
             <p>Northbridge Collegiate</p>
             <p>Canadian University Preparation</p>
             <p>Ontario Secondary School Diploma (OSSD).</p>
@@ -103,7 +103,7 @@ export default function Footer() {
                     />
                   </div>
 
-                  <p>Victoria Island, Lagos, Nigeria.</p>
+                  <p>Lekki Phase 1, Lagos, Nigeria.</p>
                 </div>
                 <div className="flex gap-2 items-center">
                   <div>
