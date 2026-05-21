@@ -45,7 +45,7 @@ export default function Blog() {
           <p>Preparation for What's Next.</p>
         </>
       ),
-      thumbnail: "/asset/b1.jpeg",
+      thumbnail: "/asset/b7.jpeg",
       date: "2026-05-18",
     },
     {
@@ -88,7 +88,7 @@ export default function Blog() {
           <p>At Northbridge, we prepare learners for what comes next.</p>
         </>
       ),
-      thumbnail: "/asset/b2.jpeg",
+      thumbnail: "/asset/b6.jpeg",
       date: "2026-05-18",
     },
     {
@@ -137,7 +137,7 @@ export default function Blog() {
           <p>The transition years deserve intentional preparation.</p>
         </>
       ),
-      thumbnail: "/asset/b3.jpeg",
+      thumbnail: "/asset/b4.jpeg",
       date: "2026-05-18",
     },
     {
@@ -193,7 +193,7 @@ export default function Blog() {
           </p>
         </>
       ),
-      thumbnail: "/asset/b4.jpeg",
+      thumbnail: "/asset/b3.jpeg",
       date: "2026-05-18",
     },
     {
@@ -259,7 +259,7 @@ export default function Blog() {
           </p>
         </>
       ),
-      thumbnail: "/asset/b5.jpeg",
+      thumbnail: "/asset/b1.jpeg",
       date: "2026-05-18",
     },
     {
@@ -309,7 +309,7 @@ export default function Blog() {
           <p>But preparation matters too.</p>
         </>
       ),
-      thumbnail: "/asset/b6.jpeg",
+      thumbnail: "/asset/b5.jpeg",
       date: "2026-05-18",
     },
     {
@@ -371,7 +371,7 @@ export default function Blog() {
           <p>But we also believe intentional preparation matters.</p>
         </>
       ),
-      thumbnail: "/asset/b7.jpeg",
+      thumbnail: "/asset/b2.jpeg",
       date: "2026-05-18",
     },
     {
