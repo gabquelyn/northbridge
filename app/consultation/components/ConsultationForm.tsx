@@ -4,6 +4,7 @@ import Input from "@/app/components/Input";
 import PhoneInput from "react-phone-number-input";
 import { motion } from "motion/react";
 import Option from "@/app/components/Option";
+import isEmail from "@/app/utils/isEmail";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { useConsultation } from "@/app/hooks/useProfile";
@@ -35,7 +36,7 @@ export default function ConsultationForm() {
 
   const disableButton =
     !details.name ||
-    !details.email ||
+    !isEmail(details.email)||
     !details.education ||
     !details.program ||
     !details.country ||
