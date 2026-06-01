@@ -54,7 +54,9 @@ export default function ApplicationPage() {
         err?.error && Array.isArray(err.error)
           ? `Incorrect fields: \n
       ${err?.error?.map((e) => e.path).join(", ")}`
-          : err?.message,
+          : err?.message
+            ? err?.message
+            : (err?.error as string)?.match(/:\s*([^\n]+)/)?.[1],
       );
       console.log(err);
     }
@@ -97,6 +99,7 @@ export default function ApplicationPage() {
 
     if (documents) {
       for (const ifileskeys of Object.keys(documents)) {
+        console.log(ifileskeys);
         for (const file of documents[ifileskeys]) {
           applicationFormData.append(ifileskeys, file);
         }

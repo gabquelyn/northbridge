@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import clsx from "clsx";
@@ -30,10 +30,27 @@ export default function Upload({
   uploads?: DocumentFile[];
   disabled?: boolean;
 }) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (disabled) return;
-    fileChangeHandler(acceptedFiles, name);
-  }, []);
+  const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (disabled) return;
+
+      const validFiles = acceptedFiles.filter((file) => file.size <= MAX_SIZE);
+
+      fileChangeHandler(validFiles, name);
+
+      // Optional: handle rejected files (too large)
+      const rejected = acceptedFiles.filter((file) => file.size > MAX_SIZE);
+
+      if (rejected.length > 0) {
+        alert("Some files exceed the 5MB limit");
+        console.warn("Some files exceed 5MB limit:", rejected);
+      }
+    },
+    [disabled, fileChangeHandler, name],
+  );
+
   const router = useRouter();
   const { mutate, isPending, data, isSuccess } = useDownload();
   const { getInputProps, isDragActive, getRootProps } = useDropzone({
