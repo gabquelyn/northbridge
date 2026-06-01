@@ -22,7 +22,7 @@ const uploads = [
     name: "transcripts",
     description: "Please provide a transcript from the last 24 months",
     label: "School Transcripts",
-    multiple: false,
+    multiple: true,
     imageOnly: false,
   },
   {
