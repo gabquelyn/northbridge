@@ -58,6 +58,7 @@ export default function Upload({
     accept: imagesOnly
       ? { "image/*": [] }
       : {
+          "image/*": [],
           "application/pdf": [],
           "application/msword": [], // .doc
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
@@ -68,6 +69,11 @@ export default function Upload({
           "text/plain": [], // optional (.txt)
         },
     disabled,
+    multiple,
+    maxFiles: multiple ? 3 : 1,
+    onDropRejected: (rejectedFiles) => {
+      alert(`You can only upload a maximum of ${multiple ? "3" : "1"} file(s) for ${name}`);
+    },
   });
 
   useEffect(() => {
