@@ -28,7 +28,7 @@ const uploads = [
   {
     name: "others",
     description:
-      "Additional documentation accelerates the verification process",
+      "Additional documentation accelerates the verification process (maximum of 3)",
     label: "Upload any supporting docs",
     multiple: true,
     imageOnly: false,
@@ -53,7 +53,7 @@ function Document({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
       {uploads.map((upload) => (
         <Upload
-        key={upload.name}
+          key={upload.name}
           multiple={upload.multiple}
           name={upload.name}
           description={upload.description}
@@ -64,7 +64,7 @@ function Document({
           uploads={uploaded?.[upload.name]}
           files={filesGroups?.[upload.name] || []}
           disabled={disableEdit}
-          imagesOnly = {upload.imageOnly}
+          imagesOnly={upload.imageOnly}
         />
       ))}
     </div>
