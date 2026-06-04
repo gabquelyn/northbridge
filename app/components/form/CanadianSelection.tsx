@@ -117,7 +117,7 @@ function CanadianSelection({
                     >
                       {select.name}
                     </p>
-
+                    <p>or</p>
                     <p
                       className={clsx(
                         "text-xs",
@@ -135,7 +135,7 @@ function CanadianSelection({
       </div>
 
       {/* Info box */}
-      <div
+      {/* <div
         className={clsx(
           "w-full flex gap-3 items-start border p-4 rounded-xl",
           disableEdit
@@ -154,7 +154,7 @@ function CanadianSelection({
           non-Canadian students and will be automatically included in your
           course selection to ensure recognition by Canadian universities.
         </p>
-      </div>
+      </div> */}
 
       {/* Mode of study */}
 
