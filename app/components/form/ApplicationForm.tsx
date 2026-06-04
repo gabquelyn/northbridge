@@ -253,7 +253,7 @@ export default function ApplicationForm({
           <div className="mb-5 w-full">
             <StepProgress
               steps={Array.from({ length: 10 })}
-              currentStep={ step}
+              currentStep={step}
             />
           </div>
         )}
@@ -267,15 +267,15 @@ export default function ApplicationForm({
               disableEdit={disableEdit}
             />
 
-            {mode == "on-site" && (
-              <CanadianSelection
-                canadian={details.canadian}
-                onChange={onChange}
-                onNext={beginRegistration}
-                edit
-                disableEdit={disableEdit}
-              />
-            )}
+            <CanadianSelection
+              canadian={details.canadian}
+              onChange={onChange}
+              onNext={beginRegistration}
+              edit
+              disableEdit={disableEdit}
+            />
+
+            <StudyMode data={mode} onChange={setMode} page />
 
             <Mailing
               setLocation={setLocation}
