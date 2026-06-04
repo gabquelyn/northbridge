@@ -7,21 +7,29 @@ import { RiInformation2Line } from "react-icons/ri";
 export default function StudyMode({
   data,
   onChange,
+  page,
 }: {
   data: string;
   onChange: (e: string) => void;
+  page?: boolean;
 }) {
   return (
     <div className="w-full flex flex-col gap-3">
-      <div>
+      {page ? (
         <p className="font-semibold md:text-lg text-gray-900 text-center">
-          Select Mode of Lecture Delivery
+          Selected Mode of Lecture Delivery
         </p>
+      ) : (
+        <div>
+          <p className="font-semibold md:text-lg text-gray-900 text-center">
+            Select Mode of Lecture Delivery
+          </p>
 
-        <p className="text-center text-secondary text-sm">
-          Choose how your child will attend lectures and classes.
-        </p>
-      </div>
+          <p className="text-center text-secondary text-sm">
+            Choose how your child will attend lectures and classes.
+          </p>
+        </div>
+      )}
 
       <div className="flex flex-col md:flex-row gap-5 w-full">
         {[
@@ -59,7 +67,7 @@ export default function StudyMode({
                 />
 
                 <div className="flex flex-col gap-2 items-center text-center">
-                  <mode.icon className="text-primary text-2xl"/>
+                  <mode.icon className="text-primary text-2xl" />
 
                   <div>
                     <p className={clsx("font-medium")}>{mode.name}</p>
@@ -76,21 +84,24 @@ export default function StudyMode({
       </div>
 
       {/* Info box */}
-      <div
-        className={clsx(
-          "w-full flex gap-3 items-start border p-4 rounded-xl",
-          "text-gray-600 bg-primary/5 border-primary/10",
-        )}
-      >
-        <RiInformation2Line
-          className={clsx("text-lg mt-0.5", "text-primary")}
-        />
+      {!page && (
+        <div
+          className={clsx(
+            "w-full flex gap-3 items-start border p-4 rounded-xl",
+            "text-gray-600 bg-primary/5 border-primary/10",
+          )}
+        >
+          <RiInformation2Line
+            className={clsx("text-lg mt-0.5", "text-primary")}
+          />
 
-        <p>
-          Online students will attend classes virtually, while offline students
-          will participate in physical classroom sessions and campus activities.
-        </p>
-      </div>
+          <p>
+            Online students will attend classes virtually, while offline
+            students will participate in physical classroom sessions and campus
+            activities.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
