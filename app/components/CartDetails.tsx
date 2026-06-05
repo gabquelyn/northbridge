@@ -31,6 +31,7 @@ export default function CartDetails({
     const ids = courses.map((c) => c.id);
     mutate({ courses: ids });
   };
+  
   const router = useRouter();
   useEffect(() => {
     if (isError) {
@@ -42,6 +43,7 @@ export default function CartDetails({
       if ((error as AxiosError).response?.status == 403) {
         return router.replace("/register?mode=off-site");
       }
+
       const err = (error as AxiosError<ApiErrorMessage>).response?.data;
       toast.error(err?.message);
     }
