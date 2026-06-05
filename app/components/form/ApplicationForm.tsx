@@ -131,6 +131,12 @@ export default function ApplicationForm({
 
   // Next button controller
   useEffect(() => {
+    if (step == 1) {
+      if (mode) setNextDisabled(false);
+      else {
+        setNextDisabled(true);
+      }
+    }
     if (step == 2) {
       const { firstName, lastName, email, phoneNumber } = details;
       if (!firstName || !lastName || !email || !phoneNumber) {
@@ -401,7 +407,7 @@ export default function ApplicationForm({
             ) : step == 7 ? (
               <>
                 {mode === "off-site" ? (
-                  <Cartitem editMode/>
+                  <Cartitem editMode />
                 ) : (
                   <Programs
                     data={programs}

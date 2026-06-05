@@ -45,7 +45,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [loggedOut, isSuccess, isError]);
 
   const links =
-    profile?.data?.role == "admin"
+    profile?.data?.role == "adin"
       ? [
           {
             tag: "Applications",
