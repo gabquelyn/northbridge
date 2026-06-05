@@ -86,15 +86,15 @@ export default function DateManager({
   label,
   name,
   value,
-  onDateChange
+  onDateChange,
 }: {
   label?: string;
   name: string;
   value: string;
-  onDateChange: (name: string, value: string) => void
+  onDateChange: (name: string, value: string) => void;
 }) {
-const parsedDate = value ? parseISO(value) : null;
-const safeDate = parsedDate && isValid(parsedDate) ? parsedDate : null;
+  const parsedDate = value ? parseISO(value) : null;
+  const safeDate = parsedDate && isValid(parsedDate) ? parsedDate : null;
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -104,7 +104,10 @@ const safeDate = parsedDate && isValid(parsedDate) ? parsedDate : null;
         name={name}
         onChange={(e: Date | null) => {
           if (e) {
-            onDateChange(name, e.toISOString().split("T")[0])
+            const yyyy = e.getFullYear();
+            const mm = String(e.getMonth() + 1).padStart(2, "0");
+            const dd = String(e.getDate()).padStart(2, "0");
+            onDateChange(name, `${yyyy}-${mm}-${dd}`);
           }
         }}
         renderCustomHeader={CustomHeader}
