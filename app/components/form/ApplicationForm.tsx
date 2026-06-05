@@ -401,7 +401,7 @@ export default function ApplicationForm({
             ) : step == 7 ? (
               <>
                 {mode === "off-site" ? (
-                  <Cartitem />
+                  <Cartitem editMode/>
                 ) : (
                   <Programs
                     data={programs}
