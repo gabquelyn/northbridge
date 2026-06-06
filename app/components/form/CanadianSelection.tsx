@@ -83,7 +83,6 @@ function CanadianSelection({
                   type="radio"
                   name="canadian"
                   value={select.value}
-                  className="hidden"
                   disabled={isDisabled}
                   checked={isSelected}
                   onChange={(e) => {
