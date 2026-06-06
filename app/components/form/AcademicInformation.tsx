@@ -99,6 +99,7 @@ function AcademicInformation({
                   name={ques.name}
                   type="radio"
                   value={item}
+                  className="accent-primary"
                   checked={item == data[ques.name as keyof AcademicFormData]}
                   onChange={onChange}
                   disabled={disableEdit}

@@ -221,10 +221,14 @@ export default function ApplicationForm({
     (program: Programs, checked: boolean) => {
       // const index = PROGRAM_ORDER.indexOf(program);
       // const isCanadian = details.canadian === "true";
-
+      const complementary: Programs[] = ["DIRECT", "CAAP"];
       setPrograms((prev) => {
         if (checked) {
-          return [...prev, program];
+          if (complementary.includes(program))
+            return [...prev.filter((p) => complementary.includes(p)), program];
+          else {
+            return [program];
+          }
         }
         return prev.filter((p) => p !== program);
       });

@@ -79,6 +79,7 @@ function Citizenship({
                 <input
                   name={ques.name}
                   type="radio"
+                  className="accent-primary"
                   value={item}
                   checked={item == data[ques.name as keyof IApplicationForm]}
                   onChange={onChange}

@@ -125,7 +125,6 @@ function Programs({
                   className="hidden"
                   onChange={(e) => {
                     if (isDisabled) return;
-                    // ❌ prevent CAAP removal
                     if (isLocked && !e.target.checked) return;
 
                     programChange(program.value as Programs, e.target.checked);
