@@ -9,7 +9,7 @@ import StickyHero from "./components/atoms/StickyHero";
 
 export const metadata = {
   title:
-    "Northbridge Collegiate | Canadian University-Prep High School in Lagos, Nigeria",
+    "Northbridge Collegiate | Canadian Pre-University High School in Lagos, Nigeria",
 
   description:
     "Northbridge Collegiate is a Canadian secondary school in Lagos, Nigeria preparing students aged 15-19 for Grades 11-12, OSSD, and university success through academic alignment.",
