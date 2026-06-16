@@ -5,6 +5,140 @@ import Link from "next/link";
 export default function Blog() {
   const blogs = [
     {
+      title: "What Should Students Do After WAEC or IGCSE?",
+      highlight: "A Canadian University Pathway for Nigerian Students ",
+      preview: "WAEC and IGCSE exams are almost over...",
+      details: (
+        <>
+          <p>WAEC and IGCSE exams are almost over.</p>
+          <p>
+            The late nights, revision sessions, assignments, and exams are
+            behind you.
+          </p>
+
+          <p>Now comes the bigger question:</p>
+          <p>What's Next?</p>
+
+          <p>
+            For students planning to study in Canada, the months after WAEC or
+            IGCSE can shape their entire university journey.
+          </p>
+
+          <p>Many students gain admission abroad but struggle with:</p>
+
+          <div>
+            <ul className="list-inside list-disc">
+              <li>Academic writing</li>
+              <li>Independent learning</li>
+              <li>Critical thinking</li>
+              <li>Time management</li>
+              <li>Life away from home</li>
+            </ul>
+          </div>
+
+          <p>
+            At Northbridge Collegiate, we believe admission is only the
+            beginning.
+          </p>
+          <p>Success after admission matters just as much.</p>
+
+          <p>Introducing CAAP</p>
+          <p>
+            The Canadian Academic Advancement Program (CAAP) is a Canadian
+            pre-university pathway designed for students who want to earn
+            Canadian academic credits and prepare for university success.
+          </p>
+          <p>
+            CAAP bridges the gap between secondary school and university while
+            helping students develop the skills needed to thrive in a Canadian
+            learning environment.
+          </p>
+
+          <p>Why Families Choose CAAP</p>
+
+          <div>
+            <p>Earn Canadian Academic Credits</p>
+            <p>
+              Strengthen your academic profile while preparing for university
+              admission.
+            </p>
+          </div>
+
+          <div>
+            <p>Build University Readiness</p>
+            <p>Develop skills in: </p>
+            <ul className="list-inside list-disc">
+              <li>Academic writing</li>
+              <li>Research</li>
+              <li>Critical thinking</li>
+              <li>Presentations</li>
+              <li>Independent learning</li>
+              <li>Time management</li>
+            </ul>
+          </div>
+
+          <div>
+            <p>Gain Confidence Before Leaving Home</p>
+            <p>
+              Understand Canadian academic expectations before arriving on
+              campus.
+            </p>
+          </div>
+
+          <div>
+            <p>Explore Future Pathways</p>
+            <p>Receive guidance on:</p>
+            <ul className="list-inside list-disc">
+              <li>University programs</li>
+              <li>Career interests</li>
+              <li>Academic goals</li>
+            </ul>
+          </div>
+
+          <div>
+            <p>Learn in Small Cohorts</p>
+            <p>
+              Benefit from personalized support, mentorship, and meaningful
+              engagement.
+            </p>
+          </div>
+
+          <div>
+            <p>Is CAAP Right for Your Student?</p>
+            <p>CAAP may be a great fit if your student:</p>
+            <ul className="list-inside list-disc">
+              <li>Has completed WAEC or IGCSE</li>
+              <li>Plans to study in Canada or internationally</li>
+              <li>Wants Canadian academic credits</li>
+              <li>Wants to strengthen university applications</li>
+              <li>Needs additional academic preparation</li>
+              <li>Wants a smoother transition to university life</li>
+            </ul>
+          </div>
+
+          <p>Don't Leave the Next Step to Chance</p>
+          <p>University admission is important.</p>
+          <p>University success is even more important.</p>
+          <p>
+            CAAP was intentionally designed to help students prepare
+            academically, personally, and confidently for what comes next.
+          </p>
+
+          <div>
+            <p>Ready to Learn More?</p>
+            <Link className="text-blue-500" href="/consultation">
+              Book a complimentary consultation with our admissions team today.
+            </Link>
+          </div>
+
+          <p>Northbridge Collegiate</p>
+          <p>Canadian Pre-University</p>
+        </>
+      ),
+      thumbnail: "/asset/nxt.png",
+      date: "2026-06-16",
+    },
+    {
       title:
         "Northbridge Collegiate Admissions, Tuition & Scholarship Information",
       highlight: "Lagos, Nigeria",
