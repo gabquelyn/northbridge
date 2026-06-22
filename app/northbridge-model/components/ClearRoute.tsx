@@ -50,7 +50,7 @@ export default function ClearRoute() {
 
       <div className="bg-[#F9CA5226] p-10 rounded-lg gap-15 flex flex-col md:flex-row items-center">
         <div className="text-left flex flex-col items-center md:items-start gap-5">
-          <p className="text-[#F9CA52] font-bold">COMPLETE (OSSD)</p>
+          <p className="text-[#F9CA52] font-bold">GRADE 12 (OSSD)</p>
           <p className="text-center md:text-left">
             Next, you fulfill your Ontario Secondary School Diploma
             requirements. Our Ministry-aligned curriculum ensures your credits
