@@ -11,39 +11,13 @@ export default function ClearRoute() {
     <div className="py-20 flex flex-col gap-8 items-center justify-center text-center bg-gray-50 px-[5%] xl:px-[20%]">
       <div>
         <p className="title capitalize">
-          One Clear <span className="text-[#479DA5]">Route.</span>
+          Four Clear <span className="text-[#479DA5]">Pathways.</span>
         </p>
         <p>
-          The Northbridge Academic Pathway simplifies the journey to university
+          The Northbridge Academic Pathways simples the journey to university
           <br className="hidden md:block" />
-          success into four powerful stages:
+          success in four powerful pathways:
         </p>
-      </div>
-
-      <div className="bg-[#479DA526] p-10 rounded-lg gap-15 flex flex-col md:flex-row items-center">
-        <Image src="/asset/frame1.png" alt="" height={400} width={400} />
-        <div className="text-left flex flex-col items-center md:items-start gap-5">
-          <p className="text-[#479DA5] font-bold ">ALIGN (CAAP)</p>
-          <p className="text-center md:text-left">
-            Your journey begins with the Canadian Academic Alignment Program.
-            Here, we bridge system gaps and build the foundational academic
-            literacy required for the Canadian classroom.
-          </p>
-          <div>
-            <Link href="/caap">
-              <motion.div
-                className="border-2 text-[#479DA5] border-[#479DA5] rounded-3xl flex items-center gap-3 w-fit p-2 px-6"
-                whileHover={{ scale: 1.05 }}
-              >
-                <p>Learn more</p>
-                <div className="flex">
-                  <FaGreaterThan />
-                  <FaGreaterThan />
-                </div>
-              </motion.div>
-            </Link>
-          </div>
-        </div>
       </div>
 
       <div className="bg-[#293B5926] shadow p-10 rounded-lg gap-15 flex flex-col md:flex-row items-center">
@@ -120,10 +94,9 @@ export default function ClearRoute() {
         <div className="text-left flex flex-col items-center md:items-start gap-5">
           <p className="text-[#293B59] font-bold">ADVANCE (AY12)</p>
           <p className="text-center md:text-left">
-            In the final stage, you enter the "Advantage Year." You master
-            university-level writing, research, and critical thinking, entering
-            your first year of university with a massive head start over your
-            peers.
+            In the "Advantage Year," you master university-level writing,
+            research, and critical thinking, entering your first year of
+            university with a massive head start over your peers.
           </p>
           <div>
             <Link href="/ay12">
@@ -141,6 +114,7 @@ export default function ClearRoute() {
           </div>
         </div>
       </div>
+
       <div className="bg-amber-50 p-10 shadow rounded-lg gap-15 flex flex-col md:flex-row items-center">
         <div className="relative mb-20 mr-13">
           <div className="absolute -right-15 top-20">
@@ -161,15 +135,43 @@ export default function ClearRoute() {
         <div className="text-left flex flex-col items-center md:items-start gap-5">
           <p className="text-amber-500 font-bold">Direct Entry Pathway (DEP)</p>
           <p className="text-center md:text-left">
-            The Direct Entry Pathway provides a structured entry into the
-            Canadian academic framework for learners who have completed
-            secondary school and are preparing to enter a Canadian academic
-            framework.
+            The Direct Entry Program (DEP) gives eligible students a unique
+            opportunity to get a head start on university. Through select
+            Canadian university partnerships, students gain early exposure to
+            university learning and expectations, helping them make a smoother
+            and more confident transition to higher education in Canada.
           </p>
           <div>
             <Link href="/online-learners">
               <motion.div
                 className="border-2 text-amber-500 border-amber-500 rounded-3xl flex items-center gap-3 w-fit p-2 px-6"
+                whileHover={{ scale: 1.05 }}
+              >
+                <p>Learn more</p>
+                <div className="flex">
+                  <FaGreaterThan />
+                  <FaGreaterThan />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[#479DA526] p-10 rounded-lg gap-15 flex flex-col md:flex-row items-center">
+        <Image src="/asset/frame1.png" alt="" height={400} width={400} />
+        <div className="text-left flex flex-col items-center md:items-start gap-5">
+          <p className="text-[#479DA5] font-bold ">ALIGN (CAAP)</p>
+          <p className="text-center md:text-left">
+            The Canadian Academic Advancement Program (CAAP) is Northbridge
+            Collegiate's signature pre-university pathway for students preparing
+            to study in Canada. Here, we bridge system gaps and build the
+            required academic expectations of Canadian universities.
+          </p>
+          <div>
+            <Link href="/caap">
+              <motion.div
+                className="border-2 text-[#479DA5] border-[#479DA5] rounded-3xl flex items-center gap-3 w-fit p-2 px-6"
                 whileHover={{ scale: 1.05 }}
               >
                 <p>Learn more</p>

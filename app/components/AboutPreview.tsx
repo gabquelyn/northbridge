@@ -70,8 +70,8 @@ export default function AboutPreview() {
             className="text-center md:text-justify text-gray-700 leading-relaxed"
           >
             Northbridge Collegiate delivers Ontario curriculum-based secondary
-            education under an Ontario private school license issued by the
-            Ministry of Education. Through approved in-class, online, and
+            education pathways under license by the Ontario Ministry of
+            Education (BSID - 886341). Through approved in-class, online, and
             blended instructional models, we support students from diverse
             educational backgrounds with structured academic review and rigorous
             assessment—guiding them confidently toward successful entry into

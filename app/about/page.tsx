@@ -29,9 +29,9 @@ export default function About() {
         typewrite="Know us more"
         description={
           <p>
-            Northbridge Collegiate is a Canadian University Prep Institution
-            designed to prepare students for successful entry into, and
-            performance within, Canadian universities and beyond.
+            Northbridge Collegiate is a Canadian pre-university institute
+            designed to prepare students for successful entry into and
+            performance within Canadian universities and beyond.
           </p>
         }
         transparent
@@ -43,20 +43,25 @@ export default function About() {
         <div className="relative flex flex-col items-center justify-center min-h-100 z-10">
           <div className="max-w-200">
             <p className="title">
-              A <span className="text-[#479DA5]">Canadian University</span> Prep
-              Model
+              A <span className="text-[#479DA5]">Canadian University</span>{" "}
+              Preparation Model
             </p>
             <p>
-              Northbridge Collegiate is a private Canadian educational
-              institution inspected and authorized by the Ontario Ministry of
-              Education to deliver Ontario Secondary School Diploma (OSSD)
-              programs in accordance with provincial requirements.
+              Northbridge Collegiate is a Canadian educational institution
+              inspected and authorized by the Ontario Ministry of Education to
+              deliver Ontario Secondary School Diploma (OSSD) programs in
+              accordance with provincial requirements.
             </p>
             <p>
-              As a Canadian University Preparation institution, we offer
-              academic programs through both online and in-class delivery. Our
-              Canadian University Prep model is designed to prepare students for
-              successful entry into Canadian universities.
+              Northbridge combines Ontario curriculum-based academics with
+              university readiness and a structured Canadian transition
+              experience. We offer academic pathways through classroom
+              instruction, online learning or a blend of both. Our Canadian
+              university prep model is designed to prepare students for
+              successful entry into Canadian universities. Our pathways are
+              intentionally designed to bridge the gap between secondary school
+              and university, helping students transition to Canada with greater
+              confidence, preparation, and support.
             </p>
           </div>
         </div>

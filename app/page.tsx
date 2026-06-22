@@ -36,9 +36,10 @@ export default function Home() {
         programs
         description={
           <p>
-            Northbridge Collegiate is a Canadian university preparatory
-            institute delivering Ontario curriculum-based secondary education,
-            preparing students for success across borders and beyond
+            Northbridge Collegiate is a Canadian pre-university institute
+            delivering Ontario curriculum-based academic pathways that bridge
+            the transition from secondary school to university, preparing
+            students for success across borders.
           </p>
         }
       />

@@ -77,7 +77,7 @@ export default function StickyHero({
                     whileTap={{ scale: 0.98 }}
                     className="rounded-full bg-linear-to-r from-[#479DA5] to-[#17757E] px-7 py-3 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transition"
                   >
-                    View Programs
+                    View Pathways
                   </motion.button>
                 </Link>
               )}

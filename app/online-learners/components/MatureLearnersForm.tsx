@@ -16,7 +16,7 @@ export default function MatureLearnersForm() {
       questions: [
         {
           label: "Your age range",
-          options: ["17-19", "19-22", "23-26", "27+"],
+          options: ["17-19", "19-23"],
         },
         {
           label: "Your current status",
