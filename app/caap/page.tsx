@@ -42,7 +42,7 @@ export default function CAAP() {
 
       <AcademicExpectations />
       <CAAPClosingSummary />
-      <CAAPResidencyNotice />
+      {/* <CAAPResidencyNotice /> */}
       <Footer />
     </div>
   );

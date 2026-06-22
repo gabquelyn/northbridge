@@ -1,7 +1,11 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
-import { HiOutlineAcademicCap, HiOutlineClock, HiOutlineSupport } from "react-icons/hi";
+import {
+  HiOutlineAcademicCap,
+  HiOutlineClock,
+  HiOutlineSupport,
+} from "react-icons/hi";
 import Image from "next/image";
 
 export default function DistinctPathwayBg() {
@@ -38,20 +42,22 @@ export default function DistinctPathwayBg() {
 
         {/* Description */}
         <p className="text-gray-700">
-          Programs for transitional learners are delivered online to provide flexibility
-          while maintaining academic discipline. Learners benefit from structured
-          coursework, clear expectations, and ongoing academic support—without the
-          constraints of an on-site school schedule.
+          The Direct Entry Program (DEP) provides eligible students with
+          opportunities to engage in university-level learning through select
+          partnerships with Canadian post-secondary institutions. Designed to
+          complement the Canadian Academic Advancement Program (CAAP), DEP
+          allows students to experience Canadian higher education expectations,
+          explore academic interests, and strengthen their readiness for future
+          university studies.
         </p>
 
         <p className="text-gray-700">
-          Learners interested in online programs are invited to explore available
-          options and determine the most appropriate starting point based on their
-          academic background and future goals.
+          Through DEP, students gain valuable exposure to university learning
+          while continuing their academic pathway at Northbridge Collegiate.
         </p>
 
         {/* Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
           {benefits.map((b, i) => {
             const Icon = b.icon;
             return (
@@ -70,7 +76,7 @@ export default function DistinctPathwayBg() {
               </motion.div>
             );
           })}
-        </div>
+        </div> */}
       </motion.div>
     </section>
   );

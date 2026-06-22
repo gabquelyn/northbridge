@@ -41,7 +41,20 @@ export default function VerticalProgramCard() {
         "Graduation with a globally recognized Canadian diploma (OSSD), a Canadian secondary school credential recognized by post-secondary institutions in Canada and globally.",
       image: "/asset/hall.jpg",
     },
-
+    {
+      program: "Grade 12 OSSD Advantage Year (AY12)",
+      purpose: "Strengthen university readiness while completing Grade 12.",
+      who: "Best suited for students seeking maximum preparation for competitive university environments.",
+      gain: [
+        "Advanced academic writing & research skills",
+        "Independent learning and critical thinking",
+        "Tutoring and academic reinforcement",
+        "Structured university application support",
+      ],
+      outcome:
+        "Students graduate with stronger confidence and readiness for Canadian post-secondary study.",
+      image: "/asset/c.jpg",
+    },
     {
       program: "Direct Entry Program (DEP)",
       purpose:
