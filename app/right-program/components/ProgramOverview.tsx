@@ -70,21 +70,6 @@ export default function VerticalProgramCard() {
         "Students are positioned to progress with a clear, supported pathway toward admissions into partner universities",
       image: "/asset/grop.jpg",
     },
-
-    {
-      program: "Grade 12 OSSD Advantage Year (AY12)",
-      purpose: "Strengthen university readiness while completing Grade 12.",
-      who: "Best suited for students seeking maximum preparation for competitive university environments.",
-      gain: [
-        "Advanced academic writing & research skills",
-        "Independent learning and critical thinking",
-        "Tutoring and academic reinforcement",
-        "Structured university application support",
-      ],
-      outcome:
-        "Students graduate with stronger confidence and readiness for Canadian post-secondary study.",
-      image: "/asset/c.jpg",
-    },
   ];
 
   return (
