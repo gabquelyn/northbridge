@@ -43,12 +43,12 @@ export default function NorthbridgeAcademicNav() {
         <div className="relative ml-[5%] w-20 h-20 p-1 rounded-full bg-white shadow-lg">
           <div className="relative w-full h-full rounded-full overflow-hidden">
             <Link href="/">
-              <Image
+              {/* <Image
                 src="/asset/logo2.png"
                 fill
                 className="object-contain"
                 alt="Northbridge Logo"
-              />
+              /> */}
             </Link>
           </div>
         </div>

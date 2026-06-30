@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col gap-5 md:w-1/3">
           <div className="bg-white p-3 rounded-sm w-fit">
             <Link href="/">
-              <Image src="/asset/logo1.jpeg" height={160} width={150} alt="logo" />
+              {/* <Image src="/asset/logo1.jpeg" height={160} width={150} alt="logo" /> */}
             </Link>
           </div>
           <div className=" leading-relaxed space-y-2">
