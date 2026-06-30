@@ -77,6 +77,7 @@ export default function Program() {
 
           return (
             <ProgramCard
+            key={card.title}
               onMouseEnter={() => setHoveredCard(i)}
               onMouseLeave={() => setHoveredCard(null)}
               onClick={() => setActiveCard(activeCard === i ? null : i)}
