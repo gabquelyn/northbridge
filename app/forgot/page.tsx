@@ -1,7 +1,7 @@
 import React from "react";
 import ClientComponent from "./ClientComponent";
 import { Metadata } from "next";
-export const metadat: Metadata = {
+export const metadata: Metadata = {
   title: "Recover Account",
   description: "Fill your email to recover your account",
 };
