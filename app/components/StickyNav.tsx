@@ -40,7 +40,7 @@ export default function NorthbridgeAcademicNav() {
             : "bg-white/10 backdrop-blur-md text-white",
         )}
       >
-        <div className="relative ml-[5%] w-12 h-12 p-1 rounded-full bg-white shadow-lg">
+        <div className="relative ml-[5%] w-20 h-20 p-1 rounded-full bg-white shadow-lg">
           <div className="relative w-full h-full rounded-full overflow-hidden">
             <Link href="/">
               <Image
