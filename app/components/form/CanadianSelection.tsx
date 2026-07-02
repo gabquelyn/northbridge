@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import { RiInformation2Line } from "react-icons/ri";
+import { RiInformationLine } from "react-icons/ri";
 import Button from "../atoms/Button";
 
 function CanadianSelection({

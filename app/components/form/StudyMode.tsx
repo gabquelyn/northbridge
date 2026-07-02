@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { RiSchoolLine } from "react-icons/ri";
 import { MdLaptopMac } from "react-icons/md";
 
-import { RiInformation2Line } from "react-icons/ri";
+import { RiInformationLine } from "react-icons/ri";
 export default function StudyMode({
   data,
   onChange,
@@ -91,7 +91,7 @@ export default function StudyMode({
             "text-gray-600 bg-primary/5 border-primary/10",
           )}
         >
-          <RiInformation2Line
+          <RiInformationLine
             className={clsx("text-lg mt-0.5", "text-primary")}
           />
 

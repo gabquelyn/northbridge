@@ -2,7 +2,7 @@
 import React, { useMemo } from "react";
 import { Country, State, City } from "country-state-city";
 import CustomSelect from "../CustomSelect";
-import { RiInformation2Line } from "react-icons/ri";
+import { RiInformationLine } from "react-icons/ri";
 import Input from "../Input";
 
 function Mailing({
@@ -50,7 +50,7 @@ function Mailing({
   return (
     <div>
       <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-        <RiInformation2Line className="text-primary" />
+        <RiInformationLine className="text-primary" />
         <p>
           Select in order:{" "}
           <span className="font-medium text-gray-900">
