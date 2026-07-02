@@ -6,11 +6,6 @@ export const api = axios.create({
   withCredentials: true,
 });
 
-export const refreshApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-  withCredentials: true,
-});
-
 let isRefreshing = false;
 let failedQueue: any[] = [];
 
@@ -54,7 +49,7 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const res = await refreshApi.get("/auth/refresh");
+        const res = await api.get("/auth/refresh");
         const newToken = res.data.accessToken;
         setAccessToken(newToken);
         processQueue(null, newToken);
