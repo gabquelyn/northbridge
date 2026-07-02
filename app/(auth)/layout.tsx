@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* RIGHT PANEL */}
           <div className="p-4 md:p-9 max-w-md gap-2 md:gap-4">
             <Image
-              src="/asset/fullogo.png"
+              src="/asset/logo2.png"
               height={130}
               width={150}
               alt=""
