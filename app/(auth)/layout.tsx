@@ -58,8 +58,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="p-4 md:p-9 max-w-md gap-2 md:gap-4">
             <Image
               src="/asset/logo2.png"
-              height={130}
-              width={150}
+              height={100}
+              width={120}
               alt=""
               className="mx-auto"
             />
