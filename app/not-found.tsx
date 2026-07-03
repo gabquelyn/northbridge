@@ -8,8 +8,8 @@ export default function NotFound() {
     <div className="relative h-screen w-full bg-[#f4f6f8] flex items-center justify-center overflow-hidden">
       
       {/* Background Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-200/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-indigo-300/20 blur-3xl rounded-full bottom-[-120px] right-[-120px]" />
+      <div className="absolute w-125 h-125 bg-blue-200/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
+      <div className="absolute w-100 h-100 bg-indigo-300/20 blur-3xl rounded-full bottom-[-120px] right-[-120px]" />
 
       {/* Main Content */}
       <div className="relative z-10 text-center max-w-2xl px-6">
