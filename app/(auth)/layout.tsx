@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* RIGHT PANEL */}
-          <div className="p-4 md:p-9 max-w-md gap-2 md:gap-4">
+          {/* <div className="p-4 md:p-9 max-w-md gap-2 md:gap-4">
             <Image
               src="/asset/logo2.png"
               height={100}
@@ -64,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className="mx-auto"
             />
             {children}
-          </div>
+          </div> */}
         </div>
       </div>
     </GoogleOAuthProvider>
