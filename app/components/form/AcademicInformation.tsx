@@ -10,7 +10,7 @@ const inputs = [
   },
   {
     name: "homeSchool",
-    label: "Home School",
+    label: "Former School",
     placeholder: "Kate",
   },
   {

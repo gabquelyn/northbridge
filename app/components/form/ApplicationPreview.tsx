@@ -68,7 +68,7 @@ export default function ApplicationPreview({
 
       {/* EDUCATION */}
       <Section title="Education Background">
-        <Field label="Home School" value={details.homeSchool} />
+        <Field label="Former School" value={details.homeSchool} />
         <Field label="Current School" value={details.currentSchool} />
         <Field label="Secondary Entry" value={details.secondaryEntry} />
         <Field
