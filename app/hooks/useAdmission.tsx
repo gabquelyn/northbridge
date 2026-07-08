@@ -15,6 +15,7 @@ import {
   joinTeam,
   payup,
   receipt,
+  rescind,
   review,
 } from "../lib/course";
 
@@ -135,6 +136,18 @@ export const useAdminReview = () => {
     //     queryKey: ["application"],
     //   });
     // },
+  });
+};
+
+export const useAdminRescind = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: rescind,
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["application"],
+      });
+    },
   });
 };
 

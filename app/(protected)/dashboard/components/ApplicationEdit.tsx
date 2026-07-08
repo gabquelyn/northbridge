@@ -23,6 +23,7 @@ import ReviewMessage from "./ReviewMessage";
 import AcceptApplication from "./AcceptApplication";
 import AdminControls from "./AdminControls";
 import DeleteApplication from "./DeleteApplication";
+import RescindMessage from "./RescindMessage";
 
 export default function ApplicationEdit({
   application,
@@ -38,6 +39,7 @@ export default function ApplicationEdit({
   const [review, setReview] = useState(false);
   const [accept, setAccept] = useState(false);
   const [delete_, setDelete_] = useState(false);
+  const [rescind, setRescind] = useState(false);
   const {
     mutate: enrolToProgram,
     data: payment,
@@ -285,6 +287,15 @@ export default function ApplicationEdit({
         </Modal>
       )}
 
+      {rescind && (
+        <Modal onClose={() => setRescind(false)}>
+          <RescindMessage
+            id={application._id}
+            onClose={() => setRescind(false)}
+          />
+        </Modal>
+      )}
+
       {delete_ && (
         <Modal onClose={() => setDelete_(false)}>
           <DeleteApplication
@@ -341,8 +352,10 @@ export default function ApplicationEdit({
             accept={() => setAccept(true)}
             review={() => setReview(true)}
             onDelete={() => setDelete_(true)}
+            onRescind={() => setRescind(true)}
             paid={application.paid}
             granted={application.granted}
+            rescinded={application.rescinded}
             outstanding={application?.outstanding}
           />
         )}

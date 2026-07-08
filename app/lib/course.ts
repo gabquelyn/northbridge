@@ -42,6 +42,11 @@ export const review = async (details: { id: string; reason: string }) => {
   return res.data;
 };
 
+export const rescind = async (details: { id: string }) => {
+  const res = await api.post(`/application/rescind/${details.id}`);
+  return res.data;
+};
+
 export const delete_ = async (id: string) => {
   const res = await api.delete(`/application/${id}`);
   return res.data;

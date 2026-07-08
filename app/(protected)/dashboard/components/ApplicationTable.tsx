@@ -2,42 +2,124 @@
 import Search from "@/app/components/atoms/Search";
 import CourseFilterDropdown from "@/app/components/CourseFilter";
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/app/utils/formatCurrency";
 
 const ITEMS_PER_PAGE = 10;
+const PAGE_WINDOW = 5; // how many page buttons to show around the current page
+
+type StatusFilter = "all" | "granted" | "paid" | "paused" | "rescinded";
+
+const STATUS_OPTIONS: { id: number; name: string; value: StatusFilter }[] = [
+  // { id: 0, name: "All", value: "all" },
+  { id: 1, name: "Granted", value: "granted" },
+  { id: 2, name: "Paid", value: "paid" },
+  { id: 4, name: "Rescinded", value: "rescinded" },
+];
+
+const STATUS_BADGE_STYLES: Record<string, string> = {
+  granted: "bg-green-100 text-green-700",
+  pending: "bg-yellow-100 text-yellow-700",
+  paused: "bg-gray-200 text-gray-700",
+  rescinded: "bg-red-100 text-red-600",
+};
+
+function useDebouncedValue<T>(value: T, delay = 250) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const timeout = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(timeout);
+  }, [value, delay]);
+  return debounced;
+}
 
 export default function ApplicationTable({ data }: { data: Application[] }) {
-  const [category, setCategory] = useState<number | null>(null);
+  const [statusId, setStatusId] = useState<number | null>(0); // default: "All"
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const router = useRouter();
 
-  const filteredData = useMemo(() => {
-    return data.filter(
-      (d) =>
-        d.profile?.bio.firstName
-          ?.toLowerCase()
-          .includes(search.toLowerCase()) ||
-        d.profile?.bio.lastName?.toLowerCase().includes(search.toLowerCase()),
-    );
-  }, [data, search]);
+  const debouncedSearch = useDebouncedValue(search, 250);
 
-  // 📄 Pagination logic
-  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+  const selectedStatus: StatusFilter =
+    STATUS_OPTIONS.find((s) => s.id === statusId)?.value ?? "all";
+
+  const filteredData = useMemo(() => {
+    const term = debouncedSearch.trim().toLowerCase();
+
+    return data.filter((d) => {
+      const matchesSearch =
+        !term ||
+        d.profile?.bio.firstName?.toLowerCase().includes(term) ||
+        d.profile?.bio.lastName?.toLowerCase().includes(term);
+
+      if (!matchesSearch) return false;
+
+      switch (selectedStatus) {
+        case "all":
+          return true;
+        case "paid":
+          return !!d.paid;
+        case "granted":
+          return !!d.granted;
+        // NOTE: "paused" / "rescinded" assume an `admissionStatus` field.
+        // Swap `d.admissionStatus` below for whatever your real field is named.
+        case "rescinded":
+          return d.rescinded;
+        default:
+          return true;
+      }
+    });
+  }, [data, debouncedSearch, selectedStatus]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredData.length / ITEMS_PER_PAGE));
+
+  // Keep page in range whenever the filtered set shrinks/grows
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch, selectedStatus]);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
 
   const paginatedData = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE;
     return filteredData.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredData, page]);
 
+  const pageNumbers = useMemo(() => {
+    const half = Math.floor(PAGE_WINDOW / 2);
+    let start = Math.max(1, page - half);
+    const end = Math.min(totalPages, start + PAGE_WINDOW - 1);
+    start = Math.max(1, end - PAGE_WINDOW + 1);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [page, totalPages]);
+
+  const getAdmissionLabel = (datum: Application) => {
+    if (datum.granted) return "Admission granted";
+    if (datum.paid) return "Paid";
+    if (datum.rescinded) return "Rescinded";
+    return "Pending approval";
+  };
+
+  const getAdmissionStyle = (datum: Application) => {
+    if (datum.granted) return STATUS_BADGE_STYLES.granted;
+    if (datum.paid) return STATUS_BADGE_STYLES.paid;
+    if (datum.rescinded) return STATUS_BADGE_STYLES.rescinded;
+    return STATUS_BADGE_STYLES.pending;
+  };
+
   return (
     <div className="bg-white text-sm p-8 rounded-2xl shadow-lg border border-gray-100">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <p className="text-lg font-semibold text-gray-900">Applications</p>
+        <p className="text-xs text-secondary">
+          {filteredData.length} result{filteredData.length !== 1 ? "s" : ""}
+        </p>
       </div>
 
       {/* Filters */}
@@ -45,154 +127,180 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
         <Search value={search} setSearch={setSearch} />
 
         <CourseFilterDropdown
-          categories={[
-            "Art",
-            "STEM",
-            "Business",
-            "Life Science",
-            "Social Science",
-            "Humanities/Law",
-          ].map((p, i) => ({ id: i, name: p }))}
-          selectedCategory={category}
-          onChange={(num) => setCategory(num)}
+          categories={STATUS_OPTIONS.map(({ id, name }) => ({ id, name }))}
+          selectedCategory={statusId}
+          onChange={(id) => setStatusId(id)}
         />
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-xl border border-gray-100">
         <table className="w-full border-separate border-spacing-0">
           <thead>
-            <tr className="text-xs uppercase text-secondary">
-              <th className="text-left py-3 px-4 font-medium">Student</th>
-              <th className="text-left py-3 px-4 font-medium">Pathway</th>
-              <th className="text-left py-3 px-4 font-medium">
-                Date submitted
-              </th>
-              <th className="text-left py-3 px-4 font-medium">Mode</th>
-              <th className="text-left py-3 px-4 font-medium">
-                Payment status
-              </th>
-              <th className="text-left py-3 px-4 font-medium">
-                Admission status
-              </th>
-              <th className="text-left py-3 px-4 font-medium">
-                Outstanding payment
-              </th>
+            <tr className="text-xs uppercase text-secondary bg-gray-50">
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Student</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Pathway</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Date submitted</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Mode</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Payment status</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Admission status</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Outstanding payment</th>
             </tr>
           </thead>
 
           <tbody>
-            {paginatedData.map((datum, index) => (
-              <tr
-                key={index}
-                className="hover:bg-gray-50 cursor-pointer transition border-b border-gray-100"
-                onClick={() => router.push(`/application/${datum._id}`)}
-              >
-                <td className="py-4 px-4 border-b border-b-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200">
-                      <Image
-                        src={datum.profile.documents?.passport[0]?.url}
-                        fill
-                        className="object-cover"
-                        alt="student"
-                      />
-                    </div>
-
-                    <div className="flex flex-col">
-                      <span className="font-medium text-gray-900">
-                        {datum.profile?.bio.firstName}{" "}
-                        {datum.profile?.bio.lastName}
-                      </span>
-                      <span className="text-xs text-secondary">
-                        {datum.profile?.bio.email}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-
-                <td className="py-4 px-4 border-b border-b-gray-100 text-gray-600">
-                  {datum.profile.academics.pathway}
-                </td>
-
-                <td className="py-4 px-4 border-b border-b-gray-100 text-gray-600">
-                  {new Date(datum.createdAt).toLocaleDateString()}
-                </td>
-
-                <td className="py-4 px-4 border-b border-b-gray-100 text-gray-600 capitalize">
-                  {datum.mode}
-                </td>
-
-                <td className="py-4 px-4 border-b border-b-gray-100">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      datum.paid
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-600"
-                    }`}
-                  >
-                    {datum.paid ? "Paid" : "Unpaid"}
-                  </span>
-                </td>
-                <td className="py-4 px-4 border-b border-b-gray-100">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      datum.granted
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-600"
-                    }`}
-                  >
-                    {datum.granted ? "Admission granted" : "Pending approval"}
-                  </span>
-                </td>
-                <td>
-                {datum?.outstanding ? formatCurrency(datum.outstanding) : "-"}
+            {paginatedData.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="py-10 text-center text-secondary">
+                  No applications match your search or filter.
                 </td>
               </tr>
-            ))}
+            ) : (
+              paginatedData.map((datum) => (
+                <tr
+                  key={datum._id}
+                  className="hover:bg-gray-50 cursor-pointer transition border-b border-gray-100 last:border-b-0"
+                  onClick={() => router.push(`/application/${datum._id}`)}
+                >
+                  <td className="py-4 px-4">
+                    <div className="flex items-center gap-3">
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-gray-100">
+                        {datum.profile?.documents?.passport?.[0]?.url ? (
+                          <Image
+                            src={datum.profile.documents.passport[0].url}
+                            fill
+                            className="object-cover"
+                            alt={`${datum.profile?.bio.firstName ?? "Student"} avatar`}
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-gray-400">
+                            {datum.profile?.bio.firstName?.[0]}
+                            {datum.profile?.bio.lastName?.[0]}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-medium text-gray-900 truncate">
+                          {datum.profile?.bio.firstName} {datum.profile?.bio.lastName}
+                        </span>
+                        <span className="text-xs text-secondary truncate">
+                          {datum.profile?.bio.email}
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                    {datum.profile?.academics.pathway}
+                  </td>
+
+                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                    {new Date(datum.createdAt).toLocaleDateString()}
+                  </td>
+
+                  <td className="py-4 px-4 text-gray-600 capitalize whitespace-nowrap">
+                    {datum.mode}
+                  </td>
+
+                  <td className="py-4 px-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+                        datum.paid
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-600"
+                      }`}
+                    >
+                      {datum.paid ? "Paid" : "Unpaid"}
+                    </span>
+                  </td>
+
+                  <td className="py-4 px-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getAdmissionStyle(
+                        datum,
+                      )}`}
+                    >
+                      {getAdmissionLabel(datum)}
+                    </span>
+                  </td>
+
+                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                    {datum?.outstanding ? formatCurrency(datum.outstanding) : "-"}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between mt-6">
-        <p className="text-sm text-secondary">
-          Page {page} of {totalPages}
-        </p>
+      {filteredData.length > 0 && (
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-6">
+          <p className="text-sm text-secondary">
+            Page {page} of {totalPages}
+          </p>
 
-        <div className="flex gap-2">
-          <button
-            onClick={() => setPage((p) => Math.max(p - 1, 1))}
-            disabled={page === 1}
-            className="action"
-          >
-            <GrFormPrevious />
-          </button>
-
-          {/* Page Numbers */}
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <div className="flex items-center gap-2">
             <button
-              key={num}
-              onClick={() => setPage(num)}
-              className={`px-3 py-2 rounded-lg border text-sm ${
-                page === num
-                  ? "bg-primary text-white border-primary"
-                  : "text-gray-600 hover:bg-gray-50"
-              }`}
+              onClick={() => setPage((p) => Math.max(p - 1, 1))}
+              disabled={page === 1}
+              className="action disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {num}
+              <GrFormPrevious />
             </button>
-          ))}
 
-          <button
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-            disabled={page === totalPages}
-            className="action"
-          >
-            <GrFormNext />
-          </button>
+            {pageNumbers[0] > 1 && (
+              <>
+                <button
+                  onClick={() => setPage(1)}
+                  className="px-3 py-2 rounded-lg border text-sm text-gray-600 hover:bg-gray-50"
+                >
+                  1
+                </button>
+                {pageNumbers[0] > 2 && <span className="px-1 text-gray-400">…</span>}
+              </>
+            )}
+
+            {pageNumbers.map((num) => (
+              <button
+                key={num}
+                onClick={() => setPage(num)}
+                className={`px-3 py-2 rounded-lg border text-sm ${
+                  page === num
+                    ? "bg-primary text-white border-primary"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+
+            {pageNumbers[pageNumbers.length - 1] < totalPages && (
+              <>
+                {pageNumbers[pageNumbers.length - 1] < totalPages - 1 && (
+                  <span className="px-1 text-gray-400">…</span>
+                )}
+                <button
+                  onClick={() => setPage(totalPages)}
+                  className="px-3 py-2 rounded-lg border text-sm text-gray-600 hover:bg-gray-50"
+                >
+                  {totalPages}
+                </button>
+              </>
+            )}
+
+            <button
+              onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+              disabled={page === totalPages}
+              className="action disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <GrFormNext />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

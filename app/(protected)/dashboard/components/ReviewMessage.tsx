@@ -58,8 +58,8 @@ export default function ReviewMessage({ id, onClose }: { id: string , onClose : 
             Send Review Message
           </h2>
           <p className="text-gray-600 text-sm leading-relaxed max-w-md mx-auto">
-            This action will mark the application as <span className="font-medium text-gray-900">rejected</span> 
-            and notify the student to review their submission before proceeding.
+            This action will mark the application as <span className="font-medium text-gray-900">pending</span> 
+            and notify the student to review their submission.
           </p>
         </div>
 

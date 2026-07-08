@@ -153,6 +153,7 @@ type Application = {
   completed: boolean;
   createdAt: string;
   outstanding?: number;
+  rescinded: boolean
 };
 
 interface User {

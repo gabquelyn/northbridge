@@ -4,15 +4,19 @@ export default function AdminControls({
   review,
   accept,
   onDelete,
+  onRescind,
   paid,
   granted,
   outstanding,
+  rescinded,
 }: {
   review: () => void;
   accept: () => void;
   onDelete: () => void;
+  onRescind: () => void;
   paid: boolean;
   granted: boolean;
+  rescinded: boolean;
   outstanding?: number;
 }) {
   const isDisabled = granted;
@@ -94,13 +98,21 @@ export default function AdminControls({
         </button>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 mt-5 justify-end">
+      <div className="flex flex-col sm:flex-row gap-3 mt-5">
         <button
-          className="bg-red-500 rounded-xl border-2 text-white p-2 px-4 border-red-500 cursor-pointer text-sm font-semibold transition-all duration-300"
+          className="bg-red-500 rounded-xl border-2 text-white p-2 px-4 border-red-500 w-full cursor-pointer text-sm font-semibold transition-all duration-300"
           onClick={onDelete}
         >
           Delete Application
         </button>
+        {!rescinded && (
+          <button
+            className="bg-red-500 rounded-xl border-2 text-white p-2 px-4 border-red-500 cursor-pointer w-full text-sm font-semibold transition-all duration-300"
+            onClick={onRescind}
+          >
+            Rescind
+          </button>
+        )}
       </div>
     </div>
   );
