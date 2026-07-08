@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { RiInformationLine } from "react-icons/ri";
 import Button from "../atoms/Button";
+import CustomSelect from "../CustomSelect";
 
 function CanadianSelection({
   canadian,
@@ -10,18 +11,40 @@ function CanadianSelection({
   onNext,
   edit,
   disableEdit,
+  option,
+  setHearAboutUs,
 }: {
   canadian: "true" | "false";
   onChange: inputHandler;
   onNext: () => void;
   edit?: boolean;
   disableEdit?: boolean;
+  option: SelectOption | null;
+  setHearAboutUs: React.Dispatch<React.SetStateAction<SelectOption | null>>;
 }) {
+  const hearAboutUsOptions = [
+    { label: "Social media", value: "social_media" },
+    { label: "Friend or family", value: "friend_or_family" },
+    { label: "Google search", value: "google_search" },
+    { label: "School", value: "school" },
+    { label: "Teacher/Lecturer", value: "teacher_lecturer" },
+    { label: "Advertisement", value: "advertisement" },
+    { label: "Event or seminar", value: "event_or_seminar" },
+    { label: "Email", value: "email" },
+    { label: "Website", value: "website" },
+    { label: "WhatsApp", value: "whatsapp" },
+    { label: "LinkedIn", value: "linkedin" },
+    { label: "Instagram", value: "instagram" },
+    { label: "Facebook", value: "facebook" },
+    { label: "X (Twitter)", value: "x_twitter" },
+    { label: "YouTube", value: "youtube" },
+    { label: "Other", value: "other" },
+  ];
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="space-y-4">
       {!edit && (
-        <div>
-          <p className="font-semibold md:text-2xl text-center text-gray-900">
+        <div className="flex flex-col items-center justify-center">
+          <p className="font-semibold md:text-lg text-center text-gray-900">
             A Canadian or Non-Canadian student?
           </p>
           <p className="md:w-md text-center text-secondary leading-relaxed">
@@ -157,6 +180,15 @@ function CanadianSelection({
       </div> */}
 
       {/* Mode of study */}
+
+      <div>
+        <CustomSelect
+          label="How did you hear about us?"
+          option={option}
+          options={hearAboutUsOptions}
+          setOption={setHearAboutUs}
+        />
+      </div>
 
       {!edit && (
         <div className="flex w-full items-center justify-between">

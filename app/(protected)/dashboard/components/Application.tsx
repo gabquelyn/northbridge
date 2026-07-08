@@ -12,7 +12,7 @@ import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 
 export default function Application({ data }: { data: Application }) {
-  const image = data.profile.documents?.passport[0]?.url;
+  const image = data.profile?.documents?.passport[0]?.url;
   const {
     data: response,
     mutate,
@@ -98,7 +98,7 @@ export default function Application({ data }: { data: Application }) {
           {/* Name + meta */}
           <div>
             <p className="font-semibold text-base text-slate-800">
-              {data.profile.bio.firstName} {data.profile.bio.lastName}
+              {data?.profile?.bio.firstName} {data?.profile?.bio.lastName}
             </p>
 
             <div className="flex flex-wrap items-center text-xs text-slate-500 mt-1">

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Modal from "../Modal";
 import AnimatedChecked from "../AnimatedChecked";
+import sections from "@/app/utils/sections";
 
 export default function ApplicationPage() {
   const { data, mutate, isPending, isSuccess, isError, error } = useApply();
@@ -33,11 +34,23 @@ export default function ApplicationPage() {
     language: "",
     intendToApply: "",
     canadianVisa: "",
+    fatherFirstName: "",
+    fatherLastName: "",
+    fatherPhoneNumber: "",
+    fatherEmail: "",
+    fatherDeaceased: "false",
+    motherFirstName: "",
+    motherLastName: "",
+    motherEmail: "",
+    motherPhoneNumber: "",
+    motherDeaceased: "false",
   });
   const [mode, setMode] = useState(params.get("mode") || "on-site");
   const [documents, setDocuments] = useState<Record<string, File[]>>();
   const [programs, setPrograms] = useState<Programs[]>(["CAAP"]);
   const [birthCountry, setBirthCountry] = useState<SelectOption | null>(null);
+  const [referrer, setReferrer] = useState<SelectOption | null>(null);
+  const [incomplete, setIncomplete] = useState<number[]>([]);
   const ctx = useContext(cartContext);
   const [location, setLocation] = useState<LocationData>({
     country: null,
@@ -46,6 +59,102 @@ export default function ApplicationPage() {
   });
 
   const router = useRouter();
+
+  const getInvalidSteps = (): number[] => {
+    const invalidSteps: number[] = [];
+
+    // Step 0
+    if (!referrer) invalidSteps.push(0);
+
+    // Step 1
+    if (!mode) invalidSteps.push(1);
+
+    // Step 2
+    const { firstName, lastName, email, phoneNumber, street } = details;
+
+    if (!firstName || !lastName || !email || !phoneNumber) {
+      invalidSteps.push(2);
+    }
+
+    // Step 3
+    if (!location?.country || !location?.state || !location?.city || !street) {
+      invalidSteps.push(3);
+    }
+
+    // Step 4
+    const {
+      motherDeaceased,
+      motherFirstName,
+      motherLastName,
+      motherEmail,
+      motherPhoneNumber,
+      fatherDeaceased,
+      fatherFirstName,
+      fatherLastName,
+      fatherEmail,
+      fatherPhoneNumber,
+    } = details;
+
+    const fatherAlive = fatherDeaceased === "false";
+    const motherAlive = motherDeaceased === "false";
+
+    if (
+      (fatherAlive &&
+        (!fatherFirstName ||
+          !fatherLastName ||
+          !fatherPhoneNumber ||
+          !fatherEmail)) ||
+      (motherAlive &&
+        (!motherFirstName ||
+          !motherLastName ||
+          !motherPhoneNumber ||
+          !motherEmail))
+    ) {
+      invalidSteps.push(4);
+    }
+
+    // Step 5
+    const {
+      dob,
+      currentSchool,
+      homeSchool,
+      secondaryEntry,
+      pathway,
+      gender,
+      completedSecondaryDiploma,
+    } = details;
+
+    if (
+      !dob ||
+      !currentSchool ||
+      !homeSchool ||
+      !secondaryEntry ||
+      !pathway ||
+      !gender ||
+      !completedSecondaryDiploma
+    ) {
+      invalidSteps.push(5);
+    }
+
+    // Step 6
+    const { language, intendToApply, canadianVisa } = details;
+
+    if (!language || !birthCountry?.label || !intendToApply || !canadianVisa) {
+      invalidSteps.push(6);
+    }
+
+    // Step 7
+    if (
+      !documents?.passport?.length ||
+      !documents?.transcripts?.length ||
+      !documents?.govId?.length ||
+      !documents?.birthCert?.length
+    ) {
+      invalidSteps.push(7);
+    }
+
+    return invalidSteps;
+  };
 
   useEffect(() => {
     if (isError) {
@@ -75,6 +184,16 @@ export default function ApplicationPage() {
   }, [isSuccess, isError]);
 
   const applicationHandler = () => {
+    const incompleteSections = getInvalidSteps();
+    if (incompleteSections.length > 0) {
+      toast.warning(
+        `Incomplete Sections:\n
+        ${incompleteSections.map((i) => sections[i]).join(", ")}`,
+      );
+      setIncomplete(incompleteSections);
+      setTimeout(() => setIncomplete([]), 8000);
+      return;
+    }
     const applicationFormData = new FormData();
 
     for (const ikeys of Object.keys(details)) {
@@ -96,7 +215,9 @@ export default function ApplicationPage() {
       applicationFormData.append("country", location.country.label);
     if (location?.state)
       applicationFormData.append("state", location.state.label);
-
+    if (referrer) {
+      applicationFormData.append("referrer", referrer.value);
+    }
     if (documents) {
       for (const ifileskeys of Object.keys(documents)) {
         console.log(ifileskeys);
@@ -135,6 +256,9 @@ export default function ApplicationPage() {
         setBirthCountry={setBirthCountry}
         mode={mode}
         setMode={setMode}
+        aboutUs={referrer}
+        setHearAboutUs={setReferrer}
+        incompleteSections={incomplete}
       />
     </div>
   );

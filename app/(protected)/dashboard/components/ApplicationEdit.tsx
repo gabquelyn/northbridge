@@ -87,9 +87,30 @@ export default function ApplicationEdit({
     language,
     intendToApply: String(intendToApply),
     canadianVisa: String(canadianVisa),
+    fatherFirstName: application.profile?.parent?.fatherFirstName || "",
+    fatherLastName: application.profile?.parent?.fatherLastName || "",
+    fatherPhoneNumber: application.profile?.parent?.fatherPhoneNumber || "",
+    fatherEmail: application.profile?.parent?.fatherEmail || "",
+    fatherDeaceased:
+      (String(application.profile?.parent?.fatherDeaceased) as BooleanString) ||
+      "false",
+    motherFirstName: application.profile?.parent?.motherFirstName || "",
+    motherLastName: application.profile?.parent?.motherLastName || "",
+    motherEmail: application.profile?.parent?.motherEmail || "",
+    motherPhoneNumber: application.profile?.parent?.motherPhoneNumber || "",
+    motherDeaceased:
+      (String(application.profile?.parent?.motherDeaceased) as BooleanString) ||
+      "false",
   });
   const router = useRouter();
-
+  const [referrer, setReferrer] = useState<SelectOption | null>(
+    application.profile?.referrer
+      ? {
+          label: application.profile?.referrer,
+          value: application.profile?.referrer,
+        }
+      : null,
+  );
   const selectedCountry = useMemo(
     () => Country.getAllCountries().find((c) => c.name == country),
     [],
@@ -311,6 +332,8 @@ export default function ApplicationEdit({
         enrolling={enrolling}
         isAdmin={isAdmin}
         setMode={() => {}}
+        aboutUs={referrer}
+        setHearAboutUs={setReferrer}
       />
       <div className="mt-10 md:px-[15%]">
         {isAdmin && (

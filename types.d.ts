@@ -2,8 +2,9 @@ type inputHandler = (
   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 ) => void;
 
+type BooleanString = "true" | "false";
 interface IApplicationForm {
-  canadian: "true" | "false";
+  canadian: BooleanString;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -22,6 +23,16 @@ interface IApplicationForm {
   intendToApply: string;
   canadianVisa: string;
   pathway: string;
+  fatherFirstName: string;
+  fatherLastName: string;
+  fatherPhoneNumber: string;
+  fatherEmail: string;
+  fatherDeaceased: BooleanString;
+  motherFirstName: string;
+  motherLastName: string;
+  motherEmail: string;
+  motherPhoneNumber: string;
+  motherDeaceased: BooleanString;
 }
 
 interface SelectOption {
@@ -51,7 +62,7 @@ interface RegistrationDetails {
 }
 
 interface RegisterWithMode extends RegistrationDetails {
-   mode?: string | null
+  mode?: string | null;
 }
 interface VerifyCredentials {
   id: string;
@@ -76,7 +87,7 @@ type LocationData = {
 type DocumentFile = {
   url: string;
   public_id: string;
-  resource_type: string
+  resource_type: string;
   filename: string;
   _id: string;
 };
@@ -87,48 +98,61 @@ type Application = {
   courses: number[];
   programs: Programs[];
   profile: {
+    parent?: {
+      fatherFirstName: string;
+      fatherLastName: string;
+      fatherPhoneNumber: string;
+      fatherEmail: string;
+      fatherDeaceased: boolean;
+      motherFirstName: string;
+      motherLastName: string;
+      motherEmail: string;
+      motherPhoneNumber: string;
+      motherDeaceased: boolean;
+    };
     bio: {
       firstName: string;
       lastName: string;
       email: string;
       phoneNumber: string;
       middleName: string;
-      gender: string,
-      dob: string
+      gender: string;
+      dob: string;
     };
     academics: {
       currentSchool: string;
       pathway: string;
       homeSchool: string;
-      secondaryEntry: string
-      completedSecondaryDiploma: boolean
-      qualification: string
+      secondaryEntry: string;
+      completedSecondaryDiploma: boolean;
+      qualification: string;
     };
     address: {
       city: string;
       state: string;
       unit: string;
       street: unit;
-      country?:string
+      country?: string;
     };
     citizenship: {
       canadian: boolean;
       language: string;
       intendToApply: boolean;
       canadianVisa: boolean;
-      birthCountry: string
+      birthCountry: string;
     };
     documents: {
       transcripts: DocumentFile[];
       govId: DocumentFile[];
       passport: DocumentFile[];
     };
+    referrer: string
   };
   granted: boolean;
   paid: boolean;
   completed: boolean;
-  createdAt: string
-  outstanding?: number
+  createdAt: string;
+  outstanding?: number;
 };
 
 interface User {

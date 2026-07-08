@@ -26,6 +26,13 @@ const uploads = [
     imageOnly: false,
   },
   {
+    name: "birthCert",
+    description: "Please provide a birth certificate",
+    label: "Birth Certificate",
+    multiple: false,
+    imageOnly: false,
+  },
+  {
     name: "others",
     description:
       "Additional documentation accelerates the verification process (maximum of 3)",

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Button from "../atoms/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "sonner";
 
 type Props = {
   onBack: () => void;
@@ -41,7 +42,7 @@ const Check = ({
         type="checkbox"
         name={name}
         checked={checked}
-        className="h-4 w-4"
+        className="h-4 w-4 accent-primary cursor-pointer"
         onChange={onChange}
       />
       <span>{label}</span>
@@ -197,8 +198,13 @@ export default function TermsAndConditions({ onBack, submitHandler }: Props) {
             <IoMdArrowRoundBack />
           </button>
           <Button
-            disabled={!allChecked}
-            onClick={submitHandler}
+            onClick={() => {
+              if (!allChecked)
+                return toast.warning(
+                  "Please agree to all terms and conditions to continue",
+                );
+              submitHandler?.();
+            }}
             className={`px-6 py-2 rounded-xl text-white transition ${
               allChecked
                 ? "bg-primary hover:opacity-90"

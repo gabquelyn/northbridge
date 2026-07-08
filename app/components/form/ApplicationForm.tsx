@@ -17,6 +17,9 @@ import Modal from "../Modal";
 import FormNavigation from "./FormNavigation";
 import Button from "../atoms/Button";
 import StudyMode from "./StudyMode";
+import ParentInformation from "./ParentInformation";
+import clsx from "clsx";
+import sections from "@/app/utils/sections";
 
 export default function ApplicationForm({
   applicationHandler,
@@ -43,6 +46,9 @@ export default function ApplicationForm({
   enrol,
   enrolling,
   isAdmin,
+  setHearAboutUs,
+  aboutUs,
+  incompleteSections,
 }: {
   applicationHandler?: Fn;
   details: IApplicationForm;
@@ -72,6 +78,9 @@ export default function ApplicationForm({
   enrol?: Fn;
   enrolling?: boolean;
   isAdmin?: boolean;
+  setHearAboutUs: React.Dispatch<React.SetStateAction<SelectOption | null>>;
+  aboutUs: SelectOption | null;
+  incompleteSections?: number[];
 }) {
   const [step, setCurrentStep] = useState(0);
   const [nextDisabled, setNextDisabled] = useState(false);
@@ -92,6 +101,32 @@ export default function ApplicationForm({
       details.email,
       details.canadian,
       details.phoneNumber,
+    ],
+  );
+
+  const parentData = useMemo(
+    () => ({
+      fatherFirstName: details.fatherFirstName,
+      fatherLastName: details.fatherLastName,
+      fatherEmail: details.fatherEmail,
+      fatherPhoneNumber: details.fatherPhoneNumber,
+      fatherDeaceased: details.fatherDeaceased,
+      motherFirstName: details.motherFirstName,
+      motherLastName: details.motherLastName,
+      motherEmail: details.motherEmail,
+      motherPhoneNumber: details.motherPhoneNumber,
+      motherDeaceased: details.motherDeaceased,
+    }),
+    [
+      details.fatherFirstName,
+      details.fatherLastName,
+      details.fatherPhoneNumber,
+      details.fatherDeaceased,
+      details.motherFirstName,
+      details.motherLastName,
+      details.motherEmail,
+      details.motherPhoneNumber,
+      details.motherDeaceased,
     ],
   );
   const beginRegistration = useCallback(
@@ -122,15 +157,22 @@ export default function ApplicationForm({
     ],
   );
   const phoneNumChange = useCallback(
-    (val: string) => {
+    (val: string, name = "phoneNumber") => {
       if (disableEdit) return;
-      setDetails((prev) => ({ ...prev, phoneNumber: val }));
+      setDetails((prev) => ({ ...prev, [name]: val }));
     },
     [setDetails],
   );
 
   // Next button controller
   useEffect(() => {
+    if (step == 0) {
+      if (!aboutUs) {
+        setNextDisabled(true);
+      } else {
+        setNextDisabled(false);
+      }
+    }
     if (step == 1) {
       if (mode) setNextDisabled(false);
       else {
@@ -162,6 +204,40 @@ export default function ApplicationForm({
 
     if (step == 4) {
       const {
+        motherDeaceased,
+        motherFirstName,
+        motherLastName,
+        motherEmail,
+        motherPhoneNumber,
+        fatherDeaceased,
+        fatherFirstName,
+        fatherLastName,
+        fatherEmail,
+        fatherPhoneNumber,
+      } = details;
+
+      const fatherAlive = fatherDeaceased === "false";
+      const motherAlive = motherDeaceased === "false";
+
+      const fatherIncomplete =
+        !fatherFirstName ||
+        !fatherLastName ||
+        !fatherPhoneNumber ||
+        !fatherEmail;
+
+      const motherIncomplete =
+        !motherFirstName ||
+        !motherLastName ||
+        !motherPhoneNumber ||
+        !motherEmail;
+
+      setNextDisabled(
+        (fatherAlive && fatherIncomplete) || (motherAlive && motherIncomplete),
+      );
+    }
+
+    if (step == 5) {
+      const {
         dob,
         currentSchool,
         homeSchool,
@@ -185,7 +261,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 5) {
+    if (step == 6) {
       const { language, intendToApply, canadianVisa } = details;
       if (
         !language ||
@@ -199,14 +275,16 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 6) {
+    if (step == 7) {
       if (
         !documents?.passport ||
         documents?.passport?.length == 0 ||
         !documents?.transcripts ||
         documents?.transcripts?.length == 0 ||
         !documents?.govId ||
-        documents?.govId?.length == 0
+        documents?.govId?.length == 0 ||
+        !documents?.birthCert ||
+        documents?.birthCert?.length == 0
       ) {
         setNextDisabled(true);
       } else {
@@ -216,7 +294,28 @@ export default function ApplicationForm({
   }, [details, step, documents]);
 
   // const PROGRAM_ORDER: Programs[] = ["CAAP", "GRADE11", "GRADE12", "AY12"];
-
+  const toggleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    if (name == "fatherDeaceased" && checked) {
+      setDetails((prev) => ({
+        ...prev,
+        fatherFirstName: "",
+        fatherLastName: "",
+        fatherEmail: "",
+        fatherPhoneNumber: "",
+      }));
+    }
+    if (name == "motherDeaceased" && checked) {
+      setDetails((prev) => ({
+        ...prev,
+        motherFirstName: "",
+        motherLastName: "",
+        motherEmail: "",
+        motherPhoneNumber: "",
+      }));
+    }
+    setDetails((prev) => ({ ...prev, [name]: `${checked}` }));
+  };
   const programChnageHandler = useCallback(
     (program: Programs, checked: boolean) => {
       // const index = PROGRAM_ORDER.indexOf(program);
@@ -258,15 +357,81 @@ export default function ApplicationForm({
 
   return (
     <section className="bg-[#f2f2f2]">
+      {/* mobile */}
+      {!page && (
+        <nav className="sticky top-0 z-10 mb-2 flex gap-1 overflow-x-auto bg-white p-3 shadow md:hidden">
+          {sections.map((label, i) => (
+            <button
+              key={label}
+              onClick={() => setCurrentStep(i)}
+              className={clsx(
+                "flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm transition-colors",
+                step === i
+                  ? "bg-secondary/10 font-semibold text-secondary"
+                  : incompleteSections?.includes(i)
+                    ? "text-red-500"
+                    : "text-gray-500",
+              )}
+            >
+              <span
+                className={clsx(
+                  "flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.65rem]",
+                  step === i
+                    ? "bg-secondary text-white"
+                    : "bg-gray-100 text-gray-400",
+                )}
+              >
+                {i + 1}
+              </span>
+              {label}
+            </button>
+          ))}
+        </nav>
+      )}
+
+      {/* desktop sidebar — fixed to the viewport's left edge */}
+      {!page && (
+        <aside className="hidden md:fixed md:inset-y-0 md:left-0 md:z-20 md:flex md:w-[280px] md:flex-col md:overflow-y-auto md:bg-white md:p-4 md:shadow-lg">
+          <nav className="flex flex-col gap-1 pt-24">
+            {sections.map((label, i) => (
+              <button
+                key={label}
+                onClick={() => setCurrentStep(i)}
+                className={clsx(
+                  "flex items-center gap-3 rounded-lg px-4 cursor-pointer py-2.5 text-left text-sm transition-colors",
+                  step === i
+                    ? "bg-secondary/10 font-semibold text-secondary"
+                    : incompleteSections?.includes(i)
+                      ? "text-red-500"
+                      : "text-gray-500 hover:bg-gray-50",
+                )}
+              >
+                <span
+                  className={clsx(
+                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.65rem]",
+                    step === i
+                      ? "bg-secondary text-white"
+                      : "bg-gray-100 text-gray-400",
+                  )}
+                >
+                  {i + 1}
+                </span>
+                {label}
+              </button>
+            ))}
+          </nav>
+        </aside>
+      )}
+
       <div className="flex flex-col gap-2 items-center justify-center">
-        {!page && step > 0 && (
+        {/* {!page && step > 0 && (
           <div className="mb-5 w-full">
             <StepProgress
-              steps={Array.from({ length: 10 })}
+              steps={Array.from({ length: 11 })}
               currentStep={step}
             />
           </div>
-        )}
+        )} */}
 
         {page ? (
           <div className="md:w-4xl flex flex-col gap-20 py-12 p-5 md:py-15 md:p-15 bg-white md:rounded-2xl shadow text-sm">
@@ -277,12 +442,22 @@ export default function ApplicationForm({
               disableEdit={disableEdit}
             />
 
+            <ParentInformation
+              data={parentData}
+              onChange={onChange}
+              phoneNumChange={phoneNumChange}
+              toggleHandler={toggleHandler}
+              edit
+            />
+
             <CanadianSelection
               canadian={details.canadian}
               onChange={onChange}
               onNext={beginRegistration}
               edit
               disableEdit={disableEdit}
+              setHearAboutUs={setHearAboutUs}
+              option={aboutUs}
             />
 
             <StudyMode data={mode} onChange={setMode} page />
@@ -357,11 +532,11 @@ export default function ApplicationForm({
                       "",
                       "Student Contact Information",
                       "Mailing Address",
+                      "Parent's Information",
                       "Academic Information",
                       "Citizenship Information",
                       "Documents",
                       "Programs",
-                      "Application Review",
                       "Terms and Conditions",
                     ][step]
                   }
@@ -374,6 +549,8 @@ export default function ApplicationForm({
                 canadian={details.canadian}
                 onChange={onChange}
                 onNext={beginRegistration}
+                option={aboutUs}
+                setHearAboutUs={setHearAboutUs}
               />
             ) : step == 1 ? (
               <StudyMode data={mode} onChange={setMode} />
@@ -392,6 +569,13 @@ export default function ApplicationForm({
                 location={location}
               />
             ) : step == 4 ? (
+              <ParentInformation
+                data={parentData}
+                onChange={onChange}
+                phoneNumChange={phoneNumChange}
+                toggleHandler={toggleHandler}
+              />
+            ) : step == 5 ? (
               <AcademicInformation
                 data={academicInformationData}
                 onChange={onChange}
@@ -399,16 +583,16 @@ export default function ApplicationForm({
                   setDetails((prev) => ({ ...prev, [name]: value }))
                 }
               />
-            ) : step == 5 ? (
+            ) : step == 6 ? (
               <Citizenship
                 data={details}
                 onChange={onChange}
                 setBirthCountry={setBirthCountry}
                 birthCountry={birthCountry}
               />
-            ) : step == 6 ? (
-              <Document setFiles={setDocuments} filesGroups={documents} />
             ) : step == 7 ? (
+              <Document setFiles={setDocuments} filesGroups={documents} />
+            ) : step == 8 ? (
               <>
                 {mode === "off-site" ? (
                   <Cartitem editMode />
@@ -420,14 +604,6 @@ export default function ApplicationForm({
                   />
                 )}
               </>
-            ) : step == 8 ? (
-              <ApplicationPreview
-                details={details}
-                documents={documents}
-                programs={programs}
-                birthCountry={birthCountry}
-                location={location}
-              />
             ) : step == 9 ? (
               <TermsAndConditions
                 onBack={() => setCurrentStep((prev) => prev - 1)}
