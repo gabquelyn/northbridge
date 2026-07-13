@@ -145,7 +145,7 @@ export const useAdminRescind = () => {
     mutationFn: rescind,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["application"],
+        queryKey: ["applications"],
       });
     },
   });
