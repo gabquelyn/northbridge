@@ -125,6 +125,7 @@ export default function ApplicationForm({
       details.motherFirstName,
       details.motherLastName,
       details.motherEmail,
+      details.fatherEmail,
       details.motherPhoneNumber,
       details.motherDeaceased,
     ],
