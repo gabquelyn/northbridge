@@ -1,7 +1,5 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import CanadianSelection from "./CanadianSelection";
-import StepProgress from "@/app/online-learners/components/StepProgress";
 import ContactInformation from "./ContactInformation";
 import Mailing from "./Mailing";
 import AcademicInformation from "./AcademicInformation";
@@ -10,16 +8,16 @@ import Document from "./Document";
 import Programs from "./Programs";
 import genericInputHandler from "@/app/utils/genericInputHandler";
 import Cartitem from "../Cartitem";
-import ApplicationPreview from "./ApplicationPreview";
 import TermsAndConditions from "./Consent";
 import { ClipLoader } from "react-spinners";
 import Modal from "../Modal";
-import FormNavigation from "./FormNavigation";
-import Button from "../atoms/Button";
 import StudyMode from "./StudyMode";
 import ParentInformation from "./ParentInformation";
 import clsx from "clsx";
 import sections from "@/app/utils/sections";
+import ApplicationCompletion from "./ApplicationCompletion";
+import Button from "../atoms/Button";
+import ApplicationFee from "./ApplicationFee";
 
 export default function ApplicationForm({
   applicationHandler,
@@ -49,6 +47,10 @@ export default function ApplicationForm({
   setHearAboutUs,
   aboutUs,
   incompleteSections,
+  checks,
+  setChecks,
+  fee,
+  id,
 }: {
   applicationHandler?: Fn;
   details: IApplicationForm;
@@ -81,6 +83,10 @@ export default function ApplicationForm({
   setHearAboutUs: React.Dispatch<React.SetStateAction<SelectOption | null>>;
   aboutUs: SelectOption | null;
   incompleteSections?: number[];
+  setChecks: React.Dispatch<React.SetStateAction<TermsAndCondition>>;
+  checks: TermsAndCondition;
+  id?: string;
+  fee?: boolean;
 }) {
   const [step, setCurrentStep] = useState(0);
   const [nextDisabled, setNextDisabled] = useState(false);
@@ -93,6 +99,8 @@ export default function ApplicationForm({
       email: details.email,
       canadian: details.canadian,
       phoneNumber: details.phoneNumber,
+      dob: details.dob,
+      gender: details.gender,
     }),
     [
       details.firstName,
@@ -101,6 +109,25 @@ export default function ApplicationForm({
       details.email,
       details.canadian,
       details.phoneNumber,
+      details.dob,
+      details.gender,
+    ],
+  );
+
+  const checksData = useMemo(
+    () => ({
+      consent: checks.consent,
+      prerequisite: checks.prerequisite,
+      refund: checks.refund,
+      parent: checks.parent,
+      diploma: checks.diploma,
+    }),
+    [
+      checks.consent,
+      checks.prerequisite,
+      checks.refund,
+      checks.parent,
+      checks.diploma,
     ],
   );
 
@@ -130,10 +157,6 @@ export default function ApplicationForm({
       details.motherDeaceased,
     ],
   );
-  const beginRegistration = useCallback(
-    () => setCurrentStep(1),
-    [setCurrentStep],
-  );
 
   const academicInformationData = useMemo(
     () => ({
@@ -157,6 +180,7 @@ export default function ApplicationForm({
       details.completedSecondaryDiploma,
     ],
   );
+
   const phoneNumChange = useCallback(
     (val: string, name = "phoneNumber") => {
       if (disableEdit) return;
@@ -168,28 +192,22 @@ export default function ApplicationForm({
   // Next button controller
   useEffect(() => {
     if (step == 0) {
-      if (!aboutUs) {
-        setNextDisabled(true);
-      } else {
-        setNextDisabled(false);
-      }
-    }
-    if (step == 1) {
-      if (mode) setNextDisabled(false);
-      else {
-        setNextDisabled(true);
-      }
-    }
-    if (step == 2) {
-      const { firstName, lastName, email, phoneNumber } = details;
-      if (!firstName || !lastName || !email || !phoneNumber) {
+      const { firstName, lastName, email, phoneNumber, dob, gender } = details;
+      if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !phoneNumber ||
+        !dob ||
+        !gender
+      ) {
         setNextDisabled(true);
       } else {
         setNextDisabled(false);
       }
     }
 
-    if (step == 3) {
+    if (step == 1) {
       const { street } = details;
       if (
         !location?.country ||
@@ -203,7 +221,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 4) {
+    if (step == 2) {
       const {
         motherDeaceased,
         motherFirstName,
@@ -237,23 +255,19 @@ export default function ApplicationForm({
       );
     }
 
-    if (step == 5) {
+    if (step == 3) {
       const {
-        dob,
         currentSchool,
         homeSchool,
         secondaryEntry,
         pathway,
-        gender,
         completedSecondaryDiploma,
       } = details;
       if (
-        !dob ||
         !currentSchool ||
         !homeSchool ||
         !secondaryEntry ||
         !pathway ||
-        !gender ||
         !completedSecondaryDiploma
       ) {
         setNextDisabled(true);
@@ -262,7 +276,7 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 6) {
+    if (step == 4) {
       const { language, intendToApply, canadianVisa } = details;
       if (
         !language ||
@@ -276,25 +290,36 @@ export default function ApplicationForm({
       }
     }
 
-    if (step == 7) {
+    if (step == 5) {
       if (
-        !documents?.passport ||
-        documents?.passport?.length == 0 ||
-        !documents?.transcripts ||
-        documents?.transcripts?.length == 0 ||
-        !documents?.govId ||
-        documents?.govId?.length == 0 ||
-        !documents?.birthCert ||
-        documents?.birthCert?.length == 0
+        !documents?.passport &&
+        !documents?.govId &&
+        !documents?.transcripts &&
+        !documents?.birthCert &&
+        !documents?.others
       ) {
         setNextDisabled(true);
       } else {
         setNextDisabled(false);
       }
     }
-  }, [details, step, documents]);
 
-  // const PROGRAM_ORDER: Programs[] = ["CAAP", "GRADE11", "GRADE12", "AY12"];
+    if (step == 8) {
+      const allChecked =
+        checks.prerequisite &&
+        checks.refund &&
+        checks.consent &&
+        checks.diploma;
+
+      console.log(allChecked, aboutUs);
+      if (!allChecked || !aboutUs?.value) {
+        setNextDisabled(true);
+      } else {
+        setNextDisabled(false);
+      }
+    }
+  }, [details, step, documents, aboutUs, birthCountry, location, checks]);
+
   const toggleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     if (name == "fatherDeaceased" && checked) {
@@ -319,8 +344,6 @@ export default function ApplicationForm({
   };
   const programChnageHandler = useCallback(
     (program: Programs, checked: boolean) => {
-      // const index = PROGRAM_ORDER.indexOf(program);
-      // const isCanadian = details.canadian === "true";
       const complementary: Programs[] = ["DIRECT", "CAAP"];
       setPrograms((prev) => {
         if (checked) {
@@ -343,7 +366,9 @@ export default function ApplicationForm({
   }, [setCurrentStep, step]);
 
   const goNext = useCallback(() => {
-    if (step < 9) setCurrentStep((prev) => prev + 1);
+    if (step < 9) {
+      setCurrentStep((prev) => prev + 1);
+    }
   }, [setCurrentStep, step]);
 
   if (isPending) {
@@ -392,7 +417,7 @@ export default function ApplicationForm({
 
       {/* desktop sidebar — fixed to the viewport's left edge */}
       {!page && (
-        <aside className="hidden md:fixed md:inset-y-0 md:left-0 md:z-20 md:flex md:w-[280px] md:flex-col md:overflow-y-auto md:bg-white md:p-4 md:shadow-lg">
+        <aside className="hidden md:fixed md:inset-y-0 md:left-0 md:z-20 md:flex md:w-70 md:flex-col md:overflow-y-auto md:bg-white md:p-4 md:shadow-lg">
           <nav className="flex flex-col gap-1 pt-24">
             {sections.map((label, i) => (
               <button
@@ -425,22 +450,18 @@ export default function ApplicationForm({
       )}
 
       <div className="flex flex-col gap-2 items-center justify-center">
-        {/* {!page && step > 0 && (
-          <div className="mb-5 w-full">
-            <StepProgress
-              steps={Array.from({ length: 11 })}
-              currentStep={step}
-            />
-          </div>
-        )} */}
-
         {page ? (
           <div className="md:w-4xl flex flex-col gap-20 py-12 p-5 md:py-15 md:p-15 bg-white md:rounded-2xl shadow text-sm">
+            {(fee && !isAdmin) && <ApplicationFee id={id || ""} />}
             <ContactInformation
               data={contactData}
               onChange={onChange}
               phoneNumChange={phoneNumChange}
               disableEdit={disableEdit}
+              onDateChange={(name, value) =>
+                setDetails((prev) => ({ ...prev, [name]: value }))
+              }
+              editMode
             />
 
             <ParentInformation
@@ -448,20 +469,10 @@ export default function ApplicationForm({
               onChange={onChange}
               phoneNumChange={phoneNumChange}
               toggleHandler={toggleHandler}
-              edit
+              editMode
             />
 
-            <CanadianSelection
-              canadian={details.canadian}
-              onChange={onChange}
-              onNext={beginRegistration}
-              edit
-              disableEdit={disableEdit}
-              setHearAboutUs={setHearAboutUs}
-              option={aboutUs}
-            />
-
-            <StudyMode data={mode} onChange={setMode} page />
+            <StudyMode data={mode} onChange={setMode} page editMode />
 
             <Mailing
               setLocation={setLocation}
@@ -470,7 +481,9 @@ export default function ApplicationForm({
               onChange={onChange}
               location={location}
               disableEdit={disableEdit}
+              editMode
             />
+
             <AcademicInformation
               data={academicInformationData}
               onChange={onChange}
@@ -478,6 +491,7 @@ export default function ApplicationForm({
               onDateChange={(name, value) =>
                 setDetails((prev) => ({ ...prev, [name]: value }))
               }
+              editMode
             />
             <Citizenship
               data={details}
@@ -485,12 +499,14 @@ export default function ApplicationForm({
               setBirthCountry={setBirthCountry}
               birthCountry={birthCountry}
               disableEdit={disableEdit}
+              editMode
             />
             <Document
               setFiles={setDocuments}
               filesGroups={documents}
               uploaded={uploaded}
               disableEdit={disableEdit}
+              editMode
             />
             <>
               {mode === "off-site" ? (
@@ -498,7 +514,7 @@ export default function ApplicationForm({
                   selected={selectedCourses}
                   disableEdit={disableEdit}
                   removeSelected={removeSelected}
-                  editMode={page}
+                  editMode
                 />
               ) : (
                 <Programs
@@ -509,6 +525,7 @@ export default function ApplicationForm({
                   applied={appliedPrograms}
                   enrol={enrol}
                   enrolling={enrolling}
+                  editMode
                 />
               )}
             </>
@@ -524,103 +541,121 @@ export default function ApplicationForm({
           </div>
         ) : (
           <div className="w-full md:w-3xl p-5 md:p-15 py-15 bg-white rounded-2xl shadow text-sm">
-            {step > 0 && (
+            {
               <div className="mb-5 font-semibold text-secondary text-xl">
-                <p>
-                  {
-                    [
-                      "",
-                      "",
-                      "Student Contact Information",
-                      "Mailing Address",
-                      "Parent's Information",
-                      "Academic Information",
-                      "Citizenship Information",
-                      "Documents",
-                      "Programs",
-                      "Terms and Conditions",
-                    ][step]
-                  }
-                </p>
+                <p>{sections[step]}</p>
                 <hr className="border border-gray-100 mt-2" />
               </div>
-            )}
+            }
             {step == 0 ? (
-              <CanadianSelection
-                canadian={details.canadian}
-                onChange={onChange}
-                onNext={beginRegistration}
-                option={aboutUs}
-                setHearAboutUs={setHearAboutUs}
-              />
-            ) : step == 1 ? (
-              <StudyMode data={mode} onChange={setMode} />
-            ) : step == 2 ? (
               <ContactInformation
                 data={contactData}
                 onChange={onChange}
                 phoneNumChange={phoneNumChange}
+                onDateChange={(name, value) =>
+                  setDetails((prev) => ({ ...prev, [name]: value }))
+                }
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
               />
-            ) : step == 3 ? (
+            ) : step == 1 ? (
               <Mailing
                 setLocation={setLocation}
                 unit={details.unit}
                 street={details.street}
                 onChange={onChange}
                 location={location}
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
               />
-            ) : step == 4 ? (
+            ) : step == 2 ? (
               <ParentInformation
                 data={parentData}
                 onChange={onChange}
                 phoneNumChange={phoneNumChange}
                 toggleHandler={toggleHandler}
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
               />
-            ) : step == 5 ? (
+            ) : step == 3 ? (
               <AcademicInformation
                 data={academicInformationData}
                 onChange={onChange}
                 onDateChange={(name, value) =>
                   setDetails((prev) => ({ ...prev, [name]: value }))
                 }
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
               />
-            ) : step == 6 ? (
+            ) : step == 4 ? (
               <Citizenship
                 data={details}
                 onChange={onChange}
                 setBirthCountry={setBirthCountry}
                 birthCountry={birthCountry}
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
+              />
+            ) : step == 5 ? (
+              <Document
+                setFiles={setDocuments}
+                filesGroups={documents}
+                disabled={nextDisabled}
+                back={goBack}
+                next={goNext}
+                uploaded={uploaded}
+              />
+            ) : step == 6 ? (
+              <StudyMode
+                data={mode}
+                onChange={setMode}
+                disabled={false}
+                back={goBack}
+                next={goNext}
+                editMode={page}
               />
             ) : step == 7 ? (
-              <Document setFiles={setDocuments} filesGroups={documents} />
-            ) : step == 8 ? (
               <>
                 {mode === "off-site" ? (
-                  <Cartitem editMode />
+                  <Cartitem
+                    editMode
+                    disableEdit={disableEdit}
+                    back={goBack}
+                    next={goNext}
+                  />
                 ) : (
                   <Programs
                     data={programs}
                     canadian={details.canadian == "true"}
                     programChange={programChnageHandler}
+                    disabled={false}
+                    back={goBack}
+                    next={goNext}
+                    editMode={page}
                   />
                 )}
               </>
-            ) : step == 9 ? (
+            ) : step == 8 ? (
               <TermsAndConditions
-                onBack={() => setCurrentStep((prev) => prev - 1)}
-                submitHandler={applicationHandler}
+                setHearAboutUs={setHearAboutUs}
+                option={aboutUs}
+                checks={checksData}
+                setChecks={setChecks}
+                back={goBack}
+                disabled={nextDisabled}
+                next={goNext}
               />
             ) : (
-              ""
+              <ApplicationCompletion
+                submitHandler={applicationHandler}
+                onBack={() => goBack()}
+              />
             )}
-
-            <FormNavigation
-              step={step}
-              disabled={nextDisabled}
-              mode={mode}
-              back={goBack}
-              next={goNext}
-            />
           </div>
         )}
       </div>

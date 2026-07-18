@@ -157,29 +157,6 @@ function CanadianSelection({
         })}
       </div>
 
-      {/* Info box */}
-      {/* <div
-        className={clsx(
-          "w-full flex gap-3 items-start border p-4 rounded-xl",
-          disableEdit
-            ? "bg-gray-100 border-gray-200 text-gray-400"
-            : "text-gray-600 bg-primary/5 border-primary/10",
-        )}
-      >
-        <RiInformation2Line
-          className={clsx(
-            "text-lg mt-0.5",
-            disableEdit ? "text-gray-400" : "text-primary",
-          )}
-        />
-        <p>
-          The <span className="font-medium">CAAP</span> program is mandatory for
-          non-Canadian students and will be automatically included in your
-          course selection to ensure recognition by Canadian universities.
-        </p>
-      </div> */}
-
-      {/* Mode of study */}
 
       <div>
         <CustomSelect

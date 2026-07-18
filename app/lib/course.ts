@@ -72,8 +72,14 @@ export const downloadFile = async (metadata: {
   return res.data;
 };
 
-export const apply = async (form: FormData) => {
-  const res = await api.post("/application", form);
+export const apply = async ({
+  form,
+  profileId,
+}: {
+  form: FormData;
+  profileId: string;
+}) => {
+  const res = await api.post(`/application/${profileId}`, form);
   return res.data;
 };
 
@@ -99,5 +105,10 @@ export const application = async (id: string) => {
 
 export const payup = async (id: string) => {
   const res = await api.post(`/application/pay/${id}`);
+  return res.data;
+};
+
+export const fee = async (id: string) => {
+  const res = await api.post(`/application/fee/${id}`);
   return res.data;
 };

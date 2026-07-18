@@ -10,20 +10,25 @@ import { formatCurrency } from "@/app/utils/formatCurrency";
 const ITEMS_PER_PAGE = 10;
 const PAGE_WINDOW = 5; // how many page buttons to show around the current page
 
-type StatusFilter = "all" | "granted" | "paid" | "paused" | "rescinded";
+// application.completed  -> application fee has been paid
+// application.paid       -> student has paid for a course / program
+// application.rescinded  -> admission has been rescinded
+// application.granted    -> admission has been granted
+type StatusFilter = "all" | "completed" | "paid" | "granted" | "rescinded";
 
 const STATUS_OPTIONS: { id: number; name: string; value: StatusFilter }[] = [
-  // { id: 0, name: "All", value: "all" },
-  { id: 1, name: "Granted", value: "granted" },
+  { id: 0, name: "All", value: "all" },
+  { id: 1, name: "Fee completed", value: "completed" },
   { id: 2, name: "Paid", value: "paid" },
+  { id: 3, name: "Granted", value: "granted" },
   { id: 4, name: "Rescinded", value: "rescinded" },
 ];
 
-const STATUS_BADGE_STYLES: Record<string, string> = {
-  granted: "bg-green-100 text-green-700",
-  pending: "bg-yellow-100 text-yellow-700",
-  paused: "bg-gray-200 text-gray-700",
-  rescinded: "bg-red-100 text-red-600",
+const BADGE_STYLES = {
+  green: "bg-green-100 text-green-700",
+  yellow: "bg-yellow-100 text-yellow-700",
+  gray: "bg-gray-200 text-gray-700",
+  red: "bg-red-100 text-red-600",
 };
 
 function useDebouncedValue<T>(value: T, delay = 250) {
@@ -60,14 +65,14 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
       switch (selectedStatus) {
         case "all":
           return true;
+        case "completed":
+          return !!d.completed;
         case "paid":
           return !!d.paid;
         case "granted":
           return !!d.granted;
-        // NOTE: "paused" / "rescinded" assume an `admissionStatus` field.
-        // Swap `d.admissionStatus` below for whatever your real field is named.
         case "rescinded":
-          return d.rescinded;
+          return !!d.rescinded;
         default:
           return true;
       }
@@ -98,18 +103,20 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }, [page, totalPages]);
 
-  const getAdmissionLabel = (datum: Application) => {
-    if (datum.granted) return "Admission granted";
-    if (datum.paid) return "Paid";
-    if (datum.rescinded) return "Rescinded";
-    return "Pending approval";
-  };
-
-  const getAdmissionStyle = (datum: Application) => {
-    if (datum.granted) return STATUS_BADGE_STYLES.granted;
-    if (datum.paid) return STATUS_BADGE_STYLES.paid;
-    if (datum.rescinded) return STATUS_BADGE_STYLES.rescinded;
-    return STATUS_BADGE_STYLES.pending;
+  // Admission status: rescinded overrides granted (an admission can be granted
+  // then later rescinded), granted overrides "under review", and a student who
+  // hasn't even completed the application fee is just "pending".
+  const getAdmissionInfo = (datum: Application) => {
+    if (datum.rescinded) {
+      return { label: "Rescinded", style: BADGE_STYLES.red };
+    }
+    if (datum.granted) {
+      return { label: "Admission granted", style: BADGE_STYLES.green };
+    }
+    if (datum.completed) {
+      return { label: "Under review", style: BADGE_STYLES.yellow };
+    }
+    return { label: "Pending application fee", style: BADGE_STYLES.gray };
   };
 
   return (
@@ -142,94 +149,104 @@ export default function ApplicationTable({ data }: { data: Application[] }) {
               <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Pathway</th>
               <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Date submitted</th>
               <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Mode</th>
-              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Payment status</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Application fee</th>
+              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Course/program payment</th>
               <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Admission status</th>
-              <th className="text-left py-3 px-4 font-medium whitespace-nowrap">Outstanding payment</th>
             </tr>
           </thead>
 
           <tbody>
             {paginatedData.length === 0 ? (
               <tr>
-                <td colSpan={7} className="py-10 text-center text-secondary">
+                <td colSpan={8} className="py-10 text-center text-secondary">
                   No applications match your search or filter.
                 </td>
               </tr>
             ) : (
-              paginatedData.map((datum) => (
-                <tr
-                  key={datum._id}
-                  className="hover:bg-gray-50 cursor-pointer transition border-b border-gray-100 last:border-b-0"
-                  onClick={() => router.push(`/application/${datum._id}`)}
-                >
-                  <td className="py-4 px-4">
-                    <div className="flex items-center gap-3">
-                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-gray-100">
-                        {datum.profile?.documents?.passport?.[0]?.url ? (
-                          <Image
-                            src={datum.profile.documents.passport[0].url}
-                            fill
-                            className="object-cover"
-                            alt={`${datum.profile?.bio.firstName ?? "Student"} avatar`}
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-gray-400">
-                            {datum.profile?.bio.firstName?.[0]}
-                            {datum.profile?.bio.lastName?.[0]}
-                          </div>
-                        )}
+              paginatedData.map((datum) => {
+                const admission = getAdmissionInfo(datum);
+
+                return (
+                  <tr
+                    key={datum._id}
+                    className="hover:bg-gray-50 cursor-pointer transition border-b border-gray-100 last:border-b-0"
+                    onClick={() => router.push(`/application/${datum._id}`)}
+                  >
+                    <td className="py-4 px-4">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-gray-100">
+                          {datum.profile?.documents?.passport?.[0]?.url ? (
+                            <Image
+                              src={datum.profile.documents.passport[0].url}
+                              fill
+                              className="object-cover"
+                              alt={`${datum.profile?.bio.firstName ?? "Student"} avatar`}
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-gray-400">
+                              {datum.profile?.bio.firstName?.[0]}
+                              {datum.profile?.bio.lastName?.[0]}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex flex-col min-w-0">
+                          <span className="font-medium text-gray-900 truncate">
+                            {datum.profile?.bio.firstName} {datum.profile?.bio.lastName}
+                          </span>
+                          <span className="text-xs text-secondary truncate">
+                            {datum.profile?.bio.email}
+                          </span>
+                        </div>
                       </div>
+                    </td>
 
-                      <div className="flex flex-col min-w-0">
-                        <span className="font-medium text-gray-900 truncate">
-                          {datum.profile?.bio.firstName} {datum.profile?.bio.lastName}
-                        </span>
-                        <span className="text-xs text-secondary truncate">
-                          {datum.profile?.bio.email}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
+                    <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                      {datum.profile?.academics.pathway}
+                    </td>
 
-                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
-                    {datum.profile?.academics.pathway}
-                  </td>
+                    <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                      {new Date(datum.createdAt).toLocaleDateString()}
+                    </td>
 
-                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
-                    {new Date(datum.createdAt).toLocaleDateString()}
-                  </td>
+                    <td className="py-4 px-4 text-gray-600 capitalize whitespace-nowrap">
+                      {datum.mode}
+                    </td>
 
-                  <td className="py-4 px-4 text-gray-600 capitalize whitespace-nowrap">
-                    {datum.mode}
-                  </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+                          datum.completed ? BADGE_STYLES.green : BADGE_STYLES.red
+                        }`}
+                      >
+                        {datum.completed ? "Completed" : "Pending"}
+                      </span>
+                    </td>
 
-                  <td className="py-4 px-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
-                        datum.paid
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-600"
-                      }`}
-                    >
-                      {datum.paid ? "Paid" : "Unpaid"}
-                    </span>
-                  </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+                          datum.paid ? BADGE_STYLES.green : BADGE_STYLES.red
+                        }`}
+                      >
+                        {datum.paid ? "Paid" : "Unpaid"}
+                      </span>
+                    </td>
 
-                  <td className="py-4 px-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getAdmissionStyle(
-                        datum,
-                      )}`}
-                    >
-                      {getAdmissionLabel(datum)}
-                    </span>
-                  </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${admission.style}`}
+                      >
+                        {admission.label}
+                      </span>
+                    </td>
 
-                  <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
-                    {datum?.outstanding ? formatCurrency(datum.outstanding) : "-"}
-                  </td>
-                </tr>
-              ))
+                    {/* <td className="py-4 px-4 text-gray-600 whitespace-nowrap">
+                      {datum?.outstanding ? formatCurrency(datum.outstanding) : "-"}
+                    </td> */}
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>

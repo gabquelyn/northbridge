@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import Button from "../atoms/Button";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { toast } from "sonner";
+import React from "react";
+import CustomSelect from "../CustomSelect";
+import FormNavigation from "./FormNavigation";
 
 type Props = {
-  onBack: () => void;
-  submitHandler?: () => void;
+  option: SelectOption | null;
+  setHearAboutUs: React.Dispatch<React.SetStateAction<SelectOption | null>>;
+  setChecks: React.Dispatch<React.SetStateAction<TermsAndCondition>>;
+  checks: TermsAndCondition;
+  back: Fn;
+  next: Fn;
+  disabled: boolean
 };
 
 const Section = ({
@@ -50,23 +54,48 @@ const Check = ({
   );
 };
 
-export default function TermsAndConditions({ onBack, submitHandler }: Props) {
-  const [checks, setChecks] = useState({
-    prerequisite: false,
-    refund: false,
-    consent: false,
-    parent: false,
-    diploma: false,
-  });
+export default function TermsAndConditions({
+  option,
+  setHearAboutUs,
+  setChecks,
+  checks,
+  back,
+  next,
+  disabled
+}: Props) {
 
-  const allChecked =
-    checks.prerequisite && checks.refund && checks.consent && checks.diploma; // parent is conditional
-
+  const hearAboutUsOptions = [
+    { label: "Social media", value: "social_media" },
+    { label: "Friend or family", value: "friend_or_family" },
+    { label: "Google search", value: "google_search" },
+    { label: "School", value: "school" },
+    { label: "Teacher/Lecturer", value: "teacher_lecturer" },
+    { label: "Advertisement", value: "advertisement" },
+    { label: "Event or seminar", value: "event_or_seminar" },
+    { label: "Email", value: "email" },
+    { label: "Website", value: "website" },
+    { label: "WhatsApp", value: "whatsapp" },
+    { label: "LinkedIn", value: "linkedin" },
+    { label: "Instagram", value: "instagram" },
+    { label: "Facebook", value: "facebook" },
+    { label: "X (Twitter)", value: "x_twitter" },
+    { label: "YouTube", value: "youtube" },
+    { label: "Other", value: "other" },
+  ];
   return (
     <div className="space-y-6">
       <p className="text-sm opacity-90">
         Please read carefully and confirm your agreement before proceeding.
       </p>
+
+      <div>
+        <CustomSelect
+          label="How did you hear about us?"
+          option={option}
+          options={hearAboutUsOptions}
+          setOption={setHearAboutUs}
+        />
+      </div>
 
       {/* PREREQUISITE */}
       <Section title="Prerequisite Requirement">
@@ -184,37 +213,12 @@ export default function TermsAndConditions({ onBack, submitHandler }: Props) {
         />
       </Section>
 
-      {/* FOOTER ACTION */}
-      <div className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-600 shadow-sm">
-        <p className="text-sm text-gray-500">
-          You must agree to all required terms before continuing.
-        </p>
-
-        <div className="flex gap-3">
-          <button
-            className="p-3 cursor-pointer rounded-full text-secondary bg-[#f2f2f2]"
-            onClick={onBack}
-          >
-            <IoMdArrowRoundBack />
-          </button>
-          <Button
-            onClick={() => {
-              if (!allChecked)
-                return toast.warning(
-                  "Please agree to all terms and conditions to continue",
-                );
-              submitHandler?.();
-            }}
-            className={`px-6 py-2 rounded-xl text-white transition ${
-              allChecked
-                ? "bg-primary hover:opacity-90"
-                : "bg-gray-300 cursor-not-allowed"
-            }`}
-          >
-            Submit
-          </Button>
-        </div>
-      </div>
+      <FormNavigation
+        pending={false}
+        disabled={disabled}
+        next={() => next()}
+        back={back}
+      />
     </div>
   );
 }

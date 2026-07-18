@@ -12,6 +12,7 @@ import {
   enrolCourses,
   enroled,
   enrolProgram,
+  fee,
   joinTeam,
   payup,
   receipt,
@@ -95,10 +96,10 @@ export const useApplicationEdit = () => {
 
   return useMutation({
     mutationFn: edit,
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["applications", "mycourses"],
-      });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
+      queryClient.invalidateQueries({ queryKey: ["mycourses"] });
+      queryClient.invalidateQueries({ queryKey: ["application"] });
     },
   });
 };
@@ -162,6 +163,18 @@ export const usePayup = (id: string) => {
   const queryClient = useQueryClient();
   return useMutation<{ paymentUrl: string }>({
     mutationFn: () => payup(id),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["applications"],
+      });
+    },
+  });
+};
+
+export const useApplicationFee = (id: string) => {
+  const queryClient = useQueryClient();
+  return useMutation<{ paymentUrl: string }>({
+    mutationFn: () => fee(id),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: ["applications"],

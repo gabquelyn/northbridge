@@ -32,50 +32,52 @@ export default function Application({ data }: { data: Application }) {
     (!data.granted && data.mode == "on-site") ||
     (data.paid && data.mode == "off-site" && !data.granted);
   const isComplete = data.paid && data.granted;
-  const isAwaitingPaymentProgram = data.granted && !data.paid;
-  const isAwaitingPaymentCourse = data.mode == "off-site" && !data.paid;
+  const isAwaitingPayment = data.granted && !data.paid;
+  const isNotComplete = !data.completed;
 
-  const statusText = isAwaitingPaymentProgram
-    ? "Awaiting Payment"
-    : isPending
-      ? "Application in review"
-      : isComplete
-        ? "Admission granted"
-        : isAwaitingPaymentCourse
-          ? "Incomplete"
-          : "";
+  const statusText = isNotComplete
+    ? "Incomplete"
+    : isAwaitingPayment
+      ? "Awaiting Payment"
+      : isPending
+        ? "Application in review"
+        : isComplete
+          ? "Admission granted"
+          : isNotComplete
+            ? "Incomplete"
+            : "";
 
   const statusColor = clsx(
     "flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium",
-    isAwaitingPaymentProgram
-      ? "bg-blue-50 text-blue-600"
-      : isPending
-        ? "bg-amber-100 text-amber-600"
-        : isComplete
-          ? "bg-green-100 text-green-600"
-          : isAwaitingPaymentCourse
-            ? "bg-rose-50 text-rose-500"
+    isNotComplete
+      ? "bg-rose-50 text-rose-500"
+      : isAwaitingPayment
+        ? "bg-blue-50 text-blue-600"
+        : isPending
+          ? "bg-amber-100 text-amber-600"
+          : isComplete
+            ? "bg-green-100 text-green-600"
             : "",
   );
 
-  const progressColor = isAwaitingPaymentProgram
-    ? "#0088FF"
-    : isPending
-      ? "#FFBE00"
-      : isComplete
-        ? "#14AE5C"
-        : isAwaitingPaymentCourse
-          ? "#E00C00"
+  const progressColor = isNotComplete
+    ? "#E00C00"
+    : isAwaitingPayment
+      ? "#0088FF"
+      : isPending
+        ? "#FFBE00"
+        : isComplete
+          ? "#14AE5C"
           : undefined;
 
-  const message = isAwaitingPaymentProgram
-    ? "Complete enrollment payment to secure this student's place."
-    : isPending
-      ? "No action required right now. Our admissions team is reviewing the application."
-      : isComplete
-        ? "Congratulations, you have been admitted!"
-        : isAwaitingPaymentCourse
-          ? "Payment required to continue, go to cart to checkout"
+  const message = isNotComplete
+    ? "Application fee required for application processing"
+    : isAwaitingPayment
+      ? "Complete Payment for Programs or continue to purchase courses"
+      : isPending
+        ? "No action required right now. Our admissions team is reviewing the application."
+        : isComplete
+          ? "Congratulations, you have been admitted!"
           : "";
 
   const isOutstanding = Boolean(data?.outstanding && data.outstanding > 0);
@@ -165,13 +167,7 @@ export default function Application({ data }: { data: Application }) {
         <div className="relative">
           <CircularProgress
             percent={
-              isAwaitingPaymentProgram
-                ? 70
-                : isPending
-                  ? 50
-                  : isAwaitingPaymentCourse
-                    ? 10
-                    : 100
+              isNotComplete ? 10 : isAwaitingPayment ? 70 : isPending ? 50 : 100
             }
             color={progressColor}
             size={100}

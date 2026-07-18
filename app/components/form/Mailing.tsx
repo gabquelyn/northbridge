@@ -4,6 +4,9 @@ import { Country, State, City } from "country-state-city";
 import CustomSelect from "../CustomSelect";
 import { RiInformationLine } from "react-icons/ri";
 import Input from "../Input";
+import FormNavigation from "./FormNavigation";
+import { useEditMailing } from "@/app/hooks/useProfile";
+import useNext from "@/app/hooks/useNext";
 
 function Mailing({
   setLocation,
@@ -12,6 +15,10 @@ function Mailing({
   onChange,
   location,
   disableEdit,
+  disabled,
+  back,
+  next,
+  editMode,
 }: {
   unit: string;
   street: string;
@@ -19,7 +26,24 @@ function Mailing({
   location: LocationData;
   setLocation: React.Dispatch<React.SetStateAction<LocationData>>;
   disableEdit?: boolean;
+  disabled?: boolean;
+  back?: Fn;
+  next?: Fn;
+  editMode?: boolean
 }) {
+  const editMailing = useEditMailing();
+  const { isPending, saveHandler } = useNext({
+    mutation: editMailing,
+    next,
+    details: {
+      country: location.country?.label || "",
+      state: location.state?.label || "",
+      city: location.city?.label || "",
+      unit,
+      street,
+    },
+  });
+
   const countries = useMemo(
     () =>
       Country.getAllCountries().map((country) => ({
@@ -113,6 +137,15 @@ function Mailing({
           />
         </div>
       </div>
+
+      {!editMode && (
+        <FormNavigation
+          pending={isPending}
+          disabled={disabled}
+          next={saveHandler}
+          back={back}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,10 @@
+"use client";
 import React from "react";
 import Input from "../Input";
 import PhoneInput from "react-phone-number-input";
+import { useEditParent } from "@/app/hooks/useProfile";
+import useNext from "@/app/hooks/useNext";
+import FormNavigation from "./FormNavigation";
 
 type ContactInfo = Pick<
   IApplicationForm,
@@ -21,14 +25,20 @@ function ParentInformation({
   phoneNumChange,
   disableEdit,
   toggleHandler,
-  edit,
+  editMode,
+  disabled,
+  back,
+  next,
 }: {
   data: ContactInfo;
   onChange: inputHandler;
   phoneNumChange: (val: string, name?: string) => void;
   disableEdit?: boolean;
   toggleHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  edit?: boolean;
+  editMode?: boolean;
+  disabled?: boolean;
+  back?: Fn;
+  next?: Fn;
 }) {
   const f_inputs = [
     {
@@ -65,10 +75,41 @@ function ParentInformation({
       placeholder: "maemerci@gmail.com",
     },
   ];
+  const editParent = useEditParent();
+
+  const {
+    fatherFirstName,
+    fatherLastName,
+    fatherPhoneNumber,
+    fatherEmail,
+    fatherDeaceased,
+    motherFirstName,
+    motherLastName,
+    motherEmail,
+    motherPhoneNumber,
+    motherDeaceased,
+  } = data;
+
+  const { isPending, saveHandler } = useNext({
+    mutation: editParent,
+    next,
+    details: {
+      fatherFirstName,
+      fatherLastName,
+      fatherPhoneNumber,
+      fatherEmail,
+      fatherDeaceased,
+      motherFirstName,
+      motherLastName,
+      motherEmail,
+      motherPhoneNumber,
+      motherDeaceased,
+    },
+  });
   return (
     <div className="space-y-4">
       <div className="pt-5">
-        {edit ? (
+        {editMode ? (
           <p className="text-md text-[1rem] font-semibold">
             Father's information
           </p>
@@ -119,7 +160,7 @@ function ParentInformation({
       </div>
 
       <div className="pt-5">
-        {edit ? (
+        {editMode ? (
           <p className="text-md text-[1rem] font-semibold">
             Mother's information
           </p>
@@ -168,6 +209,14 @@ function ParentInformation({
           />
         </div>
       </div>
+      {!editMode && (
+        <FormNavigation
+          pending={isPending}
+          disabled={disabled}
+          next={saveHandler}
+          back={back}
+        />
+      )}
     </div>
   );
 }

@@ -97,67 +97,79 @@ type Application = {
   mode: "on-site" | "off-site";
   courses: number[];
   programs: Programs[];
-  profile: {
-    parent?: {
-      fatherFirstName: string;
-      fatherLastName: string;
-      fatherPhoneNumber: string;
-      fatherEmail: string;
-      fatherDeaceased: boolean;
-      motherFirstName: string;
-      motherLastName: string;
-      motherEmail: string;
-      motherPhoneNumber: string;
-      motherDeaceased: boolean;
-    };
-    bio: {
-      firstName: string;
-      lastName: string;
-      email: string;
-      phoneNumber: string;
-      middleName: string;
-      gender: string;
-      dob: string;
-    };
-    academics: {
-      currentSchool: string;
-      pathway: string;
-      homeSchool: string;
-      secondaryEntry: string;
-      completedSecondaryDiploma: boolean;
-      qualification: string;
-    };
-    address: {
-      city: string;
-      state: string;
-      unit: string;
-      street: unit;
-      country?: string;
-    };
-    citizenship: {
-      canadian: boolean;
-      language: string;
-      intendToApply: boolean;
-      canadianVisa: boolean;
-      birthCountry: string;
-    };
-    documents: {
-      transcripts: DocumentFile[];
-      govId: DocumentFile[];
-      passport: DocumentFile[];
-    };
-    referrer: string
-  };
+  profile:Profile
   granted: boolean;
   paid: boolean;
   completed: boolean;
   createdAt: string;
   outstanding?: number;
-  rescinded: boolean
+  rescinded: boolean;
 };
+
+interface Profile {
+  parent?: {
+    fatherFirstName: string;
+    fatherLastName: string;
+    fatherPhoneNumber: string;
+    fatherEmail: string;
+    fatherDeaceased: boolean;
+    motherFirstName: string;
+    motherLastName: string;
+    motherEmail: string;
+    motherPhoneNumber: string;
+    motherDeaceased: boolean;
+  };
+  bio: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    middleName: string;
+    gender: string;
+    dob: string;
+  };
+  academics: {
+    currentSchool: string;
+    pathway: string;
+    homeSchool: string;
+    secondaryEntry: string;
+    completedSecondaryDiploma: boolean;
+    qualification: string;
+  };
+  address: {
+    city: string;
+    state: string;
+    unit: string;
+    street: unit;
+    country?: string;
+  };
+  citizenship: {
+    canadian: boolean;
+    language: string;
+    intendToApply: boolean;
+    canadianVisa: boolean;
+    birthCountry: string;
+  };
+  documents: {
+    transcripts: DocumentFile[];
+    govId: DocumentFile[];
+    passport: DocumentFile[];
+    birthCert: DocumentFile[];
+    others?: DocumentFile[];
+  };
+  referrer: string;
+}
 
 interface User {
   name: string;
   email: string;
   role: "user" | "admin";
+}
+
+interface TermsAndCondition {
+  prerequisite: boolean;
+  refund: boolean;
+  consent: boolean;
+  parent: boolean;
+  diploma: boolean;
 }

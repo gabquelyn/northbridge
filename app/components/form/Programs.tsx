@@ -4,6 +4,10 @@ import clsx from "clsx";
 import Image from "next/image";
 import { ClipLoader } from "react-spinners";
 import moment from "moment";
+import FormNavigation from "./FormNavigation";
+import { useEditPrograms } from "@/app/hooks/useProfile";
+import useNext from "@/app/hooks/useNext";
+import { useSearchParams } from "next/navigation";
 
 function Programs({
   data,
@@ -13,6 +17,10 @@ function Programs({
   applied,
   enrol,
   enrolling,
+  disabled,
+  back,
+  next = () => {},
+  editMode,
 }: {
   data: Programs[];
   programChange: (program: Programs, checked: boolean) => void;
@@ -21,6 +29,10 @@ function Programs({
   applied?: Programs[];
   enrol?: Fn;
   enrolling?: boolean;
+  disabled?: boolean;
+  back?: Fn;
+  next?: Fn;
+  editMode?: boolean;
 }) {
   const programs = [
     {
@@ -63,6 +75,29 @@ function Programs({
   const now = moment();
   const current = now.format("MM-DD");
   const isWithinRange = current >= "11-01" && current <= "12-15";
+  const params = useSearchParams();
+  const editPrograms = useEditPrograms();
+
+  const { isPending, saveHandler } = useNext({
+    mutation: editPrograms,
+    next,
+    details: {
+      programs: [...new Set([...data])],
+    },
+  });
+
+  const onSave = () => {
+    if (editMode) {
+      saveHandler();
+    } else {
+      localStorage.setItem(
+        `programs-${params.get("profile")}`,
+        JSON.stringify(data),
+      );
+    }
+    next();
+  };
+
   return (
     <div>
       {/* {!canadian && (
@@ -190,6 +225,15 @@ function Programs({
             )}
           </button>
         </div>
+      )}
+
+      {!editMode && (
+        <FormNavigation
+          pending={isPending}
+          disabled={disabled}
+          next={onSave}
+          back={back}
+        />
       )}
     </div>
   );

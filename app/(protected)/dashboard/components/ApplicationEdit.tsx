@@ -144,6 +144,13 @@ export default function ApplicationEdit({
   const [documents, setDocuments] = useState<Record<string, File[]>>();
   const [courses, setCourses] = useState<number[]>([...application.courses]);
   const [programs, setPrograms] = useState<Programs[]>(application.programs);
+  const [checks, setChecks] = useState<TermsAndCondition>({
+      prerequisite: false,
+      refund: false,
+      consent: false,
+      parent: false,
+      diploma: false,
+    });
   const [birthCountry, setBirthCountry] = useState<SelectOption | null>(
     selectedBirthCountry
       ? {
@@ -345,6 +352,10 @@ export default function ApplicationEdit({
         setMode={() => {}}
         aboutUs={referrer}
         setHearAboutUs={setReferrer}
+        checks={checks}
+        setChecks={setChecks}
+        fee={!application.completed}
+        id={application._id}
       />
       <div className="mt-10 md:px-[15%]">
         {isAdmin && (

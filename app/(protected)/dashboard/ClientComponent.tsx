@@ -3,10 +3,9 @@ import React from "react";
 import { useApplications } from "@/app/hooks/useAdmission";
 import { ClipLoader } from "react-spinners";
 import AnimatedCancel from "@/app/components/AnimatedCancel";
-import { TiPlus } from "react-icons/ti";
-import Button from "@/app/components/atoms/Button";
 import Application from "./components/Application";
-import Link from "next/link";
+import CreateProfile from "./components/CreateProfile";
+import Incomplete from "./components/Incomplete";
 
 export default function ClientCompent() {
   const { data, isPending, isError, isSuccess } = useApplications();
@@ -45,16 +44,11 @@ export default function ClientCompent() {
               : ""}
           </p>
 
-          <div>
-            <Link href = "/dashboard/apply">
-              <Button>
-                <div className="text-[.9rem] flex items-center gap-1">
-                  <TiPlus />
-                  <p className="">Create a new application</p>
-                </div>
-              </Button>
-            </Link>
-          </div>
+          <CreateProfile />
+        </div>
+
+        <div className="mt-4 max-w-lg">
+          <Incomplete />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">

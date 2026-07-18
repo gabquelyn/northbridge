@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import ApplicationForm from "./ApplicationForm";
 import { useApply } from "@/app/hooks/useAdmission";
 import { cartContext } from "@/app/providers/cartContextProvider";
@@ -10,52 +10,123 @@ import { useRouter } from "next/navigation";
 import Modal from "../Modal";
 import AnimatedChecked from "../AnimatedChecked";
 import sections from "@/app/utils/sections";
+import { City, Country, State } from "country-state-city";
 
-export default function ApplicationPage() {
+export default function ApplicationPage({ profile }: { profile: Profile }) {
   const { data, mutate, isPending, isSuccess, isError, error } = useApply();
   const params = useSearchParams();
+
+  const selectedCountry = useMemo(
+    () =>
+      Country.getAllCountries().find(
+        (c) => c.name == profile?.address?.country,
+      ),
+    [],
+  );
+
+  const selectedBirthCountry = useMemo(
+    () =>
+      Country.getAllCountries().find(
+        (c) => c.name == profile?.citizenship?.birthCountry,
+      ),
+    [],
+  );
+
+  const selectedState = useMemo(
+    () =>
+      State.getStatesOfCountry(selectedCountry?.isoCode).find(
+        (s) => s.name == profile?.address?.state,
+      ),
+    [],
+  );
+
+  const selectedCity = useMemo(
+    () =>
+      City.getCitiesOfState(
+        selectedCountry?.isoCode || "",
+        selectedState?.isoCode || "",
+      ).find((ci) => ci.name == profile?.address?.city),
+    [],
+  );
+
   const [details, setDetails] = useState<IApplicationForm>({
-    canadian: "false",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    street: "",
-    unit: "",
-    pathway: "",
-    dob: "",
-    homeSchool: "",
-    currentSchool: "",
-    secondaryEntry: "",
-    gender: "",
-    completedSecondaryDiploma: "",
-    qualification: "",
-    language: "",
-    intendToApply: "",
-    canadianVisa: "",
-    fatherFirstName: "",
-    fatherLastName: "",
-    fatherPhoneNumber: "",
-    fatherEmail: "",
-    fatherDeaceased: "false",
-    motherFirstName: "",
-    motherLastName: "",
-    motherEmail: "",
-    motherPhoneNumber: "",
-    motherDeaceased: "false",
+    canadian:
+      (profile?.citizenship?.canadian?.toString() as BooleanString) || "false",
+    firstName: profile?.bio?.firstName || "",
+    middleName: profile?.bio?.middleName || "",
+    lastName: profile?.bio?.lastName || "",
+    email: profile?.bio?.email || "",
+    phoneNumber: profile?.bio?.phoneNumber || "",
+    street: profile?.address?.street || "",
+    unit: profile?.address?.unit || "",
+    pathway: profile?.academics?.pathway || "",
+    dob: profile?.bio?.dob?.split("T")[0] || "",
+    homeSchool: profile?.academics?.homeSchool || "",
+    currentSchool: profile?.academics?.currentSchool || "",
+    secondaryEntry: profile?.academics?.secondaryEntry?.split("T")[0] || "",
+    gender: profile?.bio?.gender || "",
+    completedSecondaryDiploma:
+      profile?.academics?.completedSecondaryDiploma.toString() || "",
+    qualification: profile?.academics?.qualification || "",
+    language: profile?.citizenship?.language,
+    intendToApply: profile?.citizenship?.intendToApply.toString() || "",
+    canadianVisa: profile?.citizenship?.canadianVisa.toString() || "",
+    fatherFirstName: profile?.parent?.fatherFirstName || "",
+    fatherLastName: profile?.parent?.fatherLastName || "",
+    fatherPhoneNumber: profile?.parent?.fatherPhoneNumber || "",
+    fatherEmail: profile?.parent?.fatherEmail || "",
+    fatherDeaceased:
+      (profile?.parent?.fatherDeaceased?.toString() as BooleanString) ||
+      "false",
+    motherFirstName: profile?.parent?.motherFirstName || "",
+    motherLastName: profile?.parent?.motherLastName || "",
+    motherEmail: profile?.parent?.motherEmail || "",
+    motherPhoneNumber: profile?.parent?.motherPhoneNumber || "",
+    motherDeaceased:
+      (profile?.parent?.motherDeaceased?.toString() as BooleanString) ||
+      "false",
   });
-  const [mode, setMode] = useState(params.get("mode") || "on-site");
+  const savedPrograms = localStorage.getItem(
+    `programs-${params.get("profile")}`,
+  );
+  const savedMode = localStorage.getItem(`mode-${params.get("profile")}`);
+  const [mode, setMode] = useState(
+    savedMode || params.get("mode") || "on-site",
+  );
   const [documents, setDocuments] = useState<Record<string, File[]>>();
-  const [programs, setPrograms] = useState<Programs[]>(["CAAP"]);
-  const [birthCountry, setBirthCountry] = useState<SelectOption | null>(null);
+  const [programs, setPrograms] = useState<Programs[]>(
+    savedPrograms ? JSON.parse(savedPrograms) : ["CAAP"],
+  );
+  const [birthCountry, setBirthCountry] = useState<SelectOption | null>(
+    selectedBirthCountry
+      ? {
+          label: selectedBirthCountry?.name,
+          value: selectedBirthCountry?.isoCode,
+        }
+      : null,
+  );
   const [referrer, setReferrer] = useState<SelectOption | null>(null);
   const [incomplete, setIncomplete] = useState<number[]>([]);
   const ctx = useContext(cartContext);
+
   const [location, setLocation] = useState<LocationData>({
-    country: null,
-    state: null,
-    city: null,
+    country: selectedCountry
+      ? { label: selectedCountry.name, value: selectedCountry.isoCode }
+      : null,
+    state: selectedState
+      ? { label: selectedState.name, value: selectedState.isoCode }
+      : null,
+    city: selectedCity
+      ? { label: selectedCity?.name, value: selectedCity?.stateCode }
+      : null,
+  });
+
+  const [checks, setChecks] = useState<TermsAndCondition>({
+    prerequisite: false,
+    refund: false,
+    consent: false,
+    parent: false,
+    diploma: false,
   });
 
   const router = useRouter();
@@ -64,24 +135,23 @@ export default function ApplicationPage() {
     const invalidSteps: number[] = [];
 
     // Step 0
-    if (!referrer) invalidSteps.push(0);
+    const { firstName, lastName, email, phoneNumber, dob, gender } = details;
+
+    if (!firstName || !lastName || !email || !phoneNumber || !dob || !gender) {
+      invalidSteps.push(0);
+    }
 
     // Step 1
-    if (!mode) invalidSteps.push(1);
+    if (
+      !location?.country ||
+      !location?.state ||
+      !location?.city ||
+      !details.street
+    ) {
+      invalidSteps.push(1);
+    }
 
     // Step 2
-    const { firstName, lastName, email, phoneNumber, street } = details;
-
-    if (!firstName || !lastName || !email || !phoneNumber) {
-      invalidSteps.push(2);
-    }
-
-    // Step 3
-    if (!location?.country || !location?.state || !location?.city || !street) {
-      invalidSteps.push(3);
-    }
-
-    // Step 4
     const {
       motherDeaceased,
       motherFirstName,
@@ -110,47 +180,51 @@ export default function ApplicationPage() {
           !motherPhoneNumber ||
           !motherEmail))
     ) {
-      invalidSteps.push(4);
+      invalidSteps.push(2);
     }
 
-    // Step 5
+    // Step 3
     const {
-      dob,
       currentSchool,
       homeSchool,
       secondaryEntry,
       pathway,
-      gender,
       completedSecondaryDiploma,
     } = details;
 
     if (
-      !dob ||
       !currentSchool ||
       !homeSchool ||
       !secondaryEntry ||
       !pathway ||
-      !gender ||
       !completedSecondaryDiploma
+    ) {
+      invalidSteps.push(3);
+    }
+
+    // Step 4
+    const { language, intendToApply, canadianVisa } = details;
+
+    if (!language || !birthCountry?.label || !intendToApply || !canadianVisa) {
+      invalidSteps.push(4);
+    }
+
+    // Step 5
+    if (
+      (!documents?.passport && profile?.documents?.passport?.length == 0) ||
+      (!documents?.transcripts && profile?.documents?.transcripts?.length == 0) ||
+      (!documents?.govId && profile?.documents?.govId?.length == 0) ||
+      (!documents?.birthCert && profile?.documents?.birthCert?.length == 0)
     ) {
       invalidSteps.push(5);
     }
 
-    // Step 6
-    const { language, intendToApply, canadianVisa } = details;
-
-    if (!language || !birthCountry?.label || !intendToApply || !canadianVisa) {
-      invalidSteps.push(6);
+    const allChecked =
+      checks.prerequisite && checks.refund && checks.consent && checks.diploma;
+    if (!allChecked || !referrer?.value) {
     }
-
-    // Step 7
-    if (
-      !documents?.passport?.length ||
-      !documents?.transcripts?.length ||
-      !documents?.govId?.length ||
-      !documents?.birthCert?.length
-    ) {
-      invalidSteps.push(7);
+    if (!allChecked) {
+      invalidSteps.push(8);
     }
 
     return invalidSteps;
@@ -174,9 +248,8 @@ export default function ApplicationPage() {
       if (isSuccess) {
         if (mode == "off-site") {
           ctx?.clearCartHandler();
-          return router.replace(data.paymentUrl);
         }
-        router.push("/dashboard");
+        return router.replace(data.paymentUrl);
       }
     }, 3000);
 
@@ -226,7 +299,10 @@ export default function ApplicationPage() {
         }
       }
     }
-    mutate(applicationFormData);
+    mutate({
+      form: applicationFormData,
+      profileId: params.get("profile") as string,
+    });
   };
 
   if (isSuccess) {
@@ -259,6 +335,9 @@ export default function ApplicationPage() {
         aboutUs={referrer}
         setHearAboutUs={setReferrer}
         incompleteSections={incomplete}
+        setChecks={setChecks}
+        checks={checks}
+        uploaded={profile?.documents}
       />
     </div>
   );

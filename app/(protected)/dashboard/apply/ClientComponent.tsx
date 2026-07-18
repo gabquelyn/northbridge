@@ -1,11 +1,11 @@
 "use client";
-import ApplicationPage from "@/app/components/form/ApplicationPage";
 import React from "react";
+import ApplicationProfile from "./ApplicationProfile";
 
 export default function ClientComponent() {
   return (
     <React.Suspense>
-      <ApplicationPage />
+      <ApplicationProfile />
     </React.Suspense>
   );
 }
