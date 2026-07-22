@@ -72,7 +72,9 @@ export default function Upload({
     multiple,
     maxFiles: multiple ? 3 : 1,
     onDropRejected: (rejectedFiles) => {
-      alert(`You can only upload a maximum of ${multiple ? "3" : "1"} file(s) for ${name}`);
+      alert(
+        `You can only upload a maximum of ${multiple ? "3" : "1"} file(s) for ${name}`,
+      );
     },
   });
 
@@ -95,19 +97,18 @@ export default function Upload({
         <div className="space-y-2">
           {uploads.map((upload) => (
             <div key={upload.public_id}>
-              {name == "passport" ? (
+              {name == "passport" && (
                 <FilePreview key={upload.url} url={upload.url} />
-              ) : (
-                <button
-                  className="w-full flex gap-3 items-center justify-between action"
-                  onClick={() =>
-                    downloadHandler(upload.public_id, upload.resource_type)
-                  }
-                >
-                  <p className="truncate"> {upload.filename} </p>
-                  <MdArrowOutward />
-                </button>
               )}
+              <button
+                className="w-full flex gap-3 items-center justify-between action"
+                onClick={() =>
+                  downloadHandler(upload.public_id, upload.resource_type)
+                }
+              >
+                <p className="truncate"> {upload.filename} </p>
+                <MdArrowOutward />
+              </button>
             </div>
           ))}
         </div>

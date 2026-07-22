@@ -34,6 +34,7 @@ const radioInput = [
       "Life Science",
       "Social science",
       "Humanities/Law",
+      "Health science"
     ],
   },
 
