@@ -7,7 +7,7 @@ import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/app/utils/formatCurrency";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 5;
 const PAGE_WINDOW = 5; // how many page buttons to show around the current page
 
 // application.completed  -> application fee has been paid
