@@ -121,9 +121,8 @@ export const useAdminApprove = () => {
   return useMutation({
     mutationFn: approve,
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["applications", "application"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["application"] });
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
     },
   });
 };
