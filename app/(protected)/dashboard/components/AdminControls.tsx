@@ -56,11 +56,7 @@ export default function AdminControls({
           onClick={review}
           className={`
             group relative flex-1 overflow-hidden rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300
-            ${
-              isDisabled
-                ? "cursor-not-allowed border border-white/5 bg-white/5 text-white/30 shadow-none"
-                : "border border-primary/20 bg-primary/5 text-[#d9f3f5] hover:bg-primary/10 hover:shadow-lg"
-            }
+            ${"border border-primary/20 bg-primary/5 text-[#d9f3f5] hover:bg-primary/10 hover:shadow-lg"}
           `}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
