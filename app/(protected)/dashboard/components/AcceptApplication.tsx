@@ -144,7 +144,7 @@ export default function AcceptApplication({
                   reference={datum.reference}
                   status={datum.status}
                   currency={datum.currency}
-                  amount={+datum.amount / 100}
+                  amount={+datum.amount}
                   createdAt={datum.createdAt}
                 />
               ))}
