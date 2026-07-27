@@ -153,7 +153,7 @@ export const useAdminRescind = () => {
 
 export const useApplication = (id: string) =>
   useQuery<{ data: Application; user: { role: "user" | "admin" } }>({
-    queryKey: ["application", id],
+    queryKey: ["application"],
     queryFn: () => application(id),
     enabled: !!id,
   });
