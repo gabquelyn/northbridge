@@ -55,7 +55,7 @@ export default function AdminControls({
         <button
           onClick={review}
           className={`
-            group relative flex-1 overflow-hidden rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300
+            group relative flex-1 cursor-pointer overflow-hidden rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300
             ${"border border-primary/20 bg-primary/5 text-[#d9f3f5] hover:bg-primary/10 hover:shadow-lg"}
           `}
         >
