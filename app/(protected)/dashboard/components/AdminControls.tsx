@@ -54,7 +54,6 @@ export default function AdminControls({
         {/* Review Button */}
         <button
           onClick={review}
-          disabled={isDisabled}
           className={`
             group relative flex-1 overflow-hidden rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300
             ${
