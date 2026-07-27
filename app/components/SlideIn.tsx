@@ -20,7 +20,7 @@ export default function SlideIn({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between px-10 py-8 bg-white border-b border-slate-200 shrink-0">
         <div className="flex items-center gap-4">
           <Image
-            src="/asset/logo.png"
+            src="/asset/logo2.png"
             height={90}
             width={90}
             alt="Northbridge logo"
