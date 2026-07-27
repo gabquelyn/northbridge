@@ -122,7 +122,7 @@ export const useAdminApprove = () => {
     mutationFn: approve,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["applications"],
+        queryKey: ["applications", "application"],
       });
     },
   });
