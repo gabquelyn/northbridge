@@ -147,7 +147,7 @@ export const useAdminRescind = () => {
       queryClient.invalidateQueries({
         queryKey: ["applications"],
       });
-    },
+    }, 
   });
 };
 
