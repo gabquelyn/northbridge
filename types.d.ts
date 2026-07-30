@@ -97,13 +97,15 @@ type Application = {
   mode: "on-site" | "off-site";
   courses: number[];
   programs: Programs[];
-  profile:Profile
+  profile: Profile;
   granted: boolean;
   paid: boolean;
   completed: boolean;
   createdAt: string;
   outstanding?: number;
   rescinded: boolean;
+  discount: number;
+  discountExpires: string;
 };
 
 interface Profile {

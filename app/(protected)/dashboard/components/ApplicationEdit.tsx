@@ -36,10 +36,6 @@ export default function ApplicationEdit({
 }) {
   const { data, mutate, isPending, isSuccess, isError, error } =
     useApplicationEdit();
-  const [review, setReview] = useState(false);
-  const [accept, setAccept] = useState(false);
-  const [delete_, setDelete_] = useState(false);
-  const [rescind, setRescind] = useState(false);
   const {
     mutate: enrolToProgram,
     data: payment,
@@ -286,44 +282,6 @@ export default function ApplicationEdit({
 
   return (
     <div>
-      {review && (
-        <Modal onClose={() => setReview(false)}>
-          <ReviewMessage
-            id={application._id}
-            onClose={() => setReview(false)}
-          />
-        </Modal>
-      )}
-
-      {rescind && (
-        <Modal onClose={() => setRescind(false)}>
-          <RescindMessage
-            id={application._id}
-            onClose={() => setRescind(false)}
-          />
-        </Modal>
-      )}
-
-      {delete_ && (
-        <Modal onClose={() => setDelete_(false)}>
-          <DeleteApplication
-            id={application._id}
-            onClose={() => setDelete_(false)}
-          />
-        </Modal>
-      )}
-
-      {accept && (
-        <Modal onClose={() => setAccept(false)}>
-          <AcceptApplication
-            mode={application.mode}
-            name={application.profile.bio.firstName}
-            onCancel={() => setAccept(false)}
-            id={application._id}
-          />
-        </Modal>
-      )}
-
       <ApplicationForm
         editHandler={applicationEditHandler}
         details={details}
@@ -359,18 +317,7 @@ export default function ApplicationEdit({
         id={application._id}
       />
       <div className="mt-10 md:px-[15%]">
-        {isAdmin && (
-          <AdminControls
-            accept={() => setAccept(true)}
-            review={() => setReview(true)}
-            onDelete={() => setDelete_(true)}
-            onRescind={() => setRescind(true)}
-            paid={application.paid}
-            granted={application.granted}
-            rescinded={application.rescinded}
-            outstanding={application?.outstanding}
-          />
-        )}
+        {isAdmin && <AdminControls application={application} />}
       </div>
     </div>
   );

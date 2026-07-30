@@ -35,6 +35,17 @@ export const approve = async (details: {
   return res.data;
 };
 
+export const discount = async (details: {
+  id: string;
+  discount: number;
+  discountExpires: string
+}) => {
+  const res = await api.patch(`/application/discount/${details.id}`, {
+    ...details,
+  });
+  return res.data;
+};
+
 export const review = async (details: { id: string; reason: string }) => {
   const res = await api.post(`/application/review/${details.id}`, {
     reason: details.reason,

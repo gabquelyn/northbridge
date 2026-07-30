@@ -7,6 +7,7 @@ import {
   categories,
   courses,
   delete_,
+  discount,
   downloadFile,
   edit,
   enrolCourses,
@@ -120,6 +121,17 @@ export const useAdminApprove = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: approve,
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["application"] });
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
+    },
+  });
+};
+
+export const useAddDiscount = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: discount,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["application"] });
       queryClient.invalidateQueries({ queryKey: ["applications"] });
