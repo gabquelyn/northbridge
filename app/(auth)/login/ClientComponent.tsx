@@ -13,6 +13,7 @@ export default function ClientComponent() {
   });
   const params = useSearchParams();
   const mode = params.get("mode");
+  const redirect = params.get("from");
   const router = useRouter();
 
   const { data, mutate, isPending, isError, error, isSuccess } = useLogin();
@@ -47,6 +48,7 @@ export default function ClientComponent() {
 
     if (isSuccess || gs) {
       toast.success("Logged in successfully");
+      if (redirect) return router.replace(redirect as string);
       if (data?.role == "admin") {
         return router.push("/application");
       } else if (mode == "off-site") {

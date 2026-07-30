@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useDownload } from "../hooks/useAdmission";
 import { useRouter, useSearchParams } from "next/navigation";
+import { AxiosError } from "axios";
 
 export default function FileViewer() {
   const params = useSearchParams();
@@ -19,7 +20,12 @@ export default function FileViewer() {
     if (isSuccess) {
       router.push(data.url);
     }
-  }, [isSuccess]);
+    if (isError) {
+      if ((error as AxiosError).response?.status == 403) {
+        return  router.replace(`/login?from=${window.location.href}`);
+      }
+    }
+  }, [isSuccess, isError]);
 
   if (isPending) return <div>Getting file...</div>;
   if (isError) return <div>Unable to retrieve file</div>;

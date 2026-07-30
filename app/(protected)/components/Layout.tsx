@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
     const redirectTimeout = setTimeout(() => {
-      if (isError) router.replace(`/login?from=${pathname}`);
+      if (isError) router.replace(`/login?from=${window.location.href}`);
     }, 2000);
 
     return () => clearTimeout(redirectTimeout);
