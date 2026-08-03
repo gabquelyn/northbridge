@@ -22,7 +22,7 @@ export default function OnlineProgramsSummary() {
           <div className="flex items-center justify-center md:justify-start gap-3 text-[#479DA5]">
             <HiAcademicCap className="h-6 w-6" />
             <p className="uppercase font-semibold tracking-wide text-[.9rem]">
-              Online Academic Programs
+              Flexible Academic Programs
             </p>
           </div>
 
@@ -32,8 +32,7 @@ export default function OnlineProgramsSummary() {
 
           <p className="mt-4 text-gray-700 leading-relaxed max-w-3xl mx-auto md:mx-0">
             You may already be done with secondary school — this is about
-            positioning, readiness, and next steps. Through flexible, online
-            programs, Northbridge Collegiate provides structured preparation,
+            positioning, readiness, and next steps. Northbridge Collegiate provides structured preparation,
             academic upgrading, and university readiness — without necessarily
             returning to a traditional classroom environment.
           </p>

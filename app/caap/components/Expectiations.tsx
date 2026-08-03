@@ -64,11 +64,11 @@ export default function CAAPReadinessFramework() {
             How CAAP Aligns with Canadian University Expectations
           </h2>
           <p className="mt-4 text-gray-600">
-            Delivered over 20-24 weeks, the program provides focused academic
-            alignment, structured instruction, and guided preparation for
-            university-level learning. CAAP is a deliberate transition phase
-            that develops how students think, write, study, and perform within a
-            Canadian academic framework.
+            Delivered over 8 weeks, CAAP is a deliberate phase that develops how
+            students think, write, study, and perform within a Canadian academic
+            framework. It does not repeat a school year. Instead, it confirms
+            readiness and strengthens skills needed for success in Canadian
+            education.
           </p>
         </div>
 

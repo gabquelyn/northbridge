@@ -32,9 +32,10 @@ export default function CAAP() {
         typewrite="Complete."
         description={
           <p>
-            CAAP is a structured academic transition program designed for
-            students who have completed secondary education and are preparing
-            for the academic expectations of Canadian universities.
+            The Canadian Academic Advancement Program (CAAP) is Northbridge
+            Collegiate&apos;s signature pre-university pathway for students preparing
+            to study in Canada. Here, we bridge system gaps and build the
+            required academic expectations of Canadian universities
           </p>
         }
         image="bg-[url('/asset/toronto.jpg')]"

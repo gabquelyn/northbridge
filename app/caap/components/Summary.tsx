@@ -10,7 +10,7 @@ export default function CAAPClosingSummary() {
           src="/asset/library.jpg"
           alt="Canadian academic environment"
           fill
-       className="object-cover object-center brightness-75"
+          className="object-cover object-center brightness-75"
         />
         {/* Soft overlay */}
         {/* <div className="absolute inset-0 bg-black/20 backdrop-blur-xs" /> */}
@@ -68,10 +68,10 @@ export default function CAAPClosingSummary() {
           {/* Closing line */}
           <div className="mt-10 pt-8 border-t border-gray-200 text-gray-700">
             <p>
-              CAAP bridges the gap between secondary education and Canadian
-              post-secondary study by mirroring the learning structures used by
-              many universities and colleges—while providing the support
-              students need to transition confidently and successfully.
+              CAAP bridges this gap in a supported environment, allowing
+              students to build independence before it is required at university
+              level. This mirrors the learning structure used by many Canadian
+              universities and colleges
             </p>
           </div>
         </div>
