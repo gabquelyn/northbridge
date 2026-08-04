@@ -50,7 +50,7 @@ export default function Article({
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight tracking-tight">
+            <h2 className="text-2xl md:text-3xl capitalize font-semibold text-gray-900 leading-tight tracking-tight">
               {title}
             </h2>
           </div>
