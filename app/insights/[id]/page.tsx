@@ -57,7 +57,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             src={heroImage.url}
             alt={blog.title}
             fill
-            priority
+            // priority
             sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />
