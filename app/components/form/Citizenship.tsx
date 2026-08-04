@@ -190,7 +190,7 @@ function Citizenship({
           <Input
             key={input.name}
             name={input.name}
-            value={data[input.name as keyof IApplicationForm]}
+            value={data[input.name as keyof IApplicationForm] as string}
             type={
               ["dob", "secondaryEntry"].includes(input.name) ? "date" : "string"
             }
