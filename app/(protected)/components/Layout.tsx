@@ -43,13 +43,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return () => clearTimeout(redirectTimeout);
   }, [loggedOut, isSuccess, isError]);
-
   const links =
     profile?.data?.role == "admin"
       ? [
           {
             tag: "Applications",
             href: "/application",
+          },
+          {
+            tag: "Blog post",
+            href: "/blog",
           },
         ]
       : [
