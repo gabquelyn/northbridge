@@ -43,9 +43,6 @@ export const useUpdateBlog = () => {
       queryClient.invalidateQueries({
         queryKey: ["blogs"],
       });
-      queryClient.invalidateQueries({
-        queryKey: ["blog"],
-      });
     },
   });
 };
