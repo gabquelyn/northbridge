@@ -72,7 +72,7 @@ export default function PersonnelTable({
           <tbody>
             {pagePersonnel.length === 0 ? (
               <tr>
-                <td colSpan={2} className="py-14 px-4">
+                <td colSpan={5} className="py-14 px-4">
                   <div className="flex flex-col items-center justify-center gap-2 text-secondary">
                     <LuFileText size={22} className="text-gray-300" />
                     <p className="text-sm">No personnels yet</p>
