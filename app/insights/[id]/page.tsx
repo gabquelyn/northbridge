@@ -5,7 +5,9 @@ import { get_blog, get_all_blogs } from "@/app/lib/blog";
 import moment from "moment";
 
 interface BlogPageProps {
-  params: { id: string };
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export async function generateStaticParams() {
