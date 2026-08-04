@@ -33,7 +33,7 @@ interface IApplicationForm {
   motherEmail: string;
   motherPhoneNumber: string;
   motherDeaceased: BooleanString;
-  requestedInstallment: boolean
+  requestedInstallment: boolean;
 }
 
 interface Blog {
@@ -42,7 +42,7 @@ interface Blog {
   images: DocumentFile[];
   description: string;
   createdAt: string;
-  _id: string
+  _id: string;
 }
 interface SelectOption {
   label: string;
@@ -115,9 +115,17 @@ type Application = {
   rescinded: boolean;
   discount: number;
   discountExpires: string;
-  requestedInstallment: boolean
+  requestedInstallment: boolean;
 };
 
+interface Personnel {
+  name: string;
+  email: string;
+  resume: DocumentFile[];
+  coverLetter: DocumentFile[];
+  _id: string;
+  createdAt: string;
+}
 interface Profile {
   parent?: {
     fatherFirstName: string;
