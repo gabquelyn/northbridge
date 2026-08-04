@@ -344,14 +344,14 @@ export default function ApplicationForm({
   };
   const programChnageHandler = useCallback(
     (program: Programs, checked: boolean) => {
-      const complementary: Programs[] = ["DIRECT", "CAAP"];
+      // const complementary: Programs[] = ["DIRECT", "CAAP"];
       setPrograms((prev) => {
         if (checked) {
-          if (complementary.includes(program))
-            return [...prev.filter((p) => complementary.includes(p)), program];
-          else {
+          // if (complementary.includes(program))
+          //   return [...prev.filter((p) => complementary.includes(p)), program];
+          // else {
             return [program];
-          }
+          // }
         }
         return prev.filter((p) => p !== program);
       });
