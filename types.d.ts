@@ -35,6 +35,14 @@ interface IApplicationForm {
   motherDeaceased: BooleanString;
 }
 
+interface Blog {
+  title: string;
+  content: string;
+  images: DocumentFile[];
+  description: string;
+  createdAt: string;
+  _id: string
+}
 interface SelectOption {
   label: string;
   value: string;

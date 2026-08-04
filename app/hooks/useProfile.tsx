@@ -19,7 +19,7 @@ import {
 export const useProfile = () =>
   useQuery<{ data: { role: "admin" | "user" } }>({
     queryFn: getprofile,
-    queryKey: ["user"],
+    queryKey: ["role"],
   });
 
 export const useApplicationProfile = (profileId: string) =>
