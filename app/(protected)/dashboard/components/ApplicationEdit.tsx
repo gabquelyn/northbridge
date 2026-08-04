@@ -7,11 +7,7 @@ import React, {
   useState,
 } from "react";
 import ApplicationForm from "@/app/components/form/ApplicationForm";
-import {
-  useApplicationEdit,
-  useApply,
-  useEnrolProgram,
-} from "@/app/hooks/useAdmission";
+import { useApplicationEdit, useEnrolProgram } from "@/app/hooks/useAdmission";
 import { cartContext } from "@/app/providers/cartContextProvider";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
@@ -19,11 +15,7 @@ import { useRouter } from "next/navigation";
 import Modal from "@/app/components/Modal";
 import AnimatedChecked from "@/app/components/AnimatedChecked";
 import { City, Country, State } from "country-state-city";
-import ReviewMessage from "./ReviewMessage";
-import AcceptApplication from "./AcceptApplication";
 import AdminControls from "./AdminControls";
-import DeleteApplication from "./DeleteApplication";
-import RescindMessage from "./RescindMessage";
 
 export default function ApplicationEdit({
   application,
@@ -34,6 +26,7 @@ export default function ApplicationEdit({
   invoice: { code: string };
   isAdmin: boolean;
 }) {
+  console.log(application);
   const { data, mutate, isPending, isSuccess, isError, error } =
     useApplicationEdit();
   const {
@@ -89,16 +82,17 @@ export default function ApplicationEdit({
     fatherLastName: application.profile?.parent?.fatherLastName || "",
     fatherPhoneNumber: application.profile?.parent?.fatherPhoneNumber || "",
     fatherEmail: application.profile?.parent?.fatherEmail || "",
-    fatherDeaceased:
-      (String(application.profile?.parent?.fatherDeaceased) as BooleanString) ||
-      "false",
+    fatherDeaceased: application.profile?.parent?.fatherDeaceased
+      ? (String(application.profile?.parent?.fatherDeaceased) as BooleanString)
+      : "false",
     motherFirstName: application.profile?.parent?.motherFirstName || "",
     motherLastName: application.profile?.parent?.motherLastName || "",
     motherEmail: application.profile?.parent?.motherEmail || "",
     motherPhoneNumber: application.profile?.parent?.motherPhoneNumber || "",
-    motherDeaceased:
-      (String(application.profile?.parent?.motherDeaceased) as BooleanString) ||
-      "false",
+    motherDeaceased: application.profile?.parent?.motherDeaceased
+      ? (String(application.profile?.parent?.motherDeaceased) as BooleanString)
+      : "false",
+    requestedInstallment: application?.requestedInstallment || false,
   });
   const router = useRouter();
   const [referrer, setReferrer] = useState<SelectOption | null>(
@@ -232,13 +226,13 @@ export default function ApplicationEdit({
 
   const applicationEditHandler = () => {
     const applicationFormData = new FormData();
-
     for (const ikeys of Object.keys(details)) {
       applicationFormData.append(
         ikeys,
-        details[ikeys as keyof IApplicationForm],
+        String(details[ikeys as keyof IApplicationForm]),
       );
     }
+
     const combined = ctx?.cart ? [...ctx.cart, ...courses] : [...courses];
     const courseSet = new Set(combined);
     applicationFormData.append("mode", mode);
@@ -248,6 +242,9 @@ export default function ApplicationEdit({
       applicationFormData.append("programs", JSON.stringify(programs));
     }
     applicationFormData.append("birthCountry", birthCountry?.label || "");
+    if (referrer) {
+      applicationFormData.append("referrer", referrer.value);
+    }
     if (location?.city) applicationFormData.append("city", location.city.label);
     if (location?.country)
       applicationFormData.append("country", location.country.label);
@@ -315,6 +312,12 @@ export default function ApplicationEdit({
         setChecks={setChecks}
         fee={!application.completed}
         id={application._id}
+        setrequestedInstallment={(e) =>
+          setDetails((prev) => ({
+            ...prev,
+            requestedInstallment: (e.target as HTMLInputElement).checked,
+          }))
+        }
       />
       <div className="mt-10 md:px-[15%]">
         {isAdmin && <AdminControls application={application} />}

@@ -33,6 +33,7 @@ interface IApplicationForm {
   motherEmail: string;
   motherPhoneNumber: string;
   motherDeaceased: BooleanString;
+  requestedInstallment: boolean
 }
 
 interface Blog {
@@ -114,6 +115,7 @@ type Application = {
   rescinded: boolean;
   discount: number;
   discountExpires: string;
+  requestedInstallment: boolean
 };
 
 interface Profile {

@@ -85,6 +85,7 @@ export default function ApplicationPage({ profile }: { profile: Profile }) {
     motherDeaceased:
       (profile?.parent?.motherDeaceased?.toString() as BooleanString) ||
       "false",
+    requestedInstallment: false,
   });
   const savedPrograms = localStorage.getItem(
     `programs-${params.get("profile")}`,
@@ -212,7 +213,8 @@ export default function ApplicationPage({ profile }: { profile: Profile }) {
     // Step 5
     if (
       (!documents?.passport && profile?.documents?.passport?.length == 0) ||
-      (!documents?.transcripts && profile?.documents?.transcripts?.length == 0) ||
+      (!documents?.transcripts &&
+        profile?.documents?.transcripts?.length == 0) ||
       (!documents?.govId && profile?.documents?.govId?.length == 0) ||
       (!documents?.birthCert && profile?.documents?.birthCert?.length == 0)
     ) {
@@ -272,7 +274,7 @@ export default function ApplicationPage({ profile }: { profile: Profile }) {
     for (const ikeys of Object.keys(details)) {
       applicationFormData.append(
         ikeys,
-        details[ikeys as keyof IApplicationForm],
+        String(details[ikeys as keyof IApplicationForm]),
       );
     }
 
@@ -338,6 +340,12 @@ export default function ApplicationPage({ profile }: { profile: Profile }) {
         setChecks={setChecks}
         checks={checks}
         uploaded={profile?.documents}
+        setrequestedInstallment={(e) =>
+          setDetails((prev) => ({
+            ...prev,
+            requestedInstallment: (e.target as HTMLInputElement).checked,
+          }))
+        }
       />
     </div>
   );

@@ -39,11 +39,10 @@ export const useUpdateBlog = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: update_blog,
-    onSuccess: (_, variables) => {
+    onSuccess: (_, variables) =>
       queryClient.invalidateQueries({
         queryKey: ["blogs"],
-      });
-    },
+      }),
   });
 };
 

@@ -1,0 +1,18 @@
+ export const hearAboutUsOptions = [
+    { label: "Social media", value: "social_media" },
+    { label: "Friend or family", value: "friend_or_family" },
+    { label: "Google search", value: "google_search" },
+    { label: "School", value: "school" },
+    { label: "Teacher/Lecturer", value: "teacher_lecturer" },
+    { label: "Advertisement", value: "advertisement" },
+    { label: "Event or seminar", value: "event_or_seminar" },
+    { label: "Email", value: "email" },
+    { label: "Website", value: "website" },
+    { label: "WhatsApp", value: "whatsapp" },
+    { label: "LinkedIn", value: "linkedin" },
+    { label: "Instagram", value: "instagram" },
+    { label: "Facebook", value: "facebook" },
+    { label: "X (Twitter)", value: "x_twitter" },
+    { label: "YouTube", value: "youtube" },
+    { label: "Other", value: "other" },
+  ];

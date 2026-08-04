@@ -18,6 +18,8 @@ import sections from "@/app/utils/sections";
 import ApplicationCompletion from "./ApplicationCompletion";
 import Button from "../atoms/Button";
 import ApplicationFee from "./ApplicationFee";
+import { hearAboutUsOptions } from "@/app/utils/referrer";
+import CustomSelect from "../CustomSelect";
 
 export default function ApplicationForm({
   applicationHandler,
@@ -51,6 +53,7 @@ export default function ApplicationForm({
   setChecks,
   fee,
   id,
+  setrequestedInstallment,
 }: {
   applicationHandler?: Fn;
   details: IApplicationForm;
@@ -87,6 +90,7 @@ export default function ApplicationForm({
   checks: TermsAndCondition;
   id?: string;
   fee?: boolean;
+  setrequestedInstallment: inputHandler;
 }) {
   const [step, setCurrentStep] = useState(0);
   const [nextDisabled, setNextDisabled] = useState(false);
@@ -350,7 +354,7 @@ export default function ApplicationForm({
           // if (complementary.includes(program))
           //   return [...prev.filter((p) => complementary.includes(p)), program];
           // else {
-            return [program];
+          return [program];
           // }
         }
         return prev.filter((p) => p !== program);
@@ -452,7 +456,7 @@ export default function ApplicationForm({
       <div className="flex flex-col gap-2 items-center justify-center">
         {page ? (
           <div className="md:w-4xl flex flex-col gap-20 py-12 p-5 md:py-15 md:p-15 bg-white md:rounded-2xl shadow text-sm">
-            {(fee && !isAdmin) && <ApplicationFee id={id || ""} />}
+            {fee && !isAdmin && <ApplicationFee id={id || ""} />}
             <ContactInformation
               data={contactData}
               onChange={onChange}
@@ -493,6 +497,7 @@ export default function ApplicationForm({
               }
               editMode
             />
+
             <Citizenship
               data={details}
               onChange={onChange}
@@ -529,6 +534,27 @@ export default function ApplicationForm({
                 />
               )}
             </>
+            {/* other information */}
+            <div className="space-y-2">
+              <div>
+                <p className="text-darkBlue">Request installmental payments</p>
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 accent-primary cursor-pointer"
+                  checked={details.requestedInstallment}
+                  onChange={setrequestedInstallment}
+                />
+              </div>
+
+              <div>
+                <CustomSelect
+                  label="How did you hear about us?"
+                  option={aboutUs}
+                  options={hearAboutUsOptions}
+                  setOption={setHearAboutUs}
+                />
+              </div>
+            </div> 
             <div className="">
               {!disableEdit && (
                 <div className="flex justify-end">
@@ -649,6 +675,8 @@ export default function ApplicationForm({
                 back={goBack}
                 disabled={nextDisabled}
                 next={goNext}
+                requestedInstallment={details.requestedInstallment}
+                setrequestedInstallment={setrequestedInstallment}
               />
             ) : (
               <ApplicationCompletion
