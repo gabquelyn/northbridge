@@ -54,6 +54,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             tag: "Blog post",
             href: "/blog",
           },
+          {
+            tag: "Personnel",
+            href: "/personnel",
+          },
         ]
       : [
           { tag: "Dashboard", href: "/dashboard" },

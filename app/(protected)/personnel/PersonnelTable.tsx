@@ -2,6 +2,9 @@
 import React, { useMemo, useState } from "react";
 import { LuChevronLeft, LuChevronRight, LuFileText } from "react-icons/lu";
 import Link from "next/link";
+import { LuExternalLink } from "react-icons/lu";
+
+import moment from "moment";
 
 export default function PersonnelTable({
   personnels,
@@ -95,15 +98,18 @@ export default function PersonnelTable({
                     <Link
                       href={`/view?public_id=${personnel.resume[0].public_id}&resource_type=${personnel.resume[0].resource_type}`}
                     >
-                      View Resume
+                      <LuExternalLink/>
                     </Link>
                   </td>
                   <td>
                     <Link
                       href={`/view?public_id=${personnel.coverLetter[0].public_id}&resource_type=${personnel.coverLetter[0].resource_type}`}
                     >
-                      View Cover letter
+                      <LuExternalLink/>
                     </Link>
+                  </td>
+                  <td>
+                    {moment(personnel.createdAt).format("YYYY MMM D, h:mm A")}
                   </td>
                 </tr>
               ))
