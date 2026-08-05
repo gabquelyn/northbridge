@@ -202,35 +202,25 @@ body {
 }
 
 
-/* ==========================
-   Global Scrollbar Styling
-   ========================== */
-
-/* Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* slate-300 */
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* slate-400 */
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* Firefox */
-* {
+.editor-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+}
+
+.editor-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.editor-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.55);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.8);
 }
