@@ -337,10 +337,7 @@ export default function RichTextEditor({
         </ToolbarButton>
       </div>
 
-      <div
-        className="editor-scroll flex-1 overflow-y-auto px-5 py-4"
-        style={{ minHeight }}
-      >
+      <div className="flex-1 overflow-y-auto px-5 py-4" style={{ minHeight }}>
         <EditorContent
           editor={editor}
           className="
