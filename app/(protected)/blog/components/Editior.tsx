@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { memo, ReactNode, useCallback, useEffect } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -73,13 +68,13 @@ const ToolbarButton = memo(
         disabled
           ? "cursor-not-allowed text-gray-300"
           : active
-          ? "bg-[#e6f2f3] text-primary"
-          : "text-secondary hover:bg-gray-100",
+            ? "bg-[#e6f2f3] text-primary"
+            : "text-secondary hover:bg-gray-100",
       ].join(" ")}
     >
       {children}
     </button>
-  )
+  ),
 );
 
 ToolbarButton.displayName = "ToolbarButton";
@@ -164,7 +159,7 @@ export default function RichTextEditor({
     (level: 1 | 2 | 3) => {
       chain()?.toggleHeading({ level }).run();
     },
-    [chain]
+    [chain],
   );
 
   const setLink = useCallback(() => {
@@ -172,10 +167,7 @@ export default function RichTextEditor({
 
     const previous = editor.getAttributes("link").href;
 
-    const url = window.prompt(
-      "Enter URL",
-      previous || "https://"
-    );
+    const url = window.prompt("Enter URL", previous || "https://");
 
     if (url === null) return;
 
@@ -184,9 +176,12 @@ export default function RichTextEditor({
       return;
     }
 
-    chain()?.extendMarkRange("link").setLink({
-      href: url,
-    }).run();
+    chain()
+      ?.extendMarkRange("link")
+      .setLink({
+        href: url,
+      })
+      .run();
   }, [editor, chain]);
 
   if (!editor) return null;
@@ -194,9 +189,8 @@ export default function RichTextEditor({
   const icon = 16;
 
   return (
-    <div className="overflow-hidden mt-2 rounded-xl border border-gray-200 bg-white shadow-sm">
-      <div className="sticky top-0 z-10 flex flex-wrap items-center gap-1 border-b bg-gray-50 p-2">
-
+    <div className="mt-2 flex h-150 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div className="z-10 flex flex-wrap items-center gap-1 border-b bg-gray-50 p-2">
         <ToolbarButton
           title="Undo"
           disabled={!editor.can().undo()}
@@ -337,21 +331,24 @@ export default function RichTextEditor({
 
         <ToolbarButton
           title="Clear Formatting"
-          onClick={() =>
-            chain()?.clearNodes().unsetAllMarks().run()
-          }
+          onClick={() => chain()?.clearNodes().unsetAllMarks().run()}
         >
           <LuEraser size={icon} />
         </ToolbarButton>
       </div>
 
-      <div
-        className="px-5 py-4"
-        style={{ minHeight }}
-      >
+      <div className="flex-1 overflow-y-auto px-5 py-4" style={{ minHeight }}>
         <EditorContent
           editor={editor}
-          className="prose prose-sm max-w-none [&_.ProseMirror]:min-h-70 [&_.ProseMirror]:outline-none"
+          className="
+        prose
+        prose-sm
+        max-w-none
+        h-full
+        [&_.ProseMirror]:h-full
+        [&_.ProseMirror]:min-h-full
+        [&_.ProseMirror]:outline-none
+      "
         />
       </div>
     </div>
