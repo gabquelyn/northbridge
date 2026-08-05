@@ -35,7 +35,11 @@ interface IApplicationForm {
   motherDeaceased: BooleanString;
   requestedInstallment: boolean;
 }
-
+interface Review {
+  message: string;
+  createdAt: string;
+  _id: string
+}
 interface Blog {
   title: string;
   content: string;

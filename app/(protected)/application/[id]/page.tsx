@@ -30,6 +30,7 @@ export default function page() {
         application={data.data}
         invoice={{ code: "" }}
         isAdmin = {data.user.role === "admin"}
+        reviews = {data.messages}
       />
     );
   }

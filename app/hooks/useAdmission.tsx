@@ -159,12 +159,16 @@ export const useAdminRescind = () => {
       queryClient.invalidateQueries({
         queryKey: ["applications"],
       });
-    }, 
+    },
   });
 };
 
 export const useApplication = (id: string) =>
-  useQuery<{ data: Application; user: { role: "user" | "admin" } }>({
+  useQuery<{
+    data: Application;
+    user: { role: "user" | "admin" };
+    messages: Review[];
+  }>({
     queryKey: ["application"],
     queryFn: () => application(id),
     enabled: !!id,

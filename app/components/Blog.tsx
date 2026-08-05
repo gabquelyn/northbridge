@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useBlogs } from "../hooks/useBlog";
 export default function Blog() {
   const { data, isPending, isSuccess } = useBlogs();
-
+ 
   if (isSuccess)
     return (
       <div className="flex flex-col items-center py-40 px-5 md:px-[15%]">

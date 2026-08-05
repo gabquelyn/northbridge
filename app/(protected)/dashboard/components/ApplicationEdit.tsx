@@ -16,17 +16,20 @@ import Modal from "@/app/components/Modal";
 import AnimatedChecked from "@/app/components/AnimatedChecked";
 import { City, Country, State } from "country-state-city";
 import AdminControls from "./AdminControls";
+import moment from "moment";
+import MessageFeed from "@/app/components/MessageFeed";
 
 export default function ApplicationEdit({
   application,
   invoice,
   isAdmin,
+  reviews,
 }: {
   application: Application;
   invoice: { code: string };
   isAdmin: boolean;
+  reviews: Review[];
 }) {
-  console.log(application);
   const { data, mutate, isPending, isSuccess, isError, error } =
     useApplicationEdit();
   const {
@@ -319,6 +322,11 @@ export default function ApplicationEdit({
           }))
         }
       />
+
+      <div className="mt-10 md:px-[15%]">
+        <p className="mb-2 font-semibold">Reviews</p>
+        <MessageFeed messages={reviews} />
+      </div>
       <div className="mt-10 md:px-[15%]">
         {isAdmin && <AdminControls application={application} />}
       </div>
