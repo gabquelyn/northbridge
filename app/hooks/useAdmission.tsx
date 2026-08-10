@@ -169,7 +169,7 @@ export const useApplication = (id: string) =>
     user: { role: "user" | "admin" };
     messages: Review[];
   }>({
-    queryKey: ["application"],
+    queryKey: [id],
     queryFn: () => application(id),
     enabled: !!id,
   });
