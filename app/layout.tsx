@@ -7,6 +7,7 @@ import "react-phone-number-input/style.css";
 import ReactQueryProvider from "./providers/ReactqueryProvider";
 import CartContextProvider from "./providers/cartContextProvider";
 import { Toaster } from "sonner";
+import Flyer from "./components/Flyer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -89,7 +90,7 @@ export default function RootLayout({
         `}
           </Script>
         </>
- 
+
         <Toaster
           position="bottom-right"
           toastOptions={{
@@ -98,7 +99,10 @@ export default function RootLayout({
         />
         <CartContextProvider>
           <ReactQueryProvider>
-            <Providers>{children}</Providers>
+            <Providers>
+              <Flyer />
+              {children}
+            </Providers>
           </ReactQueryProvider>
         </CartContextProvider>
       </body>
