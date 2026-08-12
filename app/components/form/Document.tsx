@@ -39,7 +39,7 @@ const uploads = [
     name: "others",
     description:
       "Additional documentation accelerates the verification process (maximum of 3)",
-    label: "Upload any supporting docs",
+    label: "Upload WAEC SCRATCH CARD and any other supporting docs",
     multiple: true,
     imageOnly: false,
   },
