@@ -125,6 +125,7 @@ export default function ApplicationForm({
       refund: checks.refund,
       parent: checks.parent,
       diploma: checks.diploma,
+      dep: checks.dep,
     }),
     [
       checks.consent,
@@ -132,6 +133,7 @@ export default function ApplicationForm({
       checks.refund,
       checks.parent,
       checks.diploma,
+      checks.dep,
     ],
   );
 
@@ -309,13 +311,14 @@ export default function ApplicationForm({
     }
 
     if (step == 8) {
+      const agreedDep = programs.includes("DIRECT") ? checks.dep : true;
       const allChecked =
         checks.prerequisite &&
         checks.refund &&
         checks.consent &&
-        checks.diploma;
+        checks.diploma &&
+        agreedDep;
 
-      console.log(allChecked, aboutUs);
       if (!allChecked || !aboutUs?.value) {
         setNextDisabled(true);
       } else {
@@ -554,7 +557,7 @@ export default function ApplicationForm({
                   setOption={setHearAboutUs}
                 />
               </div>
-            </div> 
+            </div>
             <div className="">
               {!disableEdit && (
                 <div className="flex justify-end">
@@ -677,6 +680,7 @@ export default function ApplicationForm({
                 next={goNext}
                 requestedInstallment={details.requestedInstallment}
                 setrequestedInstallment={setrequestedInstallment}
+                selectedDep={programs.includes("DIRECT")}
               />
             ) : (
               <ApplicationCompletion

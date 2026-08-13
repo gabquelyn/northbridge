@@ -196,4 +196,5 @@ interface TermsAndCondition {
   consent: boolean;
   parent: boolean;
   diploma: boolean;
+  dep: boolean;
 }

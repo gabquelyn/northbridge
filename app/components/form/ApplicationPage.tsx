@@ -128,6 +128,7 @@ export default function ApplicationPage({ profile }: { profile: Profile }) {
     consent: false,
     parent: false,
     diploma: false,
+    dep: false,
   });
 
   const router = useRouter();

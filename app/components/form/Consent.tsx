@@ -15,6 +15,7 @@ type Props = {
   disabled: boolean;
   requestedInstallment: boolean;
   setrequestedInstallment: inputHandler;
+  selectedDep: boolean;
 };
 
 const Section = ({
@@ -67,8 +68,8 @@ export default function TermsAndConditions({
   disabled,
   requestedInstallment,
   setrequestedInstallment,
+  selectedDep,
 }: Props) {
-
   return (
     <div className="space-y-6">
       <p className="text-sm opacity-90">
@@ -114,6 +115,46 @@ export default function TermsAndConditions({
           checked={checks.prerequisite}
         />
       </Section>
+
+      {/* FOR DEP */}
+      {selectedDep && (
+        <Section title="DEP Acknowledgement">
+          <p>
+            I acknowledge that I have been informed of Northbridge Collegiate's
+            available programme options, including the full Grade 12 programme,
+            which typically consists of six or more Ontario Grade 12 courses,
+            and have voluntarily chosen the Direct Entry Pathway (DEP).
+          </p>
+
+          <p>
+            I understand that the DEP consists of four Ontario Grade 12 courses
+            plus the Ontario Secondary School Literacy Course (OLC). I further
+            understand that many Canadian universities normally require six
+            Grade 12 U/M courses for admission; therefore, my application will
+            be assessed using a combination of my WAEC (or equivalent) and
+            Ontario coursework, subject to each university's admission
+            requirements.
+          </p>
+
+          <p>
+            I acknowledge that additional Ontario prerequisite courses may be
+            required for certain university programmes and, if so, must be
+            completed at an additional cost. I also acknowledge that Northbridge
+            Collegiate will recommend appropriate course selections; however,
+            final course selection remains the responsibility of the student
+            based on their intended university programme and career goals.
+          </p>
+
+          <Check
+            label="I agree"
+            name="dep"
+            onChange={(e) => {
+              setChecks((prev) => ({ ...prev, dep: e.target.checked }));
+            }}
+            checked={checks.dep}
+          />
+        </Section>
+      )}
 
       {/* REFUND */}
       <Section title="Refund and Transfer Policy">
