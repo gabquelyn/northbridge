@@ -144,6 +144,7 @@ export default function ApplicationEdit({
     consent: false,
     parent: false,
     diploma: false,
+    dep: false
   });
   const [birthCountry, setBirthCountry] = useState<SelectOption | null>(
     selectedBirthCountry
