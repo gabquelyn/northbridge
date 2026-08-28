@@ -58,6 +58,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             tag: "Personnel",
             href: "/personnel",
           },
+          {
+            tag: "Profiles",
+            href: "/incomplete",
+          },
         ]
       : [
           { tag: "Dashboard", href: "/dashboard" },

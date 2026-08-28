@@ -3,7 +3,6 @@
 @tailwind utilities;
 @plugin "@tailwindcss/typography";
 
-
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,7 +18,7 @@
 @theme inline {
   --color-primary: #479da5;
   --color-secondary: #616161;
-  --color-darkBlue: #010A1D;
+  --color-darkBlue: #010a1d;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -201,4 +200,18 @@ body {
   @apply rounded-xl disabled:border-gray-300 disabled:text-gray-300 transition-all text-primary cursor-pointer outline-0 border-2 border-primary px-4 py-2;
 }
 
+.table {
+  @apply w-full text-sm border-separate border-spacing-0 bg-white;
+}
 
+.table-head {
+  @apply text-left py-3 px-4 font-medium whitespace-nowrap border-b border-gray-100;
+}
+
+.table-container {
+ @apply overflow-x-auto rounded-xl border border-gray-100 shadow-sm
+}
+
+.table-td {
+  @apply py-3.5 px-4 border-b border-gray-100 
+}

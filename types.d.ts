@@ -40,6 +40,13 @@ interface Review {
   createdAt: string;
   _id: string
 }
+
+interface ProfileData extends Profile {
+  _id: string
+  createdAt: string
+  updatedAt: string
+  guardian: User
+}
 interface Blog {
   title: string;
   content: string;

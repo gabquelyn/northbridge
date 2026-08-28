@@ -1,8 +1,8 @@
 "use client";
 import moment from "moment";
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
-import { LuChevronLeft, LuChevronRight, LuFileText } from "react-icons/lu";
+import React, { useState } from "react";
+import { LuFileText } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Button from "@/app/components/atoms/Button";
@@ -10,6 +10,8 @@ import Link from "next/link";
 
 import DeleteBlog from "./DeleteBlog";
 import { useRouter } from "next/navigation";
+import usePagination from "@/app/hooks/usePagination";
+import Pagination from "@/app/components/Pagination";
 
 interface BlogTableProps {
   blogs: Blog[];
@@ -17,46 +19,11 @@ interface BlogTableProps {
   onRowClick?: (blog: Blog) => void;
 }
 
-export default function BlogTable({
-  blogs,
-  pageSize = 8,
-  onRowClick,
-}: BlogTableProps) {
-  const [page, setPage] = useState(1);
+export default function BlogTable({ blogs, pageSize = 8 }: BlogTableProps) {
   const router = useRouter();
-  const totalPages = Math.max(1, Math.ceil(blogs.length / pageSize));
-  const currentPage = Math.min(page, totalPages);
   const [remove, setRemove] = useState<Blog | null>(null);
-  const pageBlogs = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return blogs.slice(start, start + pageSize);
-  }, [blogs, currentPage, pageSize]);
-
-  const start = blogs.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
-  const end = Math.min(currentPage * pageSize, blogs.length);
-
-  const goTo = (p: number) => setPage(Math.min(Math.max(p, 1), totalPages));
-
-  const pageNumbers = useMemo(() => {
-    const pages: (number | "…")[] = [];
-    const add = (p: number) => pages.push(p);
-    const addEllipsis = () => {
-      if (pages[pages.length - 1] !== "…") pages.push("…");
-    };
-
-    add(1);
-    for (let p = currentPage - 1; p <= currentPage + 1; p++) {
-      if (p > 1 && p < totalPages) {
-        if (p > (pages[pages.length - 1] as number) + 1) addEllipsis();
-        add(p);
-      }
-    }
-    if (totalPages > 1) {
-      if (totalPages > (pages[pages.length - 1] as number) + 1) addEllipsis();
-      add(totalPages);
-    }
-    return pages;
-  }, [currentPage, totalPages]);
+  const { pageData, pageNumbers, start, end, goTo, currentPage, totalPages } =
+    usePagination({ data: blogs });
 
   return (
     <div className="w-full">
@@ -69,14 +36,14 @@ export default function BlogTable({
           </Button>
         </Link>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
-        <table className="w-full text-sm border-separate border-spacing-0 bg-white">
+      <div className="table-container">
+        <table className="table">
           <thead>
             <tr className="text-xs uppercase text-secondary bg-gray-50">
-              <th className="text-left py-3 px-4 font-medium whitespace-nowrap border-b border-gray-100">
+              <th className="table-head">
                 Title
               </th>
-              <th className="text-left py-3 px-4 font-medium whitespace-nowrap border-b border-gray-100">
+              <th className="table-head">
                 Date
               </th>
               <th></th>
@@ -84,7 +51,7 @@ export default function BlogTable({
           </thead>
 
           <tbody>
-            {pageBlogs.length === 0 ? (
+            {(pageData as Blog[]).length === 0 ? (
               <tr>
                 <td colSpan={2} className="py-14 px-4">
                   <div className="flex flex-col items-center justify-center gap-2 text-secondary">
@@ -94,7 +61,7 @@ export default function BlogTable({
                 </td>
               </tr>
             ) : (
-              pageBlogs.map((blog, i) => (
+              (pageData as Blog[]).map((blog, i) => (
                 <tr
                   key={`${blog._id}`}
                   className="cursor-pointer bg-white hover:bg-gray-50 transition-colors"
@@ -156,74 +123,15 @@ export default function BlogTable({
         </table>
       </div>
 
-      {/* Pagination */}
-      {blogs.length > 0 && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4">
-          <p className="text-xs text-secondary">
-            Showing <span className="font-medium text-darkBlue">{start}</span>–
-            <span className="font-medium text-darkBlue">{end}</span> of{" "}
-            <span className="font-medium text-darkBlue">{blogs.length}</span>
-          </p>
-
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => goTo(currentPage - 1)}
-              disabled={currentPage === 1}
-              aria-label="Previous page"
-              className={[
-                "inline-flex h-8 w-8 items-center justify-center rounded-md border border-gray-200 transition-colors",
-                currentPage === 1
-                  ? "cursor-not-allowed text-gray-300"
-                  : "text-secondary hover:bg-gray-50 hover:text-darkBlue",
-              ].join(" ")}
-            >
-              <LuChevronLeft size={16} />
-            </button>
-
-            {pageNumbers.map((p, idx) =>
-              p === "…" ? (
-                <span
-                  key={`ellipsis-${idx}`}
-                  className="px-1.5 text-sm text-gray-300 select-none"
-                >
-                  …
-                </span>
-              ) : (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => goTo(p)}
-                  aria-current={p === currentPage ? "page" : undefined}
-                  className={[
-                    "inline-flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-sm font-medium transition-colors",
-                    p === currentPage
-                      ? "bg-primary text-white"
-                      : "text-secondary hover:bg-gray-50 hover:text-darkBlue",
-                  ].join(" ")}
-                >
-                  {p}
-                </button>
-              ),
-            )}
-
-            <button
-              type="button"
-              onClick={() => goTo(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              aria-label="Next page"
-              className={[
-                "inline-flex h-8 w-8 items-center justify-center rounded-md border border-gray-200 transition-colors",
-                currentPage === totalPages
-                  ? "cursor-not-allowed text-gray-300"
-                  : "text-secondary hover:bg-gray-50 hover:text-darkBlue",
-              ].join(" ")}
-            >
-              <LuChevronRight size={16} />
-            </button>
-          </div>
-        </div>
-      )}
+      <Pagination
+        length={blogs.length}
+        end={end}
+        start={start}
+        currentPage={currentPage}
+        pageNumbers={pageNumbers}
+        totalPages={totalPages}
+        goTo={goTo}
+      />
     </div>
   );
 }

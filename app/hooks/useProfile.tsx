@@ -83,10 +83,7 @@ export const useEditDocument = () =>
     mutationFn: document,
   });
 
-interface ProfileData extends Profile {
-  _id: string
-  createdAt: string
-}
+
 export const useGetIncomplete = () =>
   useQuery<{ profiles : ProfileData[] }>({
     queryFn: incomplete,
