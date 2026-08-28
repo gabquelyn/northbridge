@@ -100,7 +100,7 @@ export default function RootLayout({
         <CartContextProvider>
           <ReactQueryProvider>
             <Providers>
-              <Flyer />
+              {/* <Flyer /> */}
               {children}
             </Providers>
           </ReactQueryProvider>
