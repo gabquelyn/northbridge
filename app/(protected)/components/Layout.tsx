@@ -43,8 +43,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return () => clearTimeout(redirectTimeout);
   }, [loggedOut, isSuccess, isError]);
+  const role = profile?.data?.role;
   const links =
-    profile?.data?.role == "admin"
+    role == "admin" || role == "moderator"
       ? [
           {
             tag: "Applications",

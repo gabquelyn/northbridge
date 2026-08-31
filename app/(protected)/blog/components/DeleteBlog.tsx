@@ -4,6 +4,7 @@ import { useDeleteBlog } from "@/app/hooks/useBlog";
 import React, { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { TbAlertTriangle } from "react-icons/tb";
+import { toast } from "sonner";
 
 export default function DeleteBlog({
   blog,
@@ -12,7 +13,7 @@ export default function DeleteBlog({
   blog: Blog;
   onClose: () => void;
 }) {
-  const { isPending, isSuccess, mutate } = useDeleteBlog();
+  const { isPending, isSuccess, mutate, isError } = useDeleteBlog();
 
   const deleteBlogHandler = () => {
     mutate(blog._id);
@@ -21,7 +22,10 @@ export default function DeleteBlog({
   // Close the modal automatically once the delete succeeds
   useEffect(() => {
     if (isSuccess) onClose();
-  }, [isSuccess, onClose]);
+    if (isError) {
+      toast.error("Not permitted to delete blog post");
+    }
+  }, [isSuccess, onClose, isError]);
 
   return (
     <Modal onClose={onClose}>

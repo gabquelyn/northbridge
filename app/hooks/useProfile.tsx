@@ -17,7 +17,7 @@ import {
 } from "../lib/profile";
 
 export const useProfile = () =>
-  useQuery<{ data: { role: "admin" | "user" } }>({
+  useQuery<{ data: { role: Role } }>({
     queryFn: getprofile,
     queryKey: ["role"],
   });

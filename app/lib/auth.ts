@@ -10,7 +10,7 @@ export const refresh = async () => {
 };
 
 export const login = async (credentials: LoginCredentials) => {
-  const res = await api.post("/auth", credentials);
+  const res = await api.post<{accessToken: string, role: Role}>("/auth", credentials);
   return res.data;
 };
 
@@ -25,7 +25,7 @@ export const register = async (details: RegisterWithMode) => {
 };
 
 export const loginWithGoogle = async (token: string) => {
-  const res = await api.post("/auth/google", { token });
+  const res = await api.post<{accessToken: string, role: Role}>("/auth/google", { token });
   return res.data;
 };
 

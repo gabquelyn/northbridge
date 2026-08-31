@@ -38,14 +38,14 @@ interface IApplicationForm {
 interface Review {
   message: string;
   createdAt: string;
-  _id: string
+  _id: string;
 }
 
 interface ProfileData extends Profile {
-  _id: string
-  createdAt: string
-  updatedAt: string
-  guardian: User
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  guardian: User;
 }
 interface Blog {
   title: string;
@@ -190,11 +190,12 @@ interface Profile {
   };
   referrer: string;
 }
+type Role = "user" | "admin" | "moderator";
 
 interface User {
   name: string;
   email: string;
-  role: "user" | "admin";
+  role: Role;
 }
 
 interface TermsAndCondition {

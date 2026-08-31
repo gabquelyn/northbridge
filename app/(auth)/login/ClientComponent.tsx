@@ -18,6 +18,7 @@ export default function ClientComponent() {
 
   const { data, mutate, isPending, isError, error, isSuccess } = useLogin();
   const {
+    data: gData,
     mutate: mutateGoogle,
     isSuccess: gs,
     isError: isGoogleError,
@@ -48,8 +49,9 @@ export default function ClientComponent() {
 
     if (isSuccess || gs) {
       toast.success("Logged in successfully");
+      const role = data?.role || gData?.role;
       if (redirect) return router.replace(redirect as string);
-      if (data?.role == "admin") {
+      if (role == "admin" || role == "moderator") {
         return router.push("/application");
       } else if (mode == "off-site") {
         router.push("/dashboard/apply?mode=off-site");

@@ -6,7 +6,7 @@ import React from "react";
 
 export default function IncompleteProfileTable({ data }: { data: Profile[] }) {
   const { pageData, pageNumbers, start, end, goTo, currentPage, totalPages } =
-    usePagination({ data });
+    usePagination({ data, pageSize: 12 });
   return (
     <div className="w-full">
       <p className="text-lg font-semibold text-gray-900 mb-4">
